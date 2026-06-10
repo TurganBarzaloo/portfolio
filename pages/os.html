@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Systèmes d'exploitation — Portfolio IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" class="">🏠 Accueil</a>
+<a href="infrastructure.html" class="">Infrastructure</a>
+<a href="proxmox.html" class="">Proxmox</a>
+<a href="gpu_passthrough.html" class="">GPU / VFIO</a>
+<a href="ia_llm.html" class="">IA & LLM</a>
+<a href="rag.html" class="">RAG</a>
+<a href="docker.html" class="">Docker</a>
+<a href="python.html" class="">Python</a>
+</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Systèmes OS</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/linux.svg" alt=""/></div>
+      <div>
+        <h1>Systèmes d'exploitation</h1>
+        <p>Linux (Debian/Ubuntu/Alpine) · Windows 11 · Templates VM</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          Niveau : Intermédiaire+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> 🐧 Linux</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Distribution</th><th>Version</th><th>Usage</th></tr></thead><tbody><tr><td>Proxmox VE</td><td>Base Debian</td><td>Hyperviseur</td></tr><tr><td>Debian</td><td>12 (Bookworm)</td><td>VM serveur générique</td></tr><tr><td>Ubuntu Server</td><td>24.04 LTS</td><td>Services IA / Docker</td></tr><tr><td>Ubuntu Desktop</td><td>24.04 LTS</td><td>Poste dev IA</td></tr><tr><td>Alpine Linux</td><td>3.x</td><td>VM légère / conteneurs</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 🪟 Windows</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Version</th><th>Usage</th><th>Notes</th></tr></thead><tbody><tr><td>Windows 11 Pro</td><td>VM desktop GPU passthrough</td><td>CUDA + drivers NVIDIA</td></tr><tr><td>Win11 CUDA Template</td><td>Template préconfiguré</td><td>Sysprep + CUDA Toolkit</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 📋 Procédure Template Ubuntu Server</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># Dans la VM Ubuntu (préparation template)
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y qemu-guest-agent cloud-init
+
+# Nettoyer
+sudo cloud-init clean
+sudo truncate -s 0 /etc/machine-id
+sudo truncate -s 0 /var/lib/dbus/machine-id
+
+# Éteindre proprement
+sudo poweroff
+
+# Dans Proxmox : convertir en template
+qm template &lt;VMID&gt;</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🎯 Compétences acquises</div>
+  <div class="panel-body"><ul class="skill-list"><li>Administration Linux avancée (Debian/Ubuntu)</li><li>Création de templates VM reproductibles (Linux + Windows)</li><li>Sysprep Windows pour généralisation</li><li>Déploiement et clonage rapide de VM</li><li>Installation et configuration CUDA Toolkit sous Windows</li><li>Cloud-init pour personnalisation automatique au démarrage</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="gpu_passthrough.html"><img src="../assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="docker.html"><img src="../assets/docker.svg" alt=""/>Docker</a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash;
+  <a href="../index.html" style="color:var(--blue-400)">Retour à l'accueil</a>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

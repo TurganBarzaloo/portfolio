@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réseau — Portfolio IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" class="">🏠 Accueil</a>
+<a href="infrastructure.html" class="">Infrastructure</a>
+<a href="proxmox.html" class="">Proxmox</a>
+<a href="gpu_passthrough.html" class="">GPU / VFIO</a>
+<a href="ia_llm.html" class="">IA & LLM</a>
+<a href="rag.html" class="">RAG</a>
+<a href="docker.html" class="">Docker</a>
+<a href="python.html" class="">Python</a>
+</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Réseau</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/linux.svg" alt=""/></div>
+      <div>
+        <h1>Réseau</h1>
+        <p>Bridge Proxmox · SSH · Firewall · NAT · Accès distant</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          Niveau : Intermédiaire
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> 🌐 Configuration réseau</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Élément</th><th>Valeur</th><th>Usage</th></tr></thead><tbody><tr><td>Bridge</td><td>vmbr0</td><td>Pont VM ↔ LAN</td></tr><tr><td>NAT</td><td>Optionnel</td><td>Isolation réseau VM</td></tr><tr><td>SSH</td><td>Port 22</td><td>Admin sécurisé</td></tr><tr><td>Firewall Proxmox</td><td>Activé</td><td>Règles par VM</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 🔌 Ports services</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Service</th><th>Port</th><th>Accès</th><th>Statut</th></tr></thead><tbody><tr><td>Proxmox WebUI</td><td>8006</td><td>LAN (HTTPS)</td><td>✅ Actif</td></tr><tr><td>SSH</td><td>22</td><td>LAN</td><td>✅ Actif</td></tr><tr><td>Ollama API</td><td>11434</td><td>VM locale</td><td>✅ Actif</td></tr><tr><td>Open WebUI</td><td>3000</td><td>LAN</td><td>🟡 Prévu</td></tr><tr><td>Qdrant</td><td>6333</td><td>VM locale</td><td>🟡 Prévu</td></tr><tr><td>n8n</td><td>5678</td><td>LAN</td><td>🟡 Prévu</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🔒 Hardening SSH</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># /etc/ssh/sshd_config
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+MaxAuthTries 3
+ClientAliveInterval 300
+
+# Générer une clé SSH
+ssh-keygen -t ed25519 -C 'portfolio-ia'
+
+# Copier la clé
+ssh-copy-id -i ~/.ssh/id_ed25519.pub user@proxmox-host
+
+# Vérifier les règles firewall
+iptables -L -n -v</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="docker.html"><img src="../assets/docker.svg" alt=""/>Docker</a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash;
+  <a href="../index.html" style="color:var(--blue-400)">Retour à l'accueil</a>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

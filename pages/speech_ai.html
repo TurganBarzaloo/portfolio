@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speech AI — Whisper — Portfolio IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" class="">🏠 Accueil</a>
+<a href="infrastructure.html" class="">Infrastructure</a>
+<a href="proxmox.html" class="">Proxmox</a>
+<a href="gpu_passthrough.html" class="">GPU / VFIO</a>
+<a href="ia_llm.html" class="">IA & LLM</a>
+<a href="rag.html" class="">RAG</a>
+<a href="docker.html" class="">Docker</a>
+<a href="python.html" class="">Python</a>
+</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Speech AI</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/whisper.svg" alt=""/></div>
+      <div>
+        <h1>Speech AI — Whisper</h1>
+        <p>Whisper (OpenAI) · Speech-to-Text local · IA multimodale · GPU</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          Niveau : Débutant+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> 🎙️ Modèles Whisper</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Modèle</th><th>VRAM</th><th>Vitesse</th><th>Précision</th><th>Recommandé</th></tr></thead><tbody><tr><td>tiny</td><td>~1 Go</td><td>⚡⚡⚡⚡</td><td>★★</td><td>Non</td></tr><tr><td>base</td><td>~1 Go</td><td>⚡⚡⚡</td><td>★★★</td><td>Non</td></tr><tr><td>small</td><td>~2 Go</td><td>⚡⚡</td><td>★★★★</td><td>Démo rapide</td></tr><tr><td>medium</td><td>~5 Go</td><td>⚡</td><td>★★★★</td><td>Bon compromis</td></tr><tr><td>large-v3</td><td>~10 Go</td><td></td><td>★★★★★</td><td>✅ RTX 5090</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 💾 Dataset ZFS</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Dataset</th><th>Contenu</th></tr></thead><tbody><tr><td>whisper</td><td>Modèles Whisper (checkpoints)</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🐍 Exemple Python</div>
+  <div class="panel-body"><div class="code-label">python</div>
+<div class="code-block"><pre>import whisper
+
+# Charger le modèle (téléchargé si absent)
+model = whisper.load_model('large-v3')
+
+# Transcrire un fichier audio
+result = model.transcribe(
+    'enregistrement.mp3',
+    language='fr',
+    verbose=True
+)
+
+print(result['text'])
+
+# Avec timestamps
+for segment in result['segments']:
+    print(f"[{segment['start']:.1f}s] {segment['text']}")</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🎯 Compétences en cours</div>
+  <div class="panel-body"><ul class="skill-list"><li>Installation Whisper avec accélération GPU (CUDA)</li><li>Transcription audio/vidéo en français et multilingue</li><li>Sélection du modèle selon contraintes VRAM/vitesse</li><li>Intégration dans pipeline n8n (Trigger audio → STT → LLM)</li><li>IA multimodale : audio → texte → LLM → réponse</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="gpu_passthrough.html"><img src="../assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="devops.html"><img src="../assets/n8n.svg" alt=""/>Automatisation</a>
+      <a class="related-card" href="python.html"><img src="../assets/python.svg" alt=""/>Python</a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash;
+  <a href="../index.html" style="color:var(--blue-400)">Retour à l'accueil</a>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

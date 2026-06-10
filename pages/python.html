@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python — Portfolio IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" class="">🏠 Accueil</a>
+<a href="infrastructure.html" class="">Infrastructure</a>
+<a href="proxmox.html" class="">Proxmox</a>
+<a href="gpu_passthrough.html" class="">GPU / VFIO</a>
+<a href="ia_llm.html" class="">IA & LLM</a>
+<a href="rag.html" class="">RAG</a>
+<a href="docker.html" class="">Docker</a>
+<a href="python.html" class="active">Python</a>
+</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Python</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/python.svg" alt=""/></div>
+      <div>
+        <h1>Python</h1>
+        <p>venv · pip · requirements.txt · Scripts IA · LangChain</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          Niveau : Débutant+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> 🛠️ Stack Python</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Outil</th><th>Usage</th></tr></thead><tbody><tr><td>Python 3.11+</td><td>Langage principal</td></tr><tr><td>venv</td><td>Environnements virtuels isolés</td></tr><tr><td>pip</td><td>Gestionnaire de paquets</td></tr><tr><td>requirements.txt</td><td>Reproductibilité des envs</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 📦 Librairies IA</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Librairie</th><th>Usage</th><th>Statut</th></tr></thead><tbody><tr><td>langchain</td><td>Pipeline RAG</td><td>🟡 Prévu</td></tr><tr><td>qdrant-client</td><td>Client base vectorielle</td><td>🟡 Prévu</td></tr><tr><td>ollama</td><td>Client API Ollama local</td><td>🟡 Prévu</td></tr><tr><td>openai</td><td>Client compatible Ollama</td><td>🟡 Prévu</td></tr><tr><td>whisper</td><td>Speech-to-Text</td><td>🟡 Prévu</td></tr><tr><td>requests</td><td>Appels HTTP API</td><td>✅ Utilisé</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 💻 Workflow standard</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># Créer un projet IA
+mkdir projet-rag && cd projet-rag
+
+# Environnement virtuel
+python3 -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# .venv\\Scripts\\activate  # Windows
+
+# Installer les dépendances
+pip install langchain qdrant-client ollama
+
+# Sauvegarder
+pip freeze &gt; requirements.txt
+
+# Reproduire l'environnement ailleurs
+pip install -r requirements.txt</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🐍 Exemple : client Ollama</div>
+  <div class="panel-body"><div class="code-label">python</div>
+<div class="code-block"><pre>import ollama
+
+# Chat simple
+response = ollama.chat(
+    model='mistral',
+    messages=[{'role': 'user', 'content': 'Explique VFIO en 3 lignes'}]
+)
+print(response['message']['content'])
+
+# Streaming
+for chunk in ollama.chat(
+    model='mistral',
+    messages=[{'role': 'user', 'content': 'Bonjour'}],
+    stream=True
+):
+    print(chunk['message']['content'], end='', flush=True)</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="rag.html"><img src="../assets/qdrant.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="speech_ai.html"><img src="../assets/whisper.svg" alt=""/>Speech AI</a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash;
+  <a href="../index.html" style="color:var(--blue-400)">Retour à l'accueil</a>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

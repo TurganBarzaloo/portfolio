@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RAG & Bases Vectorielles — Portfolio IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" class="">🏠 Accueil</a>
+<a href="infrastructure.html" class="">Infrastructure</a>
+<a href="proxmox.html" class="">Proxmox</a>
+<a href="gpu_passthrough.html" class="">GPU / VFIO</a>
+<a href="ia_llm.html" class="">IA & LLM</a>
+<a href="rag.html" class="active">RAG</a>
+<a href="docker.html" class="">Docker</a>
+<a href="python.html" class="">Python</a>
+</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>RAG & Vectoriel</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/qdrant.svg" alt=""/></div>
+      <div>
+        <h1>RAG & Bases Vectorielles</h1>
+        <p>Qdrant · LangChain · Embeddings · Recherche sémantique</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          Niveau : Débutant+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div style="font-size:.84rem;color:var(--gray-700);background:var(--gray-100);border-radius:var(--radius-sm);padding:1rem 1.25rem;font-family:monospace;margin-bottom:1.5rem;line-height:1.8">
+    [Documents] → [Chunking] → [Embeddings] → [Qdrant]<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br/>
+    [Question] → [Embedding requête] → [Similarity Search] → [LLM] → [Réponse]
+  </div>
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> 🔧 Stack technique</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Composant</th><th>Rôle</th><th>Version</th></tr></thead><tbody><tr><td>Qdrant</td><td>Base de données vectorielle</td><td>Latest</td></tr><tr><td>Embeddings</td><td>Transformation texte → vecteurs</td><td>nomic-embed-text</td></tr><tr><td>LangChain</td><td>Orchestration pipeline RAG</td><td>0.3.x</td></tr><tr><td>Ollama</td><td>LLM en sortie du RAG</td><td>Local</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 📂 Datasets ZFS</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Dataset</th><th>Contenu</th></tr></thead><tbody><tr><td>rag</td><td>Documents sources (PDF, TXT, MD)</td></tr><tr><td>embeddings</td><td>Vecteurs précalculés</td></tr><tr><td>qdrant</td><td>Base Qdrant persistée</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🐍 Pipeline Python (cible)</div>
+  <div class="panel-body"><div class="code-label">python</div>
+<div class="code-block"><pre>from langchain.document_loaders import DirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.vectorstores import Qdrant
+
+# 1. Chargement
+loader = DirectoryLoader('/mnt/qdrant/rag/')
+docs = loader.load()
+
+# 2. Découpage
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500, chunk_overlap=50)
+chunks = splitter.split_documents(docs)
+
+# 3. Embeddings + indexation
+embeddings = OllamaEmbeddings(model='nomic-embed-text')
+vectorstore = Qdrant.from_documents(
+    chunks, embeddings,
+    url='http://localhost:6333',
+    collection_name='portfolio')
+
+# 4. Recherche
+results = vectorstore.similarity_search('Qu\'est-ce que VFIO ?', k=3)</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="storage_zfs.html"><img src="../assets/zfs.svg" alt=""/>Stockage ZFS</a>
+      <a class="related-card" href="docker.html"><img src="../assets/docker.svg" alt=""/>Docker</a>
+      <a class="related-card" href="python.html"><img src="../assets/python.svg" alt=""/>Python</a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash;
+  <a href="../index.html" style="color:var(--blue-400)">Retour à l'accueil</a>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

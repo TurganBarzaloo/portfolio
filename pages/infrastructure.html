@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infrastructure Matérielle — Portfolio IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" class="">🏠 Accueil</a>
+<a href="infrastructure.html" class="active">Infrastructure</a>
+<a href="proxmox.html" class="">Proxmox</a>
+<a href="gpu_passthrough.html" class="">GPU / VFIO</a>
+<a href="ia_llm.html" class="">IA & LLM</a>
+<a href="rag.html" class="">RAG</a>
+<a href="docker.html" class="">Docker</a>
+<a href="python.html" class="">Python</a>
+</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Infrastructure</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/linux.svg" alt=""/></div>
+      <div>
+        <h1>Infrastructure Matérielle</h1>
+        <p>Serveur IA local : AMD Ryzen 9 9950X3D · NVIDIA RTX 5090 · 192 Go DDR5</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          Niveau : Avancé
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> 🖥️ Composants matériels</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Composant</th><th>Détail</th><th>Rôle</th></tr></thead><tbody><tr><td><strong>CPU</strong></td><td>AMD Ryzen 9 9950X3D</td><td>Inférence IA · Virtualisation KVM</td></tr><tr><td><strong>GPU</strong></td><td>NVIDIA RTX 5090</td><td>Inférence LLM · Génération image</td></tr><tr><td><strong>RAM</strong></td><td>192 Go DDR5</td><td>Mémoire VM multiples · modèles larges</td></tr><tr><td><strong>Stockage</strong></td><td>SSD NVMe haute performance</td><td>ZFS · datasets IA</td></tr><tr><td><strong>Réseau</strong></td><td>Ethernet</td><td>Bridge Proxmox · accès LAN</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> ⚙️ Configuration BIOS/UEFI</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Paramètre</th><th>État</th><th>Usage</th></tr></thead><tbody><tr><td>AMD-V</td><td>✅ Activé</td><td>Virtualisation CPU KVM</td></tr><tr><td>IOMMU</td><td>✅ Activé</td><td>GPU Passthrough VFIO</td></tr><tr><td>Above 4G Decoding</td><td>✅ Activé</td><td>Adressage PCIe étendu</td></tr><tr><td>Re-Size BAR</td><td>✅ Activé</td><td>Performance GPU maximale</td></tr><tr><td>Secure Boot</td><td>✅ Configuré</td><td>Sécurité UEFI</td></tr><tr><td>UEFI</td><td>✅ Natif</td><td>Boot moderne · OVMF</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🎯 Compétences acquises</div>
+  <div class="panel-body"><ul class="skill-list"><li>Architecture serveur IA locale haute performance</li><li>Sélection matérielle pour l'inférence GPU (VRAM, bande passante)</li><li>Dimensionnement CPU / RAM pour hyperviseur multi-VM</li><li>Configuration BIOS/UEFI pour la virtualisation et le passthrough PCIe</li><li>Gestion stockage NVMe haute performance avec ZFS</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Technologies associées</h2>
+    <div class="tags">
+      <span class="tag"><img src="../assets/amd.svg" alt=""/>AMD Ryzen 9950X3D</span>
+      <span class="tag"><img src="../assets/nvidia.svg" alt=""/>NVIDIA RTX 5090</span>
+      <span class="tag"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</span>
+      <span class="tag"><img src="../assets/linux.svg" alt=""/>Linux</span>
+      <span class="tag"><img src="../assets/zfs.svg" alt=""/>ZFS</span>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="gpu_passthrough.html"><img src="../assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="storage_zfs.html"><img src="../assets/zfs.svg" alt=""/>Stockage ZFS</a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash;
+  <a href="../index.html" style="color:var(--blue-400)">Retour à l'accueil</a>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stockage ZFS — Portfolio IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" class="">🏠 Accueil</a>
+<a href="infrastructure.html" class="">Infrastructure</a>
+<a href="proxmox.html" class="">Proxmox</a>
+<a href="gpu_passthrough.html" class="">GPU / VFIO</a>
+<a href="ia_llm.html" class="">IA & LLM</a>
+<a href="rag.html" class="">RAG</a>
+<a href="docker.html" class="">Docker</a>
+<a href="python.html" class="">Python</a>
+</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Stockage ZFS</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/zfs.svg" alt=""/></div>
+      <div>
+        <h1>Stockage ZFS</h1>
+        <p>Architecture stockage orientée IA · Datasets dédiés · Snapshots</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          Niveau : Intermédiaire+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> 📂 Datasets créés</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Dataset</th><th>Usage</th><th>Service</th></tr></thead><tbody><tr><td>models</td><td>Modèles IA génériques</td><td>Ollama / HuggingFace</td></tr><tr><td>ollama</td><td>Modèles Ollama (LLM)</td><td>Ollama</td></tr><tr><td>huggingface</td><td>Cache HuggingFace</td><td>Python / LangChain</td></tr><tr><td>whisper</td><td>Modèles Whisper STT</td><td>Whisper</td></tr><tr><td>comfyui</td><td>Workflows et modèles ComfyUI</td><td>ComfyUI</td></tr><tr><td>flux</td><td>Modèles Flux (génération image)</td><td>ComfyUI / Flux</td></tr><tr><td>rag</td><td>Documents sources RAG</td><td>LangChain</td></tr><tr><td>embeddings</td><td>Vecteurs précalculés</td><td>Qdrant</td></tr><tr><td>qdrant</td><td>Base vectorielle persistée</td><td>Qdrant</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 🎯 Compétences acquises</div>
+  <div class="panel-body"><ul class="skill-list"><li>Administration ZFS (pools, datasets, propriétés)</li><li>Architecture stockage orientée IA (séparation des données)</li><li>Snapshots ZFS automatiques et manuels</li><li>Gestion quotas et compression</li><li>Monitoring espace disque et santé du pool</li><li>Intégration ZFS / Proxmox</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 💻 Commandes ZFS</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># Lister tous les datasets
+zfs list
+
+# Créer un dataset
+zfs create pool/ollama
+
+# Snapshot avant migration
+zfs snapshot pool/ollama@avant-migration-$(date +%Y%m%d)
+
+# Lister les snapshots
+zfs list -t snapshot
+
+# Restaurer un snapshot
+zfs rollback pool/ollama@avant-migration
+
+# Vérifier santé du pool
+zpool status
+zpool scrub pool</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="rag.html"><img src="../assets/qdrant.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="speech_ai.html"><img src="../assets/whisper.svg" alt=""/>Speech AI</a>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash;
+  <a href="../index.html" style="color:var(--blue-400)">Retour à l'accueil</a>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
