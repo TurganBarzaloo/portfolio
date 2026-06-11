@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stéphane Muraro — À propos | Portfolio IA On-Premise</title>
+  <meta name="description" content="Stéphane Muraro — Ingénieur informatique & Chef de Projet. 26 ans d'expérience : sécurité systèmes, infrastructure on-premise, IA locale souveraine. Bordeaux, France."/>
+  <meta name="author" content="Stéphane Muraro"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    /* ── Nav author (conforme guide section 7) ── */
+    .nav-author {
+      font-size: .8rem; font-weight: 500; color: var(--gray-500);
+      letter-spacing: .01em; white-space: nowrap; padding: .25rem .6rem;
+    }
+    .nav-author strong { color: var(--blue-700); font-weight: 600; }
+
+    /* ── Footer (conforme guide section 3) ── */
+    .site-footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 1rem;
+    }
+    .footer-author { font-size: .82rem; color: var(--gray-700); text-align: left; }
+    .footer-author strong { color: var(--blue-700); font-weight: 600; }
+    .footer-author span { display: block; font-size: .75rem; color: var(--gray-500); margin-top: .15rem; }
+    .footer-center { font-size: .78rem; color: var(--gray-400); text-align: center; }
+    .footer-oss { font-size: .78rem; color: var(--gray-500); text-align: right; }
+    .footer-oss a { color: var(--accent); text-decoration: none; }
+    .footer-oss a:hover { text-decoration: underline; }
+    .footer-oss-badge {
+      display: inline-flex; align-items: center; gap: .3rem;
+      background: #ECFDF5; border: 1px solid #A7F3D0;
+      color: #065F46; font-size: .72rem; font-weight: 600;
+      padding: .2rem .6rem; border-radius: 99px; margin-bottom: .35rem;
+    }
+    @media (max-width: 640px) {
+      .site-footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-author, .footer-oss { text-align: center; }
+    }
+
+    /* ── Synergie box ── */
+    .synergy-box {
+      background: linear-gradient(135deg, var(--blue-50) 0%, #F0FDF4 100%);
+      border: 1px solid var(--blue-100); border-left: 4px solid var(--blue-500);
+      border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 2.5rem;
+    }
+    .synergy-eyebrow {
+      font-size: .72rem; font-weight: 700; color: var(--blue-500);
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: .75rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .synergy-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 640px) { .synergy-cols { grid-template-columns: 1fr; } }
+    .synergy-col-title {
+      font-size: .8rem; font-weight: 700; color: var(--blue-900);
+      margin-bottom: .5rem; display: flex; align-items: center; gap: .4rem;
+    }
+    .synergy-list { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+    .synergy-list li {
+      font-size: .82rem; color: var(--gray-700);
+      display: flex; align-items: flex-start; gap: .5rem; line-height: 1.5;
+    }
+    .syn-ok  { color: var(--success); font-weight: 700; flex-shrink: 0; font-size: .75rem; margin-top: .1rem; }
+    .syn-pro { color: var(--blue-500); font-weight: 700; flex-shrink: 0; font-size: .68rem;
+               background: var(--blue-100); padding: .05rem .35rem; border-radius: 3px; margin-top: .1rem; }
+    .synergy-conclusion {
+      background: var(--white); border: 1px solid var(--gray-300);
+      border-radius: var(--radius-sm); padding: .85rem 1rem;
+      font-size: .84rem; color: var(--blue-900); font-weight: 500;
+      display: flex; align-items: flex-start; gap: .6rem; margin-top: 1rem;
+    }
+    .synergy-conclusion svg { flex-shrink: 0; color: var(--success); margin-top: .15rem; }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: .5rem; top: .5rem; bottom: .5rem;
+      width: 2px; background: var(--gray-200);
+    }
+    .tl-item { position: relative; margin-bottom: 1.75rem; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -1.6rem; top: .35rem;
+      width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--white);
+    }
+    .tl-dot.current { background: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,233,.2); }
+    .tl-dot.senior  { background: var(--blue-500); box-shadow: 0 0 0 2px rgba(37,99,235,.15); }
+    .tl-dot.mid     { background: var(--blue-400); }
+    .tl-dot.private { background: var(--gray-300); }
+    .tl-period {
+      font-family: 'Fira Code','Cascadia Code','Consolas', monospace;
+      font-size: .7rem; color: var(--accent); font-weight: 500;
+      letter-spacing: .04em; margin-bottom: .15rem;
+    }
+    .tl-title { font-size: .95rem; font-weight: 700; color: var(--blue-900); margin-bottom: .1rem; }
+    .tl-org   { font-size: .78rem; color: var(--gray-500); font-weight: 500; margin-bottom: .35rem; }
+    .tl-desc  { font-size: .83rem; color: var(--gray-700); line-height: 1.6; }
+    .tl-tags  { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .45rem; }
+    .tl-tag {
+      font-size: .67rem; padding: .13rem .5rem; border-radius: 99px;
+      background: var(--blue-100); color: var(--blue-700); font-weight: 500;
+    }
+    .tl-tag.g { background: #D1FAE5; color: #065F46; }
+
+    /* ── Expertise cards ── */
+    .expertise-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    @media (max-width: 768px) { .expertise-grid { grid-template-columns: 1fr; } }
+    .expertise-card {
+      background: var(--white); border: 1px solid var(--gray-300);
+      border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--blue-500);
+    }
+    .expertise-card.g { border-top-color: var(--success); }
+    .expertise-card.o { border-top-color: var(--warning); }
+    .expertise-icon   { font-size: 1.3rem; margin-bottom: .5rem; }
+    .expertise-title  { font-size: .88rem; font-weight: 700; color: var(--blue-900); margin-bottom: .5rem; }
+
+    /* ── Looking cards ── */
+    .looking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .looking-grid { grid-template-columns: 1fr; } }
+    .looking-card {
+      background: var(--white); border: 1px solid var(--gray-300);
+      border-radius: var(--radius-sm); padding: 1rem 1.1rem;
+      display: flex; gap: .7rem; align-items: flex-start; box-shadow: var(--shadow-sm);
+    }
+    .looking-icon  { font-size: 1.05rem; flex-shrink: 0; margin-top: .05rem; }
+    .looking-title { font-size: .86rem; font-weight: 700; color: var(--blue-900); margin-bottom: .2rem; }
+    .looking-desc  { font-size: .79rem; color: var(--gray-700); line-height: 1.55; }
+
+    /* ── OSS strip ── */
+    .oss-strip {
+      background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: var(--radius);
+      padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .oss-strip-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .oss-strip-text { font-size: .875rem; color: #064E3B; line-height: 1.65; }
+    .oss-strip-text strong { color: #022C22; }
+
+    /* ── Contact ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-item {
+      background: var(--white); border: 1px solid var(--gray-300);
+      border-radius: var(--radius-sm); padding: .9rem 1.1rem;
+      display: flex; align-items: center; gap: .7rem;
+      font-size: .875rem; color: var(--blue-700); font-weight: 600;
+      text-decoration: none; transition: background .15s, border-color .15s;
+    }
+    .contact-item:hover { background: var(--blue-50); border-color: var(--blue-400); }
+    .contact-item-label { font-size: .72rem; color: var(--gray-500); font-weight: 400; display: block; margin-bottom: .1rem; }
+
+    /* ── Section title (conforme guide section-title) ── */
+    .s-title {
+      font-size: 1.1rem; font-weight: 700; color: var(--blue-900);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem;
+    }
+    .s-title::after { content: ''; flex: 1; height: 1px; background: var(--gray-300); }
+  </style>
+</head>
+<body>
+
+<!-- NAV — conforme guide section 3 + lien about.html ajouté -->
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="infrastructure.html">Infrastructure</a>
+    <a href="proxmox.html">Proxmox</a>
+    <a href="gpu_passthrough.html">GPU / VFIO</a>
+    <a href="ia_llm.html">IA &amp; LLM</a>
+    <a href="rag.html">RAG</a>
+    <a href="docker.html">Docker</a>
+    <a href="python.html">Python</a>
+    <a href="git-audit.html">Git</a>
+    <a href="git-strategie.html">Stratégie Git</a>
+    <a href="about.html" class="active">À propos</a>
+  </div>
+  <div class="nav-author"><strong>Stéphane Muraro</strong></div>
+</nav>
+
+<!-- BREADCRUMB — conforme guide section 3 -->
+<div class="breadcrumb">
+  <a href="../index.html">Accueil</a><span>›</span>
+  <span>À propos</span>
+</div>
+
+<!-- PAGE HEADER — conforme guide section 3 -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Stéphane Muraro</h1>
+        <p>Ingénieur informatique &amp; Chef de Projet · Infrastructure IA On-Premise · Bordeaux, France</p>
+      </div>
+    </div>
+    <div class="tags" style="margin-top:.8rem">
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Infrastructure Engineer</span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">AI Systems Architect</span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Sécurité Systèmes</span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">ISO 27001 (en cours)</span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Open Source</span>
+    </div>
+    <span class="level-pill">26 ans d'expérience · Disponible · Mobile</span>
+  </div>
+</div>
+
+<!-- CONTENT — conforme guide section 3 -->
+<div class="content" style="max-width:960px">
+
+  <!-- 1. RÉSUMÉ — guide section 13 point 2 -->
+  <div style="margin-bottom:2.5rem">
+    <div class="notes-box">
+      Ingénieur infrastructure avec 26 ans de terrain au service public — des premières architectures sécurité réseau jusqu'aux plateformes IA souveraines on-premise. Mon parcours couvre la <strong>sécurité systèmes opérationnelle</strong> (antivirus, firewall, DMZ, politique sécurité), la <strong>conduite de projets IT complexes</strong> en environnement certifié COFRAC, et la <strong>construction d'infrastructures IA on-premise</strong> entièrement open source. Je préfère rester l'expert technique de référence — celui qui construit, documente, et partage ce qu'il apprend.
+    </div>
+  </div>
+
+  <!-- 2. SYNERGIE PRO × PERSO -->
+  <div style="margin-bottom:2.5rem">
+    <h2 class="s-title">Expérience professionnelle × développement personnel</h2>
+    <div class="synergy-box">
+      <div class="synergy-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Ce que je fais au travail · Ce que je construis chez moi · Ce que ça produit ensemble
+      </div>
+      <div class="synergy-cols">
+        <div>
+          <div class="synergy-col-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            Expérience professionnelle (Gironde, 1999 →)
+          </div>
+          <ul class="synergy-list">
+            <li><span class="syn-pro">PRO</span>POC Agentique, LLM et RAG sur documents internes du LDA 33</li>
+            <li><span class="syn-pro">PRO</span>LIMS + interfaces automates — chaîne complète données métier (COFRAC)</li>
+            <li><span class="syn-pro">PRO</span>7 ans sécurité systèmes : antivirus centralisé, DMZ, firewall, IDS, politique sécurité</li>
+            <li><span class="syn-pro">PRO</span>19 ans pilotage projets IT complexes, marchés publics, multi-acteurs</li>
+            <li><span class="syn-pro">PRO</span>Connaissance approfondie du SI départemental (on-premise + cloud)</li>
+            <li><span class="syn-pro">PRO</span>Développement Python, GitLab, pipelines de données laboratoire</li>
+          </ul>
+        </div>
+        <div>
+          <div class="synergy-col-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+            Développement personnel (ce portfolio)
+          </div>
+          <ul class="synergy-list">
+            <li><span class="syn-ok">✓</span>Serveur IA on-premise : Proxmox VE, RTX 5090, 192 Go DDR5</li>
+            <li><span class="syn-ok">✓</span>Stack IA souveraine : Ollama, Open WebUI, RAG Qdrant + LangChain</li>
+            <li><span class="syn-ok">✓</span>Automatisation n8n, Python, pipelines de traitement de données</li>
+            <li><span class="syn-ok">✓</span>GPU Passthrough VFIO, ZFS, Docker, architecture haute performance</li>
+            <li><span class="syn-ok">✓</span>Documentation systématique — ce portfolio en est la preuve</li>
+            <li><span class="syn-ok">✓</span>Formation ISO 27001 Lead Implementer (en cours)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="synergy-conclusion">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+        <div><strong>Résultat :</strong> la capacité de déployer un serveur IA on-premise d'entreprise, de le sécuriser, de l'intégrer au SI existant — et de documenter chaque étape. Sans chercher comment faire, parce que c'est déjà fait et documenté ici.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. TIMELINE — guide section 13 point 3 -->
+  <div style="margin-bottom:2.5rem">
+    <h2 class="s-title">Parcours professionnel</h2>
+    <div class="panel">
+      <div class="panel-body">
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot current"></div>
+            <div class="tl-period">2018 — aujourd'hui · Ingénieur Principal (2022)</div>
+            <div class="tl-title">Chef de projets Innovations Numériques — SPIN</div>
+            <div class="tl-org">Conseil Départemental de la Gironde</div>
+            <div class="tl-desc">Déploiement du LIMS et interfaces automates au Laboratoire Départemental d'Analyse (environnement certifié COFRAC). Développement Python, GitLab. POC Agentique, LLM et RAG sur documents internes. Construction d'une plateforme IA on-premise complète en parallèle.</div>
+            <div class="tl-tags">
+              <span class="tl-tag g">IA On-Premise</span>
+              <span class="tl-tag g">LLM · RAG</span>
+              <span class="tl-tag">Python</span>
+              <span class="tl-tag">GitLab</span>
+              <span class="tl-tag">LIMS</span>
+              <span class="tl-tag">COFRAC</span>
+              <span class="tl-tag">Proxmox</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot senior"></div>
+            <div class="tl-period">2009 — 2017 · Ingénieur Territorial (concours 2013)</div>
+            <div class="tl-title">Chef de projets Patrimoine Applicatif — SPEC</div>
+            <div class="tl-org">Conseil Départemental de la Gironde</div>
+            <div class="tl-desc">Conduite de projets multi-acteurs : LDA 33, bases de loisirs, logement social, coopération internationale (Burkina-Faso), DRH. Pilotage budgétaire, marchés publics, animation de réseaux. AMOA projets LDA et DRH.Cryptage GnuPG/OpenPGP, flux SSH/TLS/SSL. Responsable de domaine (50+ applications).</div>
+            <div class="tl-tags">
+              <span class="tl-tag">Gestion de projet</span>
+              <span class="tl-tag">MOA/MOE</span>
+              <span class="tl-tag">Marchés publics</span>
+              <span class="tl-tag">Agile SCRUM/KANBAN</span>
+              <span class="tl-tag">International</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot mid"></div>
+            <div class="tl-period">2007 — 2009</div>
+            <div class="tl-title">Chef de projets Applications Métier — BAIT</div>
+            <div class="tl-org">Conseil Départemental de la Gironde</div>
+            <div class="tl-desc">Acte II de la décentralisation — intégration des DDE. Administration technique de logiciels, gestion de projets de migration matériel et logiciels.</div>
+            <div class="tl-tags"><span class="tl-tag">Migration SI</span><span class="tl-tag">Administration applicative</span></div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot senior"></div>
+            <div class="tl-period">1999 — 2007 · Technicien Territorial (concours 2000)</div>
+            <div class="tl-title">Administrateur Système &amp; Sécurité — BSRI</div>
+            <div class="tl-org">Conseil Départemental de la Gironde</div>
+            <div class="tl-desc">Migration Novell → Active Directory. Mise en place complète de la première infrastructure sécurité : antivirus centralisé, DMZ, firewall (NetASQ, TrendMicro, ISA Server en load balancing), proxy, IDS, politique sécurité.</div>
+            <div class="tl-tags">
+              <span class="tl-tag g">Sécurité réseau</span>
+              <span class="tl-tag">Active Directory</span>
+              <span class="tl-tag">Firewall · DMZ</span>
+              <span class="tl-tag">Antivirus centralisé</span>
+              <span class="tl-tag">Cryptographie</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot private"></div>
+            <div class="tl-period">1990 — 1998 · Secteur privé</div>
+            <div class="tl-title">Intégrateur logiciel &amp; Management opérationnel</div>
+            <div class="tl-org">BP-Mobil · Total · Quick · Secteur CHR</div>
+            <div class="tl-desc">Intégration logicielle (Copitol) — extraction/intégration de données, contrôle de cohérence. Management d'équipes chez Quick (CA 5→12 M Fr.). Analyse MERISE et informatisation d'une structure hôtelière.</div>
+            <div class="tl-tags"><span class="tl-tag">Intégration logicielle</span><span class="tl-tag">MERISE</span><span class="tl-tag">Management</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. COMPÉTENCES TRANSVERSALES — guide section 13 point 4 -->
+  <div style="margin-bottom:2.5rem">
+    <h2 class="s-title">Domaines d'expertise</h2>
+    <div class="expertise-grid">
+
+      <div class="expertise-card">
+        <div class="expertise-icon">🛡️</div>
+        <div class="expertise-title">Sécurité Systèmes</div>
+        <ul class="skill-list">
+          <li>Antivirus centralisé, firewall, DMZ, proxy, IDS</li>
+          <li>Politique sécurité et audit de SI</li>
+          <li>Cryptographie — GnuPG, OpenPGP, SSH/TLS</li>
+          <li>Connexions aux bases de l'État (certificats)</li>
+          <li>Souveraineté des données — IA on-premise</li>
+          <li>ISO 27001 Lead Implementer (en cours)</li>
+        </ul>
+      </div>
+
+      <div class="expertise-card g">
+        <div class="expertise-icon">🏗️</div>
+        <div class="expertise-title">Infrastructure &amp; DevOps</div>
+        <ul class="skill-list">
+          <li>Proxmox VE, KVM, QEMU, GPU Passthrough VFIO</li>
+          <li>Linux (Debian, Ubuntu, Alpine), Windows Server</li>
+          <li>Docker, Docker Compose, YAML</li>
+          <li>Réseaux TCP/IP, VLAN, VPN, Cisco, Active Directory</li>
+          <li>ZFS, stockage haute performance</li>
+          <li>PostgreSQL, Oracle, SQL Server, Apache, IIS</li>
+        </ul>
+      </div>
+
+      <div class="expertise-card o">
+        <div class="expertise-icon">🤖</div>
+        <div class="expertise-title">Architecture IA On-Premise</div>
+        <ul class="skill-list">
+          <li>LLM locaux : Ollama, Open WebUI, Llama, Mistral</li>
+          <li>RAG vectoriel : Qdrant, LangChain, Embeddings</li>
+          <li>Agentique : POC en environnement métier réel</li>
+          <li>IA générative : ComfyUI, Flux, Whisper</li>
+          <li>Automatisation : n8n, Python, CUDA</li>
+          <li>Veille technologique IA continue</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FORMATION -->
+  <div style="margin-bottom:2.5rem">
+    <h2 class="s-title">Formation &amp; certifications</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Année</th><th>Diplôme / Concours / Certification</th><th>Organisme</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--accent)">En cours</strong></td><td>ISO 27001 Lead Implementer</td><td>Formation continue</td></tr>
+            <tr><td>2017</td><td>Jury de sélection professionnelle (Cat. A &amp; B — filière technique)</td><td>CDG 33</td></tr>
+            <tr><td>2013</td><td>Concours externe Ingénieur Territorial — option informatique</td><td>CNFPT</td></tr>
+            <tr><td>2012</td><td>Concours externe Attaché Territorial — option analyste</td><td>CNFPT</td></tr>
+            <tr><td>Depuis 2000</td><td>Jury examinateur titre professionnel informatique Niv. II &amp; III</td><td>DIRECCTE</td></tr>
+            <tr><td>2000</td><td>Concours externe Technicien Territorial</td><td>CNFPT</td></tr>
+            <tr><td>1996</td><td>GPSI Niveau III (DUT) — Gestion et Production des Systèmes Informatiques</td><td>AFPA Pessac</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CE QUE JE CHERCHE -->
+  <div style="margin-bottom:2.5rem">
+    <h2 class="s-title">Ce que je cherche</h2>
+    <div class="looking-grid">
+      <div class="looking-card">
+        <div class="looking-icon">🤖</div>
+        <div>
+          <div class="looking-title">Architecte IA On-Premise</div>
+          <div class="looking-desc">Déploiement et administration de plateformes IA souveraines : LLM, RAG, agents, automatisation. Intégration au SI existant. Je construis cela chez moi — et je peux le faire pour une organisation.</div>
+        </div>
+      </div>
+      <div class="looking-card">
+        <div class="looking-icon">🛡️</div>
+        <div>
+          <div class="looking-title">Expert Sécurité — ISO 27001</div>
+          <div class="looking-desc">Formation Lead Implementer en cours. 7 ans d'expérience terrain. Intéressé par des rôles architecte sécurité, RSSI adjoint ou auditeur avec une dimension technique forte.</div>
+        </div>
+      </div>
+      <div class="looking-card">
+        <div class="looking-icon">🏗️</div>
+        <div>
+          <div class="looking-title">Ingénieur Infrastructure Senior</div>
+          <div class="looking-desc">Expert technique de référence, sans management hiérarchique. Virtualisation, stockage, réseaux, DevOps. Les postes où la profondeur technique est valorisée.</div>
+        </div>
+      </div>
+      <div class="looking-card">
+        <div class="looking-icon">🌍</div>
+        <div>
+          <div class="looking-title">Mobilité &amp; Télétravail</div>
+          <div class="looking-desc">Ouvert à toute zone géographique. Expérience de coopération internationale (Burkina-Faso). Télétravail ou présentiel. Anglais professionnel.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHIE OSS -->
+  <div style="margin-bottom:2.5rem">
+    <h2 class="s-title">Philosophie Open Source</h2>
+    <div class="oss-strip">
+      <div class="oss-strip-icon">🌿</div>
+      <div class="oss-strip-text">
+        <strong>Tout ce qui est présenté dans ce portfolio est construit avec des outils libres.</strong> Git, Proxmox VE, Docker, Python, Ollama, Qdrant, nginx, Obsidian — chaque choix technique a une alternative open source. Ce n'est pas une contrainte : c'est une conviction. La transparence du code, la communauté qui le maintient, et la souveraineté sur ses données sont des valeurs que je défends autant dans mes projets personnels que professionnels. Ce portfolio est un aide-mémoire partagé librement — parce que documenter et transmettre fait partie du travail.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. CONTACT — guide section 13 point 5 + informations de contact section 13 -->
+  <div style="margin-bottom:2.5rem">
+    <h2 class="s-title">Contact</h2>
+    <div class="contact-grid">
+      <a href="mailto:s.muraro@gironde.fr" class="contact-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        <div><span class="contact-item-label">Email</span>s.muraro@gironde.fr</div>
+      </a>
+      <a href="https://www.linkedin.com/in/stephane-muraro-b01778132/" target="_blank" class="contact-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--blue-700)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <div><span class="contact-item-label">LinkedIn</span>stephane-muraro-b01778132</div>
+      </a>
+      <a href="https://github.com/TurganBarzaloo" target="_blank" class="contact-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--blue-700)"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <div><span class="contact-item-label">GitHub</span>TurganBarzaloo</div>
+      </a>
+      <!-- 6. Bouton CV — guide section 13 point 6 -->
+      <a href="../assets/cv-s_muraro.pdf" download class="contact-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <div><span class="contact-item-label">Curriculum Vitæ</span>Télécharger le CV (PDF)</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- RÉFÉRENCES STYLE WIKIPÉDIA — conforme guide section 6 -->
+<div class="content" style="padding-top:0;max-width:960px">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Norme de sécurité</td>
+              <td>ISO/IEC 27001:2022 — Systèmes de management de la sécurité de l'information</td>
+              <td><a href="https://www.iso.org/standard/27001" target="_blank" style="color:var(--blue-500)">iso.org/standard/27001</a></td>
+            </tr>
+            <tr>
+              <td>Certification</td>
+              <td>ISO 27001 Lead Implementer — PECB</td>
+              <td><a href="https://pecb.com/en/education-and-certification-for-individuals/iso-27001" target="_blank" style="color:var(--blue-500)">pecb.com</a></td>
+            </tr>
+            <tr>
+              <td>Concours territorial</td>
+              <td>Ingénieur Territorial — filière technique (CNFPT)</td>
+              <td><a href="https://www.cnfpt.fr" target="_blank" style="color:var(--blue-500)">cnfpt.fr</a></td>
+            </tr>
+            <tr>
+              <td>Guide de référence</td>
+              <td>PORTFOLIO-GUIDE-REFERENCE.md — document de maintenabilité du portfolio</td>
+              <td>C:\Dev\portfolio\ (dépôt GitHub)</td>
+            </tr>
+            <tr>
+              <td>Contenu de cette page</td>
+              <td>Partagé sous CC BY-SA 4.0</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER — conforme guide section 3 (lien relatif git-strategie.html) -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span>Ingénieur informatique &amp; Chef de Projet · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        100 % Open Source
+      </div>
+      <div>Construit avec Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="git-strategie.html">Philosophie OSS →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

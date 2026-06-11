@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Stratégie Git &amp; Stockage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    /* ── Styles spécifiques à cette page ── */
+    .toc {
+      background: var(--blue-50); border-left: 3px solid var(--blue-500);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.25rem; margin-bottom: 2.5rem;
+    }
+    .toc-title { font-size:.78rem; font-weight:700; color:var(--blue-700); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.5rem; }
+    .toc ol { padding-left:1.2rem; display:flex; flex-direction:column; gap:.2rem; }
+    .toc li { font-size:.85rem; }
+    .toc a { color:var(--blue-500); }
+    .toc a:hover { text-decoration:underline; }
+
+    .guide-section { padding-top:2.5rem; border-top:1px solid var(--gray-100); margin-top:2.5rem; }
+    .guide-section:first-child { border-top:none; margin-top:0; padding-top:0; }
+    .guide-section h2 { font-size:1.25rem; font-weight:800; color:var(--blue-900); margin-bottom:1rem; display:flex; align-items:center; gap:.75rem; }
+    .guide-section h2 img { width:28px; height:28px; object-fit:contain; }
+    .guide-section h3 { font-size:.95rem; font-weight:700; color:var(--blue-700); margin:1.5rem 0 .6rem; display:flex; align-items:center; gap:.5rem; }
+    .guide-section h3 img { width:20px; height:20px; object-fit:contain; }
+    .section-eyebrow { font-size:.72rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.1em; display:block; margin-bottom:.25rem; }
+
+    .principle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.5rem; }
+    @media(max-width:768px){ .principle-grid { grid-template-columns:1fr; } }
+    .principle-card {
+      background:var(--white); border:1px solid var(--gray-300); border-radius:var(--radius);
+      padding:1.25rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:.6rem;
+    }
+    .principle-card-icon {
+      width:40px; height:40px; border-radius:var(--radius-sm);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .principle-card-icon img { width:24px; height:24px; object-fit:contain; }
+    .icon-bg-green  { background:#D1FAE5; }
+    .icon-bg-blue   { background:var(--blue-100); }
+    .icon-bg-orange { background:#FEF3C7; }
+    .principle-label { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--gray-500); }
+    .principle-title { font-size:.95rem; font-weight:700; color:var(--blue-900); }
+    .principle-desc  { font-size:.82rem; color:var(--gray-700); line-height:1.55; }
+
+    .tool-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.75rem; margin:1rem 0; }
+    .tool-card {
+      background:var(--white); border:1px solid var(--gray-300); border-radius:var(--radius-sm);
+      padding:.85rem 1rem; display:flex; align-items:center; gap:.75rem;
+      box-shadow:var(--shadow-sm);
+    }
+    .tool-card img { width:28px; height:28px; object-fit:contain; flex-shrink:0; }
+    .tool-name  { font-size:.85rem; font-weight:700; color:var(--blue-900); }
+    .tool-desc  { font-size:.75rem; color:var(--gray-500); margin-top:1px; }
+
+    .arch-block {
+      background:var(--gray-900); border-radius:var(--radius);
+      padding:1.5rem 2rem; margin:1rem 0; overflow-x:auto;
+    }
+    .arch-block pre {
+      font-family:'Fira Code','Cascadia Code','Consolas',monospace;
+      font-size:.78rem; line-height:1.85; margin:0; color:#94a3b8;
+    }
+    .a-green  { color:#4ade80; }
+    .a-blue   { color:#60a5fa; }
+    .a-yellow { color:#fbbf24; }
+    .a-red    { color:#f87171; }
+    .a-gray   { color:#475569; }
+
+    .flow-steps { display:flex; flex-direction:column; gap:0; }
+    .flow-step  { display:grid; grid-template-columns:44px 1fr; }
+    .flow-col   { display:flex; flex-direction:column; align-items:center; }
+    .flow-num   {
+      width:28px; height:28px; border-radius:50%; background:var(--blue-500); color:#fff;
+      display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; flex-shrink:0;
+    }
+    .flow-vline { width:1px; flex:1; background:var(--gray-300); min-height:12px; margin:3px 0; }
+    .flow-step:last-child .flow-vline { display:none; }
+    .flow-body  { padding-bottom:1.1rem; padding-top:3px; }
+    .flow-body strong { font-size:.9rem; color:var(--blue-900); display:flex; align-items:center; gap:.4rem; margin-bottom:.2rem; }
+    .flow-body strong img { width:16px; height:16px; object-fit:contain; }
+    .flow-body p { font-size:.84rem; color:var(--gray-700); line-height:1.55; }
+
+    .rule-list { display:flex; flex-direction:column; gap:.5rem; }
+    .rule-item { display:flex; gap:.7rem; align-items:flex-start; background:var(--white); border:1px solid var(--gray-300); border-radius:var(--radius-sm); padding:.7rem 1rem; }
+    .rule-dot  { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+    .rd-green  { background:var(--success); }
+    .rd-orange { background:var(--warning); }
+    .rd-red    { background:#EF4444; }
+    .rule-text { font-size:.875rem; color:var(--gray-700); line-height:1.55; }
+    .rule-text strong { color:var(--blue-900); }
+
+    .iso-callout {
+      border:1px solid #FCD34D; background:#FFFBEB; border-radius:var(--radius-sm);
+      padding:1rem 1.25rem; display:flex; gap:.75rem; align-items:flex-start; margin:.75rem 0;
+    }
+    .iso-icon { font-size:1.1rem; flex-shrink:0; }
+    .iso-body { font-size:.84rem; color:#78350F; line-height:1.6; }
+    .iso-body strong { color:#451A03; }
+
+    .oss-callout {
+      border:1px solid #A7F3D0; background:#ECFDF5; border-radius:var(--radius-sm);
+      padding:1rem 1.25rem; display:flex; gap:.75rem; align-items:flex-start; margin:.75rem 0;
+    }
+    .oss-body { font-size:.84rem; color:#064E3B; line-height:1.6; }
+    .oss-body strong { color:#022C22; }
+
+    .perm-ok   { color:var(--success); font-weight:700; text-align:center; font-size:.9rem; }
+    .perm-no   { color:#EF4444; font-weight:700; text-align:center; font-size:.9rem; }
+    .perm-part { color:var(--warning); font-weight:700; text-align:center; font-size:.9rem; }
+
+    .gi-block { background:var(--gray-900); border-radius:var(--radius-sm); padding:1.25rem; }
+    .gi-block pre { font-family:'Fira Code','Cascadia Code','Consolas',monospace; font-size:.8rem; color:#94a3b8; line-height:1.7; margin:0; }
+    .gi-cm { color:#475569; }
+    .gi-en { color:#a3e635; }
+
+    code { font-family:'Fira Code','Cascadia Code','Consolas',monospace; font-size:.82em; background:var(--gray-100); color:var(--blue-700); padding:.1em .4em; border-radius:3px; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="infrastructure.html">Infrastructure</a>
+    <a href="proxmox.html">Proxmox</a>
+    <a href="gpu_passthrough.html">GPU / VFIO</a>
+    <a href="ia_llm.html">IA &amp; LLM</a>
+    <a href="rag.html">RAG</a>
+    <a href="docker.html">Docker</a>
+    <a href="python.html">Python</a>
+    <a href="git-audit.html">Git</a>
+    <a href="git-strategie.html" class="active">Stratégie Git</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="../index.html">Accueil</a><span>›</span>
+  <a href="git-audit.html">Git &amp; GitLab</a><span>›</span>
+  <span>Stratégie Git &amp; Stockage</span>
+</div>
+
+<!-- PAGE HEADER — charte portfolio standard -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon">
+        <img src="../assets/git.svg" alt="Git"/>
+      </div>
+      <div>
+        <h1>Stratégie Git &amp; Stockage</h1>
+        <p>Guide de bonnes pratiques pour un environnement hybride multi-postes — deux portables, deux VMs, un serveur IA, un dépôt public, un dépôt d'entreprise.</p>
+      </div>
+    </div>
+    <div class="tags" style="margin-top:.8rem">
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">
+        <img src="../assets/git.svg" alt=""/>Git
+      </span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">
+        <img src="../assets/github.svg" alt=""/>GitHub
+      </span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">
+        <img src="../assets/gitlab.svg" alt=""/>GitLab
+      </span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">
+        <img src="../assets/obsidian.svg" alt=""/>Obsidian
+      </span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">
+        <img src="../assets/onedrive.svg" alt=""/>OneDrive
+      </span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">
+        <img src="../assets/nginx.svg" alt=""/>nginx
+      </span>
+      <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">
+        ISO 27001
+      </span>
+    </div>
+    <span class="level-pill">DevOps · Intermédiaire · Open Source</span>
+  </div>
+</div>
+
+<div class="content" style="max-width:960px">
+
+  <!-- SOMMAIRE -->
+  <div class="toc" style="margin-top:0">
+    <div class="toc-title">Sommaire</div>
+    <ol>
+      <li><a href="#principes">Principes fondamentaux</a></li>
+      <li><a href="#architecture">Architecture de l'environnement</a></li>
+      <li><a href="#remotes">Les deux remotes Git — rôles et étanchéité</a></li>
+      <li><a href="#permeabilite">Perméabilité maîtrisée — formation et connaissances</a></li>
+      <li><a href="#stockage">Stratégie de stockage et synchronisation</a></li>
+      <li><a href="#obsidian">Base de connaissances centralisée — Obsidian</a></li>
+      <li><a href="#portfolio">Portfolio public — déploiement multi-postes</a></li>
+      <li><a href="#securite">Sécurité et conformité ISO 27001</a></li>
+      <li><a href="#gitignore">Référence .gitignore Python</a></li>
+    </ol>
+  </div>
+
+  <!-- ── 1. PRINCIPES ── -->
+  <div class="guide-section" id="principes">
+    <span class="section-eyebrow">01</span>
+    <h2>
+      <img src="../assets/git.svg" alt=""/>
+      Principes fondamentaux
+    </h2>
+    <div class="principle-grid">
+      <div class="principle-card">
+        <div class="principle-card-icon icon-bg-green">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#065F46" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="principle-label">Principe 1</div>
+        <div class="principle-title">Un outil, un rôle</div>
+        <div class="principle-desc">Git versionne le code et son historique. Le drive cloud sauvegarde les documents. Jamais l'un à la place de l'autre.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-card-icon icon-bg-blue">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1A3A6B" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <div class="principle-label">Principe 2</div>
+        <div class="principle-title">Étanchéité pro / perso</div>
+        <div class="principle-desc">Le code professionnel ne doit jamais atteindre un dépôt public. La séparation est architecturale, pas seulement organisationnelle.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-card-icon icon-bg-orange">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#92400E" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        </div>
+        <div class="principle-label">Principe 3</div>
+        <div class="principle-title">Open source par défaut</div>
+        <div class="principle-desc">Chaque choix d'outil priorise une solution libre : Git, Obsidian, FreeFileSync, Robocopy, nginx, Python. La transparence est une valeur.</div>
+      </div>
+    </div>
+
+    <div class="oss-callout">
+      <span style="font-size:1.1rem;flex-shrink:0">🌿</span>
+      <div class="oss-body"><strong>Stack open source :</strong> Git, Obsidian (vault local Markdown), FreeFileSync, Robocopy (inclus Windows), nginx — tous libres et gratuits. Préférer l'open source réduit la dépendance aux éditeurs, favorise la transparence et facilite le partage de bonnes pratiques avec la communauté.</div>
+    </div>
+
+    <h3>Outils de cet environnement</h3>
+    <div class="tool-grid">
+      <div class="tool-card"><img src="../assets/git.svg" alt="Git"/><div><div class="tool-name">Git</div><div class="tool-desc">Versioning & historique</div></div></div>
+      <div class="tool-card"><img src="../assets/github.svg" alt="GitHub"/><div><div class="tool-name">GitHub</div><div class="tool-desc">Remote public / perso</div></div></div>
+      <div class="tool-card"><img src="../assets/gitlab.svg" alt="GitLab"/><div><div class="tool-name">GitLab CE</div><div class="tool-desc">Remote entreprise</div></div></div>
+      <div class="tool-card"><img src="../assets/obsidian.svg" alt="Obsidian"/><div><div class="tool-name">Obsidian</div><div class="tool-desc">Base de connaissances</div></div></div>
+      <div class="tool-card"><img src="../assets/onedrive.svg" alt="OneDrive"/><div><div class="tool-name">OneDrive</div><div class="tool-desc">Sauvegarde cloud</div></div></div>
+      <div class="tool-card"><img src="../assets/freefs.svg" alt="FreeFileSync"/><div><div class="tool-name">FreeFileSync</div><div class="tool-desc">Sync planifiée (GUI)</div></div></div>
+      <div class="tool-card"><img src="../assets/robocopy.svg" alt="Robocopy"/><div><div class="tool-name">Robocopy</div><div class="tool-desc">Sync CLI (Windows)</div></div></div>
+      <div class="tool-card"><img src="../assets/nginx.svg" alt="nginx"/><div><div class="tool-name">nginx</div><div class="tool-desc">Prévisualisation locale</div></div></div>
+      <div class="tool-card"><img src="../assets/python.svg" alt="Python"/><div><div class="tool-name">Python</div><div class="tool-desc">Scripts & projets</div></div></div>
+      <div class="tool-card"><img src="../assets/windows.svg" alt="Windows"/><div><div class="tool-name">Windows 11</div><div class="tool-desc">OS postes de travail</div></div></div>
+    </div>
+  </div>
+
+  <!-- ── 2. ARCHITECTURE ── -->
+  <div class="guide-section" id="architecture">
+    <span class="section-eyebrow">02</span>
+    <h2>Architecture de l'environnement</h2>
+    <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:1.25rem">Vue d'ensemble des machines, dépôts et drives impliqués, et de leurs relations.</p>
+    <div class="arch-block"><pre>
+<span class="a-gray">┌──────────────────────────────────────────────────────────────────────┐</span>
+<span class="a-gray">│                        POSTES DE TRAVAIL                             │</span>
+<span class="a-gray">├──────────────────────────────┬───────────────────────────────────────┤</span>
+<span class="a-gray">│</span>  <span class="a-blue">💼 Portable PRO</span>              <span class="a-gray">│</span>  <span class="a-green">🏠 Portable PERSO</span>                    <span class="a-gray">│</span>
+<span class="a-gray">│</span>  Dev\  Knowledge\  Ptools\   <span class="a-gray">│</span>  GitHub + Drive perso (always on)    <span class="a-gray">│</span>
+<span class="a-gray">│</span>  <span class="a-yellow">⚠ VPN requis → GitLab</span>       <span class="a-gray">│</span>  Formation · portfolio · knowledge   <span class="a-gray">│</span>
+<span class="a-gray">│</span>  Drive pro : always on       <span class="a-gray">│</span>  Pas d'accès au GitLab entreprise    <span class="a-gray">│</span>
+<span class="a-gray">├──────────────────────────────┴───────────────────────────────────────┤</span>
+<span class="a-gray">│               VMs Proxmox  +  Serveur IA                             │</span>
+<span class="a-gray">│</span>  <span class="a-blue">🖥 VM Dev / Test</span>    git clone depuis GitHub (ou GitLab + VPN)       <span class="a-gray">│</span>
+<span class="a-gray">│</span>  <span class="a-blue">🖥 VM IA</span>            Obsidian Git · lecture du vault knowledge        <span class="a-gray">│</span>
+<span class="a-gray">│</span>  <span class="a-blue">⚡ Serveur IA</span>       scripts Python · accès GitHub                   <span class="a-gray">│</span>
+<span class="a-gray">├──────────────────────────────────────────────────────────────────────┤</span>
+<span class="a-gray">│                         REMOTES GIT                                  │</span>
+<span class="a-gray">│</span>  <span class="a-green">☁  GitHub  (public / privé)</span>   portfolio · formation · knowledge      <span class="a-gray">│</span>
+<span class="a-gray">│</span>  <span class="a-red">🔒 GitLab entreprise          </span>  projets pro uniquement · VPN requis   <span class="a-gray">│</span>
+<span class="a-gray">├──────────────────────────────────────────────────────────────────────┤</span>
+<span class="a-gray">│                       STOCKAGE / SYNC                                │</span>
+<span class="a-gray">│</span>  <span class="a-blue">☁  Drive perso</span>   FreeFileSync / Robocopy → sources sans .git        <span class="a-gray">│</span>
+<span class="a-gray">│</span>  <span class="a-yellow">☁  Drive pro</span>     documents entreprise · poste pro uniquement        <span class="a-gray">│</span>
+<span class="a-gray">└──────────────────────────────────────────────────────────────────────┘</span></pre></div>
+  </div>
+
+  <!-- ── 3. REMOTES ── -->
+  <div class="guide-section" id="remotes">
+    <span class="section-eyebrow">03</span>
+    <h2>Les deux remotes Git — rôles et étanchéité</h2>
+
+    <div class="content-grid" style="margin-bottom:1.25rem">
+      <div class="panel">
+        <div class="panel-header">
+          <img src="../assets/github.svg" alt="GitHub" style="width:18px;height:18px;object-fit:contain"/>
+          GitHub — dépôt public / perso
+        </div>
+        <div class="panel-body">
+          <ul class="skill-list">
+            <li>Portfolio public (site web personnel)</li>
+            <li>Projets Python de formation et d'apprentissage</li>
+            <li>Vault Obsidian (repo <strong>privé</strong>)</li>
+            <li>Accessible depuis tous les postes sans VPN</li>
+            <li>Déploiement automatique via GitHub Pages</li>
+          </ul>
+          <div class="oss-callout" style="margin-top:1rem">
+            <span style="font-size:1rem;flex-shrink:0">🌿</span>
+            <div class="oss-body">Dépôts publics et privés illimités (plan gratuit). Les dépôts publics contribuent à la visibilité open source.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header" style="background:#FEF2F2;color:#7F1D1D;border-color:#FECACA">
+          <img src="../assets/gitlab.svg" alt="GitLab" style="width:18px;height:18px;object-fit:contain"/>
+          GitLab CE — dépôt interne entreprise
+        </div>
+        <div class="panel-body">
+          <ul class="skill-list">
+            <li>Projets professionnels uniquement</li>
+            <li>Accessible uniquement via VPN entreprise</li>
+            <li>Depuis le poste professionnel exclusivement</li>
+            <li>Instance auto-hébergée — données internes</li>
+            <li>GitLab Community Edition est open source</li>
+          </ul>
+          <div class="iso-callout" style="margin-top:1rem">
+            <div class="iso-icon">⚠️</div>
+            <div class="iso-body"><strong>ISO 27001 — A.8.1 :</strong> le code professionnel ne doit jamais être poussé vers un dépôt public. Cette contrainte est architecturale : le poste perso n'a physiquement pas accès au GitLab entreprise.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Matrice d'accès aux remotes</h3>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Poste / machine</th>
+              <th style="text-align:center"><img src="../assets/github.svg" alt="GitHub" style="width:16px;height:16px;display:inline;vertical-align:middle"> GitHub</th>
+              <th style="text-align:center"><img src="../assets/gitlab.svg" alt="GitLab" style="width:16px;height:16px;display:inline;vertical-align:middle"> GitLab entreprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>💼 Portable PRO</strong></td><td class="perm-ok">✓</td><td class="perm-ok">✓ (VPN)</td></tr>
+            <tr><td><strong>🏠 Portable PERSO</strong></td><td class="perm-ok">✓</td><td class="perm-no">✗</td></tr>
+            <tr><td><strong>🖥 VMs Proxmox</strong></td><td class="perm-ok">✓</td><td class="perm-part">⚡ si VPN</td></tr>
+            <tr><td><strong>⚡ Serveur IA</strong></td><td class="perm-ok">✓</td><td class="perm-part">⚡ si VPN</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. PERMÉABILITÉ ── -->
+  <div class="guide-section" id="permeabilite">
+    <span class="section-eyebrow">04</span>
+    <h2>Perméabilité maîtrisée — formation et connaissances</h2>
+    <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:1rem">Certains contenus restent strictement cloisonnés (code pro). D'autres gagnent à être accessibles partout — c'est leur valeur. La distinction est technique, pas seulement organisationnelle.</p>
+
+    <div class="panel" style="margin-bottom:1.25rem">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Ressource</th>
+              <th style="text-align:center">💼 PRO</th>
+              <th style="text-align:center">🏠 PERSO</th>
+              <th style="text-align:center">🖥 VMs</th>
+              <th style="text-align:center">⚡ Serveur IA</th>
+              <th>Canal d'accès</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Code professionnel</strong></td>
+              <td class="perm-ok">✓</td><td class="perm-no">✗</td><td class="perm-part">⚡</td><td class="perm-no">✗</td>
+              <td><img src="../assets/gitlab.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitLab + VPN</td>
+            </tr>
+            <tr>
+              <td><strong>Projets Python — formation</strong></td>
+              <td class="perm-ok">✓</td><td class="perm-ok">✓</td><td class="perm-ok">✓</td><td class="perm-ok">✓</td>
+              <td><img src="../assets/github.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitHub → <code>git clone</code></td>
+            </tr>
+            <tr>
+              <td><strong>Base de connaissances</strong></td>
+              <td class="perm-ok">✓</td><td class="perm-ok">✓</td><td class="perm-ok">✓</td><td class="perm-ok">✓</td>
+              <td><img src="../assets/obsidian.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitHub privé + Obsidian Git</td>
+            </tr>
+            <tr>
+              <td><strong>Portfolio (site web)</strong></td>
+              <td class="perm-ok">✓</td><td class="perm-ok">✓</td><td class="perm-ok">✓</td><td class="perm-ok">✓</td>
+              <td><img src="../assets/github.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitHub → déploiement web</td>
+            </tr>
+            <tr>
+              <td><strong>Outils portables (Ptools)</strong></td>
+              <td class="perm-ok">✓</td><td class="perm-ok">✓</td><td class="perm-part">⚡</td><td class="perm-part">⚡</td>
+              <td><img src="../assets/onedrive.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> Drive perso (FreeFileSync)</td>
+            </tr>
+            <tr>
+              <td><strong>Documents entreprise</strong></td>
+              <td class="perm-ok">✓</td><td class="perm-no">✗</td><td class="perm-no">✗</td><td class="perm-no">✗</td>
+              <td><img src="../assets/onedrive.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> Drive entreprise (pro only)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="notes-box">
+      <strong>Principe de perméabilité maîtrisée :</strong> les projets de formation et la base de connaissances sont intentionnellement accessibles depuis tous les contextes via Git + GitHub. Cette perméabilité est technique et traçable — pas par copie manuelle, ce qui garantit un historique cohérent sur toutes les machines.
+    </div>
+  </div>
+
+  <!-- ── 5. STOCKAGE ── -->
+  <div class="guide-section" id="stockage">
+    <span class="section-eyebrow">05</span>
+    <h2>
+      <img src="../assets/onedrive.svg" alt="OneDrive"/>
+      Stratégie de stockage et synchronisation
+    </h2>
+
+    <div class="content-grid" style="margin-bottom:1.25rem">
+      <div class="panel">
+        <div class="panel-header">
+          <img src="../assets/onedrive.svg" alt="" style="width:16px;height:16px;object-fit:contain"/>
+          Drive perso
+        </div>
+        <div class="panel-body">
+          <ul class="skill-list">
+            <li>Sauvegarde des sources sans <code>.git</code></li>
+            <li>Vault Obsidian complet (Knowledge\)</li>
+            <li>Outils portables (Ptools\)</li>
+            <li>Mode PRO : <em>free up space</em></li>
+            <li>Mode PERSO : <em>always on device</em></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <img src="../assets/onedrive.svg" alt="" style="width:16px;height:16px;object-fit:contain"/>
+          Drive entreprise
+        </div>
+        <div class="panel-body">
+          <ul class="skill-list">
+            <li>Documents professionnels uniquement</li>
+            <li>Always on device sur le poste pro</li>
+            <li>Inaccessible depuis le poste perso</li>
+            <li>Ne contient pas de code source</li>
+          </ul>
+          <div class="iso-callout" style="margin-top:.75rem">
+            <div class="iso-icon">⚠️</div>
+            <div class="iso-body"><strong>ISO 27001 — A.8.3 :</strong> activer BitLocker + PIN sur le poste pro. Données entreprise sur appareil mobile = risque en cas de vol.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>
+      <img src="../assets/freefs.svg" alt="FreeFileSync"/>
+      FreeFileSync — synchronisation planifiée (GUI)
+    </h3>
+    <div class="rule-list" style="margin-bottom:1.25rem">
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>FreeFileSync</strong> (open source, interface graphique) — synchronise <code>Dev\</code>, <code>Knowledge\</code>, <code>Ptools\</code> vers le Drive perso. Exclure les dossiers <code>.git</code> via la règle <code>*\.*\</code> pour ne pas copier l'historique Git. Interface visuelle, profils sauvegardables, mode miroir ou bidirectionnel. Idéal pour une utilisation sans ligne de commande.</div>
+      </div>
+    </div>
+
+    <h3>
+      <img src="../assets/robocopy.svg" alt="Robocopy"/>
+      Robocopy — synchronisation scriptable (CLI)
+    </h3>
+    <div class="rule-list" style="margin-bottom:1.25rem">
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>Robocopy</strong> (inclus dans Windows, CLI) — alternative scriptable via PowerShell et le Planificateur de tâches Windows. Gère les reprises sur erreur et les fichiers verrouillés. Exemple :</div>
+      </div>
+    </div>
+    <div class="code-label">PowerShell — backup planifié avec Robocopy</div>
+    <div class="code-block"><pre>robocopy C:\Dev      D:\Backup\Dev      /MIR /XD .git .venv __pycache__ dist
+robocopy C:\Knowledge D:\Backup\Knowledge /MIR
+robocopy C:\Ptools   D:\Backup\Ptools   /MIR /XD .git</pre></div>
+
+    <div class="rule-list" style="margin-top:1rem">
+      <div class="rule-item">
+        <div class="rule-dot rd-orange"></div>
+        <div class="rule-text"><strong>Ne pas utiliser</strong> la synchronisation temps réel du drive cloud directement sur un répertoire Git actif. Le verrouillage de <code>index.lock</code> par le client de sync peut corrompre les dépôts. Toujours préférer FreeFileSync ou Robocopy en mode planifié.</div>
+      </div>
+    </div>
+
+    <div class="notes-box" style="margin-top:1rem">
+      <strong>Règle d'or :</strong> le Drive est une sauvegarde de fichiers. Git est la sauvegarde du code et de son historique. Un projet sans remote Git n'est pas sauvegardé — FreeFileSync exclut les <code>.git</code> et n'historise pas les commits.
+    </div>
+  </div>
+
+  <!-- ── 6. OBSIDIAN ── -->
+  <div class="guide-section" id="obsidian">
+    <span class="section-eyebrow">06</span>
+    <h2>
+      <img src="../assets/obsidian.svg" alt="Obsidian"/>
+      Base de connaissances centralisée — Obsidian
+    </h2>
+    <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:1rem">Obsidian stocke les notes en Markdown local — des fichiers texte versionnables avec Git. C'est le seul outil PKM à la fois open source, souverain sur les données et nativement compatible Git.</p>
+    <div class="oss-callout">
+      <span style="font-size:1rem;flex-shrink:0">🌿</span>
+      <div class="oss-body"><strong>Stack 100 % open source et souverain :</strong> les notes restent des fichiers Markdown sur le disque. Aucune donnée hébergée chez un tiers par défaut. Le plugin Obsidian Git synchronise le vault via un repo GitHub privé — accès depuis tous les postes et VMs sans abonnement.</div>
+    </div>
+
+    <h3>Architecture du vault multi-postes</h3>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">1</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong><img src="../assets/github.svg" alt=""/>Repo GitHub privé <code>knowledge-vault</code></strong>
+          <p>Créer un repo GitHub privé dédié. Initialiser <code>git</code> dans le dossier Knowledge local, commiter et pousser. Ce repo est la source de vérité unique du vault.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">2</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong><img src="../assets/obsidian.svg" alt=""/>Plugin Obsidian Git — configuration</strong>
+          <p>Pull automatique au démarrage · Push automatique toutes les 10 min · Message : <code>vault: auto-sync {{date}}</code>. Le plugin gère les conflits Git standard.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">3</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong>Déploiement sur chaque machine</strong>
+          <p>PRO : vault dans Knowledge\, sync Git + backup FreeFileSync. PERSO, VMs, Serveur IA : <code>git clone</code> du repo privé, plugin Obsidian Git actif. Le vault est disponible et synchronisé partout en quelques minutes.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">4</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong>Gestion des conflits</strong>
+          <p>Toujours faire un pull avant d'écrire si plusieurs postes ont été utilisés en parallèle. Les conflits sur des notes Markdown sont rares et simples à résoudre dans n'importe quel éditeur texte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 7. PORTFOLIO ── -->
+  <div class="guide-section" id="portfolio">
+    <span class="section-eyebrow">07</span>
+    <h2>
+      <img src="../assets/github.svg" alt="GitHub"/>
+      Portfolio public — déploiement multi-postes
+    </h2>
+    <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:1rem">Le portfolio est modifiable depuis les deux portables. Sa chaîne de déploiement doit être robuste et sans ambiguïté sur la source de vérité.</p>
+
+    <div class="rule-list" style="margin-bottom:1.25rem">
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>GitHub est la source de vérité.</strong> Le répertoire local sur chaque poste est un clone de travail. Avant toute modification : <code>git pull</code>. Après chaque session : <code>git push</code>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot rd-orange"></div>
+        <div class="rule-text"><strong>Un seul remote actif.</strong> Jamais deux remotes distincts pour le même projet. Un repo = une URL de référence.</div>
+      </div>
+    </div>
+
+    <h3>
+      <img src="../assets/nginx.svg" alt="nginx"/>
+      Chaîne de déploiement avec nginx
+    </h3>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">1</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong>Développement local</strong>
+          <p>Édition dans le répertoire de travail (clone local sur le poste actif). Même workflow sur le portable PRO et le portable PERSO.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">2</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong><img src="../assets/nginx.svg" alt=""/>Prévisualisation locale — nginx (open source)</strong>
+          <p>Serveur nginx portable synchronisé via le Drive perso → <code>http://localhost:8080</code>. Sur le portable PERSO sans nginx : ouvrir <code>index.html</code> dans le navigateur suffit pour du HTML/CSS statique.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">3</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong><img src="../assets/git.svg" alt=""/>Commit et push vers GitHub</strong>
+          <p>Message de commit descriptif. Le push déclenche automatiquement le déploiement via GitHub Pages.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-col"><div class="flow-num">4</div><div class="flow-vline"></div></div>
+        <div class="flow-body">
+          <strong><img src="../assets/github.svg" alt=""/>Mise en production automatique</strong>
+          <p>GitHub publie le site sans intervention manuelle. Infrastructure de déploiement 100 % open source et gratuite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 8. SÉCURITÉ ── -->
+  <div class="guide-section" id="securite">
+    <span class="section-eyebrow">08</span>
+    <h2>Sécurité et conformité ISO 27001</h2>
+    <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:1rem">La norme ISO 27001 organise la sécurité autour de trois critères : <strong>Confidentialité (C)</strong>, <strong>Intégrité (I)</strong>, <strong>Disponibilité (D)</strong>.</p>
+
+    <div class="rule-list" style="margin-bottom:1.25rem">
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>[C] Chiffrement du poste pro — BitLocker :</strong> le poste professionnel contient des données entreprise (Drive pro always on device). Activer BitLocker avec PIN au démarrage. <em>ISO 27001 A.8.3</em>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>[C] Tokens PAT dans le Credential Manager Windows :</strong> <code>git config --global credential.helper manager</code>. Les tokens ne doivent jamais apparaître dans les URLs, l'historique PowerShell ou les fichiers de config. <em>ISO 27001 A.8.13</em>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>[C] Étanchéité pro / perso par l'architecture :</strong> le poste perso n'a physiquement pas accès au GitLab entreprise. Ce n'est pas une consigne — c'est une impossibilité technique. <em>ISO 27001 A.5.10</em>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>[I] Jamais de secrets dans Git :</strong> fichiers <code>.env</code>, mots de passe, clés API ne doivent jamais être commités. En cas d'exposition : révoquer le token immédiatement, purger l'historique avec BFG Repo Cleaner (open source). <em>ISO 27001 A.8.24</em>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot rd-green"></div>
+        <div class="rule-text"><strong>[D] Chaque projet a un remote Git :</strong> un projet sans remote n'est pas sauvegardé — FreeFileSync exclut les <code>.git</code>. Publier tout projet sur GitHub ou GitLab selon sa nature. <em>ISO 27001 A.8.13</em>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot rd-orange"></div>
+        <div class="rule-text"><strong>[D] VPN comme point de défaillance unique :</strong> si le VPN est indisponible, aucun push/pull vers le GitLab entreprise n'est possible. Anticiper avec des commits fréquents en local et un workflow de travail hors connexion.</div>
+      </div>
+    </div>
+
+    <div class="iso-callout">
+      <div class="iso-icon">⚠️</div>
+      <div class="iso-body"><strong>Rappel ISO 27001 :</strong> la norme ne prescrit pas d'outils spécifiques — elle définit des objectifs de sécurité. L'utilisation d'outils open source (Git, FreeFileSync, nginx, Obsidian) est pleinement compatible dès lors que les mesures de contrôle sont documentées et appliquées de manière cohérente.</div>
+    </div>
+  </div>
+
+  <!-- ── 9. GITIGNORE ── -->
+  <div class="guide-section" id="gitignore">
+    <span class="section-eyebrow">09</span>
+    <h2>
+      <img src="../assets/python.svg" alt="Python"/>
+      Référence .gitignore Python
+    </h2>
+    <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.75rem">À créer à la racine de tout nouveau projet Python <strong>avant</strong> le premier <code>git add .</code>.</p>
+    <div class="code-label">.gitignore — template Python complet</div>
+    <div class="gi-block"><pre><span class="gi-cm"># ── Environnement Python ─────────────────────────────</span>
+<span class="gi-en">.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo</span>
+
+<span class="gi-cm"># ── IDE ──────────────────────────────────────────────</span>
+<span class="gi-en">.idea/
+.vscode/</span>
+
+<span class="gi-cm"># ── Build PyInstaller ────────────────────────────────</span>
+<span class="gi-en">dist/
+build/
+*.spec
+file_version_info.txt</span>
+
+<span class="gi-cm"># ── Secrets ──────────────────────────────────────────</span>
+<span class="gi-en">.env
+*.env
+secrets.py</span>
+
+<span class="gi-cm"># ── Windows ──────────────────────────────────────────</span>
+<span class="gi-en">*.lnk
+*.old
+*.tmp
+Thumbs.db
+desktop.ini</span>
+
+<span class="gi-cm"># ── Logs ─────────────────────────────────────────────</span>
+<span class="gi-en">*.log
+logs/</span></pre></div>
+
+    <div style="margin-top:2rem">
+      <div class="related-grid">
+        <a href="git-audit.html" class="related-card">
+          <img src="../assets/git.svg" alt="Git" style="width:24px;height:24px;object-fit:contain;flex-shrink:0"/>
+          Audit Git initial
+        </a>
+        <a href="devops.html" class="related-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" style="flex-shrink:0"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Automatisation DevOps
+        </a>
+        <a href="python.html" class="related-card">
+          <img src="../assets/python.svg" alt="Python" style="width:24px;height:24px;object-fit:contain;flex-shrink:0"/>
+          Python &amp; venv
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Stéphane Muraro &mdash; Usage libre
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

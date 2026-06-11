@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Plateforme IA On-Premise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">🏠 Accueil</a>
+    <a href="pages/infrastructure.html">Infrastructure</a>
+    <a href="pages/proxmox.html">Proxmox</a>
+    <a href="pages/gpu_passthrough.html">GPU / VFIO</a>
+    <a href="pages/ia_llm.html">IA & LLM</a>
+    <a href="pages/rag.html">RAG</a>
+    <a href="pages/docker.html">Docker</a>
+    <a href="pages/python.html">Python</a>
+    <a href="pages/git-audit.html">Git</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+    Portfolio Technique — Infrastructure IA
+  </div>
+  <h1>Plateforme <em>IA On-Premise</em><br/>haute performance</h1>
+  <p class="hero-subtitle">
+    Conception et déploiement d'une infrastructure IA locale complète — de la configuration
+    matérielle bas niveau jusqu'à l'exploitation de LLM et pipelines RAG.
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">Proxmox VE 9.2</span>
+    <span class="hero-tag">RTX 5090</span>
+    <span class="hero-tag">VFIO Passthrough</span>
+    <span class="hero-tag">Ollama + LLM</span>
+    <span class="hero-tag">RAG Vectoriel</span>
+    <span class="hero-tag">Docker</span>
+    <span class="hero-tag">ZFS</span>
+    <span class="hero-tag">192 Go DDR5</span>
+  </div>
+</section>
+
+<div class="section">
+  <h2 class="section-title">Domaines de compétence</h2>
+  <div class="card-grid"><div class="card" data-href="pages/infrastructure.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/linux.svg" alt="Infrastructure Matérielle"/></div>
+    <div>
+      <div class="card-title">Infrastructure Matérielle</div>
+      <div class="card-domain">Infrastructure</div>
+    </div>
+  </div>
+  <div class="card-desc">AMD Ryzen 9 9950X3D · RTX 5090 · 192 Go DDR5</div>
+  <div class="card-footer">
+    <span class="badge badge-advanced">Avancé</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/proxmox.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/proxmox.svg" alt="Hyperviseur Proxmox VE"/></div>
+    <div>
+      <div class="card-title">Hyperviseur Proxmox VE</div>
+      <div class="card-domain">Virtualisation</div>
+    </div>
+  </div>
+  <div class="card-desc">Proxmox 9.2.2 · KVM · QEMU · Templates</div>
+  <div class="card-footer">
+    <span class="badge badge-advanced">Avancé</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/gpu_passthrough.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/vfio.svg" alt="GPU Passthrough VFIO"/></div>
+    <div>
+      <div class="card-title">GPU Passthrough VFIO</div>
+      <div class="card-domain">Virtualisation</div>
+    </div>
+  </div>
+  <div class="card-desc">VFIO · IOMMU · PCIe Passthrough RTX 5090</div>
+  <div class="card-footer">
+    <span class="badge badge-advanced">Avancé</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/storage_zfs.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/zfs.svg" alt="Stockage ZFS"/></div>
+    <div>
+      <div class="card-title">Stockage ZFS</div>
+      <div class="card-domain">Stockage</div>
+    </div>
+  </div>
+  <div class="card-desc">Datasets IA · Snapshots · Architecture stockage</div>
+  <div class="card-footer">
+    <span class="badge badge-inter">Intermédiaire+</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/os.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/linux.svg" alt="Systèmes d'exploitation"/></div>
+    <div>
+      <div class="card-title">Systèmes d'exploitation</div>
+      <div class="card-domain">OS</div>
+    </div>
+  </div>
+  <div class="card-desc">Debian · Ubuntu · Alpine · Windows 11</div>
+  <div class="card-footer">
+    <span class="badge badge-inter">Intermédiaire+</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/ia_llm.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/ollama.svg" alt="IA Locale & LLM"/></div>
+    <div>
+      <div class="card-title">IA Locale & LLM</div>
+      <div class="card-domain">IA / ML</div>
+    </div>
+  </div>
+  <div class="card-desc">Ollama · Open WebUI · Llama · Mistral · Gemma</div>
+  <div class="card-footer">
+    <span class="badge badge-inter">Intermédiaire+</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/rag.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/qdrant.svg" alt="RAG & Bases Vectorielles"/></div>
+    <div>
+      <div class="card-title">RAG & Bases Vectorielles</div>
+      <div class="card-domain">IA / ML</div>
+    </div>
+  </div>
+  <div class="card-desc">Qdrant · LangChain · Embeddings · Recherche sémantique</div>
+  <div class="card-footer">
+    <span class="badge badge-beginner">Débutant+</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/ia_image.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/comfyui.svg" alt="IA Générative Image"/></div>
+    <div>
+      <div class="card-title">IA Générative Image</div>
+      <div class="card-domain">IA / ML</div>
+    </div>
+  </div>
+  <div class="card-desc">ComfyUI · Flux · GPU Computing</div>
+  <div class="card-footer">
+    <span class="badge badge-beginner">Débutant+</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/speech_ai.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/whisper.svg" alt="Speech AI — Whisper"/></div>
+    <div>
+      <div class="card-title">Speech AI — Whisper</div>
+      <div class="card-domain">IA / ML</div>
+    </div>
+  </div>
+  <div class="card-desc">Speech-to-Text · IA multimodale · Traitement audio</div>
+  <div class="card-footer">
+    <span class="badge badge-beginner">Débutant+</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/docker.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/docker.svg" alt="Docker & Conteneurisation"/></div>
+    <div>
+      <div class="card-title">Docker & Conteneurisation</div>
+      <div class="card-domain">DevOps</div>
+    </div>
+  </div>
+  <div class="card-desc">Docker Compose · Isolation · Services IA</div>
+  <div class="card-footer">
+    <span class="badge badge-inter">Intermédiaire</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/devops.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/n8n.svg" alt="Automatisation & DevOps"/></div>
+    <div>
+      <div class="card-title">Automatisation & DevOps</div>
+      <div class="card-domain">DevOps</div>
+    </div>
+  </div>
+  <div class="card-desc">n8n · Templates VM · IaC · Snapshots</div>
+  <div class="card-footer">
+    <span class="badge badge-inter">Intermédiaire</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/network.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/linux.svg" alt="Réseau"/></div>
+    <div>
+      <div class="card-title">Réseau</div>
+      <div class="card-domain">Réseau</div>
+    </div>
+  </div>
+  <div class="card-desc">Bridge Proxmox · SSH · Firewall · NAT</div>
+  <div class="card-footer">
+    <span class="badge badge-inter">Intermédiaire</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/python.html">
+  <div class="card-header">
+    <div class="card-logo"><img src="assets/python.svg" alt="Python"/></div>
+    <div>
+      <div class="card-title">Python</div>
+      <div class="card-domain">Dev</div>
+    </div>
+  </div>
+  <div class="card-desc">venv · pip · requirements.txt · Scripts IA</div>
+  <div class="card-footer">
+    <span class="badge badge-beginner">Débutant+</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div><div class="card" data-href="pages/git-audit.html">
+  <div class="card-header">
+    <div class="card-logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+        <circle cx="12" cy="12" r="3"/><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/>
+        <circle cx="6" cy="18" r="2"/>
+        <path d="M8 6h8M8.5 8l-1 1.5M15.5 8l1 1.5M7 16V8"/>
+      </svg>
+    </div>
+    <div>
+      <div class="card-title">Git & GitLab</div>
+      <div class="card-domain">DevOps</div>
+    </div>
+  </div>
+  <div class="card-desc">Audit dépôts · .gitignore · PAT · Credential Manager</div>
+  <div class="card-footer">
+    <span class="badge badge-inter">Intermédiaire</span>
+    <span class="card-arrow">→</span>
+  </div>
+</div></div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <h2 class="section-title">Niveaux de maîtrise</h2>
+  <div class="skill-bar-wrap"><div class="skill-bar-item">
+  <div class="skill-bar-label">Virtualisation / Proxmox<span>Avancé</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">GPU Passthrough VFIO<span>Avancé</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">Infrastructure IA<span>Avancé</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">Linux (Debian/Ubuntu)<span>Intermédiaire+</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">Windows Server/Desktop<span>Intermédiaire+</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:68%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">IA Locale (LLM/Ollama)<span>Intermédiaire+</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">Docker / Conteneurisation<span>Intermédiaire</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:58%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">DevOps (IaC, templates)<span>Intermédiaire</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">ZFS / Stockage<span>Intermédiaire</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">CUDA / NVIDIA<span>Intermédiaire</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:58%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">RAG / Qdrant / Embeddings<span>Débutant+</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:38%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">Python / venv / pip<span>Débutant+</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:38%"></div></div>
+</div><div class="skill-bar-item">
+  <div class="skill-bar-label">Git / GitLab / GitHub<span>Intermédiaire</span></div>
+  <div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div>
+</div></div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <h2 class="section-title">Présentation du projet</h2>
+  <div class="notes-box">
+    <strong>Contexte :</strong> Projet personnel de conception d'une plateforme d'IA locale haute performance
+    basée sur Proxmox VE, GPU NVIDIA RTX 5090 en passthrough VFIO, virtualisation Windows/Linux,
+    stockage ZFS, infrastructure Docker, hébergement de LLM locaux (Ollama), RAG vectoriel (Qdrant),
+    automatisation n8n et outils multimodaux (Whisper, ComfyUI).<br/><br/>
+    Ce portfolio démontre une maîtrise complète de la chaîne
+    <strong>infrastructure → virtualisation → déploiement → exploitation IA</strong>.
+  </div>
+</div>
+
+<footer class="site-footer">
+  Portfolio IA On-Premise &mdash; Infrastructure personnelle &mdash; Usage interne
+</footer>
+<script src="js/main.js"></script>
+<script>
+  // Fix nav links for index page
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const h = a.getAttribute('href');
+    if (h === 'index.html') a.classList.add('active');
+  });
+</script>
+</body>
+</html>
