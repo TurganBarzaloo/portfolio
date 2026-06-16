@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stéphane Muraro — Obsidian | Portfolio IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" content="Obsidian comme base de connaissance personnelle — prise de notes et documentation de l'infrastructure IA On-Premise — portfolio de Stéphane Muraro"/>
+
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="nav">
+    <a class="nav-brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+      </svg>
+      IA On<span class="dot">·</span>Premise
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">🏠 Accueil</a>
+      <a href="infrastructure.html">Infrastructure</a>
+      <a href="proxmox.html">Proxmox</a>
+      <a href="gpu_passthrough.html">GPU / VFIO</a>
+      <a href="ia_llm.html">IA &amp; LLM</a>
+      <a href="rag.html">RAG</a>
+      <a href="docker.html">Docker</a>
+      <a href="python.html">Python</a>
+      <a href="git-audit.html">Git</a>
+      <a href="git-strategie.html">Stratégie Git</a>
+      <a href="obsidian.html" class="active">Obsidian</a>
+    </div>
+    <div class="nav-author"><strong>Stéphane Muraro</strong></div>
+  </nav>
+
+  <!-- ── BREADCRUMB ── -->
+  <div class="breadcrumb">
+    <a href="../index.html">Accueil</a>
+    <span>›</span>
+    <span>Obsidian</span>
+  </div>
+
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-top">
+        <div class="page-icon">
+          <img src="../assets/obsidian.svg" alt="Obsidian"/>
+        </div>
+        <div>
+          <h1>Obsidian</h1>
+          <p>Base de connaissance personnelle — documentation vivante de l'infrastructure IA On-Premise</p>
+        </div>
+      </div>
+      <div class="tags" style="margin-top:.8rem">
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Markdown</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Prise de notes</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Knowledge base</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Graph de liens</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Local-first</span>
+      </div>
+      <span class="level-pill">Documentation · Intermédiaire · 2024-2026</span>
+    </div>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div class="content">
+
+    <!-- Note personnelle -->
+    <div class="notes-box" style="border-left-color:#7C3AED;background:#F5F3FF;">
+      <strong>Pourquoi Obsidian ?</strong> Quand on construit une infrastructure IA from scratch — Proxmox, GPU passthrough, LLM locaux, RAG, pipelines Python — la mémoire ne suffit plus.
+      J'avais besoin d'un outil qui stocke mes notes <em>localement</em>, en Markdown pur, sans abonnement cloud, et qui relie les concepts entre eux.
+      Obsidian a été <strong>le compagnon de construction</strong> de toute cette infrastructure : chaque commande testée, chaque erreur rencontrée, chaque décision d'architecture ont été consignées dans un vault dédié.
+      Ce portfolio en est en partie la synthèse publique.
+    </div>
+
+    <!-- Présentation & choix -->
+    <div class="content-grid">
+
+      <div class="panel">
+        <div class="panel-header">Présentation</div>
+        <div class="panel-body">
+          <p style="margin-bottom:1rem;font-size:.875rem;color:var(--gray-700)">
+            Obsidian est un éditeur de notes Markdown <strong>local-first</strong> : les fichiers restent sur le disque, au format texte brut. Aucun compte requis, aucune donnée envoyée dans le cloud par défaut.
+            Sa force réside dans le <strong>graphe de liens bidirectionnels</strong> (<code>[[wikilink]]</code>) qui transforme des notes isolées en réseau de connaissance navigable.
+          </p>
+          <ul class="skill-list">
+            <li>Fichiers Markdown stockés localement (C:\Notes\infra-vault)</li>
+            <li>Graphe interactif des liens entre concepts</li>
+            <li>Recherche full-text instantanée sur tout le vault</li>
+            <li>Templates pour standardiser la prise de notes</li>
+            <li>Plugins communautaires (Dataview, Kanban, Calendar…)</li>
+            <li>Synchronisation optionnelle via OneDrive ou Git</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">Pourquoi ce choix ?</div>
+        <div class="panel-body">
+          <div class="panel-body" style="padding:0">
+            <table class="data-table">
+              <thead><tr><th>Critère</th><th>Décision</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Souveraineté des données</strong></td><td>Fichiers locaux, zéro dépendance cloud</td></tr>
+                <tr><td><strong>Format pérenne</strong></td><td>Markdown — lisible sans Obsidian dans 10 ans</td></tr>
+                <tr><td><strong>Pas d'abonnement</strong></td><td>Gratuit pour usage personnel (Sync et Publish optionnels)</td></tr>
+                <tr><td><strong>Vitesse</strong></td><td>Lancé en &lt; 1 s, recherche en temps réel</td></tr>
+                <tr><td><strong>Liens bidirectionnels</strong></td><td>Relier Proxmox ↔ GPU ↔ LLM ↔ Docker naturellement</td></tr>
+                <tr><td><strong>Extensible</strong></td><td>Plugin Dataview = requêtes SQL-like sur les notes</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Rôle concret dans le projet -->
+    <div class="panel">
+      <div class="panel-header">Rôle concret dans la construction de l'infrastructure</div>
+      <div class="panel-body">
+        <p style="margin-bottom:1.2rem;font-size:.875rem;color:var(--gray-700)">
+          Le vault <code>infra-vault</code> a accompagné chaque étape du projet, de la phase de veille technologique jusqu'à la rédaction de ce portfolio.
+          Voici les usages qui ont réellement fait la différence :
+        </p>
+        <div class="content-grid">
+          <div>
+            <h3 style="font-size:.95rem;font-weight:700;color:var(--blue-700);margin-bottom:.6rem">📋 Journal de construction</h3>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem">
+              Une note par session de travail : objectif, commandes testées, erreurs rencontrées, solution retenue. Indispensable pour reprendre un chantier après plusieurs jours d'interruption sans perdre le contexte.
+            </p>
+            <div class="code-label">markdown — exemple de note de session</div>
+            <div class="code-block"><pre>## 2024-11-14 — GPU Passthrough VFIO
+**Objectif :** Isoler la RTX 3090 pour la VM LLM
+
+### Commandes testées
+```bash
+lspci -nn | grep NVIDIA
+# 0000:01:00.0 [10de:2204]
+```
+### Problème rencontré
+IOMMU group partagé → ajouter pcie_acs_override=downstream
+
+### Solution
+Kernel param : `intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction`
+
+→ [[gpu_passthrough]] pour la doc finale</pre></div>
+          </div>
+          <div>
+            <h3 style="font-size:.95rem;font-weight:700;color:var(--blue-700);margin-bottom:.6rem">🗺️ Carte mentale de l'architecture</h3>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem">
+              Chaque composant de l'infra possède sa note dédiée, reliée par des wikilinks. Le graphe Obsidian visualise en temps réel les dépendances : Proxmox → VM LLM → Docker → Ollama → Open WebUI.
+            </p>
+            <h3 style="font-size:.95rem;font-weight:700;color:var(--blue-700);margin-bottom:.6rem;margin-top:1.2rem">📚 Base de veille technologique</h3>
+            <p style="font-size:.875rem;color:var(--gray-700)">
+              Articles, benchmarks de modèles, comparatifs (LLaMA vs Mistral vs Phi), notes de lecture sur le RAG et Qdrant. Tout centralisé, retrouvable en 3 secondes via la recherche full-text.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structure du vault -->
+    <div class="panel">
+      <div class="panel-header">Structure du vault <code>infra-vault</code></div>
+      <div class="panel-body">
+        <div class="code-label">arborescence — vault Obsidian dédié à l'infrastructure</div>
+        <div class="code-block"><pre>infra-vault/
+├── 00-inbox/               ← Notes brutes, à trier
+│   └── 2026-06-16.md
+├── 01-journal/             ← Une note par session de travail
+│   ├── 2024-11-14-gpu-passthrough.md
+│   └── 2025-03-08-rag-qdrant.md
+├── 02-infrastructure/      ← Documentation technique
+│   ├── proxmox.md
+│   ├── zfs-storage.md
+│   ├── gpu-passthrough.md
+│   └── reseau.md
+├── 03-ia/                  ← IA & modèles
+│   ├── llm-comparatifs.md
+│   ├── ollama-setup.md
+│   ├── rag-architecture.md
+│   └── comfyui.md
+├── 04-devops/              ← Outils & workflows
+│   ├── docker-compose.md
+│   ├── git-strategie.md
+│   └── python-scripts.md
+├── 05-veille/              ← Articles, benchmarks, liens
+│   └── modeles-llm-2025.md
+├── 06-portfolio/           ← Brouillons des pages web
+│   └── obsidian-page.md    ← (cette page est née ici)
+└── templates/
+    ├── session.md
+    └── tech-fiche.md</pre></div>
+        <div class="notes-box" style="margin-top:1rem">
+          <strong>Règle d'or :</strong> chaque note technique dans <code>02-infrastructure/</code> ou <code>03-ia/</code> se termine par une section <code>## Références</code> avec les URLs consultées — exactement comme les pages de ce portfolio.
+        </div>
+      </div>
+    </div>
+
+    <!-- Plugins utilisés -->
+    <div class="content-grid">
+
+      <div class="panel">
+        <div class="panel-header">Plugins essentiels</div>
+        <div class="panel-body" style="padding:0">
+          <table class="data-table">
+            <thead><tr><th>Plugin</th><th>Usage concret</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Dataview</strong></td>
+                <td>Requêtes sur les notes — liste de tous les chantiers ouverts</td>
+              </tr>
+              <tr>
+                <td><strong>Templater</strong></td>
+                <td>Templates de session avec date auto et liens contextuels</td>
+              </tr>
+              <tr>
+                <td><strong>Calendar</strong></td>
+                <td>Navigation par date dans le journal de construction</td>
+              </tr>
+              <tr>
+                <td><strong>Git</strong></td>
+                <td>Commit automatique du vault toutes les 30 min</td>
+              </tr>
+              <tr>
+                <td><strong>Kanban</strong></td>
+                <td>Board de suivi des tâches infra en cours / terminées</td>
+              </tr>
+              <tr>
+                <td><strong>Excalidraw</strong></td>
+                <td>Schémas d'architecture directement dans les notes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">Compétences acquises</div>
+        <div class="panel-body">
+          <ul class="skill-list">
+            <li>Organisation d'un vault par domaine (PARA adapté)</li>
+            <li>Écriture de requêtes Dataview pour des tableaux de bord</li>
+            <li>Création de templates Templater avec variables dynamiques</li>
+            <li>Synchronisation Git automatique du vault</li>
+            <li>Lien vault Obsidian ↔ dépôt GitHub portfolio</li>
+            <li>Graphe de connaissance navigable (200+ notes liées)</li>
+            <li>Utilisation d'Obsidian Publish pour partage sélectif</li>
+          </ul>
+          <div style="margin-top:1rem">
+            <span class="badge badge-inter">Intermédiaire</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Exemple Dataview -->
+    <div class="panel">
+      <div class="panel-header">Exemple — Requête Dataview</div>
+      <div class="panel-body">
+        <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem">
+          Dataview permet d'interroger le vault comme une base de données. Exemple : afficher tous les chantiers infra en cours, triés par date de dernière modification.
+        </p>
+        <div class="code-label">dataview — tableau de bord chantiers ouverts</div>
+        <div class="code-block"><pre>```dataview
+TABLE
+  file.mtime AS "Dernière modif",
+  status AS "Statut",
+  tags AS "Tags"
+FROM "02-infrastructure" OR "03-ia"
+WHERE status = "en-cours"
+SORT file.mtime DESC
+```</pre></div>
+        <div class="notes-box" style="margin-top:.8rem">
+          <strong>Résultat :</strong> un tableau mis à jour automatiquement à chaque ouverture du vault — aucune saisie manuelle. C'est le même principe qu'une vue de projet dans un outil comme Notion, mais entièrement local et en Markdown brut.
+        </div>
+      </div>
+    </div>
+
+    <!-- Lien avec le portfolio -->
+    <div class="panel">
+      <div class="panel-header">Du vault Obsidian à ce portfolio</div>
+      <div class="panel-body">
+        <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:1rem">
+          Ce portfolio n'a pas été rédigé depuis zéro. Chaque page HTML est la version publiable d'une note Obsidian existante, enrichie et mise en forme. Le flux de travail est simple :
+        </p>
+        <div class="content-grid">
+          <div>
+            <div style="display:flex;flex-direction:column;gap:.6rem">
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:var(--gray-100);border-radius:var(--radius-sm);font-size:.82rem">
+                <span style="font-size:1.1rem">📝</span>
+                <div><strong>1. Note de session</strong><br/><span style="color:var(--gray-500)">Prise de notes brute pendant la construction</span></div>
+              </div>
+              <div style="text-align:center;color:var(--accent);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:var(--gray-100);border-radius:var(--radius-sm);font-size:.82rem">
+                <span style="font-size:1.1rem">🗂️</span>
+                <div><strong>2. Fiche technique</strong><br/><span style="color:var(--gray-500)">Consolidation dans 02-infrastructure/ ou 03-ia/</span></div>
+              </div>
+              <div style="text-align:center;color:var(--accent);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:var(--gray-100);border-radius:var(--radius-sm);font-size:.82rem">
+                <span style="font-size:1.1rem">📄</span>
+                <div><strong>3. Brouillon portfolio</strong><br/><span style="color:var(--gray-500)">Rédaction dans 06-portfolio/</span></div>
+              </div>
+              <div style="text-align:center;color:var(--accent);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:#EFF6FF;border-radius:var(--radius-sm);font-size:.82rem;border:1px solid var(--blue-100)">
+                <span style="font-size:1.1rem">🌐</span>
+                <div><strong>4. Page HTML publiée</strong><br/><span style="color:var(--gray-500)">portfolio.stephanemuraro.fr</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem">
+              <strong>Avantage clé :</strong> la note Obsidian reste la source de vérité. Si une config change (version de Proxmox, modèle LLM mis à jour), on met à jour la note, puis on synchronise la page HTML.
+            </p>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem">
+              Ce flux permet aussi de garder des informations <strong>non publiées</strong> dans le vault (clés d'API, adresses IP internes, notes de debug sensibles) sans risque de les exposer sur GitHub.
+            </p>
+            <p style="font-size:.875rem;color:var(--gray-700)">
+              Le vault est lui-même versionné sur un dépôt GitHub <strong>privé</strong>, distinct du dépôt public du portfolio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tableau de bord de compétence -->
+    <div class="panel">
+      <div class="panel-header">Niveau de maîtrise</div>
+      <div class="panel-body">
+        <div class="panel-body" style="padding:0">
+          <table class="data-table">
+            <thead><tr><th>Fonctionnalité</th><th>Niveau</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Prise de notes Markdown quotidienne</td>
+                <td><span class="badge badge-advanced">Avancé</span></td>
+                <td>Usage quotidien depuis 2024</td>
+              </tr>
+              <tr>
+                <td>Liens bidirectionnels &amp; graphe</td>
+                <td><span class="badge badge-advanced">Avancé</span></td>
+                <td>200+ notes interconnectées</td>
+              </tr>
+              <tr>
+                <td>Templater — templates dynamiques</td>
+                <td><span class="badge badge-inter">Intermédiaire</span></td>
+                <td>Templates de session et fiches techniques</td>
+              </tr>
+              <tr>
+                <td>Dataview — requêtes</td>
+                <td><span class="badge badge-inter">Intermédiaire</span></td>
+                <td>Tableaux de bord, listes filtrées</td>
+              </tr>
+              <tr>
+                <td>Synchronisation Git automatique</td>
+                <td><span class="badge badge-inter">Intermédiaire</span></td>
+                <td>Plugin Obsidian Git — commit toutes les 30 min</td>
+              </tr>
+              <tr>
+                <td>Excalidraw — schémas intégrés</td>
+                <td><span class="badge badge-beginner">Débutant+</span></td>
+                <td>Schémas d'architecture simples</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+  <div class="content" style="padding-top:0">
+    <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+      <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+      <div class="panel">
+        <div class="panel-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Site officiel</td>
+                <td>Obsidian — The private and flexible writing app</td>
+                <td><a href="https://obsidian.md" target="_blank" style="color:var(--blue-500)">obsidian.md</a></td>
+              </tr>
+              <tr>
+                <td>Documentation officielle</td>
+                <td>Obsidian Help — Getting started</td>
+                <td><a href="https://help.obsidian.md" target="_blank" style="color:var(--blue-500)">help.obsidian.md</a></td>
+              </tr>
+              <tr>
+                <td>Plugin</td>
+                <td>Dataview — Query your vault</td>
+                <td><a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" style="color:var(--blue-500)">github.com/blacksmithgu/obsidian-dataview</a></td>
+              </tr>
+              <tr>
+                <td>Plugin</td>
+                <td>Obsidian Git — Vault versioning</td>
+                <td><a href="https://github.com/denolehov/obsidian-git" target="_blank" style="color:var(--blue-500)">github.com/denolehov/obsidian-git</a></td>
+              </tr>
+              <tr>
+                <td>Plugin</td>
+                <td>Templater — Dynamic templates</td>
+                <td><a href="https://github.com/SilentVoid13/Templater" target="_blank" style="color:var(--blue-500)">github.com/SilentVoid13/Templater</a></td>
+              </tr>
+              <tr>
+                <td>Méthode</td>
+                <td>PARA Method — Tiago Forte</td>
+                <td><a href="https://fortelabs.com/blog/para/" target="_blank" style="color:var(--blue-500)">fortelabs.com/blog/para</a></td>
+              </tr>
+              <tr>
+                <td>Version utilisée</td>
+                <td>Obsidian v1.7.x — usage personnel (gratuit)</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Licence</td>
+                <td>Propriétaire — gratuit pour usage personnel non commercial</td>
+                <td><a href="https://obsidian.md/license" target="_blank" style="color:var(--blue-500)">obsidian.md/license</a></td>
+              </tr>
+              <tr>
+                <td>Contenu de cette page</td>
+                <td>Partagé sous CC BY-SA 4.0</td>
+                <td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-author">
+        <strong>Stéphane Muraro</strong>
+        <span>Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
+        <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+      </div>
+      <div class="footer-center">
+        portfolio.stephanemuraro.fr<br/>
+        <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+      </div>
+      <div class="footer-oss">
+        <div class="footer-oss-badge">
+          <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+          100 % Open Source
+        </div>
+        <div>Construit avec Git · Proxmox · Python · nginx</div>
+        <div style="margin-top:.25rem">
+          <a href="git-strategie.html">Philosophie OSS →</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
