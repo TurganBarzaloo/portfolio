@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -48,10 +49,14 @@
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-header-top">
-      <div class="page-icon"><img src="../assets/qdrant.svg" alt=""/></div>
+      <div class="page-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+          <ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+        </svg>
+      </div>
       <div>
         <h1>RAG & Bases Vectorielles</h1>
-        <p>Qdrant · LangChain · Embeddings · Recherche sémantique</p>
+        <p>PostgreSQL · pgvector · bge-m3 · Open WebUI · Recherche sémantique</p>
         <div class="level-pill">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
             <circle cx="6" cy="6" r="5"/>
@@ -63,57 +68,78 @@
   </div>
 </div>
 <div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>Architecture répartie :</strong> l'inférence et le calcul des embeddings s'exécutent
+    sur le nœud IA GPU (<strong>VM210</strong>, RTX 5090). Le stockage vectoriel est déporté sur une
+    VM de services sans GPU (<strong>VM215</strong>) hébergeant PostgreSQL et pgvector. Cette séparation
+    limite les dépendances et facilite la sauvegarde du backend vectoriel.
+  </div>
   <div style="font-size:.84rem;color:var(--gray-700);background:var(--gray-100);border-radius:var(--radius-sm);padding:1rem 1.25rem;font-family:monospace;margin-bottom:1.5rem;line-height:1.8">
-    [Documents] → [Chunking] → [Embeddings] → [Qdrant]<br/>
+    [Documents] → [Découpage + Embeddings bge-m3 · GPU VM210] → [PostgreSQL / pgvector · VM215]<br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br/>
-    [Question] → [Embedding requête] → [Similarity Search] → [LLM] → [Réponse]
+    [Question] → [Embedding requête] → [Recherche sémantique HNSW] → [LLM local Ollama] → [Réponse citée]
   </div>
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🔧 Stack technique</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Composant</th><th>Rôle</th><th>Version</th></tr></thead><tbody><tr><td>Qdrant</td><td>Base de données vectorielle</td><td>Latest</td></tr><tr><td>Embeddings</td><td>Transformation texte → vecteurs</td><td>nomic-embed-text</td></tr><tr><td>LangChain</td><td>Orchestration pipeline RAG</td><td>0.3.x</td></tr><tr><td>Ollama</td><td>LLM en sortie du RAG</td><td>Local</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Composant</th><th>Rôle</th><th>Version</th></tr></thead><tbody><tr><td>Open WebUI</td><td>Interface + orchestration RAG native</td><td>0.11.0</td></tr><tr><td>PostgreSQL</td><td>Backend vectoriel (VM215)</td><td>18.4</td></tr><tr><td>pgvector</td><td>Extension vecteurs · index HNSW</td><td>0.8.6</td></tr><tr><td>bge-m3</td><td>Embeddings multilingues (dim 1024)</td><td>via Ollama</td></tr><tr><td>Ollama</td><td>Inférence LLM (VM210 · RTX 5090)</td><td>0.32.6</td></tr><tr><td>Qdrant</td><td>Base vectorielle de repli</td><td>1.18.3</td></tr></tbody></table></div>
 </div>
     <div class="panel">
-  <div class="panel-header"> 📂 Datasets ZFS</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Dataset</th><th>Contenu</th></tr></thead><tbody><tr><td>rag</td><td>Documents sources (PDF, TXT, MD)</td></tr><tr><td>embeddings</td><td>Vecteurs précalculés</td></tr><tr><td>qdrant</td><td>Base Qdrant persistée</td></tr></tbody></table></div>
+  <div class="panel-header"> ✅ Réalisations démontrées</div>
+  <div class="panel-body"><ul class="skill-list"><li>Open WebUI configuré avec pgvector comme backend vectoriel</li><li>Modèle d'embeddings bge-m3 validé en dimension 1024</li><li>Index HNSW créé sur les vecteurs</li><li>Recherche exacte et citations vérifiées</li><li>Comportement hors-corpus testé pour limiter les réponses inventées</li><li>Persistance validée après recréation de l'interface et redémarrage des deux VM</li></ul></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header"> 🐍 Pipeline Python (cible)</div>
-  <div class="panel-body"><div class="code-label">python</div>
-<div class="code-block"><pre>from langchain.document_loaders import DirectoryLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OllamaEmbeddings
-from langchain_community.vectorstores import Qdrant
+  <div class="panel-header"> ⚙️ Configuration Open WebUI → pgvector (illustrative)</div>
+  <div class="panel-body"><div class="code-label">env — backend vectoriel pgvector</div>
+<div class="code-block"><pre># Open WebUI — RAG natif sur backend pgvector (VM215)
+VECTOR_DB=pgvector
+PGVECTOR_DB_URL=postgresql://&lt;role&gt;:&lt;secret&gt;@&lt;hote-vm215&gt;/rag
 
-# 1. Chargement
-loader = DirectoryLoader('/mnt/qdrant/rag/')
-docs = loader.load()
-
-# 2. Découpage
-splitter = RecursiveCharacterTextSplitter(
-    chunk_size=500, chunk_overlap=50)
-chunks = splitter.split_documents(docs)
-
-# 3. Embeddings + indexation
-embeddings = OllamaEmbeddings(model='nomic-embed-text')
-vectorstore = Qdrant.from_documents(
-    chunks, embeddings,
-    url='http://localhost:6333',
-    collection_name='portfolio')
-
-# 4. Recherche
-results = vectorstore.similarity_search('Qu\'est-ce que VFIO ?', k=3)</pre></div></div>
+# Embeddings servis par Ollama sur le nœud GPU (VM210)
+RAG_EMBEDDING_ENGINE=ollama
+RAG_EMBEDDING_MODEL=bge-m3        # dimension 1024</pre></div>
+<div class="code-label" style="margin-top:1rem">sql — index de similarité HNSW (pgvector)</div>
+<div class="code-block"><pre>-- Index HNSW pour la recherche vectorielle rapide (distance cosinus)
+CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div></div>
 </div>
+  </div>
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong>Portée &amp; limites :</strong> les validations reposent sur un <strong>corpus entièrement
+    synthétique</strong> — il ne s'agit pas d'un jeu de données métier. Qdrant est
+    <strong>conservé comme solution de repli</strong> (non supprimé) tant que le retrait n'est pas clôturé.
+    Le nettoyage final des collections de test et le point de restauration de clôture restent à effectuer.
   </div>
   <div style="margin-top:1.5rem">
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
-      <a class="related-card" href="storage_zfs.html"><img src="../assets/zfs.svg" alt=""/>Stockage ZFS</a>
+      <a class="related-card" href="infrastructure.html"><img src="../assets/linux.svg" alt=""/>Infrastructure</a>
       <a class="related-card" href="docker.html"><img src="../assets/docker.svg" alt=""/>Docker</a>
       <a class="related-card" href="python.html"><img src="../assets/python.svg" alt=""/>Python</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>pgvector — extension de recherche vectorielle pour PostgreSQL</td><td><a href="https://github.com/pgvector/pgvector" target="_blank" style="color:var(--blue-500)">github.com/pgvector/pgvector</a></td></tr>
+            <tr><td>Documentation officielle</td><td>Open WebUI — RAG &amp; bases vectorielles</td><td><a href="https://docs.openwebui.com/" target="_blank" style="color:var(--blue-500)">docs.openwebui.com</a></td></tr>
+            <tr><td>Modèle d'embeddings</td><td>BAAI/bge-m3 — multilingue, dimension 1024</td><td><a href="https://huggingface.co/BAAI/bge-m3" target="_blank" style="color:var(--blue-500)">huggingface.co/BAAI/bge-m3</a></td></tr>
+            <tr><td>Versions utilisées</td><td>Open WebUI 0.11.0 · PostgreSQL 18.4 · pgvector 0.8.6 · Ollama 0.32.6 · Qdrant 1.18.3 (repli)</td><td>—</td></tr>
+            <tr><td>Licence</td><td>pgvector — PostgreSQL License · PostgreSQL — PostgreSQL License</td><td><a href="https://www.postgresql.org/about/licence/" target="_blank" style="color:var(--blue-500)">postgresql.org/about/licence</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

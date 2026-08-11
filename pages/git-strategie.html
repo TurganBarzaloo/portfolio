@@ -142,6 +142,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -363,8 +364,8 @@
           <tbody>
             <tr><td><strong>💼 Portable PRO</strong></td><td class="perm-ok">✓</td><td class="perm-ok">✓ (VPN)</td></tr>
             <tr><td><strong>🏠 Portable PERSO</strong></td><td class="perm-ok">✓</td><td class="perm-no">✗</td></tr>
-            <tr><td><strong>🖥 VMs Proxmox</strong></td><td class="perm-ok">✓</td><td class="perm-part">✗</td></tr>
-            <tr><td><strong>⚡ Serveur IA</strong></td><td class="perm-ok">✓</td><td class="perm-part">✗</td></tr>
+            <tr><td><strong>🖥 VMs Proxmox</strong></td><td class="perm-ok">✓</td><td class="perm-part">⚡ si VPN</td></tr>
+            <tr><td><strong>⚡ Serveur IA</strong></td><td class="perm-ok">✓</td><td class="perm-part">⚡ si VPN</td></tr>
           </tbody>
         </table>
       </div>
@@ -594,7 +595,7 @@ robocopy C:\Ptools   D:\Backup\Ptools   /MIR /XD .git</pre></div>
         <div class="flow-col"><div class="flow-num">2</div><div class="flow-vline"></div></div>
         <div class="flow-body">
           <strong><img src="../assets/nginx.svg" alt=""/>Prévisualisation locale — nginx (open source)</strong>
-          <p>Serveur nginx portable synchronisé via le Drive perso → <code>http://localhost:8080</code>. Sur le portable PERSO sans nginx : ouvrir <code>index.html</code> dans le navigateur suffit pour du HTML/CSS statique.</p>
+          <p>Serveur nginx portable synchronisé via le Drive perso → <code>http://localhost:<span class="redacted">8080</span></code>. Sur le portable PERSO sans nginx : ouvrir <code>index.html</code> dans le navigateur suffit pour du HTML/CSS statique.</p>
         </div>
       </div>
       <div class="flow-step">
@@ -714,6 +715,28 @@ logs/</span></pre></div>
     </div>
   </div>
 
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Git — Documentation</td><td><a href="https://git-scm.com/doc" target="_blank" style="color:var(--blue-500)">git-scm.com/doc</a></td></tr>
+            <tr><td>Documentation officielle</td><td>FreeFileSync — Manuel</td><td><a href="https://freefilesync.org/manual.php" target="_blank" style="color:var(--blue-500)">freefilesync.org/manual</a></td></tr>
+            <tr><td>Outils</td><td>Git · FreeFileSync · nginx · Obsidian · OneDrive · Robocopy</td><td>—</td></tr>
+            <tr><td>Norme de référence</td><td>ISO/IEC 27001 — sécurité de l'information</td><td><a href="https://www.iso.org/standard/27001" target="_blank" style="color:var(--blue-500)">iso.org/standard/27001</a></td></tr>
+            <tr><td>Licence</td><td>Git — GPLv2 · FreeFileSync — GPLv3 · nginx — licence BSD</td><td>—</td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer class="site-footer">

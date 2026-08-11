@@ -319,3 +319,10 @@ a { text-decoration: none; color: inherit; }
   .hero { padding: 3rem 1rem 2.5rem; }
   .section, .content { padding: 1.5rem 1rem; }
 }
+
+/* ─── Redaction (confidentialité — noms internes, ports) ──────────────────────── */
+.redacted {
+  filter: blur(4px); -webkit-filter: blur(4px);
+  user-select: none; -webkit-user-select: none;
+  pointer-events: none; color: var(--gray-500);
+}

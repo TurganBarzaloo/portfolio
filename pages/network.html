@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -66,11 +67,11 @@
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🌐 Configuration réseau</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Élément</th><th>Valeur</th><th>Usage</th></tr></thead><tbody><tr><td>Bridge</td><td>vmbr0</td><td>Pont VM ↔ LAN</td></tr><tr><td>NAT</td><td>Optionnel</td><td>Isolation réseau VM</td></tr><tr><td>SSH</td><td>Port 22</td><td>Admin sécurisé</td></tr><tr><td>Firewall Proxmox</td><td>Activé</td><td>Règles par VM</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Élément</th><th>Valeur</th><th>Usage</th></tr></thead><tbody><tr><td>Bridge</td><td>vmbr0</td><td>Pont VM ↔ LAN</td></tr><tr><td>NAT</td><td>Optionnel</td><td>Isolation réseau VM</td></tr><tr><td>SSH</td><td>Port <span class="redacted">22</span></td><td>Admin sécurisé</td></tr><tr><td>Firewall Proxmox</td><td>Activé</td><td>Règles par VM</td></tr></tbody></table></div>
 </div>
     <div class="panel">
   <div class="panel-header"> 🔌 Ports services</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Service</th><th>Port</th><th>Accès</th><th>Statut</th></tr></thead><tbody><tr><td>Proxmox WebUI</td><td>8006</td><td>LAN (HTTPS)</td><td>✅ Actif</td></tr><tr><td>SSH</td><td>22</td><td>LAN</td><td>✅ Actif</td></tr><tr><td>Ollama API</td><td>11434</td><td>VM locale</td><td>✅ Actif</td></tr><tr><td>Open WebUI</td><td>3000</td><td>LAN</td><td>🟡 Prévu</td></tr><tr><td>Qdrant</td><td>6333</td><td>VM locale</td><td>🟡 Prévu</td></tr><tr><td>n8n</td><td>5678</td><td>LAN</td><td>🟡 Prévu</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Service</th><th>Port</th><th>Accès</th><th>Statut</th></tr></thead><tbody><tr><td>Proxmox WebUI</td><td><span class="redacted">8006</span></td><td>LAN (HTTPS)</td><td>✅ Actif</td></tr><tr><td>SSH</td><td><span class="redacted">22</span></td><td>LAN</td><td>✅ Actif</td></tr><tr><td>Ollama API</td><td><span class="redacted">11434</span></td><td>VM locale</td><td>✅ Actif</td></tr><tr><td>Open WebUI</td><td><span class="redacted">3000</span></td><td>LAN</td><td>🟡 Planifié</td></tr><tr><td>PostgreSQL / pgvector</td><td><span class="redacted">5432</span></td><td>VM215 (VM locale)</td><td>✅ Actif</td></tr><tr><td>Qdrant (repli)</td><td><span class="redacted">6333</span></td><td>VM locale</td><td>🟡 Repli</td></tr><tr><td>n8n</td><td><span class="redacted">5678</span></td><td>LAN</td><td>🟡 Planifié</td></tr></tbody></table></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
@@ -102,6 +103,27 @@ iptables -L -n -v</pre></div></div>
     </div>
   </div>
 </div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Proxmox VE — Network Configuration</td><td><a href="https://pve.proxmox.com/wiki/Network_Configuration" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/wiki/Network_Configuration</a></td></tr>
+            <tr><td>Documentation officielle</td><td>Proxmox VE — Firewall</td><td><a href="https://pve.proxmox.com/wiki/Firewall" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/wiki/Firewall</a></td></tr>
+            <tr><td>Documentation officielle</td><td>OpenSSH — Manual</td><td><a href="https://www.openssh.com/manual.html" target="_blank" style="color:var(--blue-500)">openssh.com/manual</a></td></tr>
+            <tr><td>Licence</td><td>Proxmox VE — AGPLv3 · OpenSSH — licence BSD</td><td><a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" style="color:var(--blue-500)">gnu.org/licenses/agpl-3.0</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-author">

@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html" class="active">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -66,7 +67,7 @@
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🖥️ Composants matériels</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Composant</th><th>Détail</th><th>Rôle</th></tr></thead><tbody><tr><td><strong>CPU</strong></td><td>AMD Ryzen 9 9950X3D</td><td>Inférence IA · Virtualisation KVM</td></tr><tr><td><strong>GPU</strong></td><td>NVIDIA RTX 5090</td><td>Inférence LLM · Génération image</td></tr><tr><td><strong>RAM</strong></td><td>192 Go DDR5</td><td>Mémoire VM multiples · modèles larges</td></tr><tr><td><strong>Stockage</strong></td><td>SSD NVMe haute performance</td><td>ZFS · datasets IA</td></tr><tr><td><strong>Réseau</strong></td><td>Ethernet</td><td>Bridge Proxmox · accès LAN</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Composant</th><th>Détail</th><th>Rôle</th></tr></thead><tbody><tr><td><strong>CPU</strong></td><td>AMD Ryzen 9 9950X3D — 16 cœurs / 32 threads</td><td>Inférence IA · Virtualisation KVM</td></tr><tr><td><strong>GPU</strong></td><td>NVIDIA GeForce RTX 5090</td><td>Inférence LLM · Génération image</td></tr><tr><td><strong>RAM</strong></td><td>192 Go DDR5 (~186 Gio utilisables)</td><td>Mémoire VM multiples · modèles larges</td></tr><tr><td><strong>Stockage</strong></td><td>2× SSD NVMe en miroir ZFS (~1,75 Tio utile)</td><td>Disques virtuels · datasets IA · résilience</td></tr><tr><td><strong>Hyperviseur</strong></td><td>Proxmox VE 9.2.2</td><td>Virtualisation · affectation GPU</td></tr><tr><td><strong>Réseau</strong></td><td>Ethernet</td><td>Bridge Proxmox · accès LAN</td></tr></tbody></table></div>
 </div>
     <div class="panel">
   <div class="panel-header"> ⚙️ Configuration BIOS/UEFI</div>
@@ -78,6 +79,23 @@
   <div class="panel-header"> 🎯 Compétences acquises</div>
   <div class="panel-body"><ul class="skill-list"><li>Architecture serveur IA locale haute performance</li><li>Sélection matérielle pour l'inférence GPU (VRAM, bande passante)</li><li>Dimensionnement CPU / RAM pour hyperviseur multi-VM</li><li>Configuration BIOS/UEFI pour la virtualisation et le passthrough PCIe</li><li>Gestion stockage NVMe haute performance avec ZFS</li></ul></div>
 </div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🧩 Répartition des rôles — machines virtuelles</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>VM</th><th>Rôle</th><th>Socle</th><th>Composants clés</th></tr></thead><tbody><tr><td><strong>VM210</strong></td><td>Nœud IA — charges GPU</td><td>Ubuntu Server 24.04 LTS · RTX 5090 (passthrough)</td><td>Docker + NVIDIA Container Toolkit · Ollama · Open WebUI</td></tr><tr><td><strong>VM215</strong></td><td>Services communs — sans GPU</td><td>Ubuntu Server 24.04 LTS · disque ext4 dédié</td><td>PostgreSQL 18.4 · pgvector 0.8.6 (backend vectoriel du RAG)</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong>Principe :</strong> le GPU est affecté directement aux VM qui en ont besoin ; les charges GPU
+    (VM210) et les services communs CPU (VM215) sont séparés pour limiter les dépendances et faciliter la sauvegarde.
+    <br/><br/>
+    <strong>Industrialisation :</strong> les VM sont dérivées de <strong>templates</strong> génériques et CUDA,
+    personnalisés par <strong>Cloud-Init</strong> ; leur reconstruction suit une procédure réversible (validation d'un
+    clone de contrôle avant tout remplacement).
+    <br/><br/>
+    <strong>Limite :</strong> les snapshots ZFS facilitent les retours techniques mais <strong>ne remplacent pas
+    une sauvegarde indépendante</strong> — cette politique reste en cours de définition.
   </div>
   <div style="margin-top:1.5rem">
     <h2 class="section-title">Technologies associées</h2>
@@ -98,6 +116,27 @@
     </div>
   </div>
 </div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Proxmox VE Administration Guide</td><td><a href="https://pve.proxmox.com/pve-docs/" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/pve-docs</a></td></tr>
+            <tr><td>Documentation officielle</td><td>OpenZFS Documentation</td><td><a href="https://openzfs.github.io/openzfs-docs/" target="_blank" style="color:var(--blue-500)">openzfs.github.io/openzfs-docs</a></td></tr>
+            <tr><td>Configuration démontrée</td><td>Ryzen 9 9950X3D (16c/32t) · 192 Go DDR5 · RTX 5090 · 2× NVMe miroir ZFS (~1,75 Tio) · Proxmox VE 9.2.2</td><td>—</td></tr>
+            <tr><td>Licence</td><td>OpenZFS — CDDL · Proxmox VE — AGPLv3</td><td><a href="https://openzfs.org/" target="_blank" style="color:var(--blue-500)">openzfs.org</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-author">

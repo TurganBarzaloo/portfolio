@@ -18,6 +18,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    /* Noms de projets internes anonymisés — masqués pour confidentialité */
+    .redacted {
+      filter: blur(4px); -webkit-filter: blur(4px);
+      user-select: none; pointer-events: none;
+      color: var(--gray-500);
+    }
+  </style>
 </head>
 <body>
 
@@ -30,6 +38,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -122,42 +131,42 @@
                 <td><span class="badge badge-advanced">✓ Propre</span></td>
               </tr>
               <tr>
-                <td><strong>Interface_xxxxxxxx</strong></td>
-                <td style="font-size:.78rem;color:var(--gray-500)">GitLab cg33</td>
+                <td><strong><span class="redacted" title="Nom masqué pour confidentialité">Projet interne</span></strong></td>
+                <td style="font-size:.78rem;color:var(--gray-500)">GitLab interne</td>
                 <td><span class="badge badge-beginner">⚠ À commiter</span></td>
               </tr>
               <tr>
-                <td><strong>Meteoxxx</strong></td>
-                <td style="font-size:.78rem;color:var(--gray-500)">GitLab cg33</td>
+                <td><strong><span class="redacted" title="Nom masqué pour confidentialité">Application métier</span></strong></td>
+                <td style="font-size:.78rem;color:var(--gray-500)">GitLab interne</td>
                 <td><span class="badge badge-beginner">⚠ À commiter</span></td>
               </tr>
               <tr>
                 <td><strong>pythonProject_Blanc</strong></td>
-                <td style="font-size:.78rem;color:var(--gray-500)">GitLab cg33</td>
+                <td style="font-size:.78rem;color:var(--gray-500)">GitLab interne</td>
                 <td><span class="badge badge-inter">⚠ Suppressions</span></td>
               </tr>
               <tr>
-                <td><strong>XXX_EDI_SFTP_XXXXXXXX</strong></td>
-                <td style="font-size:.78rem;color:var(--gray-500)">GitLab cg33</td>
+                <td><strong><span class="redacted" title="Nom masqué pour confidentialité">Interface de données interne</span></strong></td>
+                <td style="font-size:.78rem;color:var(--gray-500)">GitLab interne</td>
                 <td><span class="badge badge-advanced">→ Publié</span></td>
               </tr>
               <tr>
-                <td><strong>EDI_XXXXXXXX</strong></td>
+                <td><strong><span class="redacted" title="Nom masqué pour confidentialité">Interface de données</span></strong></td>
                 <td style="font-size:.78rem;color:var(--gray-500)">—</td>
                 <td><span class="badge" style="background:#FEE2E2;color:#991B1B">✗ Local seul</span></td>
               </tr>
               <tr>
-                <td><strong>EDI_SFTP</strong></td>
+                <td><strong><span class="redacted" title="Nom masqué pour confidentialité">Transfert de fichiers</span></strong></td>
                 <td style="font-size:.78rem;color:var(--gray-500)">—</td>
                 <td><span class="badge" style="background:#FEE2E2;color:#991B1B">✗ Local seul</span></td>
               </tr>
               <tr>
-                <td><strong>XXX_EDI_SFTP_XXX</strong></td>
+                <td><strong><span class="redacted" title="Nom masqué pour confidentialité">Interface de données interne</span></strong></td>
                 <td style="font-size:.78rem;color:var(--gray-500)">—</td>
                 <td><span class="badge" style="background:#FEE2E2;color:#991B1B">✗ Local seul</span></td>
               </tr>
               <tr>
-                <td><strong>process-analyse</strong></td>
+                <td><strong><span class="redacted" title="Nom masqué pour confidentialité">Traitement de données</span></strong></td>
                 <td style="font-size:.78rem;color:var(--gray-500)">—</td>
                 <td><span class="badge" style="background:#FEE2E2;color:#991B1B">✗ .venv commité</span></td>
               </tr>
@@ -275,6 +284,27 @@ dist/ · build/ · *.spec
     </div>
   </div>
 
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Git — Documentation</td><td><a href="https://git-scm.com/doc" target="_blank" style="color:var(--blue-500)">git-scm.com/doc</a></td></tr>
+            <tr><td>Documentation officielle</td><td>GitLab — Documentation</td><td><a href="https://docs.gitlab.com/" target="_blank" style="color:var(--blue-500)">docs.gitlab.com</a></td></tr>
+            <tr><td>Outils</td><td>Git · GitLab CE · Git Credential Manager · .gitignore</td><td><a href="https://github.com/git-ecosystem/git-credential-manager" target="_blank" style="color:var(--blue-500)">github.com — git-credential-manager</a></td></tr>
+            <tr><td>Licence</td><td>Git — GPLv2 · GitLab Community Edition — MIT</td><td><a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank" style="color:var(--blue-500)">gnu.org/licenses/gpl-2.0</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer class="site-footer">

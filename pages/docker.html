@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -63,10 +64,17 @@
   </div>
 </div>
 <div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>Hôte :</strong> les conteneurs IA (<strong>Ollama</strong>, <strong>Open WebUI</strong>, RAG) tournent sur le
+    nœud principal <strong>VM210</strong> (Ubuntu Server 24.04 · Docker Engine + NVIDIA Container Toolkit — l'accès CUDA à
+    la RTX 5090 est validé jusque dans les conteneurs). Le backend vectoriel <strong>PostgreSQL / pgvector est sur
+    VM215</strong> (sans GPU) ; <strong>Qdrant est conservé comme solution de repli</strong>. <strong>VM260</strong>
+    (Windows) sert de banc de <strong>POC / validation</strong> (ex. ComfyUI via Docker Desktop).
+  </div>
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 📦 Services déployés</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Service</th><th>Image</th><th>Port</th><th>Statut</th></tr></thead><tbody><tr><td>Docker Network</td><td>Docker</td><td>SO</td><td>🟢 Opérationnel</td></tr><tr><td>NPM (Nginx Proxy Management)</td><td>jc21/nginx-proxy-manager:latest</td><td>443(public), 81(UI NPM)</td><td>🟢 Opérationnel</td></tr><tr><td>Portainer</td>portainer/portainer-ce:latest<td></td><td>NPM port</td><td>🟢 Opérationnel</td></tr><tr><td>PostgesSQL</td><td></td><td>NPM port</td><td>🟢 Opérationnel</td></tr><tr><td>Ollama</td><td>ollama/ollama:latest</td><td>NPM port</td><td>🟢 Opérationnel</td></tr><tr><td>Open WebUI</td><td>ghcr.io/open-webui/open-webui</td><td>3000</td><td>🟢 Opérationnel</td></tr><tr><td>Qdrant</td><td>qdrant/qdrant</td><td>6333</td><td>🟢 Opérationnel</td></tr><tr><td>n8n</td><td>n8nio/n8n</td><td>5678</td><td>🟢 Opérationnel</td></tr><tr><td>Whisper API</td><td>onerahmet/openai-whisper-asr-webservice</td><td>9000</td><td>🟡 En cours</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Service</th><th>Image</th><th>Port</th><th>Statut</th></tr></thead><tbody><tr><td>Ollama</td><td>ollama/ollama · 0.32.6 · VM210</td><td><span class="redacted">11434</span></td><td>🟢 Opérationnel</td></tr><tr><td>ComfyUI</td><td>Docker Desktop · VM260 (POC)</td><td>—</td><td>🔵 Validé (POC)</td></tr><tr><td>Open WebUI</td><td>ghcr.io/open-webui/open-webui · 0.11.0 · VM210</td><td><span class="redacted">3000</span></td><td>🟢 Opérationnel</td></tr><tr><td>PostgreSQL + pgvector</td><td>déployé sur VM215 · 18.4 / 0.8.6</td><td><span class="redacted">5432</span></td><td>🟢 Opérationnel</td></tr><tr><td>Qdrant</td><td>qdrant/qdrant · 1.18.3</td><td><span class="redacted">6333</span></td><td>🟡 Repli (fallback)</td></tr><tr><td>n8n</td><td>n8nio/n8n:latest · VM300 (planifié)</td><td><span class="redacted">5678</span></td><td>🔵 Validé (banc de test)</td></tr><tr><td>NPM (Nginx Proxy Manager)</td><td>jc21/nginx-proxy-manager:latest</td><td><span class="redacted">443 · 81</span></td><td>🟢 Opérationnel</td></tr><tr><td>Portainer</td><td>portainer/portainer-ce:latest</td><td><span class="redacted">9443</span></td><td>🟢 Opérationnel</td></tr><tr><td>Whisper API</td><td>onerahmet/openai-whisper-asr-webservice · VM210</td><td><span class="redacted">9000</span></td><td>🔵 Validé · planifié</td></tr></tbody></table></div>
 </div>
     <div class="panel">
   <div class="panel-header"> 🎯 Compétences acquises</div>
@@ -77,27 +85,21 @@
     <div class="panel">
   <div class="panel-header"> 📄 docker-compose.yml (cible)</div>
   <div class="panel-body"><div class="code-label">yaml</div>
-<div class="code-block"><pre>version: '3.9'
-
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    container_name: qdrant
-    ports:
-      - '6333:6333'
-    volumes:
-      - /mnt/qdrant:/qdrant/storage
-    restart: unless-stopped
-
+<div class="code-block"><pre>services:
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:main   # 0.11.0
     container_name: open-webui
     ports:
-      - '3000:8080'
+      - '<span class="redacted">3000:8080</span>'
     volumes:
       - open-webui-data:/app/backend/data
     environment:
-      - OLLAMA_BASE_URL=http://host-gateway:11434
+      - OLLAMA_BASE_URL=http://host-gateway:<span class="redacted">11434</span>
+      # Backend vectoriel : pgvector hébergé sur VM215 (sans GPU)
+      - VECTOR_DB=pgvector
+      - PGVECTOR_DB_URL=postgresql://&lt;role&gt;:&lt;secret&gt;@&lt;hote-vm215&gt;/rag
+      - RAG_EMBEDDING_ENGINE=ollama
+      - RAG_EMBEDDING_MODEL=bge-m3
     extra_hosts:
       - 'host-gateway:host-gateway'
     restart: unless-stopped
@@ -106,26 +108,58 @@ services:
     image: n8nio/n8n:latest
     container_name: n8n
     ports:
-      - '5678:5678'
+      - '<span class="redacted">5678:5678</span>'
     volumes:
       - n8n-data:/home/node/.n8n
     restart: unless-stopped
 
+  # Solution de repli — conservée tant que le retrait n'est pas clôturé
+  qdrant:
+    image: qdrant/qdrant:latest                 # 1.18.3
+    container_name: qdrant
+    ports:
+      - '<span class="redacted">6333:6333</span>'
+    volumes:
+      - qdrant-data:/qdrant/storage
+    restart: unless-stopped
+
 volumes:
   open-webui-data:
-  n8n-data:</pre></div></div>
+  n8n-data:
+  qdrant-data:</pre></div></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
-      <a class="related-card" href="rag.html"><img src="../assets/qdrant.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="rag.html"><img src="../assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
       <a class="related-card" href="devops.html"><img src="../assets/n8n.svg" alt=""/>Automatisation</a>
       <a class="related-card" href="network.html"><img src="../assets/linux.svg" alt=""/>Réseau</a>
     </div>
   </div>
 </div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Docker Documentation</td><td><a href="https://docs.docker.com/" target="_blank" style="color:var(--blue-500)">docs.docker.com</a></td></tr>
+            <tr><td>Documentation officielle</td><td>NVIDIA Container Toolkit</td><td><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/" target="_blank" style="color:var(--blue-500)">docs.nvidia.com — container-toolkit</a></td></tr>
+            <tr><td>Versions utilisées</td><td>Ollama 0.32.6 · Open WebUI 0.11.0 · PostgreSQL 18.4 · pgvector 0.8.6 · Qdrant 1.18.3 (repli)</td><td>—</td></tr>
+            <tr><td>Licence</td><td>Docker Engine (Moby) — Apache 2.0</td><td><a href="https://github.com/moby/moby/blob/master/LICENSE" target="_blank" style="color:var(--blue-500)">github.com/moby/moby — LICENSE</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-author">

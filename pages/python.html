@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -51,7 +52,7 @@
       <div class="page-icon"><img src="../assets/python.svg" alt=""/></div>
       <div>
         <h1>Python</h1>
-        <p>venv · pip · requirements.txt · Scripts IA · LangChain</p>
+        <p>venv · pip · requirements.txt · Scripts IA · psycopg / pgvector</p>
         <div class="level-pill">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
             <circle cx="6" cy="6" r="5"/>
@@ -70,7 +71,7 @@
 </div>
     <div class="panel">
   <div class="panel-header"> 📦 Librairies IA</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Librairie</th><th>Usage</th><th>Statut</th></tr></thead><tbody><tr><td>langchain</td><td>Pipeline RAG</td><td>🔵 Planifié</td></tr><tr><td>qdrant-client</td><td>Client base vectorielle</td><td>🔵 Planifié</td></tr><tr><td>ollama</td><td>Client API Ollama local</td><td>🔵 Planifié</td></tr><tr><td>openai</td><td>Client compatible Ollama</td><td>🔵 Planifié</td></tr><tr><td>whisper</td><td>Speech-to-Text</td><td>🔵 Planifié</td></tr><tr><td>requests</td><td>Appels HTTP API</td><td>✅ Utilisé</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Librairie</th><th>Usage</th><th>Statut</th></tr></thead><tbody><tr><td>psycopg + pgvector</td><td>Client PostgreSQL · vecteurs</td><td>🔵 Planifié</td></tr><tr><td>langchain</td><td>Scripts / agents (optionnel)</td><td>🔵 Planifié</td></tr><tr><td>ollama</td><td>Client API Ollama local</td><td>🔵 Planifié</td></tr><tr><td>openai</td><td>Client compatible Ollama</td><td>🔵 Planifié</td></tr><tr><td>whisper</td><td>Speech-to-Text</td><td>🔵 Planifié</td></tr><tr><td>requests</td><td>Appels HTTP API</td><td>✅ Utilisé</td></tr></tbody></table></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
@@ -86,7 +87,7 @@ source .venv/bin/activate  # Linux/Mac
 # .venv\\Scripts\\activate  # Windows
 
 # Installer les dépendances
-pip install langchain qdrant-client ollama
+pip install "psycopg[binary]" pgvector ollama
 
 # Sauvegarder
 pip freeze &gt; requirements.txt
@@ -120,12 +121,34 @@ for chunk in ollama.chat(
   <div style="margin-top:1.5rem">
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
-      <a class="related-card" href="rag.html"><img src="../assets/qdrant.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="rag.html"><img src="../assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
       <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
       <a class="related-card" href="speech_ai.html"><img src="../assets/whisper.svg" alt=""/>Speech AI</a>
     </div>
   </div>
 </div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Python — Documentation</td><td><a href="https://docs.python.org/3/" target="_blank" style="color:var(--blue-500)">docs.python.org/3</a></td></tr>
+            <tr><td>Documentation officielle</td><td>pip — User Guide</td><td><a href="https://pip.pypa.io/en/stable/" target="_blank" style="color:var(--blue-500)">pip.pypa.io</a></td></tr>
+            <tr><td>Documentation officielle</td><td>venv — Environnements virtuels (bibliothèque standard)</td><td><a href="https://docs.python.org/3/library/venv.html" target="_blank" style="color:var(--blue-500)">docs.python.org/3/library/venv</a></td></tr>
+            <tr><td>Outils utilisés</td><td>Python 3.11+ · venv · pip · requirements.txt · psycopg / pgvector (planifié)</td><td>—</td></tr>
+            <tr><td>Licence</td><td>Python — PSF License</td><td><a href="https://docs.python.org/3/license.html" target="_blank" style="color:var(--blue-500)">docs.python.org/3/license</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-author">

@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -66,7 +67,7 @@
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 📂 Datasets créés</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Dataset</th><th>Usage</th><th>Service</th></tr></thead><tbody><tr><td>models</td><td>Modèles IA génériques</td><td>Ollama / HuggingFace</td></tr><tr><td>ollama</td><td>Modèles Ollama (LLM)</td><td>Ollama</td></tr><tr><td>huggingface</td><td>Cache HuggingFace</td><td>Python / LangChain</td></tr><tr><td>whisper</td><td>Modèles Whisper STT</td><td>Whisper</td></tr><tr><td>comfyui</td><td>Workflows et modèles ComfyUI</td><td>ComfyUI</td></tr><tr><td>flux</td><td>Modèles Flux (génération image)</td><td>ComfyUI / Flux</td></tr><tr><td>rag</td><td>Documents sources RAG</td><td>LangChain</td></tr><tr><td>embeddings</td><td>Vecteurs précalculés</td><td>Qdrant</td></tr><tr><td>qdrant</td><td>Base vectorielle persistée</td><td>Qdrant</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Dataset</th><th>Usage</th><th>Service</th></tr></thead><tbody><tr><td>models</td><td>Modèles IA génériques</td><td>Ollama / HuggingFace</td></tr><tr><td>ollama</td><td>Modèles Ollama (LLM)</td><td>Ollama</td></tr><tr><td>huggingface</td><td>Cache HuggingFace</td><td>Python / LangChain</td></tr><tr><td>whisper</td><td>Modèles Whisper STT</td><td>Whisper</td></tr><tr><td>comfyui</td><td>Workflows et modèles ComfyUI</td><td>ComfyUI</td></tr><tr><td>flux</td><td>Modèles Flux (génération image)</td><td>ComfyUI / Flux</td></tr><tr><td>rag</td><td>Documents sources RAG</td><td>Open WebUI</td></tr><tr><td>embeddings</td><td>Vecteurs (cache local)</td><td>bge-m3 / pgvector</td></tr><tr><td>qdrant</td><td>Base vectorielle de repli</td><td>Qdrant (fallback)</td></tr></tbody></table></div>
 </div>
     <div class="panel">
   <div class="panel-header"> 🎯 Compétences acquises</div>
@@ -102,11 +103,31 @@ zpool scrub pool</pre></div></div>
     <div class="related-grid">
       <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
       <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
-      <a class="related-card" href="rag.html"><img src="../assets/qdrant.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="rag.html"><img src="../assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
       <a class="related-card" href="speech_ai.html"><img src="../assets/whisper.svg" alt=""/>Speech AI</a>
     </div>
   </div>
 </div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>OpenZFS Documentation</td><td><a href="https://openzfs.github.io/openzfs-docs/" target="_blank" style="color:var(--blue-500)">openzfs.github.io/openzfs-docs</a></td></tr>
+            <tr><td>Configuration démontrée</td><td>2× SSD NVMe en miroir ZFS (~1,75 Tio utile) · datasets IA dédiés</td><td>—</td></tr>
+            <tr><td>Licence</td><td>OpenZFS — CDDL</td><td><a href="https://openzfs.org/" target="_blank" style="color:var(--blue-500)">openzfs.org</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-author">

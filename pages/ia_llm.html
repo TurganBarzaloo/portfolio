@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html">GPU / VFIO</a>
@@ -66,17 +67,24 @@
   <div style="font-size:.88rem;color:var(--gray-600);background:var(--blue-50);border:1px solid var(--blue-100);border-radius:var(--radius-sm);padding:1rem 1.25rem;margin-bottom:1.5rem">
     <strong>Architecture :</strong>
     <code style="font-family:monospace;background:var(--white);padding:.15rem .4rem;border-radius:4px;font-size:.82rem">
-      [RTX 5090] → [Ollama] → [Open WebUI / API] → [Utilisateur / n8n / LangChain]
+      [RTX 5090] → [Ollama] → [Open WebUI / API REST] → [Utilisateur / n8n / RAG pgvector]
     </code>
+    <div style="margin-top:.75rem;font-size:.84rem">
+      <strong>Ollama</strong>, <strong>Open WebUI</strong> et le <strong>RAG</strong> s'exécutent sur le nœud IA
+      principal <strong>VM210</strong> (Ubuntu Server 24.04 LTS · Docker Engine + NVIDIA Container Toolkit · RTX 5090),
+      le RAG s'appuyant sur PostgreSQL/pgvector hébergé sur <strong>VM215</strong>. <strong>VM260</strong> (Windows)
+      est une machine alternative de <strong>POC / validation rapide</strong>, où des composants sont éprouvés avant
+      d'être planifiés sur l'infra définitive. La RTX 5090 étant exclusive, un seul nœud GPU l'utilise à la fois.
+    </div>
   </div>
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🤖 Modèles LLM déployés</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Famille</th><th>Modèles</th><th>Usage</th></tr></thead><tbody><tr><td>Meta</td><td>Llama 3.x</td><td>LLM généraliste haute qualité</td></tr><tr><td>Mistral AI</td><td>Mistral 7B/22B</td><td>LLM efficace, bon rapport perf/taille</td></tr><tr><td>Google</td><td>Gemma 2</td><td>LLM compact et rapide</td></tr><tr><td>Microsoft</td><td>Phi-3</td><td>LLM petit format</td></tr><tr><td>NousResearch</td><td>Hermes</td><td>Agent IA avancé</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Famille</th><th>Modèles</th><th>Usage</th></tr></thead><tbody><tr><td>Meta</td><td>Llama 3.x</td><td>LLM généraliste haute qualité</td></tr><tr><td>Mistral AI</td><td>Mistral 7B/22B</td><td>LLM efficace, bon rapport perf/taille</td></tr><tr><td>Google</td><td>Gemma 2</td><td>LLM compact et rapide</td></tr><tr><td>Microsoft</td><td>Phi-3</td><td>LLM petit format</td></tr><tr><td>NousResearch</td><td>Hermes</td><td>Agent IA avancé — 🔵 validé (plateforme de conception)</td></tr></tbody></table></div>
 </div>
     <div class="panel">
   <div class="panel-header"> 🖥️ Interfaces & Outils</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Outil</th><th>Rôle</th><th>Port</th></tr></thead><tbody><tr><td>Open WebUI</td><td>Interface chat (type ChatGPT)</td><td>3000</td></tr><tr><td>Ollama API</td><td>API REST pour intégrations</td><td>11434</td></tr><tr><td>n8n</td><td>Orchestration workflows IA</td><td>5678</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Outil</th><th>Rôle</th><th>Version</th><th>Port</th></tr></thead><tbody><tr><td>Ollama</td><td>Serveur d'inférence LLM local</td><td>0.32.6</td><td><span class="redacted">11434</span></td></tr><tr><td>Open WebUI</td><td>Interface chat (type ChatGPT) + RAG</td><td>0.11.0</td><td><span class="redacted">3000</span></td></tr><tr><td>n8n</td><td>Orchestration workflows IA</td><td>—</td><td><span class="redacted">5678</span></td></tr></tbody></table></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
@@ -94,7 +102,7 @@ ollama pull llama3
 ollama run mistral
 
 # API REST
-curl http://localhost:11434/api/generate \\
+curl http://localhost:<span class="redacted">11434</span>/api/generate \\
   -d '{"model": "mistral", "prompt": "Résume en 3 points :", "stream": false}'</pre></div></div>
 </div>
   </div>
@@ -108,12 +116,33 @@ curl http://localhost:11434/api/generate \\
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="gpu_passthrough.html"><img src="../assets/vfio.svg" alt=""/>GPU Passthrough</a>
-      <a class="related-card" href="rag.html"><img src="../assets/qdrant.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="rag.html"><img src="../assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
       <a class="related-card" href="docker.html"><img src="../assets/docker.svg" alt=""/>Docker</a>
       <a class="related-card" href="devops.html"><img src="../assets/n8n.svg" alt=""/>Automatisation</a>
     </div>
   </div>
 </div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Ollama</td><td><a href="https://github.com/ollama/ollama" target="_blank" style="color:var(--blue-500)">github.com/ollama/ollama</a></td></tr>
+            <tr><td>Documentation officielle</td><td>Open WebUI</td><td><a href="https://docs.openwebui.com/" target="_blank" style="color:var(--blue-500)">docs.openwebui.com</a></td></tr>
+            <tr><td>Versions utilisées</td><td>Ollama 0.32.6 · Open WebUI 0.11.0 · Ubuntu Server 24.04 LTS (nœud VM210)</td><td>—</td></tr>
+            <tr><td>Licence</td><td>Ollama — MIT · Open WebUI — BSD-3-Clause</td><td>—</td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-author">

@@ -29,6 +29,7 @@
   </a>
     <div class="nav-links">
     <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
     <a href="gpu_passthrough.html" class="active">GPU / VFIO</a>
@@ -101,6 +102,28 @@ lspci -nnk | grep -A3 'NVIDIA'</pre></div></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🔧 Relevé BIOS &amp; prudence firmware</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">
+      Un <strong>relevé BIOS de référence</strong> sépare les valeurs réellement observées des améliorations seulement
+      envisagées. Avant toute mise à jour du firmware, les paramètres nécessaires à <strong>IOMMU et VFIO</strong> sont
+      sauvegardés et un <strong>retour arrière</strong> est préparé ; après modification, les groupes IOMMU, la réservation
+      du GPU et le démarrage des VM sont revalidés. Les essais restent <strong>unitaires</strong>, afin d'attribuer
+      clairement chaque effet au paramètre modifié.
+    </p>
+  </div>
+</div>
+  </div>
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong>Contrainte structurante :</strong> la RTX 5090 est une ressource physique <strong>exclusive</strong> —
+    une seule VM de passthrough peut l'utiliser à la fois. L'architecture documente donc explicitement les
+    incompatibilités de démarrage simultané, et une console virtuelle distincte est conservée pour la récupération.
+    <br/><br/>
+    <strong>Validation :</strong> le pilote NVIDIA et CUDA ont été validés dans une VM Ubuntu, puis
+    <strong>l'accès GPU a été vérifié jusque dans des conteneurs Docker</strong> (via le NVIDIA Container Toolkit).
+  </div>
+  <div style="margin-top:1.5rem">
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="infrastructure.html"><img src="../assets/linux.svg" alt=""/>Infrastructure</a>
@@ -109,6 +132,27 @@ lspci -nnk | grep -A3 'NVIDIA'</pre></div></div>
     </div>
   </div>
 </div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Proxmox VE — PCI(e) Passthrough</td><td><a href="https://pve.proxmox.com/wiki/PCI_Passthrough" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/wiki/PCI_Passthrough</a></td></tr>
+            <tr><td>Documentation officielle</td><td>Linux Kernel — VFIO</td><td><a href="https://docs.kernel.org/driver-api/vfio.html" target="_blank" style="color:var(--blue-500)">docs.kernel.org/driver-api/vfio</a></td></tr>
+            <tr><td>Matériel</td><td>NVIDIA GeForce RTX 5090 · plateforme AMD (IOMMU / AMD-Vi)</td><td>—</td></tr>
+            <tr><td>Licence</td><td>VFIO (noyau Linux) — GPL · pilotes NVIDIA — propriétaires</td><td>—</td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-author">

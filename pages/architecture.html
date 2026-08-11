@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stéphane Muraro — Architecture & Vue d'ensemble | Portfolio IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" content="Vue d'ensemble de la plateforme IA On-Premise — architecture Proxmox en couches (templates, infrastructure permanente, consommateurs IA, stockage ZFS) avec le statut de maturité de chaque brique."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    .nav-author { font-size: .8rem; font-weight: 500; color: var(--gray-500); letter-spacing: .01em; white-space: nowrap; padding: .25rem .6rem; }
+    .nav-author strong { color: var(--blue-700); font-weight: 600; }
+
+    .draft-banner { max-width: 1100px; margin: 1rem auto 0; padding: .7rem 1rem; background: #FEF3C7; border: 1px solid #FCD34D; border-radius: var(--radius-sm); color: #92400E; font-size: .82rem; font-weight: 500; }
+
+    .arch-legend { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 1.25rem 0 1.75rem; }
+    .lg-item { display: inline-flex; align-items: center; gap: .45rem; font-size: .82rem; color: var(--gray-700); font-weight: 500; }
+    .lg-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+    .lg-dot.actif  { background: var(--success); }
+    .lg-dot.valide { background: var(--blue-500); }
+    .lg-dot.plan   { background: var(--gray-300); border: 1px solid var(--gray-500); }
+
+    .layer { background: var(--white); border: 1px solid var(--gray-300); border-left: 4px solid var(--blue-500); border-radius: var(--radius); box-shadow: var(--shadow-sm); margin-bottom: 1rem; overflow: hidden; }
+    .layer-head { display: flex; align-items: baseline; gap: .6rem; padding: .8rem 1.1rem; background: var(--blue-50); border-bottom: 1px solid var(--gray-200); flex-wrap: wrap; }
+    .layer-num { font-family: 'Fira Code','Cascadia Code','Consolas',monospace; font-size: .72rem; font-weight: 700; color: var(--white); background: var(--blue-700); border-radius: 5px; padding: .1rem .45rem; }
+    .layer-title { font-size: .95rem; font-weight: 700; color: var(--blue-900); }
+    .layer-sub { font-size: .74rem; color: var(--gray-500); font-weight: 500; }
+    .layer-body { display: flex; flex-wrap: wrap; gap: .6rem; padding: 1rem 1.1rem; }
+
+    .node { display: flex; flex-direction: column; gap: .1rem; min-width: 155px; flex: 1 1 155px; max-width: 250px; background: var(--gray-100); border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: .6rem .75rem; position: relative; }
+    .node-top { display: flex; align-items: center; gap: .4rem; }
+    .node-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .node.actif  { border-left: 3px solid var(--success); }
+    .node.valide { border-left: 3px solid var(--blue-500); }
+    .node.plan   { border-left: 3px solid var(--gray-400); opacity: .92; }
+    .node.actif  .node-dot { background: var(--success); }
+    .node.valide .node-dot { background: var(--blue-500); }
+    .node.plan   .node-dot { background: var(--gray-300); border: 1px solid var(--gray-500); }
+    .node-name { font-size: .82rem; font-weight: 700; color: var(--blue-900); }
+    .node-desc { font-size: .72rem; color: var(--gray-600); line-height: 1.4; }
+    .node .tbc { font-style: italic; color: var(--warning); }
+
+    .flow-arrow { text-align: center; color: var(--blue-400); font-size: 1.1rem; line-height: 1; margin: .1rem 0; }
+
+    .pillars { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 1.75rem; }
+    @media (max-width: 720px) { .pillars { grid-template-columns: 1fr 1fr; } }
+    .pillar { background: var(--blue-900); color: var(--white); border-radius: var(--radius); padding: 1rem 1.1rem; text-align: center; }
+    .pillar-title { font-size: .82rem; font-weight: 700; letter-spacing: .03em; }
+    .pillar-desc { font-size: .72rem; color: rgba(255,255,255,.75); margin-top: .25rem; line-height: 1.4; }
+
+    .site-footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
+    .footer-author { font-size: .82rem; color: var(--gray-700); text-align: left; }
+    .footer-author strong { color: var(--blue-700); font-weight: 600; }
+    .footer-author span { display: block; font-size: .75rem; color: var(--gray-500); margin-top: .15rem; }
+    .footer-center { font-size: .78rem; color: var(--gray-400); text-align: center; }
+    .footer-oss { font-size: .78rem; color: var(--gray-500); text-align: right; }
+    .footer-oss a { color: var(--accent); text-decoration: none; }
+    .footer-oss-badge { display: inline-flex; align-items: center; gap: .3rem; background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: .72rem; font-weight: 600; padding: .2rem .6rem; border-radius: 99px; margin-bottom: .35rem; }
+    @media (max-width: 640px) { .site-footer-inner { grid-template-columns: 1fr; text-align: center; } .footer-author, .footer-oss { text-align: center; } }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="architecture.html" class="active">Architecture</a>
+    <a href="infrastructure.html">Infrastructure</a>
+    <a href="proxmox.html">Proxmox</a>
+    <a href="gpu_passthrough.html">GPU / VFIO</a>
+    <a href="ia_llm.html">IA &amp; LLM</a>
+    <a href="rag.html">RAG</a>
+    <a href="docker.html">Docker</a>
+    <a href="python.html">Python</a>
+    <a href="git-audit.html">Git</a>
+    <a href="git-strategie.html">Stratégie Git</a>
+    <a href="obsidian.html">Obsidian</a>
+    <a href="about.html">À propos</a>
+  </div>
+  <div class="nav-author"><strong>Stéphane Muraro</strong></div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Architecture — Vue d'ensemble</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Architecture — Vue d'ensemble</h1>
+        <p>La plateforme IA On-Premise sous Proxmox — templates, infrastructure permanente, consommateurs IA, stockage</p>
+        <span class="level-pill">Plateforme personnelle · IA souveraine · 2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <p style="font-size:.9rem;color:var(--gray-700);line-height:1.65;margin:1.5rem 0 0">
+    Vue d'ensemble du fil directeur de la plateforme, organisée comme sous Proxmox : un socle matériel, une bibliothèque
+    de <strong>templates</strong>, une <strong>infrastructure permanente</strong> (nœuds IA et services), des
+    <strong>consommateurs IA</strong> (agents et automatisation), et un <strong>stockage ZFS</strong> commun. Le statut de
+    chaque brique distingue ce qui est en service, ce qui est éprouvé sur banc de test, et ce qui est planifié.
+  </p>
+
+  <!-- Légende -->
+  <div class="arch-legend">
+    <span class="lg-item"><span class="lg-dot actif"></span>Actif — en service sur la cible Proxmox</span>
+    <span class="lg-item"><span class="lg-dot valide"></span>Validé — éprouvé sur banc de test / POC, portage planifié</span>
+    <span class="lg-item"><span class="lg-dot plan"></span>Planifié — non encore créé</span>
+  </div>
+
+  <!-- 1 · Socle -->
+  <div class="layer">
+    <div class="layer-head"><span class="layer-num">1</span><span class="layer-title">Socle matériel &amp; hyperviseur</span><span class="layer-sub">— la machine</span></div>
+    <div class="layer-body">
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Serveur</span></div><div class="node-desc">AMD Ryzen 9 9950X3D · 192 Go DDR5</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">GPU</span></div><div class="node-desc">RTX 5090 · exclusive (1 VM GPU à la fois)</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Stockage</span></div><div class="node-desc">ZFS rpool · miroir NVMe (~1,75 Tio)</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Hyperviseur</span></div><div class="node-desc">Proxmox VE 9.2.2</div></div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- 2 · Templates -->
+  <div class="layer">
+    <div class="layer-head"><span class="layer-num">2</span><span class="layer-title">Templates de VM</span><span class="layer-sub">— socles clonables</span></div>
+    <div class="layer-body">
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Templates 110 → 131</span></div><div class="node-desc">W11 · Ubuntu Desktop / Server · ± CUDA</div></div>
+      <div class="node plan"><div class="node-top"><span class="node-dot"></span><span class="node-name">140 Debian-Server</span></div><div class="node-desc">Template Debian · planifié</div></div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- 3 · Infrastructure permanente -->
+  <div class="layer">
+    <div class="layer-head"><span class="layer-num">3</span><span class="layer-title">Infrastructure permanente</span><span class="layer-sub">— nœuds IA &amp; services</span></div>
+    <div class="layer-body">
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">210 · IA-Core-CUDA</span></div><div class="node-desc">Ubuntu · Ollama · Open WebUI · RAG · modèles/config</div></div>
+      <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">260 · W11-CUDA</span></div><div class="node-desc">Alternative · banc de POC / validation rapide</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">215 · Services communs</span></div><div class="node-desc">PostgreSQL / pgvector · backend du RAG</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">205 · Nextcloud</span></div><div class="node-desc">En production · usage familial</div></div>
+      <div class="node plan"><div class="node-top"><span class="node-dot"></span><span class="node-name">200 · ReverseProxy</span></div><div class="node-desc">Nginx · TLS · Fail2ban — planifié (validé banc de test)</div></div>
+    </div>
+  </div>
+
+  <!-- Briques logicielles IA (transverses) -->
+  <div class="layer">
+    <div class="layer-head"><span class="layer-num">3b</span><span class="layer-title">Briques logicielles IA</span><span class="layer-sub">— servies par les nœuds ci-dessus</span></div>
+    <div class="layer-body">
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Ollama</span></div><div class="node-desc">Inférence LLM local · VM210</div></div>
+      <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">ComfyUI + Flux</span></div><div class="node-desc">Génération d'image (SDXL / Flux) — validé sur VM260 (POC) · portage planifié</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Open WebUI</span></div><div class="node-desc">Interface chat + RAG · VM210</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">RAG</span></div><div class="node-desc">VM210 · pgvector sur VM215 · Qdrant (repli)</div></div>
+      <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">Whisper</span></div><div class="node-desc">Transcription — validé · portage planifié sur VM210</div></div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- 4 · Consommateurs IA -->
+  <div class="layer">
+    <div class="layer-head"><span class="layer-num">4</span><span class="layer-title">Consommateurs IA</span><span class="layer-sub">— agents &amp; automatisation</span></div>
+    <div class="layer-body">
+      <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">300 · n8n</span></div><div class="node-desc">Orchestration de workflows — validé banc de test W11</div></div>
+      <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">301 · Hermes</span></div><div class="node-desc">Agent IA — validé banc de test W11</div></div>
+      <div class="node plan"><div class="node-top"><span class="node-dot"></span><span class="node-name">302 · OpenClaw</span></div><div class="node-desc">Agent IA · planifié</div></div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- 5 · Stockage ZFS -->
+  <div class="layer">
+    <div class="layer-head"><span class="layer-num">5</span><span class="layer-title">Stockage ZFS</span><span class="layer-sub">— rpool commun</span></div>
+    <div class="layer-body">
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/models</span></div><div class="node-desc">Modèles IA</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/rag</span></div><div class="node-desc">Documents &amp; index RAG</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/config</span></div><div class="node-desc">Configurations</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/backups</span></div><div class="node-desc">Sauvegardes</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/nextcloud-data</span></div><div class="node-desc">Données Nextcloud</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/data</span></div><div class="node-desc">Disques des VM Proxmox</div></div>
+    </div>
+  </div>
+
+  <!-- Piliers -->
+  <div class="pillars">
+    <div class="pillar"><div class="pillar-title">SOUVERAINETÉ</div><div class="pillar-desc">Données et modèles hébergés en local, sans cloud</div></div>
+    <div class="pillar"><div class="pillar-title">SÉCURITÉ</div><div class="pillar-desc">Cloisonnement des VM · exposition maîtrisée</div></div>
+    <div class="pillar"><div class="pillar-title">MODULARITÉ</div><div class="pillar-desc">Services découplés, remplaçables brique à brique</div></div>
+    <div class="pillar"><div class="pillar-title">ÉVOLUTIVITÉ</div><div class="pillar-desc">Ajout de VM, modèles et services à la demande</div></div>
+  </div>
+
+  <div style="margin-top:1.75rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="infrastructure.html"><img src="../assets/linux.svg" alt=""/>Infrastructure</a>
+      <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA &amp; LLM</a>
+      <a class="related-card" href="rag.html"><img src="../assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Positionnement</td><td>Présentation générale de la plateforme — démarche et vocation</td><td>Fiche interne « presentation-generale »</td></tr>
+            <tr><td>Architecture</td><td>Nomenclature VM &amp; datasets ZFS (retenue) · jalons J0 → J13</td><td>Suivi interne</td></tr>
+            <tr><td>Niveaux de maturité</td><td>Actif · Validé (banc de test) · Planifié</td><td>—</td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span>Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        100 % Open Source
+      </div>
+      <div>Construit avec Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie">Philosophie OSS →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
