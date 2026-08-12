@@ -80,7 +80,7 @@
     IA On<span class="dot">·</span>Premise
   </a>
   <div class="nav-links">
-    <a href="../index.html">🏠 Accueil</a>
+    <a href="../index.html">Accueil</a>
     <a href="architecture.html" class="active">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
@@ -89,12 +89,11 @@
     <a href="rag.html">RAG</a>
     <a href="docker.html">Docker</a>
     <a href="python.html">Python</a>
-    <a href="git-audit.html">Git</a>
-    <a href="git-strategie.html">Stratégie Git</a>
+    <a href="git.html">Git</a>
     <a href="obsidian.html">Obsidian</a>
     <a href="about.html">À propos</a>
   </div>
-  <div class="nav-author"><strong>Stéphane Muraro</strong></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
 
 <div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Architecture — Vue d'ensemble</strong></div>
@@ -118,6 +117,14 @@
 </div>
 
 <div class="content">
+
+  <figure style="margin:1.5rem 0 0;text-align:center">
+    <img src="../assets/infrastructure-graph.png" alt="Infographie de l'architecture IA cible : infrastructure matérielle, plateforme logicielle, stack IA, services et écosystème, avec caractéristiques clés et flux d'accès"
+         style="width:100%;max-width:1100px;height:auto;border:1px solid var(--gray-300);border-radius:var(--radius);box-shadow:var(--shadow)"/>
+    <figcaption style="font-size:.78rem;color:var(--gray-500);margin-top:.6rem">
+      Vue d'ensemble — <strong>architecture cible</strong> de la plateforme (synthèse visuelle). Le détail par couche et le statut de chaque brique figurent ci-dessous.
+    </figcaption>
+  </figure>
 
   <p style="font-size:.9rem;color:var(--gray-700);line-height:1.65;margin:1.5rem 0 0">
     Vue d'ensemble du fil directeur de la plateforme, organisée comme sous Proxmox : un socle matériel, une bibliothèque
@@ -146,9 +153,24 @@
 
   <div class="flow-arrow">↓</div>
 
-  <!-- 2 · Templates -->
+  <!-- 2 · Stockage ZFS -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">2</span><span class="layer-title">Templates de VM</span><span class="layer-sub">— socles clonables</span></div>
+    <div class="layer-head"><span class="layer-num">2</span><span class="layer-title">Stockage ZFS</span><span class="layer-sub">— rpool commun</span></div>
+    <div class="layer-body">
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/models</span></div><div class="node-desc">Modèles IA</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/rag</span></div><div class="node-desc">Documents &amp; index RAG</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/config</span></div><div class="node-desc">Configurations</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/backups</span></div><div class="node-desc">Sauvegardes</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/nextcloud-data</span></div><div class="node-desc">Données Nextcloud</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/data</span></div><div class="node-desc">Disques des VM Proxmox</div></div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- 3 · Templates -->
+  <div class="layer">
+    <div class="layer-head"><span class="layer-num">3</span><span class="layer-title">Templates de VM</span><span class="layer-sub">— socles clonables</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Templates 110 → 131</span></div><div class="node-desc">W11 · Ubuntu Desktop / Server · ± CUDA</div></div>
       <div class="node plan"><div class="node-top"><span class="node-dot"></span><span class="node-name">140 Debian-Server</span></div><div class="node-desc">Template Debian · planifié</div></div>
@@ -157,9 +179,9 @@
 
   <div class="flow-arrow">↓</div>
 
-  <!-- 3 · Infrastructure permanente -->
+  <!-- 4 · Infrastructure permanente -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">3</span><span class="layer-title">Infrastructure permanente</span><span class="layer-sub">— nœuds IA &amp; services</span></div>
+    <div class="layer-head"><span class="layer-num">4</span><span class="layer-title">Infrastructure permanente</span><span class="layer-sub">— nœuds IA &amp; services</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">210 · IA-Core-CUDA</span></div><div class="node-desc">Ubuntu · Ollama · Open WebUI · RAG · modèles/config</div></div>
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">260 · W11-CUDA</span></div><div class="node-desc">Alternative · banc de POC / validation rapide</div></div>
@@ -171,7 +193,7 @@
 
   <!-- Briques logicielles IA (transverses) -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">3b</span><span class="layer-title">Briques logicielles IA</span><span class="layer-sub">— servies par les nœuds ci-dessus</span></div>
+    <div class="layer-head"><span class="layer-num">4b</span><span class="layer-title">Briques logicielles IA</span><span class="layer-sub">— servies par les nœuds ci-dessus</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Ollama</span></div><div class="node-desc">Inférence LLM local · VM210</div></div>
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">ComfyUI + Flux</span></div><div class="node-desc">Génération d'image (SDXL / Flux) — validé sur VM260 (POC) · portage planifié</div></div>
@@ -183,28 +205,13 @@
 
   <div class="flow-arrow">↓</div>
 
-  <!-- 4 · Consommateurs IA -->
+  <!-- 5 · Consommateurs IA -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">4</span><span class="layer-title">Consommateurs IA</span><span class="layer-sub">— agents &amp; automatisation</span></div>
+    <div class="layer-head"><span class="layer-num">5</span><span class="layer-title">Consommateurs IA</span><span class="layer-sub">— agents &amp; automatisation</span></div>
     <div class="layer-body">
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">300 · n8n</span></div><div class="node-desc">Orchestration de workflows — validé banc de test W11</div></div>
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">301 · Hermes</span></div><div class="node-desc">Agent IA — validé banc de test W11</div></div>
       <div class="node plan"><div class="node-top"><span class="node-dot"></span><span class="node-name">302 · OpenClaw</span></div><div class="node-desc">Agent IA · planifié</div></div>
-    </div>
-  </div>
-
-  <div class="flow-arrow">↓</div>
-
-  <!-- 5 · Stockage ZFS -->
-  <div class="layer">
-    <div class="layer-head"><span class="layer-num">5</span><span class="layer-title">Stockage ZFS</span><span class="layer-sub">— rpool commun</span></div>
-    <div class="layer-body">
-      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/models</span></div><div class="node-desc">Modèles IA</div></div>
-      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/rag</span></div><div class="node-desc">Documents &amp; index RAG</div></div>
-      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/config</span></div><div class="node-desc">Configurations</div></div>
-      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/backups</span></div><div class="node-desc">Sauvegardes</div></div>
-      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/nextcloud-data</span></div><div class="node-desc">Données Nextcloud</div></div>
-      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/data</span></div><div class="node-desc">Disques des VM Proxmox</div></div>
     </div>
   </div>
 

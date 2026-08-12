@@ -106,9 +106,8 @@
     IA On<span class="dot">·</span>Premise
   </a>
   <div class="nav-links">
-    <a href="index.html" class="active">🏠 Accueil</a>
+    <a href="index.html" class="active">Accueil</a>
     <a href="pages/architecture.html">Architecture</a>
-    <a href="pages/about.html">À propos</a>
     <a href="pages/infrastructure.html">Infrastructure</a>
     <a href="pages/proxmox.html">Proxmox</a>
     <a href="pages/gpu_passthrough.html">GPU / VFIO</a>
@@ -116,12 +115,12 @@
     <a href="pages/rag.html">RAG</a>
     <a href="pages/docker.html">Docker</a>
     <a href="pages/python.html">Python</a>
-    <a href="pages/git-audit.html">Git</a>
-    <a href="pages/git-strategie.html">Stratégie Git</a>
+    <a href="pages/git.html">Git</a>
     <a href="pages/obsidian.html">Obsidian</a>
+    <a href="pages/about.html">À propos</a>
   </div>
   <!-- Nom auteur côté droit de la nav -->
-  <div class="nav-author"><strong>S.Muraro</strong></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
 
 <section class="hero">
@@ -268,7 +267,7 @@
         <div><div class="card-title">RAG &amp; Bases Vectorielles</div><div class="card-domain">IA / ML</div></div>
       </div>
       <div class="card-desc">PostgreSQL · pgvector · bge-m3 · HNSW</div>
-      <div class="card-footer"><span class="badge badge-beginner">Débutant+</span><span class="card-arrow">→</span></div>
+      <div class="card-footer"><span class="badge badge-beginner">Base+</span><span class="card-arrow">→</span></div>
     </div>
 
     <div class="card" data-href="pages/ia_image.html">
@@ -280,7 +279,7 @@
         <div><div class="card-title">IA Générative Image</div><div class="card-domain">IA / ML</div></div>
       </div>
       <div class="card-desc">ComfyUI · Flux · GPU Computing</div>
-      <div class="card-footer"><span class="badge badge-beginner">Débutant+</span><span class="card-arrow">→</span></div>
+      <div class="card-footer"><span class="badge badge-beginner">Base+</span><span class="card-arrow">→</span></div>
     </div>
 
     <div class="card" data-href="pages/speech_ai.html">
@@ -292,7 +291,7 @@
         <div><div class="card-title">Speech AI — Whisper</div><div class="card-domain">IA / ML</div></div>
       </div>
       <div class="card-desc">Speech-to-Text · IA multimodale · Traitement audio</div>
-      <div class="card-footer"><span class="badge badge-beginner">Débutant+</span><span class="card-arrow">→</span></div>
+      <div class="card-footer"><span class="badge badge-beginner">Base+</span><span class="card-arrow">→</span></div>
     </div>
 
     <div class="card" data-href="pages/docker.html">
@@ -337,10 +336,10 @@
         <div><div class="card-title">Python</div><div class="card-domain">Dev</div></div>
       </div>
       <div class="card-desc">venv · pip · requirements.txt · Scripts IA</div>
-      <div class="card-footer"><span class="badge badge-beginner">Débutant+</span><span class="card-arrow">→</span></div>
+      <div class="card-footer"><span class="badge badge-beginner">Base+</span><span class="card-arrow">→</span></div>
     </div>
 
-    <div class="card" data-href="pages/git-audit.html">
+    <div class="card" data-href="pages/git.html">
       <span class="oss-badge" title="Logiciel open source — Git, GitLab Community Edition">
         <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
       </span>
@@ -352,26 +351,9 @@
             <path d="M8 6h8M8.5 8l-1 1.5M15.5 8l1 1.5M7 16V8"/>
           </svg>
         </div>
-        <div><div class="card-title">Git &amp; GitLab</div><div class="card-domain">DevOps</div></div>
+        <div><div class="card-title">Git</div><div class="card-domain">DevOps</div></div>
       </div>
-      <div class="card-desc">Audit dépôts · .gitignore · PAT · Credential Manager</div>
-      <div class="card-footer"><span class="badge badge-inter">Intermédiaire</span><span class="card-arrow">→</span></div>
-    </div>
-
-    <div class="card" data-href="pages/git-strategie.html">
-      <span class="oss-badge" title="Logiciels open source — Git, FreeFileSync, nginx, Obsidian">
-        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
-      </span>
-      <div class="card-header">
-        <div class="card-logo">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
-            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-            <path d="M9 22V12h6v10"/>
-          </svg>
-        </div>
-        <div><div class="card-title">Stratégie Git &amp; Stockage</div><div class="card-domain">DevOps</div></div>
-      </div>
-      <div class="card-desc">Multi-postes · OneDrive · Routage · ISO 27001</div>
+      <div class="card-desc">GitHub vs GitLab · GitLab auto-hébergé · hygiène de dépôts</div>
       <div class="card-footer"><span class="badge badge-inter">Intermédiaire</span><span class="card-arrow">→</span></div>
     </div>
 
@@ -395,8 +377,8 @@
     <div class="skill-bar-item"><div class="skill-bar-label">ZFS / Stockage<span>Intermédiaire</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div></div>
     <div class="skill-bar-item"><div class="skill-bar-label">CUDA / NVIDIA<span>Intermédiaire</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:58%"></div></div></div>
     <div class="skill-bar-item"><div class="skill-bar-label">Git / GitLab / GitHub<span>Intermédiaire</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div></div>
-    <div class="skill-bar-item"><div class="skill-bar-label">RAG / pgvector / Embeddings<span>Débutant+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:42%"></div></div></div>
-    <div class="skill-bar-item"><div class="skill-bar-label">Python / venv / pip<span>Débutant+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:38%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label">RAG / pgvector / Embeddings<span>Base+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:42%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label">Python / venv / pip<span>Base+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:38%"></div></div></div>
   </div>
 </div>
 

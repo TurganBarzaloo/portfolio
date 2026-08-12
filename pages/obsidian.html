@@ -32,7 +32,7 @@
       IA On<span class="dot">·</span>Premise
     </a>
       <div class="nav-links">
-    <a href="../index.html">🏠 Accueil</a>
+    <a href="../index.html">Accueil</a>
     <a href="architecture.html">Architecture</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="proxmox.html">Proxmox</a>
@@ -41,12 +41,11 @@
     <a href="rag.html">RAG</a>
     <a href="docker.html">Docker</a>
     <a href="python.html">Python</a>
-    <a href="git-audit.html">Git</a>
-    <a href="git-strategie.html">Stratégie Git</a>
+    <a href="git.html">Git</a>
     <a href="obsidian.html" class="active">Obsidian</a>
     <a href="about.html">À propos</a>
   </div>
-    <div class="nav-author"><strong>Stéphane Muraro</strong></div>
+    <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
   </nav>
 
   <!-- ── BREADCRUMB ── -->
@@ -254,7 +253,7 @@ Kernel param : `intel_iommu=on iommu=pt pcie_acs_override=downstream,multifuncti
       </div>
 
       <div class="panel">
-        <div class="panel-header">Compétences acquises</div>
+        <div class="panel-header">Compétences mises en œuvre</div>
         <div class="panel-body">
           <ul class="skill-list">
             <li>Organisation d'un vault par domaine (PARA adapté)</li>
@@ -271,6 +270,21 @@ Kernel param : `intel_iommu=on iommu=pt pcie_acs_override=downstream,multifuncti
         </div>
       </div>
 
+    </div>
+
+    <!-- Vue graphe du vault -->
+    <div class="panel">
+      <div class="panel-header">Vue graphe du vault</div>
+      <div class="panel-body">
+        <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.9rem">
+          La vue graphe d'Obsidian relie visuellement les notes : chaque point est une note, chaque trait un lien. Elle révèle les grappes thématiques (infrastructure, IA, DevOps…) et les notes centrales du vault.
+        </p>
+        <figure style="margin:0">
+          <img src="../assets/obsidian-graph.png" alt="Vue graphe du vault Obsidian — plus de 200 notes reliées, organisées en grappes thématiques colorées par dossier"
+               style="display:block;width:100%;max-width:760px;height:auto;margin:0 auto;border-radius:var(--radius);border:1px solid var(--gray-300);background:#1e1e1e"/>
+          <figcaption style="font-size:.75rem;color:var(--gray-500);text-align:center;margin-top:.5rem">Graphe de connaissance — 200+ notes liées, colorées par dossier.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <!-- Exemple Dataview -->
@@ -377,7 +391,7 @@ SORT file.mtime DESC
               </tr>
               <tr>
                 <td>Excalidraw — schémas intégrés</td>
-                <td><span class="badge badge-beginner">Débutant+</span></td>
+                <td><span class="badge badge-beginner">Base+</span></td>
                 <td>Schémas d'architecture simples</td>
               </tr>
             </tbody>
