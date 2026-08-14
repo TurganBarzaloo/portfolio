@@ -68,6 +68,19 @@
     les plus complexes et les plus recherchées du portfolio. Il permet d'assigner physiquement
     la RTX 5090 à une VM avec performances natives.
   </div>
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>Pourquoi une RTX 5090 pour l'IA locale ?</strong> Avec ses cœurs CUDA et Tensor et ses
+    <a href="https://www.nvidia.com/fr-fr/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" style="color:var(--blue-500)">32 Go de mémoire GDDR7</a>,
+    elle accélère fortement les calculs parallèles nécessaires à l'inférence des modèles de langage, aux embeddings
+    et à la génération d'images — tout en conservant localement les modèles et les données traitées.
+  </div>
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>Pourquoi le passthrough malgré ses contraintes ?</strong> Le passthrough PCIe avec VFIO attribue
+    directement la carte à une VM : système invité, CUDA et conteneurs utilisent le GPU avec des performances proches
+    du natif et une isolation claire des charges. En contrepartie, l'affectation est <strong>exclusive</strong>
+    (pas d'usage simultané par plusieurs VM) et exige une préparation rigoureuse de l'hôte, du démarrage et des
+    procédures de récupération.
+  </div>
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🔧 Stack technique</div>
