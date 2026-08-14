@@ -86,18 +86,67 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header"> 🔍 Vérifications</div>
-  <div class="panel-body"><div class="code-label">bash</div>
-<div class="code-block"><pre># IOMMU actif ?
-dmesg | grep -e DMAR -e IOMMU
+  <div class="panel-header"> 🔄 Exclusivité GPU — état et ordre de démarrage des VM</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
+      Exécutée sur l'hôte Proxmox, cette commande détecte la RTX 5090 (sans afficher son adresse), repère les VM
+      configurées pour l'utiliser et publie un libellé assaini — en distinguant l'<strong>état courant</strong> de la
+      VM de sa <strong>politique d'autodémarrage</strong>, et en vérifiant qu'<strong>une seule VM de passthrough</strong>
+      est active à la fois.
+    </p>
+    <div class="code-label">bash — contrôle d'exclusivité GPU</div>
+<div class="code-block"><pre>gpu_bdf=$(lspci -D | awk '/NVIDIA.*RTX 5090/ {print $1; exit}')
+[ -n "$gpu_bdf" ] || { echo 'RTX 5090 non détectée'; exit 1; }
 
-# Groupes IOMMU
-for d in /sys/kernel/iommu_groups/*/devices/*; do
-  echo "Group $(basename $(dirname $d)): $(lspci -nns $(basename $d))"
+gpu_slot=${gpu_bdf%.*}
+gpu_slot_short=${gpu_slot#0000:}
+alternative=0
+running_gpu_vms=0
+
+for vmid in $(qm list | awk 'NR &gt; 1 {print $1}'); do
+    config=$(qm config "$vmid")
+
+    if grep -Eq "^hostpci[0-9]+:.*(${gpu_slot}|${gpu_slot_short})([.,]|$)" \
+        &lt;&lt;&lt; "$config"; then
+        if [ "$vmid" = 210 ]; then
+            label="IA-Core"
+        else
+            alternative=$((alternative + 1))
+            label="GPU-alternative-${alternative}"
+        fi
+
+        status=$(qm status "$vmid" | awk '{print $2}')
+        onboot=$(awk -F': ' '/^onboot:/ {print $2}' &lt;&lt;&lt; "$config")
+        startup=$(awk -F': ' '/^startup:/ {print $2}' &lt;&lt;&lt; "$config")
+
+        [ -z "$onboot" ] &amp;&amp; onboot=0
+        [ -z "$startup" ] &amp;&amp; startup="-"
+        [ "$status" = running ] &amp;&amp; running_gpu_vms=$((running_gpu_vms + 1))
+
+        printf '%-20s status=%-8s onboot=%-2s startup=%s\n' \
+            "$label" "$status" "$onboot" "$startup"
+    fi
 done
 
-# VFIO a bien capturé le GPU ?
-lspci -nnk | grep -A3 'NVIDIA'</pre></div></div>
+if [ "$running_gpu_vms" -le 1 ]; then
+    printf 'GPU passthrough actif : %s VM — exclusivité OK\n' "$running_gpu_vms"
+else
+    printf 'ALERTE : %s VM GPU actives simultanément\n' "$running_gpu_vms"
+    exit 2
+fi</pre></div>
+    <div class="code-label" style="margin-top:1rem">extrait assaini — exclusivité vérifiée</div>
+<div class="code-block"><pre>IA-Core              status=running  onboot=1  startup=order=20,up=30,down=60
+GPU-alternative-1    status=stopped  onboot=0  startup=-
+GPU-alternative-2    status=stopped  onboot=0  startup=-
+…                    status=stopped  onboot=0  startup=-
+GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
+    <div class="notes-box" style="margin-top:1rem">
+      <strong>Lecture :</strong> une seule VM de passthrough (<strong>IA-Core / VM210</strong>) utilise la RTX 5090 ;
+      les environnements GPU alternatifs restent hors autodémarrage. À la reprise de l'hôte, <strong>VM215
+      (PostgreSQL/pgvector) démarre d'abord, puis VM210</strong> (charge GPU + Ollama / OpenWebUI / RAG) — sans
+      concurrence pour le GPU.
+    </div>
+  </div>
 </div>
   </div>
   <div style="margin-top:1.5rem">

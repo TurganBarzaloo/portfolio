@@ -63,6 +63,14 @@
   </div>
 </div>
 <div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>Pourquoi Proxmox pour ce projet ?</strong> L'hyperviseur est le socle qui rend la plateforme
+    <strong>évolutive</strong> et <strong>agile</strong> : chaque rôle (nœud IA, services communs, banc de POC) s'ajoute,
+    s'isole ou évolue sans toucher aux autres. Il apporte un vrai <strong>gain de temps</strong> — en cas de corruption,
+    on reclone un serveur entier en quelques minutes depuis un template ou un snapshot, plutôt que de tout réinstaller.
+    Et il <strong>étend les possibilités</strong> : cohabitation Linux / Windows sur la même machine, dont un ou des
+    <strong>clients Windows</strong> pour consommer les services IA, avec allocation du GPU à la demande.
+  </div>
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 📦 Version & fonctionnalités</div>
@@ -75,22 +83,41 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header"> 💻 Commandes clés</div>
-  <div class="panel-body"><div class="code-label">bash</div>
-<div class="code-block"><pre># Liste des VM
-qm list
+  <div class="panel-header"> 🔄 État et ordre de démarrage des VM</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
+      Cette commande produit directement depuis Proxmox la liste des VM avec leur <strong>état courant</strong>,
+      leur <strong>politique d'autodémarrage</strong> (<code>onboot</code>) et leur <strong>ordre de reprise</strong>
+      (<code>startup</code>) — sans confondre l'état instantané (<code>running</code> / <code>stopped</code>) avec la
+      configuration persistante.
+    </p>
+    <div class="code-label">bash — état + ordre de démarrage</div>
+<div class="code-block"><pre>for vmid in $(qm list | awk 'NR &gt; 1 {print $1}'); do
+    config=$(qm config "$vmid")
 
-# Démarrer une VM
-qm start &lt;VMID&gt;
+    name=$(awk -F': ' '/^name:/ {print $2}' &lt;&lt;&lt; "$config")
+    status=$(qm status "$vmid" | awk '{print $2}')
+    onboot=$(awk -F': ' '/^onboot:/ {print $2}' &lt;&lt;&lt; "$config")
+    startup=$(awk -F': ' '/^startup:/ {print $2}' &lt;&lt;&lt; "$config")
 
-# Snapshot avant modification
-qm snapshot &lt;VMID&gt; pre-update-$(date +%Y%m%d)
+    [ -z "$onboot" ] &amp;&amp; onboot=0
+    [ -z "$startup" ] &amp;&amp; startup="-"
 
-# Backup
-vzdump &lt;VMID&gt; --storage local --mode snapshot
-
-# Clone depuis template
-qm clone &lt;template_id&gt; &lt;new_id&gt; --name ma-vm --full</pre></div></div>
+    printf '%-6s %-30s status=%-8s onboot=%-2s startup=%s\n' \
+        "$vmid" "$name" "$status" "$onboot" "$startup"
+done</pre></div>
+    <div class="code-label" style="margin-top:1rem">extrait assaini — chaîne de reprise : services → nœud IA → application</div>
+<div class="code-block"><pre>215    215-IA-Services                onboot=1  startup=order=10,up=60,down=60
+210    210-IA-CORE-CUDA               onboot=1  startup=order=20,up=30,down=60
+205    service-applicatif             onboot=1  startup=order=30,up=30,down=60
+…      environnements à la demande    onboot=0  startup=-</pre></div>
+    <div class="notes-box" style="margin-top:1rem">
+      <strong>Lecture :</strong> les VM à <code>onboot=1</code> reprennent dans l'ordre <code>startup</code>
+      croissant — <strong>VM215 (services de données) → VM210 (nœud IA) → application indépendante</strong> — pour que
+      les dépendances soient prêtes avant leurs consommateurs. Les environnements GPU alternatifs restent hors
+      autodémarrage. L'inventaire exhaustif reste dans la documentation d'exploitation interne.
+    </div>
+  </div>
 </div>
   </div>
   <div style="margin-top:1.5rem">

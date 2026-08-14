@@ -68,6 +68,27 @@
 </div>
 <div class="content">
   <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>Pourquoi le RAG ?</strong> Dans OpenWebUI, le <a href="https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ration_%C3%A0_enrichissement_contextuel" target="_blank" style="color:var(--blue-500)">RAG, ou génération à enrichissement contextuel</a>, permet à l'utilisateur d'interroger ses propres documents en langage naturel et d'obtenir une réponse contextualisée, actualisable et appuyée sur les passages retrouvés, sans réentraîner le modèle.
+  </div>
+  <div class="panel" style="margin-bottom:1.5rem">
+  <div class="panel-header"> 🧭 Pourquoi PostgreSQL / pgvector plutôt que Qdrant ?</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">
+      PostgreSQL avec pgvector est retenu comme <strong>backend nominal</strong> : pgvector fait partie des backends
+      vectoriels maintenus par l'<strong>équipe cœur d'OpenWebUI</strong>, tandis que
+      <a href="https://docs.openwebui.com/reference/env-configuration/#qdrant" target="_blank" style="color:var(--blue-500)">Qdrant y est une intégration non cœur, maintenue par la communauté</a> —
+      ce qui augmente le risque de rupture ou de délai de correction lors d'une montée de version d'OpenWebUI.
+      Qdrant reste une solution vectorielle valide, <strong>conservée comme repli</strong>.
+    </p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:.75rem 0 0">
+      Autre facteur, le <strong>stockage</strong> : les données actives de Qdrant n'ont pas été retenues sur le
+      partage ZFS présenté à VM210 (via VirtioFS/FUSE) et devaient rester sur un ext4 local à la VM ;
+      <strong>PostgreSQL/pgvector dispose sur VM215 de son propre disque ext4 dédié</strong>, mieux isolé pour
+      l'exploitation et la future sauvegarde logique.
+    </p>
+  </div>
+</div>
+  <div class="notes-box" style="margin-bottom:1.5rem">
     <strong>Architecture répartie :</strong> l'inférence et le calcul des embeddings s'exécutent
     sur le nœud IA GPU (<strong>VM210</strong>, RTX 5090). Le stockage vectoriel est déporté sur une
     VM de services sans GPU (<strong>VM215</strong>) hébergeant PostgreSQL et pgvector. Cette séparation
