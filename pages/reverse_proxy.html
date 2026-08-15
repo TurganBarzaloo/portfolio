@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reverse Proxy VM200 — Publication HTTPS | Portfolio IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" content="VM200 — reverse proxy Nginx mutualisé : publication HTTPS d'OpenWebUI, n8n et Nextcloud, terminaison TLS, virtual hosts, Certbot et Fail2ban. Portfolio de Stéphane Muraro."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a></div></div><a href="about.html">À propos</a></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Reverse Proxy</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/nginx.svg" alt=""/></div>
+      <div>
+        <h1>Reverse Proxy — Publication HTTPS</h1>
+        <p>VM200 · Nginx · Certbot (Let's Encrypt) · Fail2ban · TLS mutualisé</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          Niveau : Avancé
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>VM200</strong> est le <strong>point d'entrée Web</strong> de l'infrastructure auto-hébergée. Elle publie des
+    applications installées sur d'autres machines <strong>sans exposer directement leurs ports internes</strong> à Internet.
+    Elle reçoit les connexions HTTPS, présente le certificat public, sélectionne le service demandé et relaie la requête
+    vers la bonne machine du réseau local.
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> ✅ État déployé</div>
+  <div class="panel-body"><ul class="skill-list"><li>VM Linux dédiée issue d'un template Ubuntu Server</li><li><strong>Nginx</strong> comme reverse proxy</li><li>Certificats <strong>Let's Encrypt</strong> gérés par <strong>Certbot</strong></li><li>Pare-feu local actif</li><li><strong>Fail2ban</strong> actif et validé pour l'administration SSH</li><li>Redirection HTTP → HTTPS et renouvellement de certificat testés</li><li>Réponses progressives et connexions <strong>WebSocket</strong> validées</li><li>Redémarrage de VM200 validé sans perte de configuration</li></ul></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 🌐 État des publications</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Service</th><th>État public</th></tr></thead><tbody><tr><td>OpenWebUI · VM210</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>n8n · VM300</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>Nextcloud · VM205</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>autres services internes</td><td>⚪ non publiés / différés</td></tr></tbody></table></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🧭 D'un nom de domaine vers une autre machine</div>
+  <div class="panel-body"><div class="code-label">chemin d'une requête publique</div>
+<div class="code-block"><pre>1. Navigateur Internet
+        ↓ demande gpt.stephanemuraro.fr
+2. DNS public
+        ↓ renvoie l'adresse Internet de la connexion
+3. Routeur
+        ↓ transfère uniquement le trafic Web vers VM200
+4. VM200 / Nginx
+        ↓ choisit le virtual host correspondant au nom
+5. VM210 / OpenWebUI
+        ↓ produit la réponse applicative
+6. VM200 / Nginx
+        ↓ renvoie la réponse dans la session HTTPS
+7. Navigateur</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:.9rem 0 0">
+      Le DNS associe seulement le nom public à l'adresse Internet — il ne connaît pas la VM qui héberge l'application. Le
+      routeur ne choisit pas non plus le service : il remet les connexions Web à VM200. C'est <strong>Nginx</strong> qui
+      effectue le <strong>routage applicatif</strong> : le nom demandé pendant la négociation TLS et dans la requête HTTP
+      sélectionne un bloc de configuration (<em>virtual host</em>) qui désigne la machine et le service internes cibles.
+    </p>
+    <div class="code-label" style="margin-top:1rem">plusieurs noms publics, une même connexion Internet</div>
+<div class="code-block"><pre>gpt.stephanemuraro.fr         ─┐
+n8n.stephanemuraro.fr         ─┼─> même adresse publique ─> VM200
+nextcloud.stephanemuraro.fr   ─┘                           ├─> VM IA
+                                                           ├─> VM automatisation
+                                                           └─> VM fichiers</pre></div>
+    <div class="notes-box" style="margin-top:1rem">
+      L'existence d'un enregistrement DNS <strong>ne prouve pas</strong> qu'un service est publié : il faut aussi un
+      virtual host, un certificat valide, un backend autorisé et un test depuis un réseau extérieur.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🧱 Rôle des composants</div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Composant</th><th>Responsabilité</th><th>Limite</th></tr></thead><tbody><tr><td>DNS public</td><td>associer un nom à l'adresse Internet</td><td>ne choisit pas la VM interne</td></tr><tr><td>Routeur</td><td>transmettre le trafic Web vers VM200</td><td>ne comprend pas les applications</td></tr><tr><td>Pare-feu VM200</td><td>refuser les entrées non prévues</td><td>ne remplace pas l'authentification</td></tr><tr><td>Nginx</td><td>terminer HTTPS, sélectionner le virtual host, relayer</td><td>ne stocke pas les données métier</td></tr><tr><td>Certbot</td><td>obtenir/renouveler les certificats Let's Encrypt</td><td>ne publie pas seul une application</td></tr><tr><td>Fail2ban</td><td>bloquer certaines attaques répétitives des journaux</td><td>ne remplace ni pare-feu ni mots de passe robustes</td></tr><tr><td>Backend</td><td>fournir l'application, contrôler ses utilisateurs</td><td>ne doit pas être exposé directement</td></tr></tbody></table></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🔐 Terminaison TLS</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
+      Le chiffrement public se termine sur VM200. Le certificat et sa clé privée restent <strong>centralisés</strong> sur
+      le reverse proxy, ce qui évite de gérer un certificat public différent sur chaque backend.
+    </p>
+    <div class="code-block"><pre>Client Internet  ═════ HTTPS chiffré ═════>  VM200
+VM200            ───── flux LAN contrôlé ──>  backend</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:.9rem 0 0">
+      Nginx transmet au backend le nom demandé, le protocole externe et les informations nécessaires à la traçabilité.
+      Pour les applications interactives, il prend en charge les <strong>WebSockets</strong>, les réponses progressives et
+      des délais adaptés aux traitements longs.
+    </p>
+  </div>
+</div>
+  </div>
+
+  <div class="content-grid" style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🛡️ Défense en profondeur</div>
+  <div class="panel-body"><ul class="skill-list"><li>le routeur n'envoie à VM200 que le trafic Web nécessaire</li><li>le pare-feu local refuse les autres connexions entrantes</li><li>l'administration reste limitée au réseau interne</li><li>Nginx ne relaie que les noms et services configurés</li><li>TLS chiffre et authentifie la connexion publique</li><li>Fail2ban réduit certaines tentatives répétitives observables</li><li>chaque backend conserve son authentification et son filtrage</li><li>bases de données et API techniques restent absentes du WAN</li></ul>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0">
+      Fail2ban est validé pour SSH ; cela ne protège pas automatiquement les formulaires de connexion applicatifs —
+      chaque protection exige un journal exploitable et un filtre testé.
+    </p></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> ➕ Publier un nouveau service</div>
+  <div class="panel-body"><ul class="skill-list"><li>valider le service sur le réseau local</li><li>identifier ses besoins HTTPS, WebSocket, taille de requête et délais</li><li>définir son nom public et son modèle d'authentification</li><li>configurer l'application pour son origine publique</li><li>créer un virtual host distinct sur VM200</li><li>valider la syntaxe Nginx avant rechargement</li><li>obtenir et tester le certificat</li><li>tester depuis un réseau réellement extérieur</li><li>vérifier les journaux et l'absence d'exposition directe</li><li>documenter le retour arrière</li></ul></div>
+</div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong>↩️ Retour arrière — trois niveaux :</strong>
+    <ul class="skill-list" style="margin-top:.5rem">
+      <li>désactiver uniquement le virtual host d'un service ;</li>
+      <li>retirer temporairement le transfert Web vers VM200 ;</li>
+      <li>arrêter VM200 pour neutraliser toutes les publications sans modifier les applications internes.</li>
+    </ul>
+    <p style="font-size:.82rem;color:var(--gray-600);margin:.6rem 0 0">
+      Le test formel du retour arrière global par retrait du transfert WAN reste le dernier contrôle ouvert de la
+      première tranche.
+    </p>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🎯 Compétences illustrées</div>
+  <div class="panel-body"><ul class="skill-list"><li>Conception d'un reverse proxy mutualisé</li><li>DNS, NAT, SNI, virtual hosts et en-têtes de proxy</li><li>Automatisation du cycle de vie des certificats</li><li>Prise en charge des WebSockets et du streaming</li><li>Segmentation entre frontière Internet et backends</li><li>Défense en profondeur et stratégie de retour arrière</li><li>Publication d'un service hébergé sur une autre machine</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="infrastructure.html"><img src="../assets/linux.svg" alt=""/>Infrastructure</a>
+      <a class="related-card" href="network.html"><img src="../assets/linux.svg" alt=""/>Réseau</a>
+      <a class="related-card" href="n8n.html"><img src="../assets/n8n.svg" alt=""/>n8n</a>
+      <a class="related-card" href="nextcloud.html"><img src="../assets/docker.svg" alt=""/>Nextcloud</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>Nginx — Documentation</td><td><a href="https://nginx.org/en/docs/" target="_blank" style="color:var(--blue-500)">nginx.org/en/docs</a></td></tr>
+            <tr><td>Documentation officielle</td><td>Certbot / Let's Encrypt</td><td><a href="https://eff-certbot.readthedocs.io/" target="_blank" style="color:var(--blue-500)">eff-certbot.readthedocs.io</a></td></tr>
+            <tr><td>Documentation officielle</td><td>Fail2ban</td><td><a href="https://github.com/fail2ban/fail2ban" target="_blank" style="color:var(--blue-500)">github.com/fail2ban/fail2ban</a></td></tr>
+            <tr><td>Publications validées</td><td>OpenWebUI (VM210) · n8n (VM300) · Nextcloud (VM205) — HTTPS testé depuis un réseau extérieur, 2026-08-15</td><td>—</td></tr>
+            <tr><td>Licence</td><td>Nginx — BSD-2-Clause · Certbot — Apache-2.0 · Fail2ban — GPLv2</td><td><a href="https://nginx.org/LICENSE" target="_blank" style="color:var(--blue-500)">nginx.org/LICENSE</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span>Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        100 % Open Source
+      </div>
+      <div>Construit avec Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie">Philosophie OSS →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
