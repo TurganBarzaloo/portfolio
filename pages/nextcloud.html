@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nextcloud auto-hébergé — Portfolio IA On-Premise</title>
   <meta name="author" content="Stéphane Muraro"/>
-  <meta name="description" content="Nextcloud auto-hébergé sur Proxmox (VM Ubuntu, Docker + MariaDB) — service de fichiers souverain, avec preuve de reprise après redémarrage."/>
+  <meta name="description" content="Nextcloud auto-hébergé sur Proxmox (VM Ubuntu, Docker + MariaDB) — service de fichiers souverain, publié en HTTPS derrière reverse proxy, avec preuve de reprise après redémarrage."/>
   <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
   <script>
@@ -28,21 +28,7 @@
     </svg>
     IA On<span class="dot">·</span>Premise
   </a>
-  <div class="nav-links">
-    <a href="../index.html">Accueil</a>
-    <a href="architecture.html">Architecture</a>
-    <a href="infrastructure.html">Infrastructure</a>
-    <a href="proxmox.html">Proxmox</a>
-    <a href="gpu_passthrough.html">GPU / VFIO</a>
-    <a href="ia_llm.html">IA &amp; LLM</a>
-    <a href="rag.html">RAG</a>
-    <a href="docker.html">Docker</a>
-    <a href="nextcloud.html" class="active">Nextcloud</a>
-    <a href="python.html">Python</a>
-    <a href="git.html">Git</a>
-    <a href="obsidian.html">Obsidian</a>
-    <a href="about.html">À propos</a>
-  </div>
+  <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a></div></div><a href="about.html">À propos</a></div>
   <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
 
@@ -85,11 +71,30 @@
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🧩 Architecture mise en œuvre</div>
-  <div class="panel-body"><ul class="skill-list"><li>VM Ubuntu 24.04 dédiée au service (VM205)</li><li>Un conteneur Docker pour l'application Nextcloud</li><li>Un conteneur Docker distinct pour <strong>MariaDB</strong></li><li>Deux volumes Docker séparant fichiers applicatifs et base de données</li><li>Autodémarrage de la VM <strong>après les services prioritaires</strong>, puis reprise des deux conteneurs</li></ul></div>
+  <div class="panel-body"><ul class="skill-list"><li>VM Ubuntu 24.04 dédiée au service (VM205)</li><li>Un conteneur Docker pour l'application Nextcloud</li><li>Un conteneur Docker distinct pour <strong>MariaDB</strong></li><li>Deux volumes Docker séparant fichiers applicatifs et base de données</li><li>Autodémarrage de la VM <strong>après les services prioritaires</strong>, puis reprise des deux conteneurs</li><li><strong>Publication HTTPS</strong> derrière le reverse proxy mutualisé (VM200)</li></ul></div>
 </div>
     <div class="panel">
   <div class="panel-header"> 🎯 Compétences mises en œuvre</div>
   <div class="panel-body"><ul class="skill-list"><li>Exploitation d'une application auto-hébergée dans une VM Proxmox</li><li>Séparation applicative Nextcloud / MariaDB</li><li>Persistance par volumes Docker</li><li>Diagnostic croisé systemd · Docker · HTTP · outil <code>occ</code></li><li>Construction d'une preuve reproductible et assainie après redémarrage</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🌐 Publication HTTPS validée</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
+      Nextcloud est accessible sous <code>nextcloud.stephanemuraro.fr</code>. Le service conserve son
+      <strong>authentification propre</strong> tandis que le reverse proxy (VM200) centralise la <strong>terminaison TLS</strong>
+      et relaie les requêtes vers la VM applicative.
+    </p>
+    <div style="font-size:.85rem;color:var(--gray-700);margin:0 0 .6rem"><strong>Validé depuis un réseau extérieur :</strong></div>
+    <ul class="skill-list"><li>établissement de la connexion HTTPS</li><li>authentification</li><li>consultation des fichiers</li><li>téléversement d'un fichier par l'interface web</li><li>synchronisation par le client de bureau</li></ul>
+    <div class="notes-box" style="margin-top:1rem">
+      Le diagnostic préalable a isolé <strong>deux extensions applicatives défaillantes</strong>, neutralisées de façon
+      <strong>réversible</strong> afin de restaurer l'interface puis les écritures, sans supprimer les données.
+    </div>
+  </div>
 </div>
   </div>
 
@@ -144,9 +149,9 @@ productname: Nextcloud</pre></div>
     <ul class="skill-list" style="margin-top:.5rem">
       <li>Volumes Docker sur le disque système de la VM — le stockage ZFS dédié envisagé n'est pas encore monté/utilisé.</li>
       <li>Capacité libre du disque système à surveiller avant croissance importante des données.</li>
-      <li>Terminaison TLS, filtrage réseau et conditions d'une éventuelle exposition hors réseau de confiance : à valider.</li>
       <li>Sauvegardes indépendantes et test de restauration : pas encore démontrés.</li>
-      <li>Test utilisateur horodaté (connexion, dépôt d'un fichier, téléchargement, intégrité) : à réaliser.</li>
+      <li>Chaîne d'analyse antivirus à redéployer sous forme persistante avant réactivation de son extension Nextcloud.</li>
+      <li>Connecteur de stockage externe neutralisé à remplacer par une version compatible ou à retirer définitivement.</li>
     </ul>
   </div>
 

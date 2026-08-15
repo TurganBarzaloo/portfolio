@@ -27,21 +27,7 @@
     </svg>
     IA On<span class="dot">·</span>Premise
   </a>
-    <div class="nav-links">
-    <a href="../index.html">Accueil</a>
-    <a href="architecture.html">Architecture</a>
-    <a href="infrastructure.html" class="active">Infrastructure</a>
-    <a href="proxmox.html">Proxmox</a>
-    <a href="gpu_passthrough.html">GPU / VFIO</a>
-    <a href="ia_llm.html">IA &amp; LLM</a>
-    <a href="rag.html">RAG</a>
-    <a href="docker.html">Docker</a>
-    <a href="nextcloud.html">Nextcloud</a>
-    <a href="python.html">Python</a>
-    <a href="git.html">Git</a>
-    <a href="obsidian.html">Obsidian</a>
-    <a href="about.html">À propos</a>
-  </div>
+    <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a></div></div><a href="about.html">À propos</a></div>
   <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
 <div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Infrastructure</strong></div>
@@ -83,7 +69,7 @@
   <div style="margin-top:1.5rem">
     <div class="panel">
   <div class="panel-header"> 🧩 Répartition des rôles — machines virtuelles</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>VM</th><th>Rôle</th><th>Socle</th><th>Composants clés</th></tr></thead><tbody><tr><td><strong>VM205</strong></td><td>Service de fichiers — Nextcloud</td><td>Ubuntu Server 24.04 LTS · sans GPU</td><td>Nextcloud + MariaDB (conteneurs Docker) · autodémarrage</td></tr><tr><td><strong>VM210</strong></td><td>Nœud IA — charges GPU</td><td>Ubuntu Server 24.04 LTS · RTX 5090 (passthrough)</td><td>Docker + NVIDIA Container Toolkit · Ollama · Open WebUI</td></tr><tr><td><strong>VM215</strong></td><td>Services communs — sans GPU</td><td>Ubuntu Server 24.04 LTS · disque ext4 dédié</td><td>PostgreSQL 18.4 · pgvector 0.8.6 (backend vectoriel du RAG)</td></tr><tr><td><strong>VM300</strong></td><td>Consommateur IA — automatisation</td><td>Ubuntu Server 24.04 LTS · sans GPU</td><td>n8n (orchestration de workflows) · autodémarrage</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>VM</th><th>Rôle</th><th>Socle</th><th>Composants clés</th></tr></thead><tbody><tr><td><strong>VM200</strong></td><td>Reverse proxy — point d'entrée Web / publication HTTPS</td><td>Ubuntu Server 24.04 LTS · sans GPU</td><td>Nginx · Certbot (Let's Encrypt) · Fail2ban · pare-feu local</td></tr><tr><td><strong>VM205</strong></td><td>Service de fichiers — Nextcloud</td><td>Ubuntu Server 24.04 LTS · sans GPU</td><td>Nextcloud + MariaDB (conteneurs Docker) · autodémarrage</td></tr><tr><td><strong>VM210</strong></td><td>Nœud IA — charges GPU</td><td>Ubuntu Server 24.04 LTS · RTX 5090 (passthrough)</td><td>Docker + NVIDIA Container Toolkit · Ollama · Open WebUI</td></tr><tr><td><strong>VM215</strong></td><td>Services communs — sans GPU</td><td>Ubuntu Server 24.04 LTS · disque ext4 dédié</td><td>PostgreSQL 18.4 · pgvector 0.8.6 (backend vectoriel du RAG)</td></tr><tr><td><strong>VM300</strong></td><td>Consommateur IA — automatisation</td><td>Ubuntu Server 24.04 LTS · sans GPU</td><td>n8n (orchestration de workflows) · autodémarrage</td></tr></tbody></table></div>
 </div>
   </div>
   <div class="notes-box" style="margin-top:1.5rem">
@@ -111,6 +97,7 @@
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="reverse_proxy.html"><img src="../assets/nginx.svg" alt=""/>Reverse Proxy</a>
       <a class="related-card" href="gpu_passthrough.html"><img src="../assets/vfio.svg" alt=""/>GPU Passthrough</a>
       <a class="related-card" href="storage_zfs.html"><img src="../assets/zfs.svg" alt=""/>Stockage ZFS</a>
     </div>

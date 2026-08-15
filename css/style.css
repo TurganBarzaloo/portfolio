@@ -56,11 +56,34 @@ a { text-decoration: none; color: inherit; }
 .nav-links a {
   padding: .35rem .75rem;
   border-radius: var(--radius-sm);
-  font-size: .85rem; font-weight: 500; color: var(--gray-700);
+  font-size: .95rem; font-weight: 500; color: var(--gray-700);
   transition: background .15s, color .15s;
 }
 .nav-links a:hover { background: var(--blue-50); color: var(--blue-500); }
 .nav-links a.active { background: var(--blue-100); color: var(--blue-500); }
+
+/* ─── Nav — menu déroulant ─── */
+.nav-dd { position: relative; }
+.nav-dd-toggle {
+  padding: .35rem .6rem; border-radius: var(--radius-sm);
+  font-size: .95rem; font-weight: 500; color: var(--gray-700);
+  background: none; border: none; cursor: pointer;
+  font-family: inherit; line-height: inherit;
+  transition: background .15s, color .15s;
+}
+.nav-dd:hover .nav-dd-toggle, .nav-dd-toggle:hover, .nav-dd-toggle.active {
+  background: var(--blue-50); color: var(--blue-500);
+}
+.nav-dd-toggle.active { background: var(--blue-100); }
+.nav-dd-menu {
+  position: absolute; top: calc(100% + 4px); left: 0; z-index: 120;
+  min-width: 200px; background: var(--white);
+  border: 1px solid var(--gray-300); border-radius: var(--radius);
+  box-shadow: var(--shadow-lg); padding: .4rem;
+  display: none; flex-direction: column; gap: .1rem;
+}
+.nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu { display: flex; }
+.nav-dd-menu a { padding: .45rem .6rem; white-space: nowrap; }
 
 /* ─── Breadcrumb ────────────────────────────────────────────────────────────── */
 .breadcrumb {

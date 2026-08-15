@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>n8n — Automatisation & orchestration | Portfolio IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" content="n8n sur VM300 — orchestration de workflows, PostgreSQL externe, API Ollama distante, publication HTTPS derrière reverse proxy. Portfolio de Stéphane Muraro."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a></div></div><a href="about.html">À propos</a></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>n8n</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/n8n.svg" alt=""/></div>
+      <div>
+        <h1>n8n — Automatisation IA</h1>
+        <p>Orchestration de workflows · VM300 · Docker · PostgreSQL externe</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          Niveau : Intermédiaire
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>VM300</strong> est une machine virtuelle applicative dédiée à <a href="https://docs.n8n.io/" target="_blank" style="color:var(--blue-500)">n8n</a> :
+    elle exécute les <strong>workflows d'automatisation</strong>, délègue la persistance à une VM de services (PostgreSQL) et
+    consomme les API IA d'une VM GPU distincte. Cette <strong>séparation application / données / calcul</strong> permet à
+    chaque composant d'évoluer, d'être maintenu et sauvegardé selon son propre cycle de vie.
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> ✅ État déployé</div>
+  <div class="panel-body"><ul class="skill-list"><li>Ubuntu Server 24.04 LTS · Docker Engine + Compose</li><li><strong>n8n 2.32.6</strong> — image officielle épinglée</li><li>Instance unique, mode standard, <strong>sans Redis</strong></li><li>PostgreSQL <strong>externe</strong> — connexion chiffrée, authentification forte</li><li>API <strong>Ollama distante</strong> consommée par un workflow validé</li><li>Interface <strong>publiée en HTTPS</strong> par le reverse proxy mutualisé</li><li>Persistance vérifiée après recréation du conteneur et redémarrage</li></ul></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 🔒 Sécurité de l'état actuel</div>
+  <div class="panel-body"><ul class="skill-list"><li>Port applicatif conservé sur le <strong>réseau interne</strong>, interface publique exposée <strong>uniquement en HTTPS</strong></li><li>Filtrage système + publication Docker maîtrisée</li><li>Secrets et clé de chiffrement <strong>hors Compose et hors Git</strong></li><li>Image applicative épinglée</li><li>Base PostgreSQL et rôle dédiés, liaison chiffrée</li><li><strong>Aucune redirection Internet directe</strong> vers VM300</li><li>Origine publique, cookies sécurisés, confiance limitée au reverse proxy</li><li>Inspection des workflows et des types de nœuds utilisés</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🧱 Architecture interne (VM300)</div>
+  <div class="panel-body"><div class="code-label">isolation Docker · déploiement reproductible (Compose)</div>
+<div class="code-block"><pre>VM300
+├── Ubuntu Server
+├── Docker Engine
+├── Docker Compose
+└── conteneur n8n
+    ├── moteur de workflows
+    ├── interface d'administration
+    ├── appels vers les services autorisés
+    └── données binaires locales nécessaires</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:.9rem 0 0">
+      n8n fonctionne volontairement en <strong>mono-instance</strong> : Redis et le mode <em>queue</em> ne sont pas ajoutés
+      tant qu'un besoin de parallélisme ou de haute disponibilité n'est pas démontré — ce qui réduit le nombre de
+      composants à exploiter.
+    </p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Composants externes</h2>
+    <div class="content-grid">
+      <div class="panel">
+        <div class="panel-header"> 🗄️ PostgreSQL (VM de services)</div>
+        <div class="panel-body"><ul class="skill-list"><li>Base réservée à l'application</li><li>Rôle applicatif distinct, droits limités au besoin</li><li>Connexion chiffrée · filtrage réseau ciblé</li><li>Recréer n8n ne supprime ni comptes ni workflows (données hors conteneur)</li></ul></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"> 🧠 Ollama (VM GPU)</div>
+        <div class="panel-body"><ul class="skill-list"><li>Calculs IA déportés vers le nœud GPU</li><li>VM300 appelle une API Ollama autorisée, sans GPU ni copie de modèle</li><li>Workflow validé : préparation requête → appel HTTP → réponse du modèle → normalisation de la sortie</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🌐 Publication Internet active</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
+      L'éditeur est <strong>publié en HTTPS</strong> sous <code>n8n.stephanemuraro.fr</code> (interface d'administration
+      authentifiée et URL de webhook produites par l'instance), derrière le reverse proxy <strong>VM200</strong>. Le port
+      applicatif de VM300 <strong>n'est pas exposé directement</strong> : toute requête publique traverse VM200, qui termine
+      HTTPS, sélectionne le service par le nom demandé et ne relaie que les routes prévues. Une séparation ultérieure sous
+      un nom dédié aux webhooks reste possible si un besoin d'exposition plus restrictive est confirmé.
+    </p>
+    <div class="code-label">chemin d'une requête publique</div>
+<div class="code-block"><pre>Utilisateur ou service externe
+        ↓ HTTPS
+Nom DNS public
+        ↓
+Routeur Internet
+        ↓ trafic Web uniquement
+VM200 — reverse proxy   (terminaison TLS · sélection par nom · routes autorisées)
+        ↓ flux interne autorisé
+VM300 — n8n
+        ↓
+PostgreSQL ou API IA selon le workflow</pre></div>
+    <div class="notes-box" style="margin-top:1rem">
+      n8n connaît son <strong>origine HTTPS publique</strong>, fait confiance au proxy attendu et utilise des
+      <strong>cookies sécurisés</strong>. L'authentification, l'éditeur, l'exécution d'un workflow, la reconnexion et la
+      persistance ont été <strong>validés depuis Internet</strong> (réseau extérieur).
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🔄 Exemple — workflow n8n vers l'IA</div>
+  <div class="panel-body"><div class="code-label">workflow (illustratif)</div>
+<div class="code-block"><pre>Trigger : Webhook
+   → Nœud HTTP  : préparation de la requête
+   → Nœud HTTP  : appel API Ollama (LLM local sur la VM GPU)
+   → Nœud Function : normalisation de la réponse pour les étapes suivantes
+   → Réponse : JSON structuré</pre></div></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> ⚙️ DevOps &amp; Infrastructure as Code (Proxmox)</div>
+  <div class="panel-body">
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:0 0 .8rem">
+      L'automatisation ne se limite pas à n8n : la plateforme s'appuie sur des <strong>templates</strong>, des
+      <strong>snapshots</strong> et du <strong>clonage</strong> Proxmox pour un déploiement reproductible.
+    </p>
+    <div class="code-label">bash — opérations Proxmox reproductibles</div>
+<div class="code-block"><pre># Clone depuis un template
+qm clone &lt;template_id&gt; &lt;new_id&gt; --name ma-vm --full
+
+# Snapshot avant modification
+qm snapshot &lt;VMID&gt; pre-update-$(date +%Y%m%d) --description 'Avant mise à jour'
+
+# Sauvegarde (vzdump)
+vzdump &lt;VMID&gt; --storage local-zfs --mode snapshot --compress zstd
+
+# Rollback
+qm rollback &lt;VMID&gt; pre-update-AAAAMMJJ</pre></div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🎯 Compétences mises en œuvre</div>
+  <div class="panel-body"><ul class="skill-list"><li>Déploiement Docker Compose reproductible</li><li>Séparation application / données / calcul GPU</li><li>Intégration PostgreSQL chiffrée, moindre privilège</li><li>Consommation contrôlée d'une API LLM distante</li><li>Conception de workflows persistants</li><li>Préparation d'une publication HTTPS derrière un reverse proxy</li><li>Gestion des secrets et réduction de la surface d'exposition</li><li>Templates, snapshots et clonage Proxmox (IaC)</li></ul></div>
+</div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong>Limites &amp; travaux ouverts :</strong>
+    <ul class="skill-list" style="margin-top:.5rem">
+      <li>Une <strong>séparation future entre l'éditeur et les webhooks</strong> (nom dédié) reste à arbitrer.</li>
+      <li>La procédure complète de sauvegarde et de restauration reste à formaliser.</li>
+      <li>Le durcissement final de l'administration SSH reste ouvert.</li>
+      <li>L'audit automatisé (anomalie de chargement, compensée par un contrôle manuel) sera rejoué après correctif de n8n.</li>
+      <li>Le mode <em>queue</em> ne sera étudié qu'en présence d'un besoin mesuré.</li>
+    </ul>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="docker.html"><img src="../assets/docker.svg" alt=""/>Docker</a>
+      <a class="related-card" href="infrastructure.html"><img src="../assets/linux.svg" alt=""/>Infrastructure</a>
+      <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation officielle</td><td>n8n — Documentation</td><td><a href="https://docs.n8n.io/" target="_blank" style="color:var(--blue-500)">docs.n8n.io</a></td></tr>
+            <tr><td>Documentation officielle</td><td>PostgreSQL — Documentation</td><td><a href="https://www.postgresql.org/docs/" target="_blank" style="color:var(--blue-500)">postgresql.org/docs</a></td></tr>
+            <tr><td>Version déployée</td><td>n8n 2.32.6 · Ubuntu Server 24.04 LTS · VM300 (Docker)</td><td>—</td></tr>
+            <tr><td>Licence</td><td>n8n — Sustainable Use License (fair-code) · PostgreSQL — PostgreSQL License</td><td><a href="https://docs.n8n.io/sustainable-use-license/" target="_blank" style="color:var(--blue-500)">docs.n8n.io — licence</a></td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span>Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        100 % Open Source
+      </div>
+      <div>Construit avec Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie">Philosophie OSS →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

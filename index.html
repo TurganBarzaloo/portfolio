@@ -105,21 +105,7 @@
     </svg>
     IA On<span class="dot">·</span>Premise
   </a>
-  <div class="nav-links">
-    <a href="index.html" class="active">Accueil</a>
-    <a href="pages/architecture.html">Architecture</a>
-    <a href="pages/infrastructure.html">Infrastructure</a>
-    <a href="pages/proxmox.html">Proxmox</a>
-    <a href="pages/gpu_passthrough.html">GPU / VFIO</a>
-    <a href="pages/ia_llm.html">IA &amp; LLM</a>
-    <a href="pages/rag.html">RAG</a>
-    <a href="pages/docker.html">Docker</a>
-    <a href="pages/nextcloud.html">Nextcloud</a>
-    <a href="pages/python.html">Python</a>
-    <a href="pages/git.html">Git</a>
-    <a href="pages/obsidian.html">Obsidian</a>
-    <a href="pages/about.html">À propos</a>
-  </div>
+  <div class="nav-links"><a href="index.html">Accueil</a><a href="pages/architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="pages/infrastructure.html">Infrastructure</a><a href="pages/proxmox.html">Proxmox</a><a href="pages/gpu_passthrough.html">GPU / VFIO</a><a href="pages/storage_zfs.html">Stockage ZFS</a><a href="pages/os.html">Systèmes OS</a><a href="pages/network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="pages/ia_llm.html">IA &amp; LLM</a><a href="pages/rag.html">RAG</a><a href="pages/ia_image.html">IA Image</a><a href="pages/speech_ai.html">Speech AI</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="pages/docker.html">Docker</a><a href="pages/nextcloud.html">Nextcloud</a><a href="pages/n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="pages/python.html">Python</a><a href="pages/git.html">Git</a><a href="pages/obsidian.html">Obsidian</a></div></div><a href="pages/about.html">À propos</a></div>
   <!-- Nom auteur côté droit de la nav -->
   <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
@@ -323,15 +309,15 @@
       <div class="card-footer"><span class="badge badge-inter">Intermédiaire</span><span class="card-arrow">→</span></div>
     </div>
 
-    <div class="card" data-href="pages/devops.html">
+    <div class="card" data-href="pages/n8n.html">
       <span class="oss-badge" title="Logiciel open source — n8n (fair-code), scripts Bash/PowerShell">
         <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
       </span>
       <div class="card-header">
-        <div class="card-logo"><img src="assets/n8n.svg" alt="Automatisation &amp; DevOps"/></div>
-        <div><div class="card-title">Automatisation &amp; DevOps</div><div class="card-domain">DevOps</div></div>
+        <div class="card-logo"><img src="assets/n8n.svg" alt="n8n — Automatisation"/></div>
+        <div><div class="card-title">n8n — Automatisation</div><div class="card-domain">Services</div></div>
       </div>
-      <div class="card-desc">n8n · Templates VM · IaC · Snapshots</div>
+      <div class="card-desc">Workflows · Docker · PostgreSQL externe · API Ollama</div>
       <div class="card-footer"><span class="badge badge-inter">Intermédiaire</span><span class="card-arrow">→</span></div>
     </div>
 

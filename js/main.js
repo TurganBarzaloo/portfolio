@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const current = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(a => {
     const href = a.getAttribute('href').split('/').pop();
-    if (href === current) a.classList.add('active');
+    if (href === current) {
+      a.classList.add('active');
+      const dd = a.closest('.nav-dd');
+      if (dd) { const t = dd.querySelector('.nav-dd-toggle'); if (t) t.classList.add('active'); }
+    }
   });
 
   // Animate skill bars on scroll
