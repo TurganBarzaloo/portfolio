@@ -106,15 +106,17 @@
     printf '%-6s %-30s status=%-8s onboot=%-2s startup=%s\n' \
         "$vmid" "$name" "$status" "$onboot" "$startup"
 done</pre></div>
-    <div class="code-label" style="margin-top:1rem">extrait assaini — chaîne de reprise : services → nœud IA → application</div>
-<div class="code-block"><pre>215    215-IA-Services                onboot=1  startup=order=10,up=60,down=60
+    <div class="code-label" style="margin-top:1rem">extrait assaini — reprise : VM215 (10) → VM210 (20) → VM300 n8n (30) → VM205 (40)</div>
+<div class="code-block"><pre>205    205-Ubuntu-Nextcloud           onboot=1  startup=order=40,up=30,down=60
 210    210-IA-CORE-CUDA               onboot=1  startup=order=20,up=30,down=60
-205    service-applicatif             onboot=1  startup=order=30,up=30,down=60
+215    215-IA-Services                onboot=1  startup=order=10,up=60,down=60
+260    260-W11-CUDA-Ollama            onboot=0  startup=-
+300    300-n8n                        onboot=1  startup=order=30,up=30,down=60
 …      environnements à la demande    onboot=0  startup=-</pre></div>
     <div class="notes-box" style="margin-top:1rem">
       <strong>Lecture :</strong> les VM à <code>onboot=1</code> reprennent dans l'ordre <code>startup</code>
-      croissant — <strong>VM215 (services de données) → VM210 (nœud IA) → application indépendante</strong> — pour que
-      les dépendances soient prêtes avant leurs consommateurs. Les environnements GPU alternatifs restent hors
+      croissant — <strong>VM215 (services · PostgreSQL/pgvector) → VM210 (nœud IA) → VM300 (n8n) → VM205 (Nextcloud)</strong>
+      — pour que les dépendances soient prêtes avant leurs consommateurs. Les environnements GPU alternatifs restent hors
       autodémarrage. L'inventaire exhaustif reste dans la documentation d'exploitation interne.
     </div>
   </div>
@@ -128,20 +130,66 @@ done</pre></div>
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header"> 🧪 Retour d'expérience — templates (VM130)</div>
+  <div class="panel-header"> 🧪 Retour d'expérience — reconstruction du template (VM130)</div>
   <div class="panel-body">
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .75rem">
-      Le clonage d'un ancien template a révélé un <strong>hostname résiduel</strong> (hérité d'un usage Nextcloud),
-      une configuration IP inadaptée et l'absence du serveur SSH attendu. Le clone a été corrigé et contrôlé —
-      aucun composant applicatif résiduel n'a été détecté ; le défaut portait sur la <strong>neutralité du template</strong>.
+      Le clonage d'un ancien template a révélé un <strong>hostname résiduel</strong>. Le clone a été corrigé et contrôlé,
+      puis le <strong>template générique a été reconstruit depuis une ISO officielle</strong> pour en maîtriser explicitement
+      le contenu. La VM de construction a été <strong>neutralisée avant conversion</strong> : identité machine, hostname,
+      clés SSH, réseau, état Cloud-Init et journaux ont été assainis.
     </p>
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">
-      Une <strong>procédure de reconstruction du template générique</strong> (VM130) en a été tirée : socle Ubuntu Server
-      minimal, personnalisation des clones par <strong>Cloud-Init</strong> (hostname, <code>machine-id</code> et clés SSH
-      régénérés, aucun secret ni IP statique dans l'image), et <strong>remplacement réversible</strong> — un remplaçant
-      et un clone de contrôle sont validés avant toute modification, l'ancien template restant conservé. La reconstruction
-      complète de VM130 reste <strong>planifiée</strong>.
+      Un <strong>clone complet de validation</strong> a confirmé l'initialisation Cloud-Init, la génération d'une identité
+      propre, le réseau, le DNS, SSH, l'agent invité et la persistance après redémarrage. <strong>L'ancien template n'a été
+      remplacé qu'après ce contrôle</strong> ; les origines ZFS ont été vérifiées avant de supprimer le candidat devenu
+      redondant, afin de préserver l'indépendance des VM.
     </p>
+  </div>
+</div>
+    <div class="panel" style="margin-top:1.5rem">
+  <div class="panel-header"> ♻️ Cycle de vie &amp; types de templates</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
+      Un template ne vaut pas par la vitesse du clonage mais par la <strong>maîtrise de ce qu'il transmet</strong>
+      (système, identité, réseau, accès, initialisation). <strong>Construction, validation et remplacement sont trois
+      opérations distinctes</strong> : l'ancien template reste disponible tant que son remplaçant et son clone de
+      validation n'ont pas satisfait tous les critères.
+    </p>
+    <div class="code-label">cycle de vie d'un template</div>
+<div class="code-block"><pre>Source système vérifiée
+        │
+        ▼
+VM temporaire de construction
+        │ installation et configuration du socle
+        ▼
+Neutralisation
+        │ identités, réseau, secrets et journaux
+        ▼
+Template temporaire
+        │
+        ▼
+Clone de validation
+        │ contrôles fonctionnels et d'indépendance
+        ▼
+Template validé
+        │
+        ├── clone complet → VM applicative
+        └── template dérivé → socle spécialisé</pre></div>
+    <div style="margin-top:1rem;overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>Type de socle</th><th>Contenu attendu</th><th>Éléments exclus</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Serveur générique</strong></td><td>système minimal, Cloud-Init, SSH, agent invité</td><td>application, secret, configuration métier</td></tr>
+          <tr><td><strong>Serveur spécialisé</strong></td><td>socle générique + dépendances communes justifiées</td><td>données propres à une VM</td></tr>
+          <tr><td><strong>CUDA / GPU</strong></td><td>pilotes et outils GPU validés</td><td>application sans rapport avec le GPU</td></tr>
+          <tr><td><strong>Windows</strong></td><td>système préparé, pilotes VirtIO, mécanisme de généralisation</td><td>identité et compte propres à la VM source</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem">
+      Un template spécialisé ne doit pas rendre le générique dépendant de ses composants ; les applications restent
+      normalement installées dans les clones.
+    </div>
   </div>
 </div>
     <div class="panel" style="margin-top:1.5rem">
