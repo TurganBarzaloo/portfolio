@@ -83,7 +83,7 @@
   <div style="margin-top:1.5rem">
     <div class="panel">
   <div class="panel-header"> 🧩 Répartition des rôles — machines virtuelles</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>VM</th><th>Rôle</th><th>Socle</th><th>Composants clés</th></tr></thead><tbody><tr><td><strong>VM210</strong></td><td>Nœud IA — charges GPU</td><td>Ubuntu Server 24.04 LTS · RTX 5090 (passthrough)</td><td>Docker + NVIDIA Container Toolkit · Ollama · Open WebUI</td></tr><tr><td><strong>VM215</strong></td><td>Services communs — sans GPU</td><td>Ubuntu Server 24.04 LTS · disque ext4 dédié</td><td>PostgreSQL 18.4 · pgvector 0.8.6 (backend vectoriel du RAG)</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>VM</th><th>Rôle</th><th>Socle</th><th>Composants clés</th></tr></thead><tbody><tr><td><strong>VM205</strong></td><td>Service de fichiers — Nextcloud</td><td>Ubuntu Server 24.04 LTS · sans GPU</td><td>Nextcloud + MariaDB (conteneurs Docker) · autodémarrage</td></tr><tr><td><strong>VM210</strong></td><td>Nœud IA — charges GPU</td><td>Ubuntu Server 24.04 LTS · RTX 5090 (passthrough)</td><td>Docker + NVIDIA Container Toolkit · Ollama · Open WebUI</td></tr><tr><td><strong>VM215</strong></td><td>Services communs — sans GPU</td><td>Ubuntu Server 24.04 LTS · disque ext4 dédié</td><td>PostgreSQL 18.4 · pgvector 0.8.6 (backend vectoriel du RAG)</td></tr><tr><td><strong>VM300</strong></td><td>Consommateur IA — automatisation</td><td>Ubuntu Server 24.04 LTS · sans GPU</td><td>n8n (orchestration de workflows) · autodémarrage</td></tr></tbody></table></div>
 </div>
   </div>
   <div class="notes-box" style="margin-top:1.5rem">
