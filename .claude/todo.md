@@ -14,6 +14,8 @@ Dernière mise à jour : 2026-08-14.
 
 ## En attente
 
+- [ ] **VM302 — Station Dev IA (W11)** : note de mission remise à Codex (`.claude/note-mission-vm302-codex.md`, 2026-08-30). `architecture.html` déjà mis à jour (nœud 302 renommé, statut *planifié*). **Publication d'une page/encart dédiés en attente d'une fiche `stack-ia-cible`/VM302 `approved`** par Codex (Continue.dev retenu à la place de Codeium ; Qwen2.5-Coder ; OpenCode vs Aider à départager ; option LiteLLM).
+
 - [x] **VM130 (`TEMPLATE.md`) — enrichissement intégré** (fiche finalisée). `proxmox.html` : panneau « Retour d'expérience — reconstruction du template » (reconstruction faite) + nouveau panneau « ♻️ Cycle de vie & types de templates » (schéma de cycle de vie + table des types de socles + principe « construction / validation / remplacement = 3 opérations distinctes »). Procédure d'exploitation (ISO vs image cloud, création pas-à-pas) volontairement non publiée.
 
 - [ ] **Reframe éditorial : encart « État et ordre de démarrage des VM »** (titre allégé — sans « Preuve reproductible — » ; convention pour tous les reframes). À alimenter **uniquement** par une fiche `sources-publiques` approuvée (jamais par des données collées).
