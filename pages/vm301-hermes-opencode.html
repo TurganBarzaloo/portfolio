@@ -66,7 +66,7 @@
 </div>
     <div class="panel">
   <div class="panel-header"> 🔎 Validation réalisée</div>
-  <div class="panel-body"><ul class="skill-list"><li>Installation et version d'OpenCode contrôlées</li><li>Installation Hermes contrôlée par son diagnostic intégré</li><li>Endpoint compatible OpenAI d'Ollama atteint depuis VM301</li><li>Modèle <code>qwen3.6:35b</code> détecté par le client</li><li>Génération directe réussie</li><li>Génération réelle <strong>OpenCode</strong> réussie avec le même modèle</li><li>Contexte déclaré à <strong>65 536 tokens</strong> dans la configuration OpenCode</li></ul>
+  <div class="panel-body"><ul class="skill-list"><li>Installation et version d'OpenCode contrôlées</li><li>Installation Hermes contrôlée par son diagnostic intégré</li><li>Endpoint compatible OpenAI d'Ollama atteint depuis VM301</li><li>Modèle <code>qwen3.6:35b</code> détecté par le client</li><li>Génération directe réussie</li><li>Génération réelle <strong>OpenCode</strong> réussie avec le même modèle</li><li><strong>Génération réelle Hermes</strong> réussie avec <code>qwen3.6:35b</code> — contexte servi de <strong>65 536 tokens</strong>, jeu d'outils volontairement restreint</li><li><strong>Benchmark OpenCode</strong> réussi sur des tâches Python, HTML et JSON n8n (revue et corrections ciblées si nécessaire)</li></ul>
     <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0">
       Cette validation démontre la chaîne complète entre un agent de développement isolé et l'inférence locale
       accélérée par GPU.
@@ -98,13 +98,14 @@
   <div class="panel-header"> 🎛️ Choix de modèle</div>
   <div class="panel-body">
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
-      <code>qwen3.6:35b</code> constitue la <strong>première référence validée</strong>. Un modèle davantage spécialisé
-      dans le développement agentique est <strong>en cours d'évaluation</strong> pour les tâches Python, HTML et JSON.
+      <code>qwen3.6:35b</code> est la <strong>référence validée pour Hermes</strong>, avec un contexte de
+      <strong>65 536 tokens</strong>.
     </p>
-    <div class="notes-box">
-      Sa seule présence ou son téléchargement sur le serveur <strong>ne sera pas présenté comme une validation</strong>
-      tant qu'un test OpenCode complet n'aura pas réussi.
-    </div>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0">
+      <code>qwen3-coder:30b</code> est <strong>validé avec OpenCode</strong> pour les tâches de développement :
+      Python a réussi directement, tandis que HTML et JSON n8n ont chacun nécessité une <strong>correction ciblée</strong>
+      avant validation finale.
+    </p>
   </div>
 </div>
     <div class="panel">
@@ -134,10 +135,8 @@
   <div class="notes-box" style="margin-top:1.5rem">
     <strong>🚧 Limites &amp; travaux ouverts :</strong>
     <ul class="skill-list" style="margin-top:.5rem">
-      <li>Hermes est installé et sain, mais son <strong>fournisseur Ollama reste à configurer</strong> et à valider par une requête réelle ;</li>
-      <li>le modèle spécialisé code reste en cours d'évaluation ;</li>
       <li>la <strong>persistance applicative</strong> doit encore être contrôlée après redémarrage ;</li>
-      <li>une seconde VM de développement sous <strong>Windows</strong> reste planifiée ;</li>
+      <li>une seconde VM de développement sous <strong>Windows</strong> reste <strong>en cours de validation</strong> ;</li>
       <li>l'accès distant des postes clients devra passer par une architecture <strong>VPN dédiée</strong> et validée.</li>
     </ul>
   </div>
@@ -166,7 +165,7 @@
             <tr><td>Documentation officielle</td><td>Ollama — Modèles &amp; API compatible OpenAI</td><td><a href="https://github.com/ollama/ollama" target="_blank" style="color:var(--blue-500)">github.com/ollama/ollama</a></td></tr>
             <tr><td>Documentation officielle</td><td>Ubuntu Server 24.04 LTS</td><td><a href="https://ubuntu.com/server" target="_blank" style="color:var(--blue-500)">ubuntu.com/server</a></td></tr>
             <tr><td>Clients agentiques</td><td>OpenCode <code>1.18.25</code> · Hermes Agent <code>0.20.6</code> — versions relevées sur la VM</td><td>—</td></tr>
-            <tr><td>Validation</td><td>Création et identité de VM301 contrôlées · endpoint Ollama atteint · génération OpenCode réussie avec <code>qwen3.6:35b</code>, 2026-08-30</td><td>—</td></tr>
+            <tr><td>Validation</td><td>Création et identité de VM301 contrôlées · endpoint Ollama atteint · génération Hermes avec <code>qwen3.6:35b</code> · benchmark OpenCode avec <code>qwen3-coder:30b</code> (Python/HTML/JSON n8n), 2026-08-31</td><td>—</td></tr>
             <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>
         </table>
