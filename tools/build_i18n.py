@@ -30,6 +30,7 @@ SITE = "https://portfolio.stephanemuraro.fr"
 # dans i18n/<lang>.json. Pilote en cours : vm302 validée ; index + about à venir.
 PAGES = [
     "index.html",
+    "pages/about.html",
     "pages/vm302-station-dev-ia.html",
 ]
 
