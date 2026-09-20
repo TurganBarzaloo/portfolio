@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
     <meta name="author" content="Stéphane Muraro"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-  
-  <title>Automatisation & DevOps — Portfolio IA On-Premise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Outils libres & DevOps — chaîne d'outillage open source et fair-code de la plateforme IA on-premise : Proxmox VE (templates, clonage, snapshots, sauvegardes), n8n, scripts et principes IaC. Portfolio de Stéphane Muraro."/>
+  <title>Outils libres & DevOps — Portfolio IA On-Premise</title>
   <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
   <script>
@@ -28,18 +28,18 @@
     </svg>
     IA On<span class="dot">·</span>Premise
   </a>
-    <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a><a href="vm301-hermes-opencode.html">Agents IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a></div></div><a href="about.html">À propos</a></div>
+    <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a><a href="vm301-hermes-opencode.html">Agents IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html">À propos</a></div>
   <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
-<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Automatisation & DevOps</strong></div>
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Outils libres &amp; DevOps</strong></div>
 
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-header-top">
-      <div class="page-icon"><img src="../assets/n8n.svg" alt=""/></div>
+      <div class="page-icon"><img src="../assets/proxmox.svg" alt=""/></div>
       <div>
-        <h1>Automatisation & DevOps</h1>
-        <p>n8n · Templates VM · IaC partiel · Snapshots · Workflows IA</p>
+        <h1>Outils libres &amp; DevOps</h1>
+        <p>Chaîne d'outillage open source &amp; fair-code · Proxmox VE · n8n · Snapshots · IaC · scripts</p>
         <div class="level-pill">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
             <circle cx="6" cy="6" r="5"/>
@@ -51,14 +51,23 @@
   </div>
 </div>
 <div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    L'exploitation de la plateforme repose sur une <strong>chaîne d'outils libres</strong> — logiciels
+    <strong>open source</strong> ou <strong>fair-code / source-available</strong> lorsque la licence l'impose. L'objectif
+    est la <strong>reproductibilité</strong> (templates, clonage, snapshots), la <strong>réversibilité</strong>
+    (sauvegardes, rollback) et l'<strong>orchestration</strong> (n8n, scripts), sans dépendance au cloud. Les composants
+    dont la licence n'est pas une licence open source approuvée par l'OSI sont <strong>signalés comme tels</strong>.
+  </div>
+
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🔧 Outils & pratiques</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Outil</th><th>Rôle</th><th>Statut</th></tr></thead><tbody><tr><td>n8n</td><td>Orchestration workflows IA</td><td>🟢 Actif (VM300)</td></tr><tr><td>Templates Proxmox</td><td>Déploiement VM reproductible</td><td>✅ Actif</td></tr><tr><td>Snapshots</td><td>Gestion versions système</td><td>✅ Actif</td></tr><tr><td>Sauvegardes Proxmox</td><td>Backup VM planifié</td><td>✅ Actif</td></tr><tr><td>Clonage VM</td><td>Infrastructure as Code partiel</td><td>✅ Actif</td></tr><tr><td>.env files</td><td>Secrets hors code</td><td>🟡 Planifié</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table"><thead><tr><th>Outil</th><th>Rôle</th><th>Licence</th><th>Statut</th></tr></thead><tbody><tr><td>Proxmox VE</td><td>Templates, clonage, snapshots, sauvegardes de VM</td><td>AGPLv3</td><td>✅ Actif</td></tr><tr><td>n8n</td><td>Orchestration de workflows IA</td><td>fair-code (Sustainable Use)</td><td>🟢 Actif (VM300)</td></tr><tr><td>Scripts Bash / PowerShell</td><td>Automatisation opérationnelle multi-OS</td><td>libre / natif OS</td><td>✅ Actif</td></tr><tr><td>Docker &amp; Compose</td><td>Déploiement conteneurisé reproductible</td><td>Apache-2.0</td><td>✅ Actif</td></tr><tr><td>Gestion des secrets (hors dépôt)</td><td>Secrets et clés hors code et hors Git</td><td>—</td><td>🟡 Planifié</td></tr></tbody></table></div>
 </div>
     <div class="panel">
   <div class="panel-header"> 🎯 Compétences mises en œuvre</div>
-  <div class="panel-body"><ul class="skill-list"><li>Templates système réutilisables (Ubuntu + Windows)</li><li>Clonage VM pour déploiement reproductible</li><li>Snapshots avant chaque modification critique</li><li>Sauvegardes planifiées via Proxmox</li><li>Orchestration de workflows IA avec n8n</li><li>Principes IaC appliqués à l'infrastructure virtuelle</li></ul></div>
+  <div class="panel-body"><ul class="skill-list"><li>Templates système réutilisables (Ubuntu + Windows)</li><li>Clonage VM pour déploiement reproductible</li><li>Snapshots avant chaque modification critique</li><li>Sauvegardes planifiées via Proxmox</li><li>Orchestration de workflows IA avec n8n</li><li>Principes IaC appliqués à l'infrastructure virtuelle</li><li>Sélection d'outils libres / fair-code en distinguant explicitement les licences</li></ul></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
@@ -82,23 +91,12 @@ qm rollback 101 pre-update-20250601</pre></div></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
-    <div class="panel">
-  <div class="panel-header"> 🔄 Workflow n8n IA (cible)</div>
-  <div class="panel-body"><div class="code-label">yaml</div>
-<div class="code-block"><pre>Trigger: Webhook POST /query
-  → Noeud HTTP: POST ollama/api/generate
-  → Noeud HTTP: POST qdrant/collections/portfolio/points/search
-  → Noeud Function: enrichir prompt avec contexte RAG
-  → Noeud HTTP: POST ollama/api/generate (avec contexte)
-  → Réponse: JSON { answer, sources }</pre></div></div>
-</div>
-  </div>
-  <div style="margin-top:1.5rem">
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
       <a class="related-card" href="docker.html"><img src="../assets/docker.svg" alt=""/>Docker</a>
-      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="n8n.html"><img src="../assets/n8n.svg" alt=""/>n8n</a>
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="../assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
     </div>
   </div>
 </div>
@@ -113,8 +111,8 @@ qm rollback 101 pre-update-20250601</pre></div></div>
           <tbody>
             <tr><td>Documentation officielle</td><td>n8n — Documentation</td><td><a href="https://docs.n8n.io/" target="_blank" style="color:var(--blue-500)">docs.n8n.io</a></td></tr>
             <tr><td>Documentation officielle</td><td>Proxmox VE — Backup and Restore</td><td><a href="https://pve.proxmox.com/wiki/Backup_and_Restore" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/wiki/Backup_and_Restore</a></td></tr>
-            <tr><td>Outils</td><td>n8n (fair-code) · Templates &amp; snapshots Proxmox VE · scripts Bash/PowerShell</td><td>—</td></tr>
-            <tr><td>Licence</td><td>n8n — Sustainable Use License (fair-code) · Proxmox VE — AGPLv3</td><td><a href="https://docs.n8n.io/sustainable-use-license/" target="_blank" style="color:var(--blue-500)">docs.n8n.io — licence</a></td></tr>
+            <tr><td>Outils</td><td>Proxmox VE · n8n (fair-code) · Docker &amp; Compose · scripts Bash/PowerShell</td><td>—</td></tr>
+            <tr><td>Licence</td><td>Proxmox VE — AGPLv3 · n8n — Sustainable Use License (fair-code) · Docker — Apache-2.0</td><td><a href="https://docs.n8n.io/sustainable-use-license/" target="_blank" style="color:var(--blue-500)">docs.n8n.io — licence</a></td></tr>
             <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>
         </table>
