@@ -68,6 +68,29 @@
     (pas d'usage simultané par plusieurs VM) et exige une préparation rigoureuse de l'hôte, du démarrage et des
     procédures de récupération.
   </div>
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> ⚡ Plafond électrique opérationnel (temporaire)</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
+      Une contrainte supplémentaire est actuellement appliquée dans la VM GPU : le plafond logiciel de la RTX 5090 est
+      limité <strong>temporairement à 400 W</strong>, contre <strong>600 W</strong> par défaut sur la carte observée.
+      Cette mesure de <strong>diagnostic</strong> réduit l'enveloppe électrique maximale d'environ un tiers et peut donc
+      limiter les fréquences ou le débit sous charge soutenue ; son <strong>impact quantitatif n'est pas encore établi</strong>.
+    </p>
+    <div class="code-label">contrôle public reproductible</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=power.limit,power.default_limit \
+  --format=csv,noheader</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0">
+      La valeur est appliquée avec <code>sudo nvidia-smi --power-limit=400</code>. Ce réglage <strong>n'est pas
+      persistant</strong> après un redémarrage ou un rechargement du pilote : il est donc revérifié avant chaque essai.
+      Commandes détaillées, télémétrie et retour au plafond usine sont documentés sur la page
+      <a href="ia_llm.html" style="color:var(--blue-500)">IA &amp; LLM (VM210)</a>.
+    </p>
+  </div>
+</div>
+  </div>
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🔧 Stack technique</div>
@@ -146,29 +169,6 @@ GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
       (PostgreSQL/pgvector) démarre d'abord, puis VM210</strong> (charge GPU + Ollama / OpenWebUI / RAG) — sans
       concurrence pour le GPU.
     </div>
-  </div>
-</div>
-  </div>
-  <div style="margin-top:1.5rem">
-    <div class="panel">
-  <div class="panel-header"> ⚡ Plafond électrique opérationnel (temporaire)</div>
-  <div class="panel-body">
-    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
-      Une contrainte supplémentaire est actuellement appliquée dans la VM GPU : le plafond logiciel de la RTX 5090 est
-      limité <strong>temporairement à 400 W</strong>, contre <strong>600 W</strong> par défaut sur la carte observée.
-      Cette mesure de <strong>diagnostic</strong> réduit l'enveloppe électrique maximale d'environ un tiers et peut donc
-      limiter les fréquences ou le débit sous charge soutenue ; son <strong>impact quantitatif n'est pas encore établi</strong>.
-    </p>
-    <div class="code-label">contrôle public reproductible</div>
-<div class="code-block"><pre>nvidia-smi \
-  --query-gpu=power.limit,power.default_limit \
-  --format=csv,noheader</pre></div>
-    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0">
-      La valeur est appliquée avec <code>sudo nvidia-smi --power-limit=400</code>. Ce réglage <strong>n'est pas
-      persistant</strong> après un redémarrage ou un rechargement du pilote : il est donc revérifié avant chaque essai.
-      Commandes détaillées, télémétrie et retour au plafond usine sont documentés sur la page
-      <a href="ia_llm.html" style="color:var(--blue-500)">IA &amp; LLM (VM210)</a>.
-    </p>
   </div>
 </div>
   </div>
