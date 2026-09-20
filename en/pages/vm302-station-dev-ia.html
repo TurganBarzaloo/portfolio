@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="vm302.title">VM302 — AI Development Station (Windows 11) | On-Premise AI Portfolio</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" data-i18n="vm302.desc" content="VM302 — a polyglot Windows 11 development workstation (VSCodium, Python 3.13, Node.js 24 LTS) evaluating programming assistants with DeepSeek Harness, consuming remote GPU inference hosted separately. Portfolio of Stéphane Muraro."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="zh" href="https://portfolio.stephanemuraro.fr/zh/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/vm302-station-dev-ia.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Home</a><a href="architecture.html" data-i18n="c.nav.architecture">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">ZFS Storage</a><a href="os.html" data-i18n="c.nav.os">Operating Systems</a><a href="network.html" data-i18n="c.nav.network">Network</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">AI ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">AI &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">AI Image</a><a href="speech_ai.html">Speech AI</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">AI Agents</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">AI Dev Station</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Tools ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">About</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 EN ▾</button><div class="nav-dd-menu"><a href="/pages/vm302-station-dev-ia.html">FR</a><a href="/en/pages/vm302-station-dev-ia.html" class="active">EN</a><a href="/ru/pages/vm302-station-dev-ia.html">RU</a><a href="/zh/pages/vm302-station-dev-ia.html">ZH</a><a href="/es/pages/vm302-station-dev-ia.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Home</a><span>›</span><strong data-i18n="vm302.crumb">AI Dev Station — VM302</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/harness.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="vm302.h1">VM302 — AI Development Station</h1>
+        <p data-i18n="vm302.subtitle">Windows 11 · VSCodium · Python 3.13 · Node.js 24 LTS · DeepSeek Harness · remote GPU inference</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          <span data-i18n="c.pill.advanced">Level: Advanced</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="vm302.intro"><strong>VM302</strong> is a <strong>Windows 11 development workstation</strong> dedicated to polyglot development and the <strong>evaluation of programming assistants</strong>. The machine has <strong>no local GPU</strong>: it consumes a <strong>separately hosted inference capacity</strong>, which separates the client workstation from the compute service.</div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.p1.h"> ✅ Validated base &amp; toolchains</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.p1.list"><li>Virtualized <strong>Windows 11</strong> base, <strong>without a local GPU accelerator</strong></li><li><strong>VSCodium</strong>, <strong>Git</strong> and <strong>PowerShell 7</strong> validated through functional tests</li><li>Guest identity, network, guest agent and peripherals re-validated</li><li><strong>Python 3.13</strong> — package management, virtual environment, offline test of standard libraries</li><li><strong>Node.js 24 LTS</strong> and npm — running a local JavaScript test</li><li><strong>DeepSeek Harness</strong> in a pinned preliminary version: lockfile, package integrity, dependency audit, install scripts and native modules checked</li><li>Harness interface limited to the <strong>local machine</strong>, first profile kept <strong>read-only</strong></li></ul></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.p2.h"> 🔎 Remote inference &amp; persistence</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.p2.list"><li>First <strong>validated remote inference</strong> with <code>qwen3.6:35b</code>: the control prompt returned exactly <code>DSH_VM302_QWEN36_OK</code>, with no tool call</li><li>After a <strong>reboot</strong> of the machine: versions, configuration and session history <strong>persisted</strong></li><li>New session confirming the expected response and <strong>remote GPU acceleration</strong></li><li>Access to the inference service limited to the <strong>private network</strong>, with no direct publication of its API on the Internet</li><li>Automation services checked at the <strong>health</strong> level, without yet declaring consumption by an agent</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.arch.h"> 🧭 Architecture — client workstation, separate compute</div>
+  <div class="panel-body"><div class="code-label" data-i18n="vm302.arch.label">separation between the dev workstation and the inference service</div>
+<div class="code-block"><pre data-i18n="vm302.arch.tree">VM302 (Windows 11, no local GPU)
+├── VSCodium · Git · PowerShell 7
+├── Python 3.13 · Node.js 24 LTS
+└── DeepSeek Harness (local interface)
+    └── separate inference service (private network)
+        └── remote GPU acceleration</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:.9rem 0 0" data-i18n="vm302.arch.p">The workstation stays <strong>lightweight</strong> and GPU-less: compute is delegated to a separately hosted inference service, reachable only on the <strong>private network</strong>. This separation isolates the development tooling from the model service.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.skills.h"> 🎯 Demonstrated skills</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.skills.list"><li>Preparation and validation of a virtualized Windows workstation</li><li>Design of a polyglot development toolchain</li><li>Controlled installation of an agentic tool based on a Cordis plugin architecture</li><li>Integration of a GPU-less workstation with a separate inference service</li><li>Selection of free components and separation of proprietary dependencies</li><li>Reproducible tests and offline validation</li><li>Separation between client workstation, inference service and automation</li></ul></div>
+</div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong data-i18n="vm302.limits.h">🚧 Limits &amp; status:</strong>
+    <ul class="skill-list" style="margin-top:.5rem" data-i18n="vm302.limits.list"><li>the <strong>Rust</strong> and <strong>C/C++</strong> toolchains remain future work;</li><li>the <strong>comparison of assistants</strong> and the execution of an automation workflow by an agent are still to be done;</li><li><strong>DeepSeek Harness</strong> is still shipped as a preliminary version: it is not presented as a stabilized component;</li><li>the Windows license and proprietary hardware components prevent presenting the whole as “100% open source”.</li></ul>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Related pages</h2>
+    <div class="related-grid">
+      <a class="related-card" href="architecture.html"><img src="/assets/proxmox.svg" alt=""/><span data-i18n="c.nav.architecture">Architecture</span></a>
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
+      <a class="related-card" href="devops.html"><img src="/assets/git.svg" alt=""/>Outils libres &amp; DevOps</a>
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA &amp; LLM</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">References &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Category</th><th data-i18n="c.refs.res">Resource</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="vm302.ref.oss">Free tools</td><td>VSCodium (MIT) · Git (GPLv2) · PowerShell 7 (MIT)</td><td><a href="https://vscodium.com/" target="_blank" style="color:var(--blue-500)">vscodium.com</a></td></tr>
+            <tr><td data-i18n="vm302.ref.chains">Development toolchains</td><td>Python 3.13 (PSF) · Node.js 24 LTS (MIT)</td><td><a href="https://www.python.org/" target="_blank" style="color:var(--blue-500)">python.org</a> · <a href="https://nodejs.org/" target="_blank" style="color:var(--blue-500)">nodejs.org</a></td></tr>
+            <tr><td data-i18n="vm302.ref.agent">Agentic assistant</td><td data-i18n="vm302.ref.agentval">DeepSeek Harness — pinned preliminary version (not stabilized)</td><td>—</td></tr>
+            <tr><td data-i18n="vm302.ref.valid">Validation</td><td data-i18n="vm302.ref.validval">Base checked on 2026-08-30 · Python, Node.js and DeepSeek Harness toolchains validated on 2026-09-20 · remote inference <code>qwen3.6:35b</code> and persistence after reboot verified</td><td>—</td></tr>
+            <tr><td data-i18n="vm302.ref.nature">Nature of the workstation</td><td data-i18n="vm302.ref.natureval">Proprietary components (Windows, hardware) — the whole is not “100% open source”</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Content of this page</td><td data-i18n="c.refs.cc">Shared under CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Infrastructure Engineer &amp; Project Manager · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 years of experience · Systems security · On-Premise AI</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Personal infrastructure</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Built with Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">OSS philosophy →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Credits &amp; trademarks</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

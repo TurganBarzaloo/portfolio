@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="vm302.title">VM302 — AI 开发工作站（Windows 11）| 本地部署 AI 作品集</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" data-i18n="vm302.desc" content="VM302 — 一台多语言 Windows 11 开发工作站（VSCodium、Python 3.13、Node.js 24 LTS），使用 DeepSeek Harness 评估编程助手，消费单独托管的远程 GPU 推理。Stéphane Muraro 的作品集。"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="zh" href="https://portfolio.stephanemuraro.fr/zh/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/vm302-station-dev-ia.html"/>
+<!--HREFLANG_END-->
+<!--CJK_FONT_START--><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/><style>body{font-family:'Inter','Noto Sans SC','Segoe UI',system-ui,sans-serif;}</style><!--CJK_FONT_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">首页</a><a href="architecture.html" data-i18n="c.nav.architecture">架构</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">基础设施 ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">基础设施</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">ZFS 存储</a><a href="os.html" data-i18n="c.nav.os">操作系统</a><a href="network.html" data-i18n="c.nav.network">网络</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">AI ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">AI &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">AI 图像</a><a href="speech_ai.html">Speech AI</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">AI 智能体</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">AI 开发工作站</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">服务 ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">工具 ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">关于</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 ZH ▾</button><div class="nav-dd-menu"><a href="/pages/vm302-station-dev-ia.html">FR</a><a href="/en/pages/vm302-station-dev-ia.html">EN</a><a href="/ru/pages/vm302-station-dev-ia.html">RU</a><a href="/zh/pages/vm302-station-dev-ia.html" class="active">ZH</a><a href="/es/pages/vm302-station-dev-ia.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">首页</a><span>›</span><strong data-i18n="vm302.crumb">AI 开发工作站 — VM302</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/harness.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="vm302.h1">VM302 — AI 开发工作站</h1>
+        <p data-i18n="vm302.subtitle">Windows 11 · VSCodium · Python 3.13 · Node.js 24 LTS · DeepSeek Harness · 远程 GPU 推理</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          <span data-i18n="c.pill.advanced">级别：高级</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="vm302.intro"><strong>VM302</strong> 是一台专用于多语言开发和<strong>编程助手评估</strong>的 <strong>Windows 11 开发工作站</strong>。该机器<strong>没有本地 GPU</strong>：它消费<strong>单独托管的推理能力</strong>，从而将客户端工作站与计算服务分离。</div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.p1.h"> ✅ 已验证的基础与工具链</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.p1.list"><li>虚拟化的 <strong>Windows 11</strong> 基础，<strong>无本地 GPU 加速器</strong></li><li><strong>VSCodium</strong>、<strong>Git</strong> 和 <strong>PowerShell 7</strong> 已通过功能测试验证</li><li>访客身份、网络、访客代理和外设已重新验证</li><li><strong>Python 3.13</strong> — 包管理、虚拟环境、标准库离线测试</li><li><strong>Node.js 24 LTS</strong> 和 npm — 运行本地 JavaScript 测试</li><li><strong>DeepSeek Harness</strong> 采用固定的预览版本：已检查 lockfile、包完整性、依赖审计、安装脚本和原生模块</li><li>Harness 界面仅限<strong>本地机器</strong>，首个配置文件保持<strong>只读</strong></li></ul></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.p2.h"> 🔎 远程推理与持久性</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.p2.list"><li>首次使用 <code>qwen3.6:35b</code> 完成<strong>已验证的远程推理</strong>：控制提示准确返回 <code>DSH_VM302_QWEN36_OK</code>，未调用任何工具</li><li>工作站<strong>重启</strong>后：版本、配置和会话历史均<strong>已保留</strong></li><li>新会话确认了预期响应和<strong>远程 GPU 加速</strong></li><li>推理服务的访问仅限<strong>专用网络</strong>，其 API 未直接发布到互联网</li><li>自动化服务仅在<strong>健康状态</strong>层面检查，尚未声明由智能体消费</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.arch.h"> 🧭 架构 — 客户端工作站，独立计算</div>
+  <div class="panel-body"><div class="code-label" data-i18n="vm302.arch.label">开发工作站与推理服务之间的分离</div>
+<div class="code-block"><pre data-i18n="vm302.arch.tree">VM302（Windows 11，无本地 GPU）
+├── VSCodium · Git · PowerShell 7
+├── Python 3.13 · Node.js 24 LTS
+└── DeepSeek Harness（本地界面）
+    └── 独立推理服务（专用网络）
+        └── 远程 GPU 加速</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:.9rem 0 0" data-i18n="vm302.arch.p">工作站保持<strong>轻量</strong>且无 GPU：计算被委托给单独托管的推理服务，仅可在<strong>专用网络</strong>中访问。这种分离将开发工具与模型服务隔离开来。</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.skills.h"> 🎯 展示的技能</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.skills.list"><li>虚拟化 Windows 工作站的准备与验证</li><li>多语言开发工具链的设计</li><li>基于 Cordis 插件架构的智能体工具的受控安装</li><li>将无 GPU 工作站与独立推理服务集成</li><li>选择自由组件并分离专有依赖</li><li>可复现测试与离线验证</li><li>客户端工作站、推理服务与自动化的分离</li></ul></div>
+</div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong data-i18n="vm302.limits.h">🚧 限制与状态：</strong>
+    <ul class="skill-list" style="margin-top:.5rem" data-i18n="vm302.limits.list"><li><strong>Rust</strong> 和 <strong>C/C++</strong> 工具链仍属未来工作；</li><li><strong>助手比较</strong>以及由智能体执行自动化工作流仍有待完成；</li><li><strong>DeepSeek Harness</strong> 仍以预览版本发布：不作为稳定组件呈现；</li><li>Windows 许可证和专有硬件组件使整体无法呈现为“100% 开源”。</li></ul>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">相关页面</h2>
+    <div class="related-grid">
+      <a class="related-card" href="architecture.html"><img src="/assets/proxmox.svg" alt=""/><span data-i18n="c.nav.architecture">架构</span></a>
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
+      <a class="related-card" href="devops.html"><img src="/assets/git.svg" alt=""/>Outils libres &amp; DevOps</a>
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA &amp; LLM</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">参考与来源</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">类别</th><th data-i18n="c.refs.res">资源</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="vm302.ref.oss">自由工具</td><td>VSCodium (MIT) · Git (GPLv2) · PowerShell 7 (MIT)</td><td><a href="https://vscodium.com/" target="_blank" style="color:var(--blue-500)">vscodium.com</a></td></tr>
+            <tr><td data-i18n="vm302.ref.chains">开发工具链</td><td>Python 3.13 (PSF) · Node.js 24 LTS (MIT)</td><td><a href="https://www.python.org/" target="_blank" style="color:var(--blue-500)">python.org</a> · <a href="https://nodejs.org/" target="_blank" style="color:var(--blue-500)">nodejs.org</a></td></tr>
+            <tr><td data-i18n="vm302.ref.agent">智能体助手</td><td data-i18n="vm302.ref.agentval">DeepSeek Harness — 固定的预览版本（未稳定）</td><td>—</td></tr>
+            <tr><td data-i18n="vm302.ref.valid">验证</td><td data-i18n="vm302.ref.validval">基础于 2026-08-30 检查 · Python、Node.js 和 DeepSeek Harness 工具链于 2026-09-20 验证 · 远程推理 <code>qwen3.6:35b</code> 及重启后持久性已核实</td><td>—</td></tr>
+            <tr><td data-i18n="vm302.ref.nature">工作站性质</td><td data-i18n="vm302.ref.natureval">专有组件（Windows、硬件）— 整体并非“100% 开源”</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">本页内容</td><td data-i18n="c.refs.cc">以 CC BY-SA 4.0 共享</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">基础设施工程师兼项目经理 · 法国波尔多</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 年经验 · 系统安全 · 本地部署 AI</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">个人基础设施</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">使用 Git · Proxmox · Python · nginx 构建</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">开源理念 →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">致谢与商标</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
