@@ -89,3 +89,28 @@ Découpage en couches :
 Zed, Void (éditeurs AI-natifs), Cline/Roo Code (agents VS Code/VSCodium), **Tabby** (serveur de complétion
 auto-hébergé dédié), **vLLM** (service haute concurrence si Ollama sature). Non retenues en cible initiale pour
 limiter le nombre de composants, mais pertinentes en évolution.
+
+## 9. Mise à jour 2026-08-31 — positionnement des deux postes de dev « outils libres » (intrant Codex)
+
+Stéphane précise le cadrage éditorial des deux machines de développement :
+
+- **VM301 (Linux)** — profil **DevOps orienté automatisation**, axé sur la **synergie Hermes ↔ n8n** (l'agent Hermes
+  prépare/écrit des workflows n8n, validés humainement avant activation). *Partiellement publiable dès maintenant* : la
+  fiche `vm301-hermes-opencode.md` (`approved`) cite déjà « préparation de workflows n8n » comme usage et Hermes validé.
+- **VM302 (Windows 11)** — profil **DevOps orienté assistant & OS piloté par l'IA**, autour de **DeepSeek Harness**.
+  *Non publiable* tant que la fiche VM302 reste `draft`.
+
+**Source d'inférence — divergence à trancher côté Codex :** Stéphane évoque désormais **« les LLM du NAS »** comme source
+d'inférence des postes de dev, alors que la fiche VM301 `approved` décrit une **inférence déléguée à la VM GPU (VM210 /
+RTX 5090)**. Il faut **acter explicitement** dans les fiches quelle est la source réelle (VM210, NAS, ou les deux) pour
+éviter une divergence source ↔ portfolio. Le portfolio ne mentionnera le NAS qu'une fois la fiche mise à jour.
+
+**À produire côté Codex pour permettre la publication :**
+1. Mettre à jour puis approuver `vm302-station-dev-ia.md` avec : profil « assistant + OS piloté par l'IA »,
+   **DeepSeek Harness**, et la **source d'inférence** (NAS ?) — noms/rôles publiables, sans secret ni adresse.
+2. Clarifier la **source d'inférence** de VM301/VM302 (VM210 vs NAS).
+3. Le cas échéant, enrichir `vm301-hermes-opencode.md` pour formaliser la **synergie Hermes/n8n** si elle doit devenir
+   un axe éditorial fort.
+
+**Rappel cloisonnement :** tant que ces points ne figurent pas dans une fiche `approved`, le portfolio ne publie ni
+« DeepSeek Harness », ni « LLM du NAS », ni le profil VM302. Le nœud 302 d'`architecture.html` reste inchangé.
