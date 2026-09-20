@@ -29,6 +29,7 @@ SITE = "https://portfolio.stephanemuraro.fr"
 # On ajoute une page ici une fois qu'elle est annotée (data-i18n) ET traduite
 # dans i18n/<lang>.json. Pilote en cours : vm302 validée ; index + about à venir.
 PAGES = [
+    "index.html",
     "pages/vm302-station-dev-ia.html",
 ]
 

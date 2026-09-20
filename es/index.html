@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="idx.title">Stéphane Muraro — Portafolio de infraestructura de IA local (On-Premise)</title>
+  <meta name="description" data-i18n="idx.desc" content="Portafolio técnico de Stéphane Muraro — infraestructura de IA local (On-Premise), Proxmox, GPU passthrough, LLM, RAG, Docker. 26 años de experiencia en infraestructura y gestión de proyectos."/>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    /* ── Nom dans la nav ── */
+    .nav-author {
+      font-size: .8rem; font-weight: 500; color: var(--gray-500);
+      letter-spacing: .01em; white-space: nowrap;
+      padding: .25rem .6rem;
+    }
+    .nav-author strong { color: var(--blue-700); font-weight: 600; }
+
+    /* ── Badge OSS sur les cartes ── */
+    .card { position: relative; }
+    .oss-badge {
+      position: absolute; top: .75rem; right: .75rem;
+      display: inline-flex; align-items: center; gap: .25rem;
+      background: #ECFDF5; border: 1px solid #A7F3D0;
+      color: #065F46; font-size: .62rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: .15rem .5rem; border-radius: 99px;
+      cursor: help; user-select: none;
+      transition: background .15s;
+    }
+    .oss-badge:hover { background: #D1FAE5; }
+    .oss-badge svg { flex-shrink: 0; }
+
+    /* ── Section philosophie ── */
+    .philo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media(max-width: 640px) { .philo-grid { grid-template-columns: 1fr; } }
+    .philo-card {
+      background: var(--white); border: 1px solid var(--gray-300);
+      border-radius: var(--radius); padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .philo-icon {
+      font-size: 1.4rem; margin-bottom: .6rem; display: block;
+    }
+    .philo-title {
+      font-size: .9rem; font-weight: 700; color: var(--blue-900);
+      margin-bottom: .35rem;
+    }
+    .philo-desc {
+      font-size: .82rem; color: var(--gray-700); line-height: 1.6;
+    }
+
+    /* ── Footer enrichi ── */
+    .site-footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 1rem;
+    }
+    .footer-author {
+      font-size: .82rem; color: var(--gray-700); text-align: left;
+    }
+    .footer-author strong { color: var(--blue-700); font-weight: 600; }
+    .footer-author span { display: block; font-size: .75rem; color: var(--gray-500); margin-top: .15rem; }
+    .footer-center {
+      font-size: .78rem; color: var(--gray-400); text-align: center;
+    }
+    .footer-oss {
+      font-size: .78rem; color: var(--gray-500); text-align: right;
+    }
+    .footer-oss a { color: var(--accent); text-decoration: none; }
+    .footer-oss a:hover { text-decoration: underline; }
+    .footer-oss-badge {
+      display: inline-flex; align-items: center; gap: .3rem;
+      background: #ECFDF5; border: 1px solid #A7F3D0;
+      color: #065F46; font-size: .72rem; font-weight: 600;
+      padding: .2rem .6rem; border-radius: 99px; margin-bottom: .35rem;
+    }
+    @media(max-width: 640px) {
+      .site-footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-author, .footer-oss { text-align: center; }
+    }
+  </style>
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/index.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/index.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/index.html"/>
+<link rel="alternate" hreflang="zh" href="https://portfolio.stephanemuraro.fr/zh/index.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/index.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/index.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="index.html" data-i18n="c.nav.home">Inicio</a><a href="pages/architecture.html" data-i18n="c.nav.architecture">Arquitectura</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="pages/infrastructure.html" data-i18n="c.nav.infrastructure">Infraestructura</a><a href="pages/proxmox.html">Proxmox</a><a href="pages/reverse_proxy.html">Reverse Proxy</a><a href="pages/gpu_passthrough.html">GPU / VFIO</a><a href="pages/storage_zfs.html" data-i18n="c.nav.zfs">Almacenamiento ZFS</a><a href="pages/os.html" data-i18n="c.nav.os">Sistemas operativos</a><a href="pages/network.html" data-i18n="c.nav.network">Red</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">IA ▾</button><div class="nav-dd-menu"><a href="pages/ia_llm.html" data-i18n="c.nav.ia_llm">IA &amp; LLM</a><a href="pages/rag.html">RAG</a><a href="pages/ia_image.html" data-i18n="c.nav.ia_image">IA Imagen</a><a href="pages/speech_ai.html">Speech AI</a><a href="pages/vm301-hermes-opencode.html" data-i18n="c.nav.agents">Agentes IA</a><a href="pages/vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Estación de desarrollo IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Servicios ▾</button><div class="nav-dd-menu"><a href="pages/docker.html">Docker</a><a href="pages/nextcloud.html">Nextcloud</a><a href="pages/n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Herramientas ▾</button><div class="nav-dd-menu"><a href="pages/python.html">Python</a><a href="pages/git.html">Git</a><a href="pages/obsidian.html">Obsidian</a><a href="pages/devops.html">DevOps</a></div></div><a href="pages/about.html" data-i18n="c.nav.about">Acerca de</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 ES ▾</button><div class="nav-dd-menu"><a href="/index.html">FR</a><a href="/en/index.html">EN</a><a href="/ru/index.html">RU</a><a href="/zh/index.html">ZH</a><a href="/es/index.html" class="active">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <!-- Nom auteur côté droit de la nav -->
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+    <span data-i18n="idx.hero.eyebrow">Infraestructura de IA soberana — demostración de código abierto</span>
+  </div>
+  <h1 data-i18n="idx.hero.h1">Plataforma de <em>IA local (On-Premise)</em><br/>de alto rendimiento</h1>
+  <p class="hero-subtitle" data-i18n="idx.hero.subtitle">Diseño, despliegue y operación de una infraestructura de IA <strong>local y soberana</strong> — desde el hardware de bajo nivel hasta los LLM y los flujos RAG. Una realización de código abierto, documentada y reproducible: lo que se muestra aquí funciona y demuestra que una organización puede alojar su propia IA manteniendo el control de sus datos, sin dependencia de la nube.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Proxmox VE 9.2</span>
+    <span class="hero-tag">RTX 5090</span>
+    <span class="hero-tag">VFIO Passthrough</span>
+    <span class="hero-tag">Ollama + LLM</span>
+    <span class="hero-tag">RAG Vectoriel</span>
+    <span class="hero-tag">Docker</span>
+    <span class="hero-tag">ZFS</span>
+    <span class="hero-tag">192 Go DDR5</span>
+  </div>
+</section>
+
+<!-- ── SECTION PHILOSOPHIE ── -->
+<div class="section" style="padding-bottom:0">
+  <h2 class="section-title" data-i18n="idx.philo.h">Enfoque y filosofía</h2>
+  <div class="philo-grid">
+    <div class="philo-card">
+      <span class="philo-icon">📖</span>
+      <div class="philo-title" data-i18n="idx.philo.1.t">Cuaderno de referencia compartido</div>
+      <div class="philo-desc" data-i18n="idx.philo.1.d">Este portafolio es mi cuaderno de bitácora técnico. Cada página documenta lo que aprendí, cómo resolví un problema y los recursos que me ayudaron. De libre acceso.</div>
+    </div>
+    <div class="philo-card">
+      <span class="philo-icon">🌿</span>
+      <div class="philo-title" data-i18n="idx.philo.2.t">Open Source primero</div>
+      <div class="philo-desc" data-i18n="idx.philo.2.d">Cada herramienta elegida en este portafolio tiene una alternativa libre y abierta. Git, Proxmox, Ollama, Python, nginx — la transparencia y la comunidad están en el centro de cada decisión técnica.</div>
+    </div>
+    <div class="philo-card">
+      <span class="philo-icon">🔧</span>
+      <div class="philo-title" data-i18n="idx.philo.3.t">Del terreno a la producción</div>
+      <div class="philo-desc" data-i18n="idx.philo.3.d">26 años de experiencia — 7 años en seguridad de sistemas, 19 años como jefe de proyecto en un laboratorio de análisis. Lo que se presenta aquí fue diseñado, desplegado y mantenido en condiciones reales.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── GRILLE DE CARTES ── -->
+<div class="section">
+  <h2 class="section-title" data-i18n="idx.dom.h">Áreas de competencia</h2>
+  <div class="card-grid">
+
+    <div class="card" data-href="pages/architecture.html">
+      <div class="card-header">
+        <div class="card-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <div><div class="card-title" data-i18n="idx.c.arch.t">Arquitectura — Visión general</div><div class="card-domain" data-i18n="idx.d.synth">Visión general</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.arch.d">La plataforma por capas · del hardware a la IA de consumo</div>
+      <div class="card-footer"><span class="badge badge-advanced" data-i18n="c.lvl.overview">Visión general</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/infrastructure.html">
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/linux.svg" alt="Infrastructure Matérielle"/></div>
+        <div><div class="card-title" data-i18n="idx.c.infra.t">Infraestructura de hardware</div><div class="card-domain" data-i18n="c.nav.infrastructure">Infraestructura</div></div>
+      </div>
+      <div class="card-desc">AMD Ryzen 9 9950X3D · RTX 5090 · 192 Go DDR5</div>
+      <div class="card-footer"><span class="badge badge-advanced" data-i18n="c.lvl.advanced">Avanzado</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/proxmox.html">
+      <span class="oss-badge" title="Logiciel open source — Proxmox VE Community Edition">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/proxmox.svg" alt="Hyperviseur Proxmox VE"/></div>
+        <div><div class="card-title" data-i18n="idx.c.proxmox.t">Hipervisor Proxmox VE</div><div class="card-domain" data-i18n="idx.d.virt">Virtualización</div></div>
+      </div>
+      <div class="card-desc">Proxmox 9.2.2 · KVM · QEMU · Templates</div>
+      <div class="card-footer"><span class="badge badge-advanced" data-i18n="c.lvl.advanced">Avanzado</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/reverse_proxy.html">
+      <span class="oss-badge" title="Logiciel open source — Nginx, Certbot, Fail2ban">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/nginx.svg" alt="Reverse Proxy Nginx"/></div>
+        <div><div class="card-title">Reverse Proxy</div><div class="card-domain" data-i18n="c.nav.infrastructure">Infraestructura</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.rp.d">VM200 · Nginx · TLS · Certbot · Fail2ban · publicación HTTPS</div>
+      <div class="card-footer"><span class="badge badge-advanced" data-i18n="c.lvl.advanced">Avanzado</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/gpu_passthrough.html">
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/vfio.svg" alt="GPU Passthrough VFIO"/></div>
+        <div><div class="card-title">GPU Passthrough VFIO</div><div class="card-domain" data-i18n="idx.d.virt">Virtualización</div></div>
+      </div>
+      <div class="card-desc">VFIO · IOMMU · PCIe Passthrough RTX 5090</div>
+      <div class="card-footer"><span class="badge badge-advanced" data-i18n="c.lvl.advanced">Avanzado</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/storage_zfs.html">
+      <span class="oss-badge" title="Logiciel open source — OpenZFS">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/zfs.svg" alt="Stockage ZFS"/></div>
+        <div><div class="card-title" data-i18n="c.nav.zfs">Almacenamiento ZFS</div><div class="card-domain" data-i18n="idx.d.storage">Almacenamiento</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.zfs.d">Conjuntos de datos de IA · Snapshots · Arquitectura de almacenamiento</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.interplus">Intermedio+</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/os.html">
+      <span class="oss-badge" title="Systèmes d'exploitation libres — Debian, Ubuntu, Alpine">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/linux.svg" alt="Systèmes d'exploitation"/></div>
+        <div><div class="card-title" data-i18n="idx.c.os.t">Sistemas operativos</div><div class="card-domain" data-i18n="idx.d.os">SO</div></div>
+      </div>
+      <div class="card-desc">Debian · Ubuntu · Alpine · Windows 11</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.interplus">Intermedio+</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/ia_llm.html">
+      <span class="oss-badge" title="Logiciels open source — Ollama, Open WebUI, modèles Llama/Mistral">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/ollama.svg" alt="IA Locale &amp; LLM"/></div>
+        <div><div class="card-title" data-i18n="idx.c.iallm.t">IA local y LLM</div><div class="card-domain" data-i18n="idx.d.iaml">IA / ML</div></div>
+      </div>
+      <div class="card-desc">Ollama · Open WebUI · Llama · Mistral · Gemma</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.interplus">Intermedio+</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/rag.html">
+      <span class="oss-badge" title="Logiciels open source — PostgreSQL, pgvector (PostgreSQL License)">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+            <ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+          </svg>
+        </div>
+        <div><div class="card-title" data-i18n="idx.c.rag.t">RAG y bases de datos vectoriales</div><div class="card-domain" data-i18n="idx.d.iaml">IA / ML</div></div>
+      </div>
+      <div class="card-desc">PostgreSQL · pgvector · bge-m3 · HNSW</div>
+      <div class="card-footer"><span class="badge badge-beginner" data-i18n="c.lvl.base">Básico+</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/ia_image.html">
+      <span class="oss-badge" title="Logiciel open source — ComfyUI, modèles Flux">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/comfyui.svg" alt="IA Générative Image"/></div>
+        <div><div class="card-title" data-i18n="idx.c.iaimg.t">IA generativa de imágenes</div><div class="card-domain" data-i18n="idx.d.iaml">IA / ML</div></div>
+      </div>
+      <div class="card-desc">ComfyUI · Flux · GPU Computing</div>
+      <div class="card-footer"><span class="badge badge-beginner" data-i18n="c.lvl.base">Básico+</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/speech_ai.html">
+      <span class="oss-badge" title="Logiciel open source — Whisper (OpenAI)">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/whisper.svg" alt="Speech AI — Whisper"/></div>
+        <div><div class="card-title">Speech AI — Whisper</div><div class="card-domain" data-i18n="idx.d.iaml">IA / ML</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.speech.d">Voz a texto · IA multimodal · procesamiento de audio</div>
+      <div class="card-footer"><span class="badge badge-beginner" data-i18n="c.lvl.base">Básico+</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/vm301-hermes-opencode.html">
+      <span class="oss-badge" title="Logiciels open source — OpenCode, Hermes Agent, Ollama">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/ollama.svg" alt="Agents IA — Hermes &amp; OpenCode"/></div>
+        <div><div class="card-title" data-i18n="idx.c.agents.t">Agentes IA — Hermes y OpenCode</div><div class="card-domain" data-i18n="idx.d.agents">IA / Agentes</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.vm301.d">VM301 · estación agéntica Linux · OpenCode · Hermes · inferencia GPU remota</div>
+      <div class="card-footer"><span class="badge badge-advanced" data-i18n="c.lvl.advanced">Avanzado</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/vm302-station-dev-ia.html">
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/harness.svg" alt="Station Dev IA — DeepSeek Harness"/></div>
+        <div><div class="card-title" data-i18n="idx.c.stationdev.t">Estación de desarrollo IA — DeepSeek Harness</div><div class="card-domain" data-i18n="idx.d.devia">Dev / IA</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.vm302.d">VM302 · Windows 11 · VSCodium · Python · Node.js · DeepSeek Harness (preliminar)</div>
+      <div class="card-footer"><span class="badge badge-advanced" data-i18n="c.lvl.advanced">Avanzado</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/docker.html">
+      <span class="oss-badge" title="Logiciel open source — Docker Engine (Moby), Docker Compose">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/docker.svg" alt="Docker &amp; Conteneurisation"/></div>
+        <div><div class="card-title" data-i18n="idx.c.docker.t">Docker y contenerización</div><div class="card-domain" data-i18n="idx.d.devops">DevOps</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.docker.d">Docker Compose · Aislamiento · Servicios de IA</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.inter">Intermedio</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/nextcloud.html">
+      <span class="oss-badge" title="Logiciel open source — Nextcloud (AGPLv3), MariaDB (GPLv2)">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+          </svg>
+        </div>
+        <div><div class="card-title">Nextcloud</div><div class="card-domain" data-i18n="idx.d.services">Servicios</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.nc.d">Archivos autoalojados · Docker · MariaDB</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.inter">Intermedio</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/n8n.html">
+      <span class="oss-badge" title="Logiciel open source — n8n (fair-code), scripts Bash/PowerShell">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/n8n.svg" alt="n8n — Automatisation"/></div>
+        <div><div class="card-title" data-i18n="idx.c.n8n.t">n8n — Automatización</div><div class="card-domain" data-i18n="idx.d.services">Servicios</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.n8n.d">Flujos de trabajo · Docker · PostgreSQL externo · API de Ollama</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.inter">Intermedio</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/network.html">
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/linux.svg" alt="Réseau"/></div>
+        <div><div class="card-title" data-i18n="c.nav.network">Red</div><div class="card-domain" data-i18n="c.nav.network">Red</div></div>
+      </div>
+      <div class="card-desc">Bridge Proxmox · SSH · Firewall · NAT</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.inter">Intermedio</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/python.html">
+      <span class="oss-badge" title="Logiciel open source — Python, pip, venv">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo"><img src="/assets/python.svg" alt="Python"/></div>
+        <div><div class="card-title">Python</div><div class="card-domain" data-i18n="idx.d.dev">Dev</div></div>
+      </div>
+      <div class="card-desc">venv · pip · requirements.txt · Scripts IA</div>
+      <div class="card-footer"><span class="badge badge-beginner" data-i18n="c.lvl.base">Básico+</span><span class="card-arrow">→</span></div>
+    </div>
+
+    <div class="card" data-href="pages/git.html">
+      <span class="oss-badge" title="Logiciel open source — Git, GitLab Community Edition">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>OSS
+      </span>
+      <div class="card-header">
+        <div class="card-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/>
+            <circle cx="6" cy="18" r="2"/>
+            <path d="M8 6h8M8.5 8l-1 1.5M15.5 8l1 1.5M7 16V8"/>
+          </svg>
+        </div>
+        <div><div class="card-title">Git</div><div class="card-domain" data-i18n="idx.d.devops">DevOps</div></div>
+      </div>
+      <div class="card-desc" data-i18n="idx.c.git.d">GitHub vs GitLab · GitLab autoalojado · higiene de repositorios</div>
+      <div class="card-footer"><span class="badge badge-inter" data-i18n="c.lvl.inter">Intermedio</span><span class="card-arrow">→</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── BARRES DE COMPÉTENCE ── -->
+<div class="section" style="padding-top:0">
+  <h2 class="section-title" data-i18n="idx.skills.h">Niveles de dominio</h2>
+  <div class="skill-bar-wrap">
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.1">Virtualización / Proxmox<span>Avanzado</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.2">GPU Passthrough VFIO<span>Avanzado</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.3">Infraestructura de IA<span>Avanzado</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.4">Seguridad de sistemas (Antivirus, Firewall)<span>Avanzado</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.5">Gestión de proyectos de TI<span>Experto</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.6">Linux (Debian/Ubuntu)<span>Intermedio+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.7">Windows Server/Desktop<span>Intermedio+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:68%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.8">IA local (LLM / Ollama)<span>Intermedio+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.9">Docker / Contenerización<span>Intermedio</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:58%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.10">Nextcloud / Autoalojamiento<span>Intermedio</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.11">DevOps (IaC, plantillas)<span>Intermedio</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.12">ZFS / Almacenamiento<span>Intermedio</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.13">CUDA / NVIDIA<span>Intermedio</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:58%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.14">Git / GitLab / GitHub<span>Intermedio</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.15">RAG / pgvector / Embeddings<span>Básico+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:42%"></div></div></div>
+    <div class="skill-bar-item"><div class="skill-bar-label" data-i18n="idx.sk.16">Python / venv / pip<span>Básico+</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:38%"></div></div></div>
+  </div>
+</div>
+
+<!-- ── PRÉSENTATION ── -->
+<div class="section" style="padding-top:0">
+  <h2 class="section-title" data-i18n="idx.pres.h">Presentación del proyecto</h2>
+  <div class="notes-box" data-i18n="idx.pres.box"><strong>Contexto:</strong> Diseño de una plataforma de IA local de alto rendimiento basada en Proxmox VE, una GPU NVIDIA RTX 5090 en passthrough VFIO, virtualización Windows/Linux, almacenamiento ZFS, infraestructura Docker, alojamiento de LLM locales (Ollama), RAG vectorial (PostgreSQL/pgvector), automatización n8n y herramientas multimodales (Whisper, ComfyUI).<br/><br/><strong>Vocación:</strong> demostrar que una organización — una entidad local (ayuntamiento) o una pyme — puede alojar sus propios servicios de IA y automatización manteniéndose soberana sobre su infraestructura y sus datos. Algunos componentes están <strong>en producción</strong>, otros <strong>validados en la plataforma de diseño</strong> o en despliegue.<br/><br/><strong>infraestructura → virtualización → despliegue → operación de IA</strong>, construida íntegramente con herramientas de código abierto.</div>
+</div>
+
+<!-- ── FOOTER ENRICHI ── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Ingeniero de Infraestructura y Jefe de Proyecto · Burdeos, Francia</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 años de experiencia · Seguridad de sistemas · IA local (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Infraestructura personal</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Construido con Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="pages/about.html#philosophie" data-i18n="c.foot.philo">Filosofía OSS →</a> · <a href="pages/about.html#credits" data-i18n="c.foot.credits">Créditos y marcas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    if (a.getAttribute('href') === 'index.html') a.classList.add('active');
+  });
+</script>
+</body>
+</html>
