@@ -63,6 +63,36 @@
       d'être planifiés sur l'infra définitive. La RTX 5090 étant exclusive, un seul nœud GPU l'utilise à la fois.
     </div>
   </div>
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> ⚡ Limitation électrique temporaire de la RTX 5090</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
+      La RTX 5090 fonctionne actuellement avec un <strong>plafond logiciel de 400 W</strong>, au lieu de
+      <strong>600 W</strong> par défaut observés sur cette carte. C'est une mesure <strong>temporaire de prudence</strong>
+      pendant l'analyse d'<strong>extinctions brutales</strong> survenues sous certaines charges agentiques — ni une
+      modification matérielle, ni une preuve d'une consommation continue de 400 W.
+    </p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
+      Cette limite peut réduire les fréquences ou le débit de génération sous forte charge, mais <strong>ne réduit pas
+      la VRAM ni la taille des modèles</strong>. Une inférence avec <code>qwen3.6:35b</code>, un contexte de 65 536 et un
+      chargement à 100 % sur GPU a été validée sous ce plafond ; l'impact précis sur les performances soutenues
+      <strong>reste à mesurer</strong>.
+    </p>
+    <div class="code-label">contrôle du plafond actif / plafond par défaut</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=power.limit,power.default_limit \
+  --format=csv,noheader
+# → 400.00 W, 600.00 W</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0">
+      Application : <code>sudo nvidia-smi --power-limit=400</code> (non persistant, à revérifier après un redémarrage ou
+      un rechargement du pilote). Retour au plafond usine : <code>sudo nvidia-smi --power-limit=600</code>, uniquement
+      après clôture du diagnostic.
+    </p>
+  </div>
+</div>
+  </div>
+
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header"> 🤖 Modèles LLM déployés</div>

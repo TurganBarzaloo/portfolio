@@ -80,8 +80,12 @@
     personnalisés par <strong>Cloud-Init</strong> ; leur reconstruction suit une procédure réversible (validation d'un
     clone de contrôle avant tout remplacement).
     <br/><br/>
-    <strong>Limite :</strong> les snapshots ZFS facilitent les retours techniques mais <strong>ne remplacent pas
-    une sauvegarde indépendante</strong> — cette politique reste en cours de définition.
+    <strong>Limites :</strong> la RTX 5090 est actuellement <strong>plafonnée par logiciel à 400 W</strong> (contre
+    600 W par défaut observés) — mesure temporaire et non persistante pouvant réduire les performances sous charge
+    soutenue, d'impact encore à mesurer (procédure sur la page
+    <a href="ia_llm.html" style="color:var(--blue-500)">IA &amp; LLM</a>). Par ailleurs, les snapshots ZFS facilitent
+    les retours techniques mais <strong>ne remplacent pas une sauvegarde indépendante</strong> — cette politique reste
+    en cours de définition.
   </div>
   <div style="margin-top:1.5rem">
     <h2 class="section-title">Technologies associées</h2>
