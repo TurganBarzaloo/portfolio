@@ -13,17 +13,17 @@ Git (CC BY 3.0), Tux (Larry Ewing), Docker, Python (PSF).
 
 ## À demander / vérifier (par ordre de restriction)
 
-| Marque | Exigence | Canal / politique | Statut |
+| Marque | Contact pour la demande | Politique / réf. | Exigence |
 |---|---|---|---|
-| NVIDIA | Approbation écrite préalable obligatoire pour tout usage du logo | https://www.nvidia.com/en-us/about-nvidia/legal-info/logo-brand-usage/ | À demander |
-| NGINX / F5 | Permission écrite requise ; aucun droit sans accord explicite | https://www.f5.com/company/policies/trademarks | À demander |
-| GitLab | Autorisation signée (Master Authorization) pour usage nom/logo sur site tiers | https://handbook.gitlab.com/handbook/legal/trademarks-at-gitlab/ · brand : about.gitlab.com/press/press-kit/ | À demander |
-| AMD | Licence limitée (produits contenant un processeur AMD) ; sinon permission écrite | https://www.amd.com/en/legal/terms-and-conditions/media-library.html | À demander (le CPU AMD est réellement utilisé → argument nominatif) |
-| Ollama | ToS ne concèdent aucun droit sur la marque sans permission | https://ollama.com/terms · support@ollama.com | À demander |
-| Obsidian | Usage éditorial/identification OK **sans modifier** ; commercial → contacter | https://obsidian.md/brand | Charte à respecter (logo officiel non modifié) — sinon demande |
-| GitHub | Lien/référence OK, **pas pour un produit à soi**, **ne pas modifier** | https://docs.github.com/en/site-policy/other-site-policies/github-logo-policy · trademarks@github.com | Charte à respecter — sinon demande |
-| Proxmox | Logo utilisable pour promouvoir Proxmox, **non modifié**, lien vers proxmox.com | https://www.proxmox.com/en/about/company-details/media-kit | Charte à respecter — sinon demande |
-| n8n | Éditorial/éducatif OK en suivant la charte (couleurs, clear-space, non modifié) | https://n8n.io/brandguidelines/ | Charte à respecter — sinon demande |
+| GitLab | **intellectualproperty@gitlab.com** (demandes de permission) ; #brand (Slack) | handbook.gitlab.com/handbook/legal/trademarks-at-gitlab/ | Autorisation écrite (Master Authorization) pour usage nom/logo sur site tiers |
+| AMD | **amd.trademarks@amd.com** (AMD Law Department) | amd.com/en/legal/trademarks.html · media-library | Licence limitée aux produits contenant un CPU/GPU AMD ; sinon permission écrite |
+| GitHub | **trademarks@github.com** | docs.github.com/.../github-logo-policy · github.com/logos | Lien/référence OK, pas pour un produit à soi, ne pas modifier ; au-delà → permission écrite |
+| Proxmox | **office@proxmox.com** (Proxmox Server Solutions GmbH, Vienne) | proxmox.com/en/about/company-details/media-kit | Logo pour promouvoir Proxmox uniquement, non modifié ; sinon permission écrite |
+| Ollama | **hello@ollama.com** (agent copyright/marque, ToS) | ollama.com/terms | ToS ne concèdent aucun droit sur la marque sans permission |
+| Obsidian | Pas d'e-mail public dédié → « Contact us » sur obsidian.md/brand + help.obsidian.md (éditeur : Dynalist Inc.) | obsidian.md/brand | Éditorial/identification OK sans modifier ; commercial → contacter |
+| n8n | Voir e-mail de l'imprint **n8n.io/imprint** (n8n GmbH) — ne pas deviner l'adresse | n8n.io/brandguidelines/ | Éditorial/éducatif OK en suivant la charte ; commercial → permission |
+| NVIDIA | Pas d'e-mail public dédié fiable → page « Logo & Brand » (section demande d'approbation) ; si partenaire : représentant marketing régional | nvidia.com/en-us/about-nvidia/legal-info/logo-brand-usage/ | Approbation écrite préalable obligatoire pour tout usage du logo |
+| NGINX / F5 | Pas d'e-mail public dédié → service juridique F5 via canaux corporate/legal officiels | f5.com/company/policies/trademarks | Permission écrite requise ; aucun droit sans accord explicite |
 
 ## Éléments à préparer pour chaque demande
 - Identité : Stéphane Muraro — portfolio.stephanemuraro.fr (site personnel, non commercial).
