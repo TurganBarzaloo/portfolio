@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
-  <rect width="200" height="80" rx="8" fill="#76B900"/>
-  <text x="20" y="56" font-family="Arial Black,sans-serif" font-size="42" font-weight="900" fill="white">NVIDIA</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2.5" y="7" width="17" height="10" rx="1.5"/>
+  <circle cx="8" cy="12" r="3"/>
+  <circle cx="8" cy="12" r="0.6"/>
+  <path d="M13 9.5v5M15.5 9.5v5M18 9.5v5"/>
+  <path d="M6 17v2.5M11 17v2.5"/>
 </svg>
