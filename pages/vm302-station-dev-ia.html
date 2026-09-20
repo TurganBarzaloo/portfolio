@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VM302 — Station de développement IA (Windows 11) | Portfolio IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" content="VM302 — poste de développement Windows 11 polyglotte (VSCodium, Python 3.13, Node.js 24 LTS) et évaluation d'assistants de programmation avec DeepSeek Harness, consommant une inférence GPU distante hébergée séparément. Portfolio de Stéphane Muraro."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a><a href="vm301-hermes-opencode.html">Agents IA</a><a href="vm302-station-dev-ia.html">Station Dev IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html">À propos</a></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Station Dev IA — VM302</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="../assets/windows.svg" alt=""/></div>
+      <div>
+        <h1>VM302 — Station de développement IA</h1>
+        <p>Windows 11 · VSCodium · Python 3.13 · Node.js 24 LTS · DeepSeek Harness · inférence GPU distante</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          Niveau : Avancé
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem">
+    <strong>VM302</strong> est un <strong>poste de développement Windows 11</strong> dédié au développement polyglotte et
+    à l'<strong>évaluation d'assistants de programmation</strong>. La station ne possède <strong>pas de GPU local</strong> :
+    elle consomme une <strong>capacité d'inférence hébergée séparément</strong>, ce qui sépare le poste client du service
+    de calcul.
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header"> ✅ Socle &amp; chaînes validées</div>
+  <div class="panel-body"><ul class="skill-list"><li>Socle <strong>Windows 11</strong> virtualisé, <strong>sans accélérateur GPU local</strong></li><li><strong>VSCodium</strong>, <strong>Git</strong> et <strong>PowerShell 7</strong> validés par essais fonctionnels</li><li>Identité invitée, réseau, agent invité et périphériques revalidés</li><li><strong>Python 3.13</strong> — gestion des paquets, environnement virtuel, test hors ligne de bibliothèques standards</li><li><strong>Node.js 24 LTS</strong> et npm — exécution d'un test JavaScript local</li><li><strong>DeepSeek Harness</strong> en version préliminaire épinglée : lockfile, intégrité du paquet, audit des dépendances, scripts d'installation et modules natifs contrôlés</li><li>Interface du Harness limitée à la <strong>machine locale</strong>, premier profil en <strong>lecture seule</strong></li></ul></div>
+</div>
+    <div class="panel">
+  <div class="panel-header"> 🔎 Inférence distante &amp; persistance</div>
+  <div class="panel-body"><ul class="skill-list"><li>Première <strong>inférence distante validée</strong> avec <code>qwen3.6:35b</code> : la consigne de contrôle a retourné exactement <code>DSH_VM302_QWEN36_OK</code>, sans appel d'outil</li><li>Après <strong>redémarrage</strong> de la station : versions, configuration et historique de session <strong>persistés</strong></li><li>Nouvelle session confirmant la réponse attendue et l'<strong>accélération GPU distante</strong></li><li>Accès au service d'inférence limité au <strong>réseau privé</strong>, sans publication directe de son API sur Internet</li><li>Services d'automatisation contrôlés au niveau de leur <strong>santé</strong>, sans encore déclarer de consommation par un agent</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🧭 Architecture — poste client, calcul séparé</div>
+  <div class="panel-body"><div class="code-label">séparation entre poste de dev et service d'inférence</div>
+<div class="code-block"><pre>VM302 (Windows 11, sans GPU local)
+├── VSCodium · Git · PowerShell 7
+├── Python 3.13 · Node.js 24 LTS
+└── DeepSeek Harness (interface locale)
+    └── service d'inférence séparé (réseau privé)
+        └── accélération GPU distante</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:.9rem 0 0">
+      Le poste reste <strong>léger</strong> et sans GPU : le calcul est délégué à un service d'inférence hébergé
+      séparément, joignable uniquement sur le <strong>réseau privé</strong>. Cette séparation isole l'outillage de
+      développement du service de modèle.
+    </p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🎯 Compétences illustrées</div>
+  <div class="panel-body"><ul class="skill-list"><li>Préparation et validation d'un poste Windows virtualisé</li><li>Conception d'une chaîne de développement polyglotte</li><li>Installation maîtrisée d'un outil agentique fondé sur une architecture de plugins Cordis</li><li>Intégration d'un poste sans GPU à un service d'inférence séparé</li><li>Sélection de composants libres et séparation des dépendances propriétaires</li><li>Tests reproductibles et validation hors ligne</li><li>Séparation entre poste client, service d'inférence et automatisation</li></ul></div>
+</div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong>🚧 Limites &amp; statut :</strong>
+    <ul class="skill-list" style="margin-top:.5rem">
+      <li>les chaînes <strong>Rust</strong> et <strong>C/C++</strong> restent des travaux futurs ;</li>
+      <li>la <strong>comparaison des assistants</strong> et l'exécution d'un workflow d'automatisation par un agent restent à réaliser ;</li>
+      <li><strong>DeepSeek Harness</strong> est encore diffusé en version préliminaire : il n'est pas présenté comme un composant stabilisé ;</li>
+      <li>la licence Windows et les composants matériels propriétaires interdisent de présenter l'ensemble comme « 100 % open source ».</li>
+    </ul>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title">Pages liées</h2>
+    <div class="related-grid">
+      <a class="related-card" href="architecture.html"><img src="../assets/proxmox.svg" alt=""/>Architecture</a>
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="../assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
+      <a class="related-card" href="devops.html"><img src="../assets/git.svg" alt=""/>Outils libres &amp; DevOps</a>
+      <a class="related-card" href="ia_llm.html"><img src="../assets/ollama.svg" alt=""/>IA &amp; LLM</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td>Outils libres</td><td>VSCodium (MIT) · Git (GPLv2) · PowerShell 7 (MIT)</td><td><a href="https://vscodium.com/" target="_blank" style="color:var(--blue-500)">vscodium.com</a></td></tr>
+            <tr><td>Chaînes de développement</td><td>Python 3.13 (PSF) · Node.js 24 LTS (MIT)</td><td><a href="https://www.python.org/" target="_blank" style="color:var(--blue-500)">python.org</a> · <a href="https://nodejs.org/" target="_blank" style="color:var(--blue-500)">nodejs.org</a></td></tr>
+            <tr><td>Assistant agentique</td><td>DeepSeek Harness — version préliminaire épinglée (non stabilisée)</td><td>—</td></tr>
+            <tr><td>Validation</td><td>Socle contrôlé le 2026-08-30 · chaînes Python, Node.js et DeepSeek Harness validées le 2026-09-20 · inférence distante <code>qwen3.6:35b</code> et persistance après redémarrage vérifiées</td><td>—</td></tr>
+            <tr><td>Nature du poste</td><td>Composants propriétaires (Windows, matériel) — l'ensemble n'est pas « 100 % open source »</td><td>—</td></tr>
+            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span>Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div>Construit avec Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie">Philosophie OSS →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
