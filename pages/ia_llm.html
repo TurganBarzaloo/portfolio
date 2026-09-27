@@ -65,29 +65,27 @@
   </div>
   <div style="margin-bottom:1.5rem">
     <div class="panel">
-  <div class="panel-header"> ⚡ Limitation électrique temporaire de la RTX 5090</div>
+  <div class="panel-header"> ⚡ Plafond électrique de la RTX 5090 — diagnostic passé</div>
   <div class="panel-body">
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
-      La RTX 5090 fonctionne actuellement avec un <strong>plafond logiciel de 400 W</strong>, au lieu de
-      <strong>600 W</strong> par défaut observés sur cette carte. C'est une mesure <strong>temporaire de prudence</strong>
-      pendant l'analyse d'<strong>extinctions brutales</strong> survenues sous certaines charges agentiques — ni une
-      modification matérielle, ni une preuve d'une consommation continue de 400 W.
+      Lors d'un <strong>diagnostic antérieur</strong> (analyse d'<strong>extinctions brutales</strong> sous certaines
+      charges agentiques), la RTX 5090 a été plafonnée par logiciel à <strong>400 W</strong>, au lieu de
+      <strong>600 W</strong> par défaut. Les <strong>essais ComfyUI et Ollama des 27–28 septembre 2026</strong> ont
+      ensuite été réalisés à <strong>600 W</strong>, sur décision explicite. Aucun gain de stabilité durable ni
+      comparaison de performance entre ces plafonds n'est établi.
     </p>
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
-      Cette limite peut réduire les fréquences ou le débit de génération sous forte charge, mais <strong>ne réduit pas
-      la VRAM ni la taille des modèles</strong>. Une inférence avec <code>qwen3.6:35b</code>, un contexte de 65 536 et un
-      chargement à 100 % sur GPU a été validée sous ce plafond ; l'impact précis sur les performances soutenues
-      <strong>reste à mesurer</strong>.
+      Le plafond n'affecte <strong>ni la VRAM ni la taille des modèles</strong>. La procédure 400 W ci-dessous conserve la
+      trace du diagnostic ; elle ne décrit plus l'état courant.
     </p>
     <div class="code-label">contrôle du plafond actif / plafond par défaut</div>
 <div class="code-block"><pre>nvidia-smi \
   --query-gpu=power.limit,power.default_limit \
   --format=csv,noheader
-# → 400.00 W, 600.00 W</pre></div>
+# → 600.00 W, 600.00 W</pre></div>
     <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0">
-      Application : <code>sudo nvidia-smi --power-limit=400</code> (non persistant, à revérifier après un redémarrage ou
-      un rechargement du pilote). Retour au plafond usine : <code>sudo nvidia-smi --power-limit=600</code>, uniquement
-      après clôture du diagnostic.
+      Valeur diagnostique (historique) : <code>sudo nvidia-smi --power-limit=400</code> (non persistant). Retour au plafond
+      usine : <code>sudo nvidia-smi --power-limit=600</code>.
     </p>
   </div>
 </div>
@@ -128,6 +126,37 @@ curl http://localhost:<span class="redacted">11434</span>/api/generate \\
   <div class="panel-body"><ul class="skill-list"><li>Hébergement local de LLM (infrastructure IA privée, sans cloud)</li><li>Comparaison et sélection de modèles LLM selon les besoins</li><li>Configuration Ollama (modèles, API, paramètres d'inférence)</li><li>Déploiement Open WebUI comme interface utilisateur</li><li>Intégration LLM dans des pipelines via API REST</li><li>Architecture agents IA avec Hermes + n8n</li></ul></div>
 </div>
   </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header"> 🖼️ Génération d'image locale — ComfyUI &amp; partage du GPU</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
+      Le nœud IA Linux (<strong>VM210</strong>) exécute désormais <strong>ComfyUI 0.36.0</strong> et <strong>Ollama</strong>
+      sur la <strong>même RTX 5090 (32 Go)</strong>. Le modèle <strong>RealVisXL V5.0</strong> (dérivé SDXL photoréaliste)
+      a produit des portraits en <strong>512×512</strong> et <strong>1 024×1 024</strong>. La coexistence avec
+      <code>qwen3:8b</code> a été observée, puis le <strong>déchargement des modèles sans arrêter les serveurs</strong>
+      vérifié. Le <strong>partage automatique des requêtes reste à construire</strong> (bascule manuelle pour l'instant).
+    </p>
+    <div class="code-label">observations de session — VRAM RTX 5090 (pas un benchmark)</div>
+    <table class="data-table"><thead><tr><th>Essai</th><th>Observation</th><th>Portée</th></tr></thead><tbody>
+      <tr><td>Portrait 512×512, 8 étapes</td><td>8,03 s (chargement initial compris)</td><td>Validation fonctionnelle</td></tr>
+      <tr><td>Portrait 1 024×1 024, 30 étapes</td><td>Image obtenue (DPM++ SDE Karras)</td><td>Durée non attribuée avec certitude</td></tr>
+      <tr><td>Qwen3 8B + RealVisXL</td><td>19 001 Mio de VRAM (échantillon)</td><td>Qwen 100 % GPU, contexte 40 960</td></tr>
+      <tr><td>Déchargement ComfyUI</td><td>7 376 → 742 Mio · HTTP 200</td><td>Serveur conservé actif</td></tr>
+      <tr><td>Rechargement + génération 8 étapes</td><td>7,40 s · retour à 7 376 Mio</td><td>Cycle complet sans redémarrage</td></tr>
+      <tr><td>Déchargement Qwen3 8B (ComfyUI arrêté)</td><td>Retour à 2 Mio</td><td>Service Ollama toujours disponible</td></tr>
+    </tbody></table>
+    <div class="notes-box" style="margin-top:1rem">
+      Ce sont des <strong>observations de session</strong>, sans protocole statistique ni garantie de latence. Un relevé en
+      coexistence indique <strong>539 W · 53 °C · 83 % GPU</strong> (plafond configuré 600 W) — à ne pas présenter comme une
+      consommation constante ou un pic mesuré. De plus grands LLM, des contextes plus longs ou d'autres workflows peuvent
+      dépasser la mémoire disponible. <strong>RealVisXL V5.0</strong> est diffusé sous licence <strong>Open RAIL++</strong> :
+      des poids disponibles ne signifient pas l'absence de restrictions de licence.
+    </div>
+  </div>
+</div>
+  </div>
+
   <div style="margin-top:1.5rem">
     <h2 class="section-title">Pages liées</h2>
     <div class="related-grid">
