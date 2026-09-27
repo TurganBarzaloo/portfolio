@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Règles de confidentialité — Assistant personnel — Stéphane Muraro</title>
+<meta name="description" content="Règles de confidentialité de l'application personnelle « Assistant personnel » : données Google utilisées, traitement, conservation, révocation.">
+<meta name="robots" content="noindex, follow">
+<style>
+  :root {
+    --fond: #fdfdfc;
+    --texte: #1c1c1a;
+    --discret: #5c5c58;
+    --trait: #e0dfdb;
+    --lien: #1a4d7a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fond: #17171a;
+      --texte: #ecebe8;
+      --discret: #a3a29d;
+      --trait: #32323a;
+      --lien: #8ab4dc;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 3rem 1.5rem 4rem;
+    background: var(--fond);
+    color: var(--texte);
+    font: 1rem/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  h1 { font-size: 1.55rem; line-height: 1.3; margin: 0 0 .4rem; font-weight: 650; }
+  .sous-titre { color: var(--discret); margin: 0 0 2.5rem; }
+  h2 { font-size: 1.05rem; margin: 2.4rem 0 .6rem; font-weight: 650; }
+  p, li { margin: 0 0 .8rem; }
+  ul { padding-left: 1.3rem; }
+  a { color: var(--lien); }
+  table { border-collapse: collapse; width: 100%; margin: 0 0 1rem; font-size: .95rem; }
+  th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--trait); vertical-align: top; }
+  th { font-weight: 650; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .9em;
+    background: var(--trait);
+    padding: .1rem .3rem;
+    border-radius: 3px;
+  }
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--trait);
+    color: var(--discret);
+    font-size: .9rem;
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Règles de confidentialité</h1>
+  <p class="sous-titre">Application « Assistant personnel » — Stéphane Muraro. Dernière mise à jour : 27 septembre 2026.</p>
+
+  <h2>1. Responsable et périmètre</h2>
+  <p>
+    L'application « Assistant personnel » est développée et utilisée par <strong>Stéphane Muraro</strong>,
+    personne physique, à titre strictement privé et non commercial. Elle a <strong>un seul
+    utilisateur</strong> : son auteur. Elle n'est ni distribuée, ni vendue, ni ouverte à
+    l'inscription.
+  </p>
+  <p>
+    Les présentes règles décrivent l'usage fait des données du compte Google de cet unique
+    utilisateur. Le site qui héberge cette page ne dépose aucun cookie et ne collecte aucune
+    donnée sur ses visiteurs.
+  </p>
+
+  <h2>2. Données Google auxquelles l'application accède</h2>
+  <p>L'accès est accordé par l'utilisateur lui-même, via l'écran de consentement Google, et limité aux autorisations suivantes :</p>
+  <table>
+    <tr>
+      <th>Autorisation Google</th>
+      <th>Donnée concernée</th>
+      <th>Finalité</th>
+    </tr>
+    <tr>
+      <td><code>calendar</code>, <code>calendar.events</code></td>
+      <td>Événements de l'agenda</td>
+      <td>Lire les rendez-vous pour préparer la journée ; créer ou déplacer un créneau à la demande de l'utilisateur</td>
+    </tr>
+    <tr>
+      <td><code>tasks</code></td>
+      <td>Listes et tâches Google Tasks</td>
+      <td>Lire, créer et mettre à jour les tâches. <strong>La suppression est bloquée</strong> au niveau de l'outil</td>
+    </tr>
+    <tr>
+      <td><code>openid</code>, <code>userinfo.email</code>, <code>userinfo.profile</code></td>
+      <td>Adresse e-mail et nom du profil</td>
+      <td>Identifier le compte connecté</td>
+    </tr>
+  </table>
+  <p>
+    <strong>Aucun accès à Gmail</strong> — ni lecture, ni rédaction, ni envoi. Aucun accès à Google
+    Drive, Docs, Sheets, Contacts ou Photos. Aucune donnée appartenant à une autre personne n'est
+    consultée.
+  </p>
+
+  <h2>3. Où les données sont traitées et stockées</h2>
+  <ul>
+    <li>
+      <strong>Le jeton d'autorisation</strong> délivré par Google est stocké <strong>localement</strong>,
+      sur l'ordinateur personnel de l'utilisateur, dans son répertoire utilisateur. Il n'est
+      transmis à aucun tiers.
+    </li>
+    <li>
+      <strong>Le contenu lu</strong> (rendez-vous, tâches) est traité par un assistant fondé sur un
+      modèle de langage. À ce titre, les extraits nécessaires au traitement demandé sont
+      <strong>transmis au fournisseur du modèle</strong> (Anthropic) le temps de la requête, au même
+      titre que tout texte soumis à cet assistant. Aucun autre destinataire n'intervient.
+    </li>
+    <li>
+      <strong>Les notes produites</strong> par l'utilisateur à partir de ces informations sont
+      enregistrées dans ses fichiers personnels, sur ses propres supports.
+    </li>
+  </ul>
+
+  <h2>4. Ce qui n'est jamais fait</h2>
+  <ul>
+    <li>Aucune revente, location ni cession de données à un tiers</li>
+    <li>Aucun usage publicitaire, aucun profilage commercial</li>
+    <li>Aucune mesure d'audience, aucun traceur analytique</li>
+    <li>Aucun transfert des données vers un serveur tiers autre que celui décrit au point 3</li>
+    <li>Aucun envoi de message et aucune suppression de données au nom de l'utilisateur</li>
+  </ul>
+
+  <h2>5. Durée de conservation</h2>
+  <p>
+    Le jeton d'autorisation est conservé tant que l'autorisation reste active, et détruit dès
+    qu'elle est révoquée ou que le fichier local est supprimé. Les données d'agenda et de tâches
+    ne sont pas dupliquées dans une base : elles sont relues à chaque usage depuis Google.
+  </p>
+
+  <h2>6. Révoquer l'autorisation</h2>
+  <p>
+    L'utilisateur peut retirer l'accès à tout moment, sans préavis, depuis la page
+    <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>
+    de son compte Google. L'application cesse alors immédiatement tout accès. La suppression du
+    fichier de jeton local produit le même effet côté machine.
+  </p>
+
+  <h2>7. Droits et contact</h2>
+  <p>
+    L'unique personne concernée par ce traitement est son auteur, qui en est aussi le responsable.
+    Toute question relative à ces règles peut être adressée à
+    <a href="mailto:racinessystemes@gmail.com">racinessystemes@gmail.com</a>.
+  </p>
+
+  <h2>8. Modifications</h2>
+  <p>
+    Toute évolution des autorisations demandées — par exemple l'ajout d'un accès à un autre service
+    Google — sera reflétée sur cette page, dont la date de mise à jour figure en haut.
+  </p>
+
+  <footer>
+    <p>
+      <a href="index.html">← Assistant personnel</a><br>
+      Stéphane Muraro — <a href="https://portfolio.stephanemuraro.fr">portfolio.stephanemuraro.fr</a>
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>
