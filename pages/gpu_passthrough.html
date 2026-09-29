@@ -18,6 +18,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/gpu_passthrough.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/gpu_passthrough.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/gpu_passthrough.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/gpu_passthrough.html"/>
+<!--HREFLANG_END-->
 </head>
 <body>
 <nav class="nav">
@@ -27,10 +33,10 @@
     </svg>
     IA On<span class="dot">·</span>Premise
   </a>
-    <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a><a href="vm301-hermes-opencode.html">Agents IA</a><a href="vm302-station-dev-ia.html">Station Dev IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html">À propos</a></div>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Accueil</a><a href="architecture.html" data-i18n="c.nav.architecture">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Stockage ZFS</a><a href="os.html" data-i18n="c.nav.os">Systèmes OS</a><a href="network.html" data-i18n="c.nav.network">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">IA Image</a><a href="speech_ai.html" data-i18n="c.nav.speech">Speech AI</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">Agents IA</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Station Dev IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">À propos</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 FR ▾</button><div class="nav-dd-menu"><a href="/pages/gpu_passthrough.html" class="active">FR</a><a href="/en/pages/gpu_passthrough.html">EN</a><a href="/es/pages/gpu_passthrough.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
   <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
-<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>GPU Passthrough VFIO</strong></div>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Accueil</a><span>›</span><strong>GPU Passthrough VFIO</strong></div>
 
 <div class="page-header">
   <div class="page-header-inner">
@@ -50,18 +56,18 @@
   </div>
 </div>
 <div class="content">
-  <div class="notes-box" style="margin-bottom:1.5rem">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes1">
     ⚠️ <strong>Compétence avancée :</strong> Le GPU Passthrough VFIO est l'une des réalisations
     les plus complexes et les plus recherchées du portfolio. Il permet d'assigner physiquement
     la RTX 5090 à une VM avec performances natives.
   </div>
-  <div class="notes-box" style="margin-bottom:1.5rem">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes2">
     <strong>Pourquoi une RTX 5090 pour l'IA locale ?</strong> Avec ses cœurs CUDA et Tensor et ses
     <a href="https://www.nvidia.com/fr-fr/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" style="color:var(--blue-500)">32 Go de mémoire GDDR7</a>,
     elle accélère fortement les calculs parallèles nécessaires à l'inférence des modèles de langage, aux embeddings
     et à la génération d'images — tout en conservant localement les modèles et les données traitées.
   </div>
-  <div class="notes-box" style="margin-bottom:1.5rem">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes3">
     <strong>Pourquoi le passthrough malgré ses contraintes ?</strong> Le passthrough PCIe avec VFIO attribue
     directement la carte à une VM : système invité, CUDA et conteneurs utilisent le GPU avec des performances proches
     du natif et une isolation claire des charges. En contrepartie, l'affectation est <strong>exclusive</strong>
@@ -70,19 +76,19 @@
   </div>
   <div style="margin-bottom:1.5rem">
     <div class="panel">
-  <div class="panel-header"> ⚡ Plafond électrique — mesure de diagnostic (passée)</div>
+  <div class="panel-header" data-i18n="gpu.p1.h"> ⚡ Plafond électrique — mesure de diagnostic (passée)</div>
   <div class="panel-body">
-    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="gpu.power.p1">
       Un plafond logiciel <strong>temporaire de 400 W</strong> (contre <strong>600 W</strong> par défaut sur la carte
       observée) a été utilisé pendant un <strong>diagnostic électrique</strong>. Les essais <strong>ComfyUI et Ollama
       des 27–28 septembre 2026</strong> ont ensuite été réalisés à <strong>600 W</strong>, sur décision explicite. Aucun
       gain de stabilité durable ni comparaison de performance entre ces plafonds n'est établi.
     </p>
-    <div class="code-label">contrôle public reproductible</div>
+    <div class="code-label" data-i18n="gpu.power.label">contrôle public reproductible</div>
 <div class="code-block"><pre>nvidia-smi \
   --query-gpu=power.limit,power.default_limit \
   --format=csv,noheader</pre></div>
-    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0">
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0" data-i18n="gpu.power.p2">
       La valeur diagnostique de 400 W s'applique avec <code>sudo nvidia-smi --power-limit=400</code> — réglage <strong>non
       persistant</strong> après un redémarrage ou un rechargement du pilote. Commandes détaillées, télémétrie et retour au
       plafond usine sont documentés sur la page
@@ -93,31 +99,31 @@
   </div>
   <div class="content-grid">
     <div class="panel">
-  <div class="panel-header"> 🔧 Stack technique</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Technologie</th><th>Rôle</th></tr></thead><tbody><tr><td>VFIO</td><td>Framework Linux d'isolation PCIe</td></tr><tr><td>IOMMU / AMD-Vi</td><td>Unité de gestion mémoire pour I/O</td></tr><tr><td>PCI Passthrough</td><td>Assignation directe GPU → VM</td></tr><tr><td>Q35</td><td>Chipset QEMU requis pour PCIe moderne</td></tr><tr><td>OVMF</td><td>UEFI obligatoire pour NVIDIA en passthrough</td></tr></tbody></table></div>
+  <div class="panel-header" data-i18n="gpu.p2.h"> 🔧 Stack technique</div>
+  <div class="panel-body"><table class="data-table" data-i18n="gpu.t1"><thead><tr><th>Technologie</th><th>Rôle</th></tr></thead><tbody><tr><td>VFIO</td><td>Framework Linux d'isolation PCIe</td></tr><tr><td>IOMMU / AMD-Vi</td><td>Unité de gestion mémoire pour I/O</td></tr><tr><td>PCI Passthrough</td><td>Assignation directe GPU → VM</td></tr><tr><td>Q35</td><td>Chipset QEMU requis pour PCIe moderne</td></tr><tr><td>OVMF</td><td>UEFI obligatoire pour NVIDIA en passthrough</td></tr></tbody></table></div>
 </div>
     <div class="panel">
-  <div class="panel-header"> 📁 Fichiers système modifiés</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Fichier</th><th>Modification</th></tr></thead><tbody><tr><td>/etc/default/grub</td><td>amd_iommu=on iommu=pt</td></tr><tr><td>/etc/modprobe.d/vfio.conf</td><td>bind VFIO sur IDs GPU</td></tr><tr><td>/etc/modules</td><td>vfio vfio_iommu_type1 vfio_pci</td></tr><tr><td>/etc/initramfs-tools/</td><td>Intégration modules au boot</td></tr><tr><td>/etc/pve/qemu-server/*.conf</td><td>Config VM Proxmox</td></tr></tbody></table></div>
-</div>
-  </div>
-  <div style="margin-top:1.5rem">
-    <div class="panel">
-  <div class="panel-header"> 🐛 Dépannage réalisé</div>
-  <div class="panel-body"><table class="data-table"><thead><tr><th>Problème</th><th>Solution</th></tr></thead><tbody><tr><td>GPU dans mauvais groupe IOMMU</td><td>Reconfiguration slots PCIe</td></tr><tr><td>NVIDIA refuse de démarrer en VM</td><td>Patch OVMF + masquage hyperviseur</td></tr><tr><td>Audio NVIDIA absent</td><td>Passthrough device audio PCIe</td></tr><tr><td>Écran noir post-passthrough</td><td>Switch VNC → OVMF GOP</td></tr><tr><td>vfio-pci: Cannot reset</td><td>Activation 1:1 IOMMU mapping</td></tr><tr><td>Régions direct (direct-mapped)</td><td>Paramètre IOMMU kernel</td></tr></tbody></table></div>
+  <div class="panel-header" data-i18n="gpu.p3.h"> 📁 Fichiers système modifiés</div>
+  <div class="panel-body"><table class="data-table" data-i18n="gpu.t2"><thead><tr><th>Fichier</th><th>Modification</th></tr></thead><tbody><tr><td>/etc/default/grub</td><td>amd_iommu=on iommu=pt</td></tr><tr><td>/etc/modprobe.d/vfio.conf</td><td>bind VFIO sur IDs GPU</td></tr><tr><td>/etc/modules</td><td>vfio vfio_iommu_type1 vfio_pci</td></tr><tr><td>/etc/initramfs-tools/</td><td>Intégration modules au boot</td></tr><tr><td>/etc/pve/qemu-server/*.conf</td><td>Config VM Proxmox</td></tr></tbody></table></div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header"> 🔄 Exclusivité GPU — état et ordre de démarrage des VM</div>
+  <div class="panel-header" data-i18n="gpu.p4.h"> 🐛 Dépannage réalisé</div>
+  <div class="panel-body"><table class="data-table" data-i18n="gpu.t3"><thead><tr><th>Problème</th><th>Solution</th></tr></thead><tbody><tr><td>GPU dans mauvais groupe IOMMU</td><td>Reconfiguration slots PCIe</td></tr><tr><td>NVIDIA refuse de démarrer en VM</td><td>Patch OVMF + masquage hyperviseur</td></tr><tr><td>Audio NVIDIA absent</td><td>Passthrough device audio PCIe</td></tr><tr><td>Écran noir post-passthrough</td><td>Switch VNC → OVMF GOP</td></tr><tr><td>vfio-pci: Cannot reset</td><td>Activation 1:1 IOMMU mapping</td></tr><tr><td>Régions direct (direct-mapped)</td><td>Paramètre IOMMU kernel</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="gpu.p5.h"> 🔄 Exclusivité GPU — état et ordre de démarrage des VM</div>
   <div class="panel-body">
-    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="gpu.excl.p1">
       Exécutée sur l'hôte Proxmox, cette commande détecte la RTX 5090 (sans afficher son adresse), repère les VM
       configurées pour l'utiliser et publie un libellé assaini — en distinguant l'<strong>état courant</strong> de la
       VM de sa <strong>politique d'autodémarrage</strong>, et en vérifiant qu'<strong>une seule VM de passthrough</strong>
       est active à la fois.
     </p>
-    <div class="code-label">bash — contrôle d'exclusivité GPU</div>
+    <div class="code-label" data-i18n="gpu.excl.label1">bash — contrôle d'exclusivité GPU</div>
 <div class="code-block"><pre>gpu_bdf=$(lspci -D | awk '/NVIDIA.*RTX 5090/ {print $1; exit}')
 [ -n "$gpu_bdf" ] || { echo 'RTX 5090 non détectée'; exit 1; }
 
@@ -157,13 +163,13 @@ else
     printf 'ALERTE : %s VM GPU actives simultanément\n' "$running_gpu_vms"
     exit 2
 fi</pre></div>
-    <div class="code-label" style="margin-top:1rem">extrait assaini — exclusivité vérifiée</div>
+    <div class="code-label" style="margin-top:1rem" data-i18n="gpu.excl.label2">extrait assaini — exclusivité vérifiée</div>
 <div class="code-block"><pre>IA-Core              status=running  onboot=1  startup=order=20,up=30,down=60
 GPU-alternative-1    status=stopped  onboot=0  startup=-
 GPU-alternative-2    status=stopped  onboot=0  startup=-
 …                    status=stopped  onboot=0  startup=-
 GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
-    <div class="notes-box" style="margin-top:1rem">
+    <div class="notes-box" style="margin-top:1rem" data-i18n="gpu.excl.notes">
       <strong>Lecture :</strong> une seule VM de passthrough (<strong>IA-Core / VM210</strong>) utilise la RTX 5090 ;
       les environnements GPU alternatifs restent hors autodémarrage. À la reprise de l'hôte, <strong>VM215
       (PostgreSQL/pgvector) démarre d'abord, puis VM210</strong> (charge GPU + Ollama / OpenWebUI / RAG) — sans
@@ -174,9 +180,9 @@ GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header"> 🔧 Relevé BIOS &amp; prudence firmware</div>
+  <div class="panel-header" data-i18n="gpu.p6.h"> 🔧 Relevé BIOS &amp; prudence firmware</div>
   <div class="panel-body">
-    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0" data-i18n="gpu.bios.body">
       Un <strong>relevé BIOS de référence</strong> sépare les valeurs réellement observées des améliorations seulement
       envisagées. Avant toute mise à jour du firmware, les paramètres nécessaires à <strong>IOMMU et VFIO</strong> sont
       sauvegardés et un <strong>retour arrière</strong> est préparé ; après modification, les groupes IOMMU, la réservation
@@ -186,7 +192,7 @@ GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
   </div>
 </div>
   </div>
-  <div class="notes-box" style="margin-top:1.5rem">
+  <div class="notes-box" style="margin-top:1.5rem" data-i18n="gpu.notes.final">
     <strong>Contrainte structurante :</strong> la RTX 5090 est une ressource physique <strong>exclusive</strong> —
     une seule VM de passthrough peut l'utiliser à la fois. L'architecture documente donc explicitement les
     incompatibilités de démarrage simultané, et une console virtuelle distincte est conservée pour la récupération.
@@ -195,7 +201,7 @@ GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
     <strong>l'accès GPU a été vérifié jusque dans des conteneurs Docker</strong> (via le NVIDIA Container Toolkit).
   </div>
   <div style="margin-top:1.5rem">
-    <h2 class="section-title">Pages liées</h2>
+    <h2 class="section-title" data-i18n="c.sec.related">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="infrastructure.html"><img src="../assets/linux.svg" alt=""/>Infrastructure</a>
       <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
@@ -206,17 +212,17 @@ GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
 <!-- ── RÉFÉRENCES (style Wikipédia) ── -->
 <div class="content" style="padding-top:0">
   <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
-    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Références &amp; Sources</h2>
     <div class="panel">
       <div class="panel-body" style="padding:0">
         <table class="data-table">
-          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <thead><tr><th data-i18n="c.refs.cat">Catégorie</th><th data-i18n="c.refs.res">Ressource</th><th data-i18n="c.refs.url">URL</th></tr></thead>
           <tbody>
-            <tr><td>Documentation officielle</td><td>Proxmox VE — PCI(e) Passthrough</td><td><a href="https://pve.proxmox.com/wiki/PCI_Passthrough" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/wiki/PCI_Passthrough</a></td></tr>
-            <tr><td>Documentation officielle</td><td>Linux Kernel — VFIO</td><td><a href="https://docs.kernel.org/driver-api/vfio.html" target="_blank" style="color:var(--blue-500)">docs.kernel.org/driver-api/vfio</a></td></tr>
-            <tr><td>Matériel</td><td>NVIDIA GeForce RTX 5090 · plateforme AMD (IOMMU / AMD-Vi)</td><td>—</td></tr>
-            <tr><td>Licence</td><td>VFIO (noyau Linux) — GPL · pilotes NVIDIA — propriétaires</td><td>—</td></tr>
-            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Documentation officielle</td><td>Proxmox VE — PCI(e) Passthrough</td><td><a href="https://pve.proxmox.com/wiki/PCI_Passthrough" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/wiki/PCI_Passthrough</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Documentation officielle</td><td>Linux Kernel — VFIO</td><td><a href="https://docs.kernel.org/driver-api/vfio.html" target="_blank" style="color:var(--blue-500)">docs.kernel.org/driver-api/vfio</a></td></tr>
+            <tr><td data-i18n="c.ref.hardware">Matériel</td><td>NVIDIA GeForce RTX 5090 · plateforme AMD (IOMMU / AMD-Vi)</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Licence</td><td>VFIO (noyau Linux) — GPL · pilotes NVIDIA — propriétaires</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Contenu de cette page</td><td data-i18n="c.refs.cc">Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -228,21 +234,21 @@ GPU passthrough actif : 1 VM — exclusivité OK</pre></div>
   <div class="site-footer-inner">
     <div class="footer-author">
       <strong>Stéphane Muraro</strong>
-      <span>Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
-      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+      <span data-i18n="c.foot.role">Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 ans d'expérience · Sécurité système · IA On-Premise</span>
     </div>
     <div class="footer-center">
       portfolio.stephanemuraro.fr<br/>
-      <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Infrastructure personnelle</span>
     </div>
     <div class="footer-oss">
       <div class="footer-oss-badge">
         <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
         Open Source &amp; fair-code
       </div>
-      <div>Construit avec Git · Proxmox · Python · nginx</div>
+      <div data-i18n="c.foot.built">Construit avec Git · Proxmox · Python · nginx</div>
       <div style="margin-top:.25rem">
-        <a href="about.html#philosophie">Philosophie OSS →</a> · <a href="about.html#credits">Crédits &amp; marques</a>
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Philosophie OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Crédits &amp; marques</a>
       </div>
     </div>
   </div>

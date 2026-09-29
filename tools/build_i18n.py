@@ -27,17 +27,43 @@ SITE = "https://portfolio.stephanemuraro.fr"
 
 # Pages activées pour la génération i18n (chemins relatifs à la racine du dépôt).
 # On ajoute une page ici une fois qu'elle est annotée (data-i18n) ET traduite
-# dans i18n/<lang>.json. Pilote en cours : vm302 validée ; index + about à venir.
+# dans i18n/<lang>.json. Les 23 pages du site sont couvertes.
 PAGES = [
     "index.html",
     "pages/about.html",
     "pages/vm302-station-dev-ia.html",
+    "pages/architecture.html",
+    "pages/infrastructure.html",
+    "pages/proxmox.html",
+    "pages/reverse_proxy.html",
+    "pages/gpu_passthrough.html",
+    "pages/storage_zfs.html",
+    "pages/os.html",
+    "pages/network.html",
+    "pages/ia_llm.html",
+    "pages/rag.html",
+    "pages/ia_image.html",
+    "pages/speech_ai.html",
+    "pages/vm301-hermes-opencode.html",
+    "pages/docker.html",
+    "pages/nextcloud.html",
+    "pages/n8n.html",
+    "pages/python.html",
+    "pages/git.html",
+    "pages/obsidian.html",
+    "pages/devops.html",
 ]
 
 # fr en premier (traité in place), puis les langues générées.
-LANGS = ["fr", "en", "ru", "zh", "es"]
-LANG_LABEL = {"fr": "FR", "en": "EN", "ru": "RU", "zh": "ZH", "es": "ES"}
-HTML_LANG = {"fr": "fr", "en": "en", "ru": "ru", "zh": "zh-Hans", "es": "es"}
+# LANGS = langues construites localement (préviennent le poste de Stéphane).
+# PUBLIC_LANGS = langues annoncées au public : sélecteur de langue + hreflang.
+# ru reste dans LANGS (généré et entretenu en local) mais hors PUBLIC_LANGS
+# (jamais de lien vers /ru/ ni de hreflang dans les pages publiées) ; le
+# dossier /ru/ et i18n/ru.json sont en outre exclus du dépôt via .gitignore.
+LANGS = ["fr", "en", "ru", "es"]
+PUBLIC_LANGS = ["fr", "en", "es"]
+LANG_LABEL = {"fr": "FR", "en": "EN", "ru": "RU", "es": "ES"}
+HTML_LANG = {"fr": "fr", "en": "en", "ru": "ru", "es": "es"}
 
 SW_START, SW_END = "<!--LANG_SWITCHER_START-->", "<!--LANG_SWITCHER_END-->"
 HL_START, HL_END = "<!--HREFLANG_START-->", "<!--HREFLANG_END-->"
@@ -86,8 +112,11 @@ def apply_translation(html: str, key: str, val: str) -> str:
 
 
 def switcher_block(cur_lang: str, rel: str) -> str:
+    codes = list(PUBLIC_LANGS)
+    if cur_lang not in codes:
+        codes.append(cur_lang)  # ex. ru : visible seulement quand on navigue déjà en local dedans
     items = []
-    for code in LANGS:
+    for code in codes:
         href = "/" + rel if code == "fr" else "/" + code + "/" + rel
         cls = ' class="active"' if code == cur_lang else ""
         items.append(f'<a href="{href}"{cls}>{LANG_LABEL[code]}</a>')
@@ -105,7 +134,7 @@ def switcher_block(cur_lang: str, rel: str) -> str:
 
 def hreflang_block(rel: str) -> str:
     lines = [HL_START]
-    for code in LANGS:
+    for code in PUBLIC_LANGS:
         href = f"{SITE}/{rel}" if code == "fr" else f"{SITE}/{code}/{rel}"
         lines.append(f'<link rel="alternate" hreflang="{code}" href="{href}"/>')
     lines.append(f'<link rel="alternate" hreflang="x-default" href="{SITE}/{rel}"/>')

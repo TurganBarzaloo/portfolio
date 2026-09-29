@@ -4,3 +4,6 @@
 *.log
 dist/
 assets/_backup/
+# Traduction russe : générée et maintenue en local uniquement (jamais publiée)
+/ru/
+i18n/ru.json

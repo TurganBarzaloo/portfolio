@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="git.title">Git — Portfolio IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" data-i18n="git.desc" content="Git — GitHub frente a GitLab, el interés de un GitLab autoalojado, y la disciplina de repositorios — portfolio de Stéphane Muraro."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/git.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/git.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/git.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/git.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Inicio</a><a href="architecture.html" data-i18n="c.nav.architecture">Arquitectura</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infraestructura</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Proxy inverso</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Almacenamiento ZFS</a><a href="os.html" data-i18n="c.nav.os">Sistemas operativos</a><a href="network.html" data-i18n="c.nav.network">Red</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">IA Imagen</a><a href="speech_ai.html" data-i18n="c.nav.speech">IA de voz</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">Agentes IA</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Estación de desarrollo IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Servicios ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Herramientas ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">Acerca de</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 ES ▾</button><div class="nav-dd-menu"><a href="/pages/git.html">FR</a><a href="/en/pages/git.html">EN</a><a href="/es/pages/git.html" class="active">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Inicio</a><span>›</span><strong>Git</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+          <circle cx="12" cy="12" r="3"/><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/>
+          <circle cx="6" cy="18" r="2"/><path d="M8 6h8M8.5 8l-1 1.5M15.5 8l1 1.5M7 16V8"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Git</h1>
+        <p data-i18n="git.subtitle">GitHub · GitLab · disciplina de repositorios</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          <span data-i18n="c.pill.intermediate">Nivel: Intermedio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="git.intro">Git es la base de mi trabajo con código: versionar, conservar el historial y, sobre todo, <strong>separar lo público de lo interno</strong>. Esta página presenta el matiz <strong>GitHub / GitLab</strong>, el interés de un <strong>GitLab autoalojado</strong>, y la disciplina de repositorios que aplico a diario.</div>
+
+  <!-- GitHub vs GitLab -->
+  <h2 class="section-title" data-i18n="git.h.compare">GitHub y GitLab — el matiz</h2>
+  <div class="panel">
+    <div class="panel-body" style="padding:0">
+      <table class="data-table" data-i18n="git.t1"><thead><tr><th>Criterio</th><th><img src="/assets/github.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitHub</th><th><img src="/assets/gitlab.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitLab</th></tr></thead><tbody><tr><td>Modelo de alojamiento</td><td>SaaS (nube)</td><td>SaaS <strong>o autoalojado (on-premise)</strong></td></tr><tr><td>Edición libre</td><td>Oferta en la nube</td><td><strong>Community Edition — open source, instalable en casa</strong></td></tr><tr><td>Uso en este proyecto</td><td>Público · formación · portfolio</td><td>Interno · código profesional</td></tr><tr><td>Integración continua</td><td>GitHub Actions</td><td>Pipelines CI/CD integrados</td></tr><tr><td>Ventaja distintiva</td><td>Comunidad, visibilidad</td><td><strong>Soberanía, control total de los datos</strong></td></tr></tbody></table>
+    </div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.25rem" data-i18n="git.why"><strong>¿Por qué tener tu propio GitLab?</strong> Alojar tu propio GitLab (Community Edition, open source) mantiene el código y su historial <strong>fuera de la nube</strong>: control de accesos, retención y copias de seguridad, integración directa con una infraestructura on-premise, y coherencia con un enfoque de <strong>soberanía</strong> y cumplimiento (ISO 27001). GitHub sigue siendo ideal para lo que está destinado a ser público (portfolio, formación); un GitLab interno para lo que debe permanecer controlado.</div>
+
+  <!-- Deux remotes -->
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="git.h.remotes">Dos remotos, dos usos</h2>
+    <div class="content-grid">
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.remote1.h"><img src="/assets/github.svg" alt="" style="width:16px;height:16px;vertical-align:middle"> GitHub — público</div>
+        <div class="panel-body"><ul class="skill-list" data-i18n="git.remote1.list"><li>Portfolio (despliegue web)</li><li>Proyectos de formación</li><li>Base de conocimiento (repositorio privado)</li></ul></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.remote2.h"><img src="/assets/gitlab.svg" alt="" style="width:16px;height:16px;vertical-align:middle"> GitLab interno — controlado</div>
+        <div class="panel-body"><ul class="skill-list" data-i18n="git.remote2.list"><li>Código profesional</li><li>Historial conservado internamente</li><li>Acceso restringido y trazado</li></ul></div>
+      </div>
+    </div>
+    <div class="notes-box" style="margin-top:1.25rem" data-i18n="git.isolation"><strong>Aislamiento por arquitectura:</strong> el código profesional <strong>nunca</strong> transita por un repositorio público. No es solo una norma de organización, es una separación estructural de los remotos.</div>
+  </div>
+
+  <!-- Audit & hygiène -->
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="git.h.hygiene">Disciplina e higiene de repositorios</h2>
+    <div class="content-grid">
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.audit.h">Estado de los repositorios (auditoría)</div>
+        <div class="panel-body" style="padding:0">
+          <table class="data-table" data-i18n="git.t2"><thead><tr><th>Proyecto</th><th>Remoto</th><th>Estado</th></tr></thead><tbody><tr><td><strong>portfolio</strong></td><td style="font-size:.78rem;color:var(--gray-500)">GitHub</td><td><span class="badge badge-advanced">✓ Limpio</span></td></tr><tr><td><strong><span class="redacted" title="Nombre oculto por confidencialidad">Proyecto interno</span></strong></td><td style="font-size:.78rem;color:var(--gray-500)">GitLab interno</td><td><span class="badge badge-beginner">⚠ Por confirmar</span></td></tr><tr><td><strong><span class="redacted" title="Nombre oculto por confidencialidad">Aplicación de negocio</span></strong></td><td style="font-size:.78rem;color:var(--gray-500)">GitLab interno</td><td><span class="badge badge-inter">⚠ Eliminaciones</span></td></tr><tr><td><strong><span class="redacted" title="Nombre oculto por confidencialidad">Interfaz de datos interna</span></strong></td><td style="font-size:.78rem;color:var(--gray-500)">GitLab interno</td><td><span class="badge badge-advanced">→ Publicado</span></td></tr><tr><td><strong><span class="redacted" title="Nombre oculto por confidencialidad">Interfaz de datos</span></strong></td><td style="font-size:.78rem;color:var(--gray-500)">—</td><td><span class="badge" style="background:#FEE2E2;color:#991B1B">✗ Solo local</span></td></tr><tr><td><strong><span class="redacted" title="Nombre oculto por confidencialidad">Procesamiento de datos</span></strong></td><td style="font-size:.78rem;color:var(--gray-500)">—</td><td><span class="badge" style="background:#FEE2E2;color:#991B1B">✗ .venv confirmado</span></td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.files.h">Archivos parásitos identificados</div>
+        <div class="panel-body" style="padding:0">
+          <table class="data-table" data-i18n="git.t3"><thead><tr><th>Archivo / carpeta</th><th>Problema</th><th>Corrección</th></tr></thead><tbody><tr><td><code>.idea/</code></td><td>Configuración de PyCharm</td><td><code>git rm -r --cached .idea/</code></td></tr><tr><td><code>.venv/</code></td><td>Entorno virtual de Python</td><td><code>git rm -r --cached .venv/</code></td></tr><tr><td><code>dist/</code></td><td>Build de PyInstaller</td><td><code>git rm -r --cached dist/</code></td></tr><tr><td><code>*.lnk</code></td><td>Accesos directos de Windows</td><td>Excluir mediante <code>.gitignore</code></td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lecons -->
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+      <div class="panel-header" data-i18n="git.lessons.h"> 🎯 Lo que hay que recordar</div>
+      <div class="panel-body">
+        <ul class="skill-list" data-i18n="git.lessons.list"><li>Crear siempre el <code>.gitignore</code> <strong>antes</strong> del primer <code>git add .</code></li><li>Un proyecto sin remoto no está respaldado — el remoto de Git es la única copia de seguridad fiable del historial</li><li>Guardar los tokens (PAT) en el gestor de credenciales del sistema, nunca en las URLs</li><li>Un único remoto activo por proyecto; renombrar <code>master</code> → <code>main</code></li><li><code>--allow-unrelated-histories</code> para fusionar dos historiales sin ancestro común</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commandes -->
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+      <div class="panel-header" data-i18n="git.cmd.h"> 💻 Primer commit limpio (workflow)</div>
+      <div class="panel-body"><div class="code-label" data-i18n="git.cmd.label">bash — higiene + primer push</div>
+<div class="code-block"><pre># 1. .gitignore avant tout
+#    .venv/  __pycache__/  .idea/  dist/  build/  *.spec  .env  *.lnk
+
+# 2. Nettoyer le staging si des parasites ont été indexés
+git rm -r --cached .idea/ .venv/ dist/
+
+# 3. Branche principale + premier commit
+git branch -m master main
+git add .
+git commit -m "feat: initial commit"
+
+# 4. Remote (token dans le gestionnaire d'identifiants)
+git config --global credential.helper manager
+git remote add origin https://&lt;gitlab-interne&gt;/&lt;utilisateur&gt;/PROJET.git
+git push -u origin main
+
+# 5. Si le remote a déjà un commit initial (README auto)
+git pull origin main --allow-unrelated-histories
+git push -u origin main</pre></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Páginas relacionadas</h2>
+    <div class="related-grid">
+      <a class="related-card" href="python.html"><img src="/assets/python.svg" alt=""/>Python</a>
+      <a class="related-card" href="n8n.html"><img src="/assets/n8n.svg" alt=""/>Automatisation</a>
+      <a class="related-card" href="obsidian.html"><img src="/assets/obsidian.svg" alt=""/>Obsidian</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Referencias y fuentes</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Categoría</th><th data-i18n="c.refs.res">Recurso</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>Git — Documentation</td><td><a href="https://git-scm.com/doc" target="_blank" style="color:var(--blue-500)">git-scm.com/doc</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>GitLab — Documentation</td><td><a href="https://docs.gitlab.com/" target="_blank" style="color:var(--blue-500)">docs.gitlab.com</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>GitHub Docs</td><td><a href="https://docs.github.com/" target="_blank" style="color:var(--blue-500)">docs.github.com</a></td></tr>
+            <tr><td data-i18n="c.ref.license">Licencia</td><td>Git — GPLv2 · GitLab Community Edition — MIT</td><td><a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank" style="color:var(--blue-500)">gnu.org/licenses/gpl-2.0</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Contenido de esta página</td><td data-i18n="c.refs.cc">Compartido bajo CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Ingeniero de Infraestructura y Jefe de Proyecto · Burdeos, Francia</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 años de experiencia · Seguridad de sistemas · IA local (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Infraestructura personal</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Construido con Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Filosofía OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Créditos y marcas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stéphane Muraro — Architecture & Vue d'ensemble | Portfolio IA On-Premise</title>
+  <title data-i18n="arch.title">Stéphane Muraro — Architecture & Vue d'ensemble | Portfolio IA On-Premise</title>
   <meta name="author" content="Stéphane Muraro"/>
-  <meta name="description" content="Vue d'ensemble de la plateforme IA On-Premise — architecture Proxmox en couches (templates, infrastructure permanente, consommateurs IA, stockage ZFS) avec le statut de maturité de chaque brique."/>
+  <meta name="description" data-i18n="arch.desc" content="Vue d'ensemble de la plateforme IA On-Premise — architecture Proxmox en couches (templates, infrastructure permanente, consommateurs IA, stockage ZFS) avec le statut de maturité de chaque brique."/>
   <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
   <script>
@@ -70,6 +70,12 @@
     .footer-oss-badge { display: inline-flex; align-items: center; gap: .3rem; background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: .72rem; font-weight: 600; padding: .2rem .6rem; border-radius: 99px; margin-bottom: .35rem; }
     @media (max-width: 640px) { .site-footer-inner { grid-template-columns: 1fr; text-align: center; } .footer-author, .footer-oss { text-align: center; } }
   </style>
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/architecture.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/architecture.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/architecture.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/architecture.html"/>
+<!--HREFLANG_END-->
 </head>
 <body>
 <nav class="nav">
@@ -79,11 +85,11 @@
     </svg>
     IA On<span class="dot">·</span>Premise
   </a>
-  <div class="nav-links"><a href="../index.html">Accueil</a><a href="architecture.html">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html">Stockage ZFS</a><a href="os.html">Systèmes OS</a><a href="network.html">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html">IA Image</a><a href="speech_ai.html">Speech AI</a><a href="vm301-hermes-opencode.html">Agents IA</a><a href="vm302-station-dev-ia.html">Station Dev IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html">À propos</a></div>
+  <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Accueil</a><a href="architecture.html" data-i18n="c.nav.architecture">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Stockage ZFS</a><a href="os.html" data-i18n="c.nav.os">Systèmes OS</a><a href="network.html" data-i18n="c.nav.network">Réseau</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">IA Image</a><a href="speech_ai.html" data-i18n="c.nav.speech">Speech AI</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">Agents IA</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Station Dev IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Outils ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">À propos</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 FR ▾</button><div class="nav-dd-menu"><a href="/pages/architecture.html" class="active">FR</a><a href="/en/pages/architecture.html">EN</a><a href="/es/pages/architecture.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
   <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
 </nav>
 
-<div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><strong>Architecture — Vue d'ensemble</strong></div>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Accueil</a><span>›</span><strong data-i18n="arch.h1">Architecture — Vue d'ensemble</strong></div>
 
 <div class="page-header">
   <div class="page-header-inner">
@@ -95,9 +101,9 @@
         </svg>
       </div>
       <div>
-        <h1>Architecture — Vue d'ensemble</h1>
-        <p>La plateforme IA On-Premise sous Proxmox — templates, infrastructure permanente, consommateurs IA, stockage</p>
-        <span class="level-pill">Plateforme personnelle · IA souveraine · 2026</span>
+        <h1 data-i18n="arch.h1">Architecture — Vue d'ensemble</h1>
+        <p data-i18n="arch.subtitle">La plateforme IA On-Premise sous Proxmox — templates, infrastructure permanente, consommateurs IA, stockage</p>
+        <span class="level-pill" data-i18n="arch.pill">Plateforme personnelle · IA souveraine · 2026</span>
       </div>
     </div>
   </div>
@@ -108,12 +114,12 @@
   <figure style="margin:1.5rem 0 0;text-align:center">
     <img src="../assets/infrastructure-graph.png" alt="Infographie de l'architecture IA cible : infrastructure matérielle, plateforme logicielle, stack IA, services et écosystème, avec caractéristiques clés et flux d'accès"
          style="width:100%;max-width:1100px;height:auto;border:1px solid var(--gray-300);border-radius:var(--radius);box-shadow:var(--shadow)"/>
-    <figcaption style="font-size:.78rem;color:var(--gray-500);margin-top:.6rem">
+    <figcaption style="font-size:.78rem;color:var(--gray-500);margin-top:.6rem" data-i18n="arch.fig.caption">
       Vue d'ensemble — <strong>architecture cible</strong> de la plateforme (synthèse visuelle). Le détail par couche et le statut de chaque brique figurent ci-dessous.
     </figcaption>
   </figure>
 
-  <p style="font-size:.9rem;color:var(--gray-700);line-height:1.65;margin:1.5rem 0 0">
+  <p style="font-size:.9rem;color:var(--gray-700);line-height:1.65;margin:1.5rem 0 0" data-i18n="arch.intro">
     Vue d'ensemble du fil directeur de la plateforme, organisée comme sous Proxmox : un socle matériel, une bibliothèque
     de <strong>templates</strong>, une <strong>infrastructure permanente</strong> (nœuds IA et services), des
     <strong>consommateurs IA</strong> (agents et automatisation), et un <strong>stockage ZFS</strong> commun. Le statut de
@@ -122,14 +128,14 @@
 
   <!-- Légende -->
   <div class="arch-legend">
-    <span class="lg-item"><span class="lg-dot actif"></span>Actif — en service sur la cible Proxmox</span>
-    <span class="lg-item"><span class="lg-dot valide"></span>Validé — éprouvé sur banc de test / POC, portage planifié</span>
-    <span class="lg-item"><span class="lg-dot plan"></span>Planifié — non encore créé</span>
+    <span class="lg-item"><span class="lg-dot actif"></span><span data-i18n="arch.legend.actif">Actif — en service sur la cible Proxmox</span></span>
+    <span class="lg-item"><span class="lg-dot valide"></span><span data-i18n="arch.legend.valide">Validé — éprouvé sur banc de test / POC, portage planifié</span></span>
+    <span class="lg-item"><span class="lg-dot plan"></span><span data-i18n="arch.legend.plan">Planifié — non encore créé</span></span>
   </div>
 
   <!-- 1 · Socle -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">1</span><span class="layer-title">Socle matériel &amp; hyperviseur</span><span class="layer-sub">— la machine</span></div>
+    <div class="layer-head"><span class="layer-num">1</span><span class="layer-title" data-i18n="arch.l1.t">Socle matériel &amp; hyperviseur</span><span class="layer-sub" data-i18n="arch.l1.s">— la machine</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Serveur</span></div><div class="node-desc">AMD Ryzen 9 9950X3D · 192 Go DDR5</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">GPU</span></div><div class="node-desc">RTX 5090 · exclusive (1 VM GPU à la fois)</div></div>
@@ -142,7 +148,7 @@
 
   <!-- 2 · Stockage ZFS -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">2</span><span class="layer-title">Stockage ZFS</span><span class="layer-sub">— rpool commun</span></div>
+    <div class="layer-head"><span class="layer-num">2</span><span class="layer-title" data-i18n="arch.l2.t">Stockage ZFS</span><span class="layer-sub" data-i18n="arch.l2.s">— rpool commun</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/models</span></div><div class="node-desc">Modèles IA</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/rag</span></div><div class="node-desc">Documents &amp; index RAG</div></div>
@@ -157,7 +163,7 @@
 
   <!-- 3 · Templates -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">3</span><span class="layer-title">Templates de VM</span><span class="layer-sub">— socles clonables</span></div>
+    <div class="layer-head"><span class="layer-num">3</span><span class="layer-title" data-i18n="arch.l3.t">Templates de VM</span><span class="layer-sub" data-i18n="arch.l3.s">— socles clonables</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Templates 110 → 131</span></div><div class="node-desc">W11 · Ubuntu Desktop / Server · ± CUDA</div></div>
       <div class="node plan"><div class="node-top"><span class="node-dot"></span><span class="node-name">140 Debian-Server</span></div><div class="node-desc">Template Debian · planifié</div></div>
@@ -168,7 +174,7 @@
 
   <!-- 4 · Infrastructure permanente -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">4</span><span class="layer-title">Infrastructure permanente</span><span class="layer-sub">— nœuds IA &amp; services</span></div>
+    <div class="layer-head"><span class="layer-num">4</span><span class="layer-title" data-i18n="arch.l4.t">Infrastructure permanente</span><span class="layer-sub" data-i18n="arch.l4.s">— nœuds IA &amp; services</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">210 · IA-Core-CUDA</span></div><div class="node-desc">Ubuntu · Ollama · Open WebUI · RAG · modèles/config</div></div>
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">260 · W11-CUDA</span></div><div class="node-desc">Alternative · banc de POC / validation rapide</div></div>
@@ -180,7 +186,7 @@
 
   <!-- Briques logicielles IA (transverses) -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">4b</span><span class="layer-title">Briques logicielles IA</span><span class="layer-sub">— servies par les nœuds ci-dessus</span></div>
+    <div class="layer-head"><span class="layer-num">4b</span><span class="layer-title" data-i18n="arch.l4b.t">Briques logicielles IA</span><span class="layer-sub" data-i18n="arch.l4b.s">— servies par les nœuds ci-dessus</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Ollama</span></div><div class="node-desc">Inférence LLM local · VM210</div></div>
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">ComfyUI + Flux</span></div><div class="node-desc">Génération d'image (SDXL / Flux) — validé sur VM260 (POC) · portage planifié</div></div>
@@ -194,7 +200,7 @@
 
   <!-- 5 · Consommateurs IA -->
   <div class="layer">
-    <div class="layer-head"><span class="layer-num">5</span><span class="layer-title">Consommateurs IA</span><span class="layer-sub">— agents &amp; automatisation</span></div>
+    <div class="layer-head"><span class="layer-num">5</span><span class="layer-title" data-i18n="arch.l5.t">Consommateurs IA</span><span class="layer-sub" data-i18n="arch.l5.s">— agents &amp; automatisation</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">300 · n8n</span></div><div class="node-desc">Orchestration de workflows · VM300 (autodémarrage)</div></div>
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">301 · Hermes + OpenCode</span></div><div class="node-desc">Station agentique Linux (Ubuntu) · inférence déléguée à VM210 · Hermes (qwen3.6:35b) + OpenCode (qwen3-coder:30b) validés</div></div>
@@ -204,14 +210,14 @@
 
   <!-- Piliers -->
   <div class="pillars">
-    <div class="pillar"><div class="pillar-title">SOUVERAINETÉ</div><div class="pillar-desc">Données et modèles hébergés en local, sans cloud</div></div>
-    <div class="pillar"><div class="pillar-title">SÉCURITÉ</div><div class="pillar-desc">Cloisonnement des VM · exposition maîtrisée</div></div>
-    <div class="pillar"><div class="pillar-title">MODULARITÉ</div><div class="pillar-desc">Services découplés, remplaçables brique à brique</div></div>
-    <div class="pillar"><div class="pillar-title">ÉVOLUTIVITÉ</div><div class="pillar-desc">Ajout de VM, modèles et services à la demande</div></div>
+    <div class="pillar"><div class="pillar-title" data-i18n="arch.p1.t">SOUVERAINETÉ</div><div class="pillar-desc" data-i18n="arch.p1.d">Données et modèles hébergés en local, sans cloud</div></div>
+    <div class="pillar"><div class="pillar-title" data-i18n="arch.p2.t">SÉCURITÉ</div><div class="pillar-desc" data-i18n="arch.p2.d">Cloisonnement des VM · exposition maîtrisée</div></div>
+    <div class="pillar"><div class="pillar-title" data-i18n="arch.p3.t">MODULARITÉ</div><div class="pillar-desc" data-i18n="arch.p3.d">Services découplés, remplaçables brique à brique</div></div>
+    <div class="pillar"><div class="pillar-title" data-i18n="arch.p4.t">ÉVOLUTIVITÉ</div><div class="pillar-desc" data-i18n="arch.p4.d">Ajout de VM, modèles et services à la demande</div></div>
   </div>
 
   <div style="margin-top:1.75rem">
-    <h2 class="section-title">Pages liées</h2>
+    <h2 class="section-title" data-i18n="c.sec.related">Pages liées</h2>
     <div class="related-grid">
       <a class="related-card" href="infrastructure.html"><img src="../assets/linux.svg" alt=""/>Infrastructure</a>
       <a class="related-card" href="proxmox.html"><img src="../assets/proxmox.svg" alt=""/>Proxmox VE</a>
@@ -225,16 +231,16 @@
 <!-- ── RÉFÉRENCES (style Wikipédia) ── -->
 <div class="content" style="padding-top:0">
   <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
-    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">Références &amp; Sources</h2>
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Références &amp; Sources</h2>
     <div class="panel">
       <div class="panel-body" style="padding:0">
         <table class="data-table">
-          <thead><tr><th>Catégorie</th><th>Ressource</th><th>URL</th></tr></thead>
+          <thead><tr><th data-i18n="c.refs.cat">Catégorie</th><th data-i18n="c.refs.res">Ressource</th><th data-i18n="c.refs.url">URL</th></tr></thead>
           <tbody>
-            <tr><td>Positionnement</td><td>Présentation générale de la plateforme — démarche et vocation</td><td>Fiche interne « presentation-generale »</td></tr>
-            <tr><td>Architecture</td><td>Nomenclature VM &amp; datasets ZFS (retenue) · jalons J0 → J13</td><td>Suivi interne</td></tr>
-            <tr><td>Niveaux de maturité</td><td>Actif · Validé (banc de test) · Planifié</td><td>—</td></tr>
-            <tr><td>Contenu de cette page</td><td>Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+            <tr><td data-i18n="arch.ref.cat1">Positionnement</td><td data-i18n="arch.ref.res1">Présentation générale de la plateforme — démarche et vocation</td><td>Fiche interne « presentation-generale »</td></tr>
+            <tr><td data-i18n="c.nav.architecture">Architecture</td><td data-i18n="arch.ref.res2">Nomenclature VM &amp; datasets ZFS (retenue) · jalons J0 → J13</td><td>Suivi interne</td></tr>
+            <tr><td data-i18n="arch.ref.cat3">Niveaux de maturité</td><td data-i18n="arch.ref.res3">Actif · Validé (banc de test) · Planifié</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Contenu de cette page</td><td data-i18n="c.refs.cc">Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -246,21 +252,21 @@
   <div class="site-footer-inner">
     <div class="footer-author">
       <strong>Stéphane Muraro</strong>
-      <span>Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
-      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)">26 ans d'expérience · Sécurité système · IA On-Premise</span>
+      <span data-i18n="c.foot.role">Ingénieur Infrastructure &amp; Chef de Projet · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 ans d'expérience · Sécurité système · IA On-Premise</span>
     </div>
     <div class="footer-center">
       portfolio.stephanemuraro.fr<br/>
-      <span style="font-size:.7rem;color:var(--gray-300)">Infrastructure personnelle</span>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Infrastructure personnelle</span>
     </div>
     <div class="footer-oss">
       <div class="footer-oss-badge">
         <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
         Open Source &amp; fair-code
       </div>
-      <div>Construit avec Git · Proxmox · Python · nginx</div>
+      <div data-i18n="c.foot.built">Construit avec Git · Proxmox · Python · nginx</div>
       <div style="margin-top:.25rem">
-        <a href="about.html#philosophie">Philosophie OSS →</a> · <a href="about.html#credits">Crédits &amp; marques</a>
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Philosophie OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Crédits &amp; marques</a>
       </div>
     </div>
   </div>

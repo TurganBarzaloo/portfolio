@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="os.title">Sistemas Operativos — Portfolio IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/os.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/os.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/os.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/os.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Inicio</a><a href="architecture.html" data-i18n="c.nav.architecture">Arquitectura</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infraestructura</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Proxy inverso</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Almacenamiento ZFS</a><a href="os.html" data-i18n="c.nav.os">Sistemas operativos</a><a href="network.html" data-i18n="c.nav.network">Red</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">IA Imagen</a><a href="speech_ai.html" data-i18n="c.nav.speech">IA de voz</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">Agentes IA</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Estación de desarrollo IA</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Servicios ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Herramientas ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">Acerca de</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 ES ▾</button><div class="nav-dd-menu"><a href="/pages/os.html">FR</a><a href="/en/pages/os.html">EN</a><a href="/es/pages/os.html" class="active">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Inicio</a><span>›</span><strong data-i18n="c.nav.os">Sistemas operativos</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/linux.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="os.h1">Sistemas Operativos</h1>
+        <p>Linux (Debian/Ubuntu/Alpine) · Windows 11 · Templates VM</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.intermediateplus">Nivel: Intermedio+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="os.p1.h"> 🐧 Linux</div>
+  <div class="panel-body"><table class="data-table" data-i18n="os.t1"><thead><tr><th>Distribución</th><th>Versión</th><th>Uso</th></tr></thead><tbody><tr><td>Proxmox VE</td><td>Base Debian</td><td>Hipervisor</td></tr><tr><td>Debian</td><td>12 (Bookworm)</td><td>VM de servidor genérica</td></tr><tr><td>Ubuntu Server</td><td>24.04 LTS</td><td>Servicios de IA / Docker</td></tr><tr><td>Ubuntu Desktop</td><td>24.04 LTS</td><td>Puesto de desarrollo IA</td></tr><tr><td>Alpine Linux</td><td>3.x</td><td>VM ligera / contenedores</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="os.p2.h"> 🪟 Windows</div>
+  <div class="panel-body"><table class="data-table" data-i18n="os.t2"><thead><tr><th>Versión</th><th>Uso</th><th>Notas</th></tr></thead><tbody><tr><td>Windows 11 Pro</td><td>VM de escritorio con GPU passthrough</td><td>CUDA + controladores NVIDIA</td></tr><tr><td>Win11 CUDA Template</td><td>Plantilla preconfigurada</td><td>Sysprep + CUDA Toolkit</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="os.p3.h"> 📋 Procedimiento de plantilla Ubuntu Server</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># Dans la VM Ubuntu (préparation template)
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y qemu-guest-agent cloud-init
+
+# Nettoyer
+sudo cloud-init clean
+sudo truncate -s 0 /etc/machine-id
+sudo truncate -s 0 /var/lib/dbus/machine-id
+
+# Éteindre proprement
+sudo poweroff
+
+# Dans Proxmox : convertir en template
+qm template &lt;VMID&gt;</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Competencias aplicadas</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="os.skills"><li>Administración avanzada de Linux (Debian/Ubuntu)</li><li>Creación de plantillas de VM reproducibles (Linux + Windows)</li><li>Sysprep de Windows para generalización</li><li>Despliegue y clonación rápida de VM</li><li>Instalación y configuración de CUDA Toolkit en Windows</li><li>Cloud-init para personalización automática en el arranque</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Páginas relacionadas</h2>
+    <div class="related-grid">
+      <a class="related-card" href="proxmox.html"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Referencias y fuentes</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Categoría</th><th data-i18n="c.refs.res">Recurso</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>Debian — Documentation</td><td><a href="https://www.debian.org/doc/" target="_blank" style="color:var(--blue-500)">debian.org/doc</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>Ubuntu Server — Documentation</td><td><a href="https://documentation.ubuntu.com/server/" target="_blank" style="color:var(--blue-500)">documentation.ubuntu.com/server</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>Alpine Linux — Wiki</td><td><a href="https://wiki.alpinelinux.org/" target="_blank" style="color:var(--blue-500)">wiki.alpinelinux.org</a></td></tr>
+            <tr><td data-i18n="os.ref.cat4">Sistemas utilizados</td><td>Debian · Ubuntu Server 24.04 LTS · Alpine · Windows 11</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Licencia</td><td>Debian / Ubuntu — GPL et variantes · Alpine — MIT / GPL</td><td><a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" style="color:var(--blue-500)">gnu.org/licenses/gpl-3.0</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Contenido de esta página</td><td data-i18n="c.refs.cc">Compartido bajo CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Ingeniero de Infraestructura y Jefe de Proyecto · Burdeos, Francia</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 años de experiencia · Seguridad de sistemas · IA local (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Infraestructura personal</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Construido con Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Filosofía OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Créditos y marcas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="llm.title">Local AI & LLM — On-Premise AI Portfolio</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/ia_llm.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/ia_llm.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/ia_llm.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/ia_llm.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Home</a><a href="architecture.html" data-i18n="c.nav.architecture">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">ZFS Storage</a><a href="os.html" data-i18n="c.nav.os">Operating Systems</a><a href="network.html" data-i18n="c.nav.network">Network</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">AI ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">AI &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">AI Image</a><a href="speech_ai.html" data-i18n="c.nav.speech">Speech AI</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">AI Agents</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">AI Dev Station</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Tools ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">About</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 EN ▾</button><div class="nav-dd-menu"><a href="/pages/ia_llm.html">FR</a><a href="/en/pages/ia_llm.html" class="active">EN</a><a href="/es/pages/ia_llm.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Home</a><span>›</span><strong data-i18n="llm.h1">Local AI & LLM</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/ollama.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="llm.h1">Local AI & LLM</h1>
+        <p>Ollama · Open WebUI · Llama · Mistral · Gemma · Phi · Hermes</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.intermediateplus">Level: Intermediate+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div style="font-size:.88rem;color:var(--gray-600);background:var(--blue-50);border:1px solid var(--blue-100);border-radius:var(--radius-sm);padding:1rem 1.25rem;margin-bottom:1.5rem">
+    <strong>Architecture :</strong>
+    <code style="font-family:monospace;background:var(--white);padding:.15rem .4rem;border-radius:4px;font-size:.82rem">
+      [RTX 5090] → [Ollama] → [Open WebUI / API REST] → [Utilisateur / n8n / RAG pgvector]
+    </code>
+    <div style="margin-top:.75rem;font-size:.84rem" data-i18n="llm.arch.body"><strong>Ollama</strong>, <strong>Open WebUI</strong> and the <strong>RAG</strong> run on the main AI node <strong>VM210</strong> (Ubuntu Server 24.04 LTS · Docker Engine + NVIDIA Container Toolkit · RTX 5090), with the RAG relying on PostgreSQL/pgvector hosted on <strong>VM215</strong>. <strong>VM260</strong> (Windows) is an alternative machine for <strong>PoC / quick validation</strong>, where components are proven before being scheduled on the final infrastructure. Since the RTX 5090 is exclusive, only one GPU node uses it at a time.</div>
+  </div>
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p1.h"> ⚡ RTX 5090 power cap — past diagnostic</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.power.p1">During an <strong>earlier diagnostic</strong> (investigating <strong>abrupt shutdowns</strong> under certain agentic workloads), the RTX 5090 was capped by software at <strong>400 W</strong>, instead of the default <strong>600 W</strong>. The <strong>ComfyUI and Ollama tests of September 27–28, 2026</strong> were then run at <strong>600 W</strong>, by explicit decision. No lasting stability gain nor performance comparison between these caps has been established.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.power.p2">The cap affects <strong>neither VRAM nor model size</strong>. The 400 W procedure below keeps a record of the diagnostic; it no longer describes the current state.</p>
+    <div class="code-label" data-i18n="llm.power.label">check of the active cap / default cap</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=power.limit,power.default_limit \
+  --format=csv,noheader
+# → 600.00 W, 600.00 W</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0" data-i18n="llm.power.p3">Diagnostic value (historical): <code>sudo nvidia-smi --power-limit=400</code> (not persistent). Return to the factory cap: <code>sudo nvidia-smi --power-limit=600</code>.</p>
+  </div>
+</div>
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p2.h"> 🤖 Deployed LLM models</div>
+  <div class="panel-body"><table class="data-table" data-i18n="llm.t1"><thead><tr><th>Family</th><th>Models</th><th>Usage</th></tr></thead><tbody><tr><td>Meta</td><td>Llama 3.x</td><td>High-quality general-purpose LLM</td></tr><tr><td>Mistral AI</td><td>Mistral 7B/22B</td><td>Efficient LLM, good performance/size ratio</td></tr><tr><td>Google</td><td>Gemma 2</td><td>Compact and fast LLM</td></tr><tr><td>Microsoft</td><td>Phi-3</td><td>Small-footprint LLM</td></tr><tr><td>NousResearch</td><td>Hermes</td><td>Advanced AI agent — 🔵 validated (design platform)</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p3.h"> 🖥️ Interfaces & Tools</div>
+  <div class="panel-body"><table class="data-table" data-i18n="llm.t2"><thead><tr><th>Tool</th><th>Role</th><th>Version</th><th>Port</th></tr></thead><tbody><tr><td>Ollama</td><td>Local LLM inference server</td><td>0.32.6</td><td><span class="redacted">11434</span></td></tr><tr><td>Open WebUI</td><td>Chat interface (ChatGPT-style) + RAG</td><td>0.11.0</td><td><span class="redacted">3000</span></td></tr><tr><td>n8n</td><td>AI workflow orchestration</td><td>—</td><td><span class="redacted">5678</span></td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p4.h"> 💻 Ollama commands</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># Lister les modèles installés
+ollama list
+
+# Télécharger un modèle
+ollama pull mistral
+ollama pull llama3
+
+# Inférence directe
+ollama run mistral
+
+# API REST
+curl http://localhost:<span class="redacted">11434</span>/api/generate \\
+  -d '{"model": "mistral", "prompt": "Résume en 3 points :", "stream": false}'</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Skills demonstrated</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="llm.skills"><li>Local LLM hosting (private AI infrastructure, no cloud)</li><li>Comparison and selection of LLM models based on needs</li><li>Ollama configuration (models, API, inference parameters)</li><li>Open WebUI deployment as the user interface</li><li>LLM integration into pipelines via REST API</li><li>AI agent architecture with Hermes + n8n</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p5.h"> 🖼️ Local image generation — ComfyUI &amp; GPU sharing</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.comfy.p1">The Linux AI node (<strong>VM210</strong>) now runs <strong>ComfyUI 0.36.0</strong> and <strong>Ollama</strong> on the <strong>same RTX 5090 (32 GB)</strong>. The <strong>RealVisXL V5.0</strong> model (photorealistic SDXL derivative) produced portraits at <strong>512×512</strong> and <strong>1,024×1,024</strong>. Coexistence with <code>qwen3:8b</code> was observed, then <strong>unloading models without stopping the servers</strong> was verified. <strong>Automatic request sharing still needs to be built</strong> (manual switching for now).</p>
+    <div class="code-label" data-i18n="llm.comfy.label">session observations — RTX 5090 VRAM (not a benchmark)</div>
+    <table class="data-table" data-i18n="llm.t3"><thead><tr><th>Test</th><th>Observation</th><th>Scope</th></tr></thead><tbody><tr><td>512×512 portrait, 8 steps</td><td>8.03 s (including initial load)</td><td>Functional validation</td></tr><tr><td>1,024×1,024 portrait, 30 steps</td><td>Image obtained (DPM++ SDE Karras)</td><td>Duration not reliably attributed</td></tr><tr><td>Qwen3 8B + RealVisXL</td><td>19,001 MiB of VRAM (sample)</td><td>Qwen 100% GPU, 40,960 context</td></tr><tr><td>ComfyUI unload</td><td>7,376 → 742 MiB · HTTP 200</td><td>Server kept active</td></tr><tr><td>Reload + 8-step generation</td><td>7.40 s · back to 7,376 MiB</td><td>Full cycle without restart</td></tr><tr><td>Qwen3 8B unload (ComfyUI stopped)</td><td>Back to 2 MiB</td><td>Ollama service still available</td></tr></tbody></table>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="llm.comfy.notes">These are <strong>session observations</strong>, with no statistical protocol or latency guarantee. A coexistence reading shows <strong>539 W · 53 °C · 83% GPU</strong> (600 W configured cap) — not to be presented as constant consumption or a measured peak. Larger LLMs, longer contexts or other workflows may exceed the available memory. <strong>RealVisXL V5.0</strong> is distributed under the <strong>Open RAIL++</strong> license: available weights do not mean an absence of license restrictions.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Related pages</h2>
+    <div class="related-grid">
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="rag.html"><img src="/assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
+      <a class="related-card" href="n8n.html"><img src="/assets/n8n.svg" alt=""/>Automatisation</a>
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">References &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Category</th><th data-i18n="c.refs.res">Resource</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Official documentation</td><td>Ollama</td><td><a href="https://github.com/ollama/ollama" target="_blank" style="color:var(--blue-500)">github.com/ollama/ollama</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Official documentation</td><td>Open WebUI</td><td><a href="https://docs.openwebui.com/" target="_blank" style="color:var(--blue-500)">docs.openwebui.com</a></td></tr>
+            <tr><td data-i18n="c.ref.version">Version used</td><td>Ollama 0.32.6 · Open WebUI 0.11.0 · Ubuntu Server 24.04 LTS (nœud VM210)</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">License</td><td>Ollama — MIT · Open WebUI — BSD-3-Clause</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Content of this page</td><td data-i18n="c.refs.cc">Shared under CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Infrastructure Engineer &amp; Project Manager · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 years of experience · Systems security · On-Premise AI</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Personal infrastructure</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Built with Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">OSS philosophy →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Credits &amp; trademarks</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

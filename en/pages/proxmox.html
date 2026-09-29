@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="prox.title">Proxmox VE — On-Premise AI Portfolio</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/proxmox.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/proxmox.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/proxmox.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/proxmox.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Home</a><a href="architecture.html" data-i18n="c.nav.architecture">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">ZFS Storage</a><a href="os.html" data-i18n="c.nav.os">Operating Systems</a><a href="network.html" data-i18n="c.nav.network">Network</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">AI ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">AI &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">AI Image</a><a href="speech_ai.html" data-i18n="c.nav.speech">Speech AI</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">AI Agents</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">AI Dev Station</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Tools ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">About</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 EN ▾</button><div class="nav-dd-menu"><a href="/pages/proxmox.html">FR</a><a href="/en/pages/proxmox.html" class="active">EN</a><a href="/es/pages/proxmox.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Home</a><span>›</span><strong data-i18n="prox.h1">Proxmox VE Hypervisor</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/proxmox.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="prox.h1">Proxmox VE Hypervisor</h1>
+        <p>Proxmox VE 9.2.2 · Kernel PVE 6.17 · KVM/QEMU · Templates · Snapshots</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.advanced">Level: Advanced</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="prox.why"><strong>Why Proxmox for this project?</strong> The hypervisor is the base that makes the platform <strong>scalable</strong> and <strong>agile</strong>: each role (AI node, shared services, PoC bench) is added, isolated or evolves without touching the others. It brings a real <strong>time saving</strong> — in case of corruption, an entire server is recloned in a few minutes from a template or a snapshot, instead of reinstalling everything. And it <strong>extends the possibilities</strong>: Linux / Windows coexistence on the same machine, including one or more <strong>Windows clients</strong> to consume the AI services, with GPU allocation on demand.</div>
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="prox.p1.h"> 📦 Version & features</div>
+  <div class="panel-body"><table class="data-table" data-i18n="prox.t1"><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody><tr><td>Proxmox VE</td><td>9.2.2</td></tr><tr><td>PVE kernel</td><td>6.17</td></tr><tr><td>Virtualization</td><td>KVM + QEMU</td></tr><tr><td>UEFI VM</td><td>OVMF</td></tr><tr><td>Legacy BIOS</td><td>SeaBIOS</td></tr><tr><td>Paravirt drivers</td><td>VirtIO</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="prox.p2.h"> 📋 Available templates</div>
+  <div class="panel-body"><table class="data-table" data-i18n="prox.t2"><thead><tr><th>Name</th><th>OS</th><th>Role</th><th>Status</th></tr></thead><tbody><tr><td>WIN11-CUDA</td><td>Windows 11 Pro</td><td>Desktop + GPU passthrough</td><td>🟢 Operational</td></tr><tr><td>Ubuntu Desktop-CUDA</td><td>Ubuntu Desktop 24.04</td><td>GPU passthrough / CUDA / Docker</td><td>🟢 Operational</td></tr><tr><td>WIN11-base</td><td>W11-debloat-sysprep</td><td>AI dev/test workstation</td><td>🟢 Operational</td></tr><tr><td>Ubuntu Server-CUDA</td><td>Ubuntu Server 24.04</td><td>AI-CORE servers + GPU passthrough + CUDA / Docker</td><td>🟢 Operational</td></tr><tr><td>Ubuntu Server</td><td>Ubuntu Server 24.04</td><td>Functional servers with no GPU need</td><td>🟢 Operational</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="prox.p3.h"> 🔄 VM status & startup order</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.intro">This command produces directly from Proxmox the list of VMs with their <strong>current state</strong>, their <strong>auto-start policy</strong> (<code>onboot</code>) and their <strong>resume order</strong> (<code>startup</code>) — without confusing the instantaneous state (<code>running</code> / <code>stopped</code>) with the persistent configuration.</p>
+    <div class="code-label" data-i18n="prox.startup.label1">bash — status + startup order</div>
+<div class="code-block"><pre>for vmid in $(qm list | awk 'NR &gt; 1 {print $1}'); do
+    config=$(qm config "$vmid")
+
+    name=$(awk -F': ' '/^name:/ {print $2}' &lt;&lt;&lt; "$config")
+    status=$(qm status "$vmid" | awk '{print $2}')
+    onboot=$(awk -F': ' '/^onboot:/ {print $2}' &lt;&lt;&lt; "$config")
+    startup=$(awk -F': ' '/^startup:/ {print $2}' &lt;&lt;&lt; "$config")
+
+    [ -z "$onboot" ] &amp;&amp; onboot=0
+    [ -z "$startup" ] &amp;&amp; startup="-"
+
+    printf '%-6s %-30s status=%-8s onboot=%-2s startup=%s\n' \
+        "$vmid" "$name" "$status" "$onboot" "$startup"
+done</pre></div>
+    <div class="code-label" style="margin-top:1rem" data-i18n="prox.startup.label2">sanitized excerpt — resume order: VM215 (10) → VM210 (20) → VM300 n8n (30) → VM205 (40)</div>
+<div class="code-block"><pre>205    205-Ubuntu-Nextcloud           onboot=1  startup=order=40,up=30,down=60
+210    210-IA-CORE-CUDA               onboot=1  startup=order=20,up=30,down=60
+215    215-IA-Services                onboot=1  startup=order=10,up=60,down=60
+260    260-W11-CUDA-Ollama            onboot=0  startup=-
+300    300-n8n                        onboot=1  startup=order=30,up=30,down=60
+…      environnements à la demande    onboot=0  startup=-</pre></div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.notes"><strong>Reading:</strong> VMs with <code>onboot=1</code> resume in increasing <code>startup</code> order — <strong>VM215 (services · PostgreSQL/pgvector) → VM210 (AI node) → VM300 (n8n) → VM205 (Nextcloud)</strong> — so that dependencies are ready before their consumers. Alternative GPU environments stay out of auto-start. The exhaustive inventory remains in the internal operations documentation.</div>
+  </div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Skills demonstrated</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="prox.skills"><li>Proxmox VE administration (web UI + CLI)</li><li>Creation, configuration and management of KVM/QEMU VMs</li><li>ZFS storage management via Proxmox</li><li>Creation of reusable system templates</li><li>Scheduled snapshots and backups</li><li>VM cloning for rapid deployment</li><li>Hypervisor troubleshooting (logs, VNC console)</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="prox.p5.h"> 🧪 Lessons learned — template rebuild (VM130)</div>
+  <div class="panel-body" data-i18n="prox.p5.body"><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .75rem">Cloning an old template revealed a <strong>residual hostname</strong>. The clone was fixed and checked, then the <strong>generic template was rebuilt from an official ISO</strong> to explicitly control its content. The build VM was <strong>sanitized before conversion</strong>: machine identity, hostname, SSH keys, network, Cloud-Init state and logs were cleaned.</p><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">A <strong>full validation clone</strong> confirmed Cloud-Init initialization, generation of a clean identity, networking, DNS, SSH, the guest agent, and persistence after reboot. <strong>The old template was only replaced after this check</strong>; the ZFS origins were verified before deleting the candidate that had become redundant, to preserve VM independence.</p></div>
+</div>
+    <div class="panel" style="margin-top:1.5rem">
+  <div class="panel-header" data-i18n="prox.p6.h"> ♻️ Template lifecycle & types</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.lifecycle.intro">A template is not worth much for its cloning speed but for the <strong>mastery of what it transmits</strong> (system, identity, network, access, initialization). <strong>Building, validating and replacing are three separate operations</strong>: the old template stays available until its replacement and its validation clone have met every criterion.</p>
+    <div class="code-label" data-i18n="prox.lifecycle.label">template lifecycle</div>
+<div class="code-block"><pre>Source système vérifiée
+        │
+        ▼
+VM temporaire de construction
+        │ installation et configuration du socle
+        ▼
+Neutralisation
+        │ identités, réseau, secrets et journaux
+        ▼
+Template temporaire
+        │
+        ▼
+Clone de validation
+        │ contrôles fonctionnels et d'indépendance
+        ▼
+Template validé
+        │
+        ├── clone complet → VM applicative
+        └── template dérivé → socle spécialisé</pre></div>
+    <div style="margin-top:1rem;overflow-x:auto">
+      <table class="data-table" data-i18n="prox.t3"><thead><tr><th>Base type</th><th>Expected content</th><th>Excluded elements</th></tr></thead><tbody><tr><td><strong>Generic server</strong></td><td>minimal system, Cloud-Init, SSH, guest agent</td><td>application, secret, business configuration</td></tr><tr><td><strong>Specialized server</strong></td><td>generic base + justified common dependencies</td><td>data specific to one VM</td></tr><tr><td><strong>CUDA / GPU</strong></td><td>validated GPU drivers and tools</td><td>application unrelated to the GPU</td></tr><tr><td><strong>Windows</strong></td><td>prepared system, VirtIO drivers, generalization mechanism</td><td>identity and account specific to the source VM</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.lifecycle.notes">A specialized template must not make the generic one dependent on its components; applications normally stay installed in the clones.</div>
+  </div>
+</div>
+    <div class="panel" style="margin-top:1.5rem">
+  <div class="panel-header" data-i18n="prox.p7.h"> 🐛 Lessons learned — PCIe diagnosis</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0" data-i18n="prox.pcie.body">An onboard PCIe device <strong>intermittently disappeared</strong>. The diagnosis distinguished a real absence on the bus from a simple driver fault, by successively checking the interface, the modules, PCIe enumeration, the parent port and the rescan. A <strong>full power cycle</strong> restored the device; recurrence is being monitored before considering a conditional firmware update.</p>
+  </div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Related pages</h2>
+    <div class="related-grid">
+      <a class="related-card" href="infrastructure.html"><img src="/assets/linux.svg" alt=""/>Infrastructure</a>
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="storage_zfs.html"><img src="/assets/zfs.svg" alt=""/>Stockage ZFS</a>
+      <a class="related-card" href="os.html"><img src="/assets/linux.svg" alt=""/>Systèmes OS</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">References &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Category</th><th data-i18n="c.refs.res">Resource</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Official documentation</td><td>Proxmox VE Administration Guide</td><td><a href="https://pve.proxmox.com/pve-docs/" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/pve-docs</a></td></tr>
+            <tr><td data-i18n="c.ref.github">GitHub repository</td><td>proxmox/pve-manager</td><td><a href="https://github.com/proxmox/pve-manager" target="_blank" style="color:var(--blue-500)">github.com/proxmox/pve-manager</a></td></tr>
+            <tr><td data-i18n="c.ref.version">Version used</td><td>Proxmox VE 9.2.2 — KVM/QEMU · OVMF · VirtIO</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">License</td><td>AGPLv3 (Community Edition)</td><td><a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" style="color:var(--blue-500)">gnu.org/licenses/agpl-3.0</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Content of this page</td><td data-i18n="c.refs.cc">Shared under CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Infrastructure Engineer &amp; Project Manager · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 years of experience · Systems security · On-Premise AI</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Personal infrastructure</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Built with Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">OSS philosophy →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Credits &amp; trademarks</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

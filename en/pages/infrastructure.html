@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="infra.title">Hardware Infrastructure — On-Premise AI Portfolio</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/infrastructure.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/infrastructure.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/infrastructure.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/infrastructure.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Home</a><a href="architecture.html" data-i18n="c.nav.architecture">Architecture</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infrastructure</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Reverse Proxy</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">ZFS Storage</a><a href="os.html" data-i18n="c.nav.os">Operating Systems</a><a href="network.html" data-i18n="c.nav.network">Network</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">AI ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">AI &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">AI Image</a><a href="speech_ai.html" data-i18n="c.nav.speech">Speech AI</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">AI Agents</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">AI Dev Station</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Services ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Tools ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">About</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 EN ▾</button><div class="nav-dd-menu"><a href="/pages/infrastructure.html">FR</a><a href="/en/pages/infrastructure.html" class="active">EN</a><a href="/es/pages/infrastructure.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Home</a><span>›</span><strong data-i18n="c.nav.infrastructure">Infrastructure</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/linux.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="infra.h1">Hardware Infrastructure</h1>
+        <p data-i18n="infra.subtitle">Local AI server: AMD Ryzen 9 9950X3D · NVIDIA RTX 5090 · 192 GB DDR5</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.advanced">Level: Advanced</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="infra.p1.h"> 🖥️ Hardware components</div>
+  <div class="panel-body"><table class="data-table" data-i18n="infra.t1"><thead><tr><th>Component</th><th>Detail</th><th>Role</th></tr></thead><tbody><tr><td><strong>CPU</strong></td><td>AMD Ryzen 9 9950X3D — 16 cores / 32 threads</td><td>AI inference · KVM virtualization</td></tr><tr><td><strong>GPU</strong></td><td>NVIDIA GeForce RTX 5090</td><td>LLM inference · Image generation</td></tr><tr><td><strong>RAM</strong></td><td>192 GB DDR5 (~186 GiB usable)</td><td>Multiple VM memory · large models</td></tr><tr><td><strong>Storage</strong></td><td>2× NVMe SSD in ZFS mirror (~1.75 TiB usable)</td><td>Virtual disks · AI datasets · resilience</td></tr><tr><td><strong>Hypervisor</strong></td><td>Proxmox VE 9.2.2</td><td>Virtualization · GPU allocation</td></tr><tr><td><strong>Network</strong></td><td>Ethernet</td><td>Proxmox bridge · LAN access</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="infra.p2.h"> ⚙️ BIOS/UEFI configuration</div>
+  <div class="panel-body"><table class="data-table" data-i18n="infra.t2"><thead><tr><th>Parameter</th><th>Status</th><th>Usage</th></tr></thead><tbody><tr><td>AMD-V</td><td>✅ Enabled</td><td>KVM CPU virtualization</td></tr><tr><td>IOMMU</td><td>✅ Enabled</td><td>GPU Passthrough VFIO</td></tr><tr><td>Above 4G Decoding</td><td>✅ Enabled</td><td>Extended PCIe addressing</td></tr><tr><td>Re-Size BAR</td><td>✅ Enabled</td><td>Maximum GPU performance</td></tr><tr><td>Secure Boot</td><td>✅ Configured</td><td>UEFI security</td></tr><tr><td>UEFI</td><td>✅ Native</td><td>Modern boot · OVMF</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Skills demonstrated</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="infra.skills"><li>High-performance local AI server architecture</li><li>Hardware selection for GPU inference (VRAM, bandwidth)</li><li>CPU / RAM sizing for a multi-VM hypervisor</li><li>BIOS/UEFI configuration for virtualization and PCIe passthrough</li><li>High-performance NVMe storage management with ZFS</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="infra.p3.h"> 🧩 Role distribution — virtual machines</div>
+  <div class="panel-body"><table class="data-table" data-i18n="infra.t3"><thead><tr><th>VM</th><th>Role</th><th>Base</th><th>Key components</th></tr></thead><tbody><tr><td><strong>VM200</strong></td><td>Reverse proxy — Web entry point / HTTPS publishing</td><td>Ubuntu Server 24.04 LTS · no GPU</td><td>Nginx · Certbot (Let's Encrypt) · Fail2ban · local firewall</td></tr><tr><td><strong>VM205</strong></td><td>File service — Nextcloud</td><td>Ubuntu Server 24.04 LTS · no GPU</td><td>Nextcloud + MariaDB (Docker containers) · auto-start</td></tr><tr><td><strong>VM210</strong></td><td>AI node — GPU workloads</td><td>Ubuntu Server 24.04 LTS · RTX 5090 (passthrough)</td><td>Docker + NVIDIA Container Toolkit · Ollama · Open WebUI</td></tr><tr><td><strong>VM215</strong></td><td>Shared services — no GPU</td><td>Ubuntu Server 24.04 LTS · dedicated ext4 disk</td><td>PostgreSQL 18.4 · pgvector 0.8.6 (RAG vector backend)</td></tr><tr><td><strong>VM300</strong></td><td>AI consumer — automation</td><td>Ubuntu Server 24.04 LTS · no GPU</td><td>n8n (workflow orchestration) · auto-start</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div class="notes-box" style="margin-top:1.5rem" data-i18n="infra.notes"><strong>Principle:</strong> the GPU is assigned directly to the VMs that need it; GPU workloads (VM210) and shared CPU services (VM215) are kept separate to limit dependencies and ease backups.<br/><br/><strong>Industrialization:</strong> the VMs are derived from generic and CUDA <strong>templates</strong>, customized via <strong>Cloud-Init</strong>; rebuilding them follows a reversible procedure (a control clone is validated before any replacement).<br/><br/><strong>Limitations:</strong> a <strong>diagnostic 400 W</strong> software cap was used previously (versus 600 W by default); the latest <strong>ComfyUI/Ollama</strong> tests were run at <strong>600 W</strong>, with no guarantee of long-term stability nor an established performance comparison (procedure on the <a href="ia_llm.html" style="color:var(--blue-500)">AI &amp; LLM</a> page). ZFS snapshots also ease technical rollbacks but <strong>do not replace an independent backup</strong> — that policy is still being defined.</div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.tech">Related technologies</h2>
+    <div class="tags">
+      <span class="tag"><img src="/assets/amd.svg" alt=""/>AMD Ryzen 9950X3D</span>
+      <span class="tag"><img src="/assets/nvidia.svg" alt=""/>NVIDIA RTX 5090</span>
+      <span class="tag"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</span>
+      <span class="tag"><img src="/assets/linux.svg" alt=""/>Linux</span>
+      <span class="tag"><img src="/assets/zfs.svg" alt=""/>ZFS</span>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Related pages</h2>
+    <div class="related-grid">
+      <a class="related-card" href="proxmox.html"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="reverse_proxy.html"><img src="/assets/nginx.svg" alt=""/>Reverse Proxy</a>
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="storage_zfs.html"><img src="/assets/zfs.svg" alt=""/>Stockage ZFS</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">References &amp; Sources</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Category</th><th data-i18n="c.refs.res">Resource</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Official documentation</td><td>Proxmox VE Administration Guide</td><td><a href="https://pve.proxmox.com/pve-docs/" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/pve-docs</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Official documentation</td><td>OpenZFS Documentation</td><td><a href="https://openzfs.github.io/openzfs-docs/" target="_blank" style="color:var(--blue-500)">openzfs.github.io/openzfs-docs</a></td></tr>
+            <tr><td data-i18n="infra.ref.cat3">Demonstrated configuration</td><td>Ryzen 9 9950X3D (16c/32t) · 192 Go DDR5 · RTX 5090 · 2× NVMe miroir ZFS (~1,75 Tio) · Proxmox VE 9.2.2</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">License</td><td>OpenZFS — CDDL · Proxmox VE — AGPLv3</td><td><a href="https://openzfs.org/" target="_blank" style="color:var(--blue-500)">openzfs.org</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Content of this page</td><td data-i18n="c.refs.cc">Shared under CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Infrastructure Engineer &amp; Project Manager · Bordeaux, France</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 years of experience · Systems security · On-Premise AI</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Personal infrastructure</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Built with Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">OSS philosophy →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Credits &amp; trademarks</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
