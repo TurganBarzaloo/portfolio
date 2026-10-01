@@ -122,6 +122,21 @@ curl http://localhost:<span class="redacted">11434</span>/api/generate \\
     <div class="code-label" data-i18n="llm.comfy.label">observaciones de la sesión — VRAM de la RTX 5090 (no es un benchmark)</div>
     <table class="data-table" data-i18n="llm.t3"><thead><tr><th>Prueba</th><th>Observación</th><th>Alcance</th></tr></thead><tbody><tr><td>Retrato 512×512, 8 pasos</td><td>8,03 s (incluyendo la carga inicial)</td><td>Validación funcional</td></tr><tr><td>Retrato 1024×1024, 30 pasos</td><td>Imagen obtenida (DPM++ SDE Karras)</td><td>Duración no atribuida con certeza</td></tr><tr><td>Qwen3 8B + RealVisXL</td><td>19.001 MiB de VRAM (muestra)</td><td>Qwen 100% GPU, contexto 40.960</td></tr><tr><td>Descarga de ComfyUI</td><td>7.376 → 742 MiB · HTTP 200</td><td>Servidor mantenido activo</td></tr><tr><td>Recarga + generación de 8 pasos</td><td>7,40 s · retorno a 7.376 MiB</td><td>Ciclo completo sin reinicio</td></tr><tr><td>Descarga de Qwen3 8B (ComfyUI detenido)</td><td>Retorno a 2 MiB</td><td>Servicio Ollama sigue disponible</td></tr></tbody></table>
     <div class="notes-box" style="margin-top:1rem" data-i18n="llm.comfy.notes">Estas son <strong>observaciones de sesión</strong>, sin protocolo estadístico ni garantía de latencia. Una lectura en coexistencia indica <strong>539 W · 53 °C · 83% GPU</strong> (límite configurado de 600 W) — no debe presentarse como un consumo constante ni un pico medido. LLM más grandes, contextos más largos u otros workflows pueden superar la memoria disponible. <strong>RealVisXL V5.0</strong> se distribuye bajo la licencia <strong>Open RAIL++</strong>: que los pesos estén disponibles no significa ausencia de restricciones de licencia.</div>
+    <div class="code-label" data-i18n="llm.comfy.check.label">Control reproducible — verificación del checkpoint y de la GPU</div>
+<div class="code-block"><pre>MODEL_FILE='&lt;chemin-du-checkpoint&gt;'
+EXPECTED_SHA256='&lt;empreinte-publiee-du-checkpoint&gt;'
+printf '%s  %s\n' "$EXPECTED_SHA256" "$MODEL_FILE" | sha256sum --check
+
+nvidia-smi
+nvidia-smi --query-gpu=power.limit,power.default_limit --format=csv,noheader</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.6rem 0 0" data-i18n="llm.comfy.check.note">La huella esperada debe provenir del <strong>repositorio de confianza</strong> del modelo, no únicamente del archivo descargado.</p>
+    <div class="code-label" style="margin-top:1rem" data-i18n="llm.comfy.monitor.label">Control reproducible — telemetría de la GPU durante una generación (Ctrl+C para detener)</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=timestamp,temperature.gpu,power.draw,memory.used,utilization.gpu \
+  --format=csv,noheader --loop=1</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.65;margin:1.1rem 0 .5rem;font-weight:600" data-i18n="llm.comfy.limits.h">Aprendizajes y límites</p>
+    <ul class="skill-list" data-i18n="llm.comfy.limits"><li>Se <strong>descartó</strong> un grafo que mezclaba RealVisXL con nodos SD3/AuraFlow; el grafo SDXL adaptado funcionó después</li><li>Una <strong>cancelación bloqueada</strong> requirió un reinicio específico, sin establecer la causa exacta del bloqueo</li><li>El realismo anatómico, las poses y la calidad a gran escala quedan por evaluar — un retrato exitoso no basta para validarlos</li><li>Las integraciones agénticas/n8n, la admisión común y la política de reinicio tras un reboot siguen siendo <strong>trabajo abierto</strong></li></ul>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="llm.comfy.linkimg">Resultados detallados, la necesidad fotográfica y el procedimiento de acceso completo en la página <a href="ia_image.html" style="color:var(--blue-500)">IA Imagen</a>. Inspección del contenedor y corrección de caché en la página <a href="docker.html" style="color:var(--blue-500)">Docker</a>.</p>
   </div>
 </div>
   </div>

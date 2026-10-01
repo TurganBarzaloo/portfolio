@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title data-i18n="img.title">Generative Image AI — On-Premise AI Portfolio</title>
+  <title data-i18n="img.title">Local photographic generation (ComfyUI) — On-Premise AI Portfolio</title>
   <meta name="author" content="Stéphane Muraro"/>
   <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
@@ -44,7 +44,7 @@
       <div class="page-icon"><img src="/assets/comfyui.svg" alt=""/></div>
       <div>
         <h1 data-i18n="img.h1">Generative Image AI</h1>
-        <p data-i18n="img.subtitle">ComfyUI · Flux · Diffusion workflows · GPU Computing</p>
+        <p data-i18n="img.subtitle">ComfyUI 0.36.0 · RealVisXL · Local photographic generation · GPU shared with Ollama</p>
         <div class="level-pill">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
             <circle cx="6" cy="6" r="5"/>
@@ -56,28 +56,72 @@
   </div>
 </div>
 <div class="content">
-  <div class="content-grid">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="img.synth"><strong>Strategic synthesis.</strong> The Linux AI node (<strong>VM210</strong>) now runs <strong>ComfyUI 0.36.0</strong> alongside <strong>Ollama</strong>, on the <strong>same RTX 5090 (32 GB)</strong>, for local photorealistic image generation. The model used is <strong>RealVisXL V5.0 FP16</strong> (a photorealism-oriented SDXL derivative), which produced portraits at <strong>512×512</strong> and <strong>1,024×1,024</strong>. The central trade-off is <strong>sharing a single, exclusive GPU</strong> between image generation and LLM inference: coexistence was observed and unloading models without stopping the servers was verified, but <strong>automatic request sharing still needs to be built</strong> (manual switching for now). Maturity: <strong>active on the target (VM210, Linux)</strong>, distinct from the <strong>earlier Windows POC (VM260)</strong>, which had tried out SDXL/Flux workflows.</div>
+
+  <div style="margin-bottom:1.5rem">
     <div class="panel">
-  <div class="panel-header" data-i18n="img.p1.h"> 🔧 Stack</div>
-  <div class="panel-body"><table class="data-table" data-i18n="img.t1"><thead><tr><th>Tool</th><th>Role</th><th>Status</th></tr></thead><tbody><tr><td>ComfyUI</td><td>Node-based diffusion workflow interface</td><td>🔵 Validated (design)</td></tr><tr><td>Flux</td><td>High-quality diffusion model (Black Forest Labs)</td><td>🔵 Validated (design)</td></tr></tbody></table></div>
-</div>
-    <div class="panel">
-  <div class="panel-header" data-i18n="img.p2.h"> 💾 ZFS Datasets</div>
-  <div class="panel-body"><table class="data-table" data-i18n="img.t2"><thead><tr><th>Dataset</th><th>Content</th></tr></thead><tbody><tr><td>comfyui</td><td>Workflows, checkpoints, LoRA, VAE</td></tr><tr><td>flux</td><td>Flux checkpoints (dev, schnell)</td></tr></tbody></table></div>
+  <div class="panel-header" data-i18n="img.p1.h"> 🏗️ Architecture and decisions</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.arch.p1"><strong>ComfyUI 0.36.0</strong> runs in a <strong>locally built Docker image</strong> on VM210: Python base pinned by <strong>digest</strong>, sources pinned by <strong>commit</strong>, dependencies <strong>locked with their hashes</strong> (wheels downloaded then installed offline). Validated environment: Python 3.12.14, PyTorch 2.11.0, CUDA 13.0. Container and cache-fix details on the <a href="docker.html" style="color:var(--blue-500)">Docker</a> page.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.arch.p2">Alternative actually explored: an <strong>earlier Windows POC (VM260)</strong> had tried out ComfyUI via Docker Desktop with <strong>SDXL / Flux</strong> workflows. This Linux deployment (VM210) is distinct from it and has not yet confirmed Flux usage; only <strong>RealVisXL</strong> was used and measured here. Since the RTX 5090 is <strong>exclusive</strong>, VM210 and VM260 do not use it at the same time.</p>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:0" data-i18n="img.arch.p3">Hardening choices made: <strong>unprivileged</strong> execution, <strong>read-only</strong> root filesystem, models mounted read-only, <strong>custom and API nodes disabled</strong> (without blocking outbound network in general), interface published <strong>on loopback only</strong> (access via SSH tunnel, no Internet publication).</p>
+  </div>
 </div>
   </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.p2.h"> ⚙️ Commands and checks</div>
+  <div class="panel-body">
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:0 0 .8rem" data-i18n="img.cmd.intro">Account, host and path names replaced with examples. No secret is required. Container and API verification (docker inspect/logs, ollama ps, curl) detailed on the <a href="docker.html" style="color:var(--blue-500)">Docker</a> page; GPU telemetry and checkpoint SHA-256 verification on the <a href="ia_llm.html" style="color:var(--blue-500)">AI &amp; LLM</a> page.</p>
+    <div class="code-label" data-i18n="img.cmd.ssh.label">Reproducible check — accessing the interface via SSH tunnel (from PowerShell, client machine)</div>
+<div class="code-block"><pre>$SshTarget = '&lt;compte&gt;@&lt;hote-gpu&gt;'
+ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:<span class="redacted">8188</span>:127.0.0.1:<span class="redacted">8188</span> $SshTarget</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="img.cmd.ssh.note">Then open <code>http://127.0.0.1:8188/</code> on that machine. Terminal silence after authentication is normal: <code>-N</code> opens the tunnel without a remote session. Ctrl+C closes the tunnel but does not stop ComfyUI; an unreachable interface after closing the terminal is therefore not necessarily a server failure.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.p3.h"> 🛠️ Difficulties and solutions</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.diff.p1"><strong>Symptom:</strong> a graph mixing the <strong>RealVisXL</strong> checkpoint with <strong>SD3/AuraFlow</strong> nodes was built then <strong>discarded</strong> (graph incompatibility). A <strong>generation cancellation then got stuck</strong>, without an exact cause being established; a <strong>targeted restart</strong> of the container was needed to return to a healthy state. <strong>Solution adopted:</strong> back to an <strong>adapted SDXL graph</strong> (consistent with RealVisXL), which then worked normally.</p>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:0" data-i18n="img.diff.p2">A second incident, described on the <a href="docker.html" style="color:var(--blue-500)">Docker</a> page, affected container startup (<code>getpass.getuser()</code> failing for lack of a known UID); it was fixed with environment variables without rebuilding the image.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.p4.h"> 📊 Evidence and results</div>
+  <div class="panel-body">
+    <div class="code-label" data-i18n="img.proof.label">session observations — RealVisXL generation (not a benchmark)</div>
+    <table class="data-table" data-i18n="img.t1"><thead><tr><th>Trial</th><th>Observation</th><th>Scope</th></tr></thead><tbody><tr><td>512×512 portrait, 8 steps</td><td>8.03 s (including initial load)</td><td>Functional validation, not a quality test</td></tr><tr><td>1,024×1,024 portrait, 30 steps</td><td>Image obtained (DPM++ SDE Karras)</td><td>Duration not reliably attributed in the log</td></tr></tbody></table>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="img.proof.notes">These are <strong>session observations</strong>, with no statistical protocol or guarantee of latency or quality. <strong>Anatomical realism, poses and quality at scale remain to be evaluated</strong> — a successful portrait is not enough to validate these criteria. GPU coexistence measurements (VRAM shared with Ollama, memory release) on the <a href="ia_llm.html" style="color:var(--blue-500)">AI &amp; LLM</a> page.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Skills demonstrated</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="img.skills"><li>Hardening a ComfyUI container (unprivileged, read-only root FS)</li><li>Checkpoint integrity verification via SHA-256 hash</li><li>Sharing an exclusive GPU between LLM inference and image generation</li><li>Diagnosing ComfyUI graph incompatibility and recovering from a stuck state</li><li>Secure remote access via SSH tunnel, no Internet publication</li></ul></div>
+</div>
+  </div>
+
   <div style="margin-top:1.5rem">
-    <div class="panel">
-  <div class="panel-header" data-i18n="img.p3.h"> 🎯 Skills in progress</div>
-  <div class="panel-body"><ul class="skill-list" data-i18n="img.skills"><li>ComfyUI installation and configuration</li><li>Building ComfyUI workflows (node graph)</li><li>Loading and managing Flux models</li><li>Inference optimization (batch size, tiling, VRAM)</li><li>Multimodal AI: text → image</li></ul></div>
-</div>
+    <h2 class="section-title" data-i18n="img.p5.h">Limitations and open work</h2>
+    <div class="notes-box" data-i18n="img.limits"><ul class="skill-list" style="margin:0"><li>Automatic request sharing between ComfyUI and Ollama <strong>still needs to be built</strong> (manual switching for now)</li><li><strong>Anatomical realism, poses and quality at scale</strong> remain to be evaluated</li><li>Use of <strong>Flux</strong> on this Linux target is not confirmed — only RealVisXL was measured here</li><li>Agentic/n8n integrations, shared request admission and the restart-after-reboot policy remain <strong>open work</strong></li><li><strong>RealVisXL V5.0</strong> is released under the <strong>Open RAIL++</strong> license: available weights do not mean the absence of license restrictions</li></ul></div>
   </div>
+
   <div style="margin-top:1.5rem">
     <h2 class="section-title" data-i18n="c.sec.related">Related pages</h2>
     <div class="related-grid">
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
       <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
       <a class="related-card" href="storage_zfs.html"><img src="/assets/zfs.svg" alt=""/>Stockage ZFS</a>
-      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
     </div>
   </div>
 </div>
@@ -90,10 +134,11 @@
         <table class="data-table">
           <thead><tr><th data-i18n="c.refs.cat">Category</th><th data-i18n="c.refs.res">Resource</th><th data-i18n="c.refs.url">URL</th></tr></thead>
           <tbody>
-            <tr><td data-i18n="c.ref.officialdoc">Official documentation</td><td>ComfyUI</td><td><a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" style="color:var(--blue-500)">github.com/comfyanonymous/ComfyUI</a></td></tr>
-            <tr><td data-i18n="img.ref.cat2">Diffusion model</td><td>FLUX.1 — Black Forest Labs</td><td><a href="https://github.com/black-forest-labs/flux" target="_blank" style="color:var(--blue-500)">github.com/black-forest-labs/flux</a></td></tr>
-            <tr><td data-i18n="img.ref.cat2">Diffusion model</td><td>Stable Diffusion XL (SDXL) — Stability AI</td><td><a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0" target="_blank" style="color:var(--blue-500)">huggingface.co — sdxl-base-1.0</a></td></tr>
-            <tr><td data-i18n="c.ref.license">License</td><td>ComfyUI — GPLv3 · SDXL — CreativeML OpenRAIL++ · FLUX.1 — licences Black Forest Labs</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Official documentation</td><td>ComfyUI — implémentation de l'API utilisée</td><td><a href="https://github.com/Comfy-Org/ComfyUI/blob/ee71d5c4993f29086b27fde1629a945ae48425bf/server.py" target="_blank" style="color:var(--blue-500)">github.com/Comfy-Org/ComfyUI — server.py</a></td></tr>
+            <tr><td data-i18n="img.ref.cat2">Diffusion model</td><td>RealVisXL V5.0 — dépôt de l'auteur (SG161222)</td><td><a href="https://huggingface.co/SG161222/RealVisXL_V5.0" target="_blank" style="color:var(--blue-500)">huggingface.co — RealVisXL_V5.0</a></td></tr>
+            <tr><td data-i18n="img.ref.cat2">Diffusion model</td><td>Stable Diffusion XL (SDXL) — Stability AI, base de RealVisXL</td><td><a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0" target="_blank" style="color:var(--blue-500)">huggingface.co — sdxl-base-1.0</a></td></tr>
+            <tr><td data-i18n="c.ref.license">License</td><td>ComfyUI — GPLv3 · RealVisXL V5.0 — Open RAIL++ (poids disponibles ≠ absence de restrictions)</td><td>—</td></tr>
+            <tr><td data-i18n="img.ref.verif">Fact verification</td><td data-i18n="img.ref.verifval">Trials from September 27–28, 2026 · source sheet verified on 2026-09-28</td><td>—</td></tr>
             <tr><td data-i18n="c.refs.content">Content of this page</td><td data-i18n="c.refs.cc">Shared under CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>
         </table>

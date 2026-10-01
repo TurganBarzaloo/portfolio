@@ -137,16 +137,14 @@ curl http://localhost:<span class="redacted">11434</span>/api/generate \\
   <div class="panel-header" data-i18n="llm.p5.h"> 🖼️ Génération d'image locale — ComfyUI &amp; partage du GPU</div>
   <div class="panel-body">
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.comfy.p1">
-      Le nœud IA Linux (<strong>VM210</strong>) exécute désormais <strong>ComfyUI 0.36.0</strong> et <strong>Ollama</strong>
-      sur la <strong>même RTX 5090 (32 Go)</strong>. Le modèle <strong>RealVisXL V5.0</strong> (dérivé SDXL photoréaliste)
-      a produit des portraits en <strong>512×512</strong> et <strong>1 024×1 024</strong>. La coexistence avec
-      <code>qwen3:8b</code> a été observée, puis le <strong>déchargement des modèles sans arrêter les serveurs</strong>
-      vérifié. Le <strong>partage automatique des requêtes reste à construire</strong> (bascule manuelle pour l'instant).
+      Le nœud IA Linux (<strong>VM210</strong>) exécute <strong>ComfyUI 0.36.0</strong> et <strong>Ollama</strong> sur
+      la <strong>même RTX 5090 (32 Go)</strong>. Cette section couvre la <strong>mémoire partagée</strong> entre les
+      deux serveurs (coexistence, déchargement, télémétrie) ; le détail de la génération photographique
+      (<strong>RealVisXL V5.0</strong>, résultats par résolution, incidents de workflow) est traité sur la page
+      <a href="ia_image.html" style="color:var(--blue-500)">IA Image</a>.
     </p>
-    <div class="code-label" data-i18n="llm.comfy.label">observations de session — VRAM RTX 5090 (pas un benchmark)</div>
+    <div class="code-label" data-i18n="llm.comfy.label">observations de session — VRAM RTX 5090, mémoire partagée (pas un benchmark)</div>
     <table class="data-table" data-i18n="llm.t3"><thead><tr><th>Essai</th><th>Observation</th><th>Portée</th></tr></thead><tbody>
-      <tr><td>Portrait 512×512, 8 étapes</td><td>8,03 s (chargement initial compris)</td><td>Validation fonctionnelle</td></tr>
-      <tr><td>Portrait 1 024×1 024, 30 étapes</td><td>Image obtenue (DPM++ SDE Karras)</td><td>Durée non attribuée avec certitude</td></tr>
       <tr><td>Qwen3 8B + RealVisXL</td><td>19 001 Mio de VRAM (échantillon)</td><td>Qwen 100 % GPU, contexte 40 960</td></tr>
       <tr><td>Déchargement ComfyUI</td><td>7 376 → 742 Mio · HTTP 200</td><td>Serveur conservé actif</td></tr>
       <tr><td>Rechargement + génération 8 étapes</td><td>7,40 s · retour à 7 376 Mio</td><td>Cycle complet sans redémarrage</td></tr>
@@ -159,6 +157,32 @@ curl http://localhost:<span class="redacted">11434</span>/api/generate \\
       dépasser la mémoire disponible. <strong>RealVisXL V5.0</strong> est diffusé sous licence <strong>Open RAIL++</strong> :
       des poids disponibles ne signifient pas l'absence de restrictions de licence.
     </div>
+    <div class="code-label" data-i18n="llm.comfy.check.label">Contrôle reproductible — vérification du checkpoint et du GPU</div>
+<div class="code-block"><pre>MODEL_FILE='&lt;chemin-du-checkpoint&gt;'
+EXPECTED_SHA256='&lt;empreinte-publiee-du-checkpoint&gt;'
+printf '%s  %s\n' "$EXPECTED_SHA256" "$MODEL_FILE" | sha256sum --check
+
+nvidia-smi
+nvidia-smi --query-gpu=power.limit,power.default_limit --format=csv,noheader</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.6rem 0 0" data-i18n="llm.comfy.check.note">
+      L'empreinte attendue doit provenir du <strong>dépôt de confiance</strong> du modèle, pas du seul fichier téléchargé.
+    </p>
+    <div class="code-label" style="margin-top:1rem" data-i18n="llm.comfy.monitor.label">Contrôle reproductible — télémétrie GPU pendant une génération (Ctrl+C pour arrêter)</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=timestamp,temperature.gpu,power.draw,memory.used,utilization.gpu \
+  --format=csv,noheader --loop=1</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.65;margin:1.1rem 0 .5rem;font-weight:600" data-i18n="llm.comfy.limits.h">Enseignements et limites</p>
+    <ul class="skill-list" data-i18n="llm.comfy.limits">
+      <li>Un graphe mélangeant RealVisXL avec des nœuds SD3/AuraFlow a été <strong>écarté</strong> ; le graphe SDXL adapté a ensuite fonctionné</li>
+      <li>Une <strong>annulation bloquée</strong> a nécessité un redémarrage ciblé, sans établir la cause exacte du blocage</li>
+      <li>Le réalisme anatomique, les poses et la qualité à grande échelle restent à évaluer — un portrait réussi ne suffit pas à les valider</li>
+      <li>Intégrations agentiques/n8n, admission commune et politique de redémarrage après reboot restent des <strong>travaux ouverts</strong></li>
+    </ul>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="llm.comfy.linkimg">
+      Résultats détaillés, besoin photographique et procédure d'accès complète sur la page
+      <a href="ia_image.html" style="color:var(--blue-500)">IA Image</a>. Inspection du conteneur et correctif de
+      cache sur la page <a href="docker.html" style="color:var(--blue-500)">Docker</a>.
+    </p>
   </div>
 </div>
   </div>

@@ -146,7 +146,7 @@
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/models</span></div><div class="node-desc">Modèles IA</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/rag</span></div><div class="node-desc">Documents &amp; index RAG</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/config</span></div><div class="node-desc">Configurations</div></div>
-      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/backups</span></div><div class="node-desc">Sauvegardes</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/backups</span></div><div class="node-desc">vzdump · sur le même pool (pas une sauvegarde indépendante)</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/nextcloud-data</span></div><div class="node-desc">Données Nextcloud</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">rpool/data</span></div><div class="node-desc">Disques des VM Proxmox</div></div>
     </div>
@@ -182,7 +182,7 @@
     <div class="layer-head"><span class="layer-num">4b</span><span class="layer-title" data-i18n="arch.l4b.t">Componentes de software de IA</span><span class="layer-sub" data-i18n="arch.l4b.s">— servidos por los nodos anteriores</span></div>
     <div class="layer-body">
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Ollama</span></div><div class="node-desc">Inférence LLM local · VM210</div></div>
-      <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">ComfyUI + Flux</span></div><div class="node-desc">Génération d'image (SDXL / Flux) — validé sur VM260 (POC) · portage planifié</div></div>
+      <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">ComfyUI</span></div><div class="node-desc">Génération d'image (RealVisXL/SDXL) · VM210 (Linux) — distinct du POC Windows antérieur (VM260, Flux)</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">Open WebUI</span></div><div class="node-desc">Interface chat + RAG · VM210</div></div>
       <div class="node actif"><div class="node-top"><span class="node-dot"></span><span class="node-name">RAG</span></div><div class="node-desc">VM210 · pgvector sur VM215 · Qdrant (repli)</div></div>
       <div class="node valide"><div class="node-top"><span class="node-dot"></span><span class="node-name">Whisper</span></div><div class="node-desc">Transcription — validé · portage planifié sur VM210</div></div>
@@ -215,6 +215,8 @@
       <a class="related-card" href="infrastructure.html"><img src="/assets/linux.svg" alt=""/>Infrastructure</a>
       <a class="related-card" href="proxmox.html"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</a>
       <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA &amp; LLM</a>
+      <a class="related-card" href="ia_image.html"><img src="/assets/comfyui.svg" alt=""/>IA Générative Image</a>
+      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
       <a class="related-card" href="rag.html"><img src="/assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
     </div>
   </div>

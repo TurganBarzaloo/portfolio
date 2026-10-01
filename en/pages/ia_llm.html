@@ -122,6 +122,21 @@ curl http://localhost:<span class="redacted">11434</span>/api/generate \\
     <div class="code-label" data-i18n="llm.comfy.label">session observations — RTX 5090 VRAM (not a benchmark)</div>
     <table class="data-table" data-i18n="llm.t3"><thead><tr><th>Test</th><th>Observation</th><th>Scope</th></tr></thead><tbody><tr><td>512×512 portrait, 8 steps</td><td>8.03 s (including initial load)</td><td>Functional validation</td></tr><tr><td>1,024×1,024 portrait, 30 steps</td><td>Image obtained (DPM++ SDE Karras)</td><td>Duration not reliably attributed</td></tr><tr><td>Qwen3 8B + RealVisXL</td><td>19,001 MiB of VRAM (sample)</td><td>Qwen 100% GPU, 40,960 context</td></tr><tr><td>ComfyUI unload</td><td>7,376 → 742 MiB · HTTP 200</td><td>Server kept active</td></tr><tr><td>Reload + 8-step generation</td><td>7.40 s · back to 7,376 MiB</td><td>Full cycle without restart</td></tr><tr><td>Qwen3 8B unload (ComfyUI stopped)</td><td>Back to 2 MiB</td><td>Ollama service still available</td></tr></tbody></table>
     <div class="notes-box" style="margin-top:1rem" data-i18n="llm.comfy.notes">These are <strong>session observations</strong>, with no statistical protocol or latency guarantee. A coexistence reading shows <strong>539 W · 53 °C · 83% GPU</strong> (600 W configured cap) — not to be presented as constant consumption or a measured peak. Larger LLMs, longer contexts or other workflows may exceed the available memory. <strong>RealVisXL V5.0</strong> is distributed under the <strong>Open RAIL++</strong> license: available weights do not mean an absence of license restrictions.</div>
+    <div class="code-label" data-i18n="llm.comfy.check.label">Reproducible check — checkpoint and GPU verification</div>
+<div class="code-block"><pre>MODEL_FILE='&lt;chemin-du-checkpoint&gt;'
+EXPECTED_SHA256='&lt;empreinte-publiee-du-checkpoint&gt;'
+printf '%s  %s\n' "$EXPECTED_SHA256" "$MODEL_FILE" | sha256sum --check
+
+nvidia-smi
+nvidia-smi --query-gpu=power.limit,power.default_limit --format=csv,noheader</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.6rem 0 0" data-i18n="llm.comfy.check.note">The expected hash must come from the model's <strong>trusted repository</strong>, not from the downloaded file alone.</p>
+    <div class="code-label" style="margin-top:1rem" data-i18n="llm.comfy.monitor.label">Reproducible check — GPU telemetry during a generation (Ctrl+C to stop)</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=timestamp,temperature.gpu,power.draw,memory.used,utilization.gpu \
+  --format=csv,noheader --loop=1</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.65;margin:1.1rem 0 .5rem;font-weight:600" data-i18n="llm.comfy.limits.h">Lessons and limitations</p>
+    <ul class="skill-list" data-i18n="llm.comfy.limits"><li>A graph mixing RealVisXL with SD3/AuraFlow nodes was <strong>discarded</strong>; the adapted SDXL graph then worked</li><li>A <strong>blocked cancellation</strong> required a targeted restart, without establishing the exact cause of the block</li><li>Anatomical realism, poses and quality at scale remain to be evaluated — one successful portrait is not enough to validate them</li><li>Agentic/n8n integrations, shared admission control and the restart-after-reboot policy remain <strong>open work</strong></li></ul>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="llm.comfy.linkimg">Detailed results, the photographic need and the full access procedure on the <a href="ia_image.html" style="color:var(--blue-500)">AI Image</a> page. Container inspection and cache fix on the <a href="docker.html" style="color:var(--blue-500)">Docker</a> page.</p>
   </div>
 </div>
   </div>

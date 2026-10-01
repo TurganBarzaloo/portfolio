@@ -60,7 +60,7 @@
   <div class="content-grid">
     <div class="panel">
   <div class="panel-header" data-i18n="dock.p1.h"> 📦 Deployed services</div>
-  <div class="panel-body"><table class="data-table" data-i18n="dock.t1"><thead><tr><th>Service</th><th>Image</th><th>Port</th><th>Status</th></tr></thead><tbody><tr><td>Ollama</td><td>ollama/ollama · 0.32.6 · VM210</td><td><span class="redacted">11434</span></td><td>🟢 Operational</td></tr><tr><td>ComfyUI</td><td>0.36.0 · hardened local image · VM210 (Linux)</td><td><span class="redacted">8188</span></td><td>🔵 Validated (local generation)</td></tr><tr><td>Open WebUI</td><td>ghcr.io/open-webui/open-webui · 0.11.0 · VM210</td><td><span class="redacted">3000</span></td><td>🟢 Operational</td></tr><tr><td>PostgreSQL + pgvector</td><td>deployed on VM215 · 18.4 / 0.8.6</td><td><span class="redacted">5432</span></td><td>🟢 Operational</td></tr><tr><td>Qdrant</td><td>qdrant/qdrant · 1.18.3</td><td><span class="redacted">6333</span></td><td>🟡 Fallback</td></tr><tr><td>n8n</td><td>n8nio/n8n:latest · VM300</td><td><span class="redacted">5678</span></td><td>🟢 Operational</td></tr><tr><td>NPM (Nginx Proxy Manager)</td><td>jc21/nginx-proxy-manager:latest</td><td><span class="redacted">443 · 81</span></td><td>🟢 Operational</td></tr><tr><td>Portainer</td><td>portainer/portainer-ce:latest</td><td><span class="redacted">9443</span></td><td>🟢 Operational</td></tr><tr><td>Whisper API</td><td>onerahmet/openai-whisper-asr-webservice · VM210</td><td><span class="redacted">9000</span></td><td>🔵 Validated · planned</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table" data-i18n="dock.t1"><thead><tr><th>Service</th><th>Image</th><th>Port</th><th>Status</th></tr></thead><tbody><tr><td>Ollama</td><td>ollama/ollama · 0.32.6 · VM210</td><td><span class="redacted">11434</span></td><td>🟢 Operational</td></tr><tr><td>ComfyUI</td><td>0.36.0 · hardened local image · VM210 (Linux)</td><td><span class="redacted">8188</span></td><td>🔵 Validated (local generation)</td></tr><tr><td>Open WebUI</td><td>ghcr.io/open-webui/open-webui · 0.11.0 · VM210</td><td><span class="redacted">3000</span></td><td>🟢 Operational</td></tr><tr><td>PostgreSQL + pgvector</td><td>deployed on VM215 · 18.4 / 0.8.6</td><td><span class="redacted">5432</span></td><td>🟢 Operational</td></tr><tr><td>Qdrant</td><td>qdrant/qdrant · 1.18.3</td><td><span class="redacted">6333</span></td><td>🟡 Fallback</td></tr><tr><td>n8n</td><td>n8nio/n8n:latest · VM300</td><td><span class="redacted">5678</span></td><td>🟢 Operational</td></tr><tr><td>NPM (Nginx Proxy Manager)</td><td>jc21/nginx-proxy-manager:latest</td><td><span class="redacted">443 · 81</span></td><td>⚪ Unsourced</td></tr><tr><td>Portainer</td><td>portainer/portainer-ce:latest</td><td><span class="redacted">9443</span></td><td>⚪ Unsourced</td></tr><tr><td>Whisper API</td><td>onerahmet/openai-whisper-asr-webservice · VM210</td><td><span class="redacted">9000</span></td><td>🔵 Validated · planned</td></tr></tbody></table></div>
 </div>
     <div class="panel">
   <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Skills demonstrated</div>
@@ -112,7 +112,9 @@
 volumes:
   open-webui-data:
   n8n-data:
-  qdrant-data:</pre></div></div>
+  qdrant-data:</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.compose.note">The <strong>n8n</strong> service above is a <strong>simplified example</strong> (local volume, no external database) meant to illustrate the Compose structure. The actual deployment on <strong>VM300</strong> relies on a <strong>dedicated external PostgreSQL database</strong>; see the <a href="n8n.html" style="color:var(--blue-500)">Automation (n8n)</a> page for the real architecture.</p>
+  </div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
@@ -122,6 +124,34 @@ volumes:
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="dock.comfy.p1"><strong>ComfyUI 0.36.0</strong> runs in a <strong>locally built image</strong>: Python base pinned by <strong>digest</strong>, sources pinned by <strong>commit</strong>, dependencies <strong>locked with their hashes</strong> (wheels downloaded then installed <strong>offline</strong>). Validated environment: Python 3.12.14, PyTorch 2.11.0, CUDA 13.0.</p>
     <ul class="skill-list" data-i18n="dock.comfy.list"><li><strong>Unprivileged</strong> execution, <strong>read-only</strong> root filesystem</li><li>Models mounted <strong>read-only</strong>; dedicated folders for inputs, outputs, state and caches</li><li><strong>Custom nodes and API disabled</strong> (this is not a general outbound network block)</li><li>Interface published <strong>only on the VM's local loopback</strong>; access via <strong>SSH tunnel</strong>, no Internet publication</li><li>Checkpoint <strong>verified by SHA-256 hash</strong> (from the trusted repository) before use</li></ul>
     <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.comfy.note">The earlier Windows PoC (VM260) stays separate from this Linux deployment. ComfyUI/Ollama GPU sharing is a <strong>manual switch</strong>, not yet an automatic scheduler. Details and measurements on the <a href="ia_llm.html" style="color:var(--blue-500)">AI &amp; LLM</a> page.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="dock.p4.h"> 🔎 Container inspection and cache fix</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="dock.inspect.p1"><strong>Command actually used (sanitized)</strong> — status checks run against the ComfyUI container and the Ollama container: container status, last log lines, resident Ollama models, then HTTP checks of the ComfyUI local API. Container and host names replaced with examples.</p>
+    <div class="code-label">bash</div>
+<div class="code-block"><pre>COMFY_CONTAINER='&lt;conteneur-comfyui&gt;'
+OLLAMA_CONTAINER='&lt;conteneur-ollama&gt;'
+COMFY_URL='http://127.0.0.1:<span class="redacted">8188</span>'
+
+docker inspect "$COMFY_CONTAINER" --format '{{.State.Status}}'
+docker logs --tail 40 "$COMFY_CONTAINER"
+docker exec "$OLLAMA_CONTAINER" ollama ps
+curl --fail --max-time 10 -sS -o /dev/null \
+  -w 'HTTP=%{http_code}\n' "$COMFY_URL/"
+curl --fail --max-time 10 -sS "$COMFY_URL/object_info/CheckpointLoaderSimple"
+curl --fail --max-time 10 -sS "$COMFY_URL/queue"</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.inspect.note">HTTP 200 confirms the server responded; the checkpoint's presence in the loader confirms it was detected, not yet a successful inference. <code>ollama ps</code> lists resident models, without guaranteeing there are no requests in flight. Details on memory release (<code>/free</code>) and GPU telemetry on the <a href="ia_llm.html" style="color:var(--blue-500)">AI &amp; LLM</a> page.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:1.2rem 0 .9rem" data-i18n="dock.uidfix.p1"><strong>Command actually used (sanitized)</strong> — a startup once failed in <code>getpass.getuser()</code>: the host account's UID did not exist in the container's passwd file. The following variables kept the unprivileged execution model, without rebuilding the image:</p>
+    <div class="code-label">yaml</div>
+<div class="code-block"><pre>environment:
+  USER: comfyui
+  TORCHINDUCTOR_CACHE_DIR: /state/cache/torchinductor</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.uidfix.note"><code>/state/cache</code> here denotes an example mount writable by the container's UID. The <code>USER</code> variable does not create an account and grants no privilege.</p>
   </div>
 </div>
   </div>
