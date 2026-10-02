@@ -56,7 +56,7 @@
   </div>
 </div>
 <div class="content">
-  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes1">⚠️ <strong>Competencia avanzada:</strong> el GPU Passthrough VFIO es uno de los logros más complejos y más buscados del portfolio. Permite asignar físicamente la RTX 5090 a una VM con rendimiento nativo.</div>
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes1">⚠️ <strong>Competencia avanzada:</strong> el GPU Passthrough VFIO es uno de los logros más complejos y más buscados del portfolio. Permite asignar físicamente la RTX 5090 a una VM, con un rendimiento cercano al de una instalación nativa.</div>
   <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes2"><strong>¿Por qué una RTX 5090 para la IA local?</strong> Con sus núcleos CUDA y Tensor y sus <a href="https://www.nvidia.com/fr-fr/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" style="color:var(--blue-500)">32 GB de memoria GDDR7</a>, acelera considerablemente los cálculos paralelos necesarios para la inferencia de modelos de lenguaje, los embeddings y la generación de imágenes — manteniendo localmente los modelos y los datos procesados.</div>
   <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes3"><strong>¿Por qué el passthrough pese a sus restricciones?</strong> El passthrough PCIe con VFIO asigna la tarjeta directamente a una VM: el sistema invitado, CUDA y los contenedores usan la GPU con un rendimiento cercano al nativo y un aislamiento claro de las cargas. A cambio, la asignación es <strong>exclusiva</strong> (sin uso simultáneo por varias VM) y exige una preparación rigurosa del host, del arranque y de los procedimientos de recuperación.</div>
   <div style="margin-bottom:1.5rem">
@@ -84,8 +84,13 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header" data-i18n="gpu.p4.h"> 🐛 Resolución de problemas realizada</div>
-  <div class="panel-body"><table class="data-table" data-i18n="gpu.t3"><thead><tr><th>Problema</th><th>Solución</th></tr></thead><tbody><tr><td>GPU en el grupo IOMMU incorrecto</td><td>Reconfiguración de los slots PCIe</td></tr><tr><td>NVIDIA se niega a arrancar en la VM</td><td>Parche OVMF + enmascaramiento del hipervisor</td></tr><tr><td>Audio NVIDIA ausente</td><td>Passthrough del dispositivo de audio PCIe</td></tr><tr><td>Pantalla negra tras el passthrough</td><td>Cambio de VNC → OVMF GOP</td></tr><tr><td>vfio-pci: Cannot reset</td><td>Activación del mapeo IOMMU 1:1</td></tr><tr><td>Regiones direct-mapped</td><td>Parámetro IOMMU del kernel</td></tr></tbody></table></div>
+  <div class="panel-header" data-i18n="gpu.p4.h"> 🐛 Diagnóstico por capas</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="gpu.diag.p1">La puesta en marcha exigió <strong>distinguir varios niveles de diagnóstico</strong>, para atribuir cada efecto a un único parámetro:</p>
+    <ul class="skill-list" data-i18n="gpu.diag.list"><li>firmware e IOMMU</li><li>controlador del host y grupos PCIe</li><li>reserva de la GPU y de su función de audio a <code>vfio-pci</code></li><li>configuración de la VM</li><li>controlador invitado y CUDA</li><li>runtime en contenedores (acceso a la GPU hasta dentro de Docker)</li></ul>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0" data-i18n="gpu.diag.p2">Antes de cualquier actualización del firmware, se guardan los parámetros necesarios para IOMMU y VFIO y se prepara un retroceso; tras cada modificación, se revalidan los grupos IOMMU, la reserva de la GPU y el arranque de las VM. Se conserva una consola virtual distinta para la recuperación.</p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="gpu.diag.notes"><strong>No se muestra aquí:</strong> ningún arreglo puntual (parche OVMF, enmascaramiento del hipervisor, mapeo IOMMU particular…) se presenta mientras no exista una prueba pública exacta. La validación de VFIO, del controlador invitado y de CUDA no permite deducirlos.</div>
+  </div>
 </div>
   </div>
   <div style="margin-top:1.5rem">

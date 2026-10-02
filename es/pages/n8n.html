@@ -139,29 +139,8 @@ PostgreSQL ou API IA selon le workflow</pre></div>
 
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header" data-i18n="n8n.p6.h"> ⚙️ DevOps e Infraestructura como Código (Proxmox)</div>
-  <div class="panel-body">
-    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:0 0 .8rem" data-i18n="n8n.iac.p">La automatización no se limita a n8n: la plataforma se apoya en <strong>plantillas</strong>, <strong>snapshots</strong> y <strong>clonación</strong> de Proxmox para un despliegue reproducible.</p>
-    <div class="code-label" data-i18n="n8n.iac.label">bash — operaciones reproducibles de Proxmox</div>
-<div class="code-block"><pre># Clone depuis un template
-qm clone &lt;template_id&gt; &lt;new_id&gt; --name ma-vm --full
-
-# Snapshot avant modification
-qm snapshot &lt;VMID&gt; pre-update-$(date +%Y%m%d) --description 'Avant mise à jour'
-
-# Sauvegarde (vzdump)
-vzdump &lt;VMID&gt; --storage local-zfs --mode snapshot --compress zstd
-
-# Rollback
-qm rollback &lt;VMID&gt; pre-update-AAAAMMJJ</pre></div>
-  </div>
-</div>
-  </div>
-
-  <div style="margin-top:1.5rem">
-    <div class="panel">
   <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Competencias aplicadas</div>
-  <div class="panel-body"><ul class="skill-list" data-i18n="n8n.skills"><li>Despliegue reproducible con Docker Compose</li><li>Separación de aplicación / datos / cómputo GPU</li><li>Integración cifrada de PostgreSQL, mínimo privilegio</li><li>Consumo controlado de una API LLM remota</li><li>Diseño de workflows persistentes</li><li>Preparación de una publicación HTTPS detrás de un proxy inverso</li><li>Gestión de secretos y reducción de la superficie de exposición</li><li>Plantillas, snapshots y clonación de Proxmox (IaC)</li></ul></div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="n8n.skills"><li>Despliegue reproducible con Docker Compose</li><li>Separación de aplicación / datos / cómputo GPU</li><li>Integración cifrada de PostgreSQL, mínimo privilegio</li><li>Consumo controlado de una API LLM remota</li><li>Diseño de workflows persistentes</li><li>Preparación de una publicación HTTPS detrás de un proxy inverso</li><li>Gestión de secretos y reducción de la superficie de exposición</li></ul></div>
 </div>
   </div>
 
@@ -174,6 +153,7 @@ qm rollback &lt;VMID&gt; pre-update-AAAAMMJJ</pre></div>
       <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
       <a class="related-card" href="infrastructure.html"><img src="/assets/linux.svg" alt=""/>Infrastructure</a>
       <a class="related-card" href="proxmox.html"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="devops.html"><img src="/assets/git.svg" alt=""/>Outils libres &amp; DevOps</a>
       <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
     </div>
   </div>

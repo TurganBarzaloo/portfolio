@@ -59,7 +59,7 @@
   <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes1">
     ⚠️ <strong>Compétence avancée :</strong> Le GPU Passthrough VFIO est l'une des réalisations
     les plus complexes et les plus recherchées du portfolio. Il permet d'assigner physiquement
-    la RTX 5090 à une VM avec performances natives.
+    la RTX 5090 à une VM, avec des performances proches d'une installation native.
   </div>
   <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes2">
     <strong>Pourquoi une RTX 5090 pour l'IA locale ?</strong> Avec ses cœurs CUDA et Tensor et ses
@@ -109,8 +109,24 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header" data-i18n="gpu.p4.h"> 🐛 Dépannage réalisé</div>
-  <div class="panel-body"><table class="data-table" data-i18n="gpu.t3"><thead><tr><th>Problème</th><th>Solution</th></tr></thead><tbody><tr><td>GPU dans mauvais groupe IOMMU</td><td>Reconfiguration slots PCIe</td></tr><tr><td>NVIDIA refuse de démarrer en VM</td><td>Patch OVMF + masquage hyperviseur</td></tr><tr><td>Audio NVIDIA absent</td><td>Passthrough device audio PCIe</td></tr><tr><td>Écran noir post-passthrough</td><td>Switch VNC → OVMF GOP</td></tr><tr><td>vfio-pci: Cannot reset</td><td>Activation 1:1 IOMMU mapping</td></tr><tr><td>Régions direct (direct-mapped)</td><td>Paramètre IOMMU kernel</td></tr></tbody></table></div>
+  <div class="panel-header" data-i18n="gpu.p4.h"> 🐛 Diagnostic par couches</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="gpu.diag.p1">
+      La mise en place a exigé de <strong>distinguer plusieurs niveaux de diagnostic</strong>, afin d'attribuer chaque
+      effet à un seul paramètre :
+    </p>
+    <ul class="skill-list" data-i18n="gpu.diag.list"><li>firmware et IOMMU</li><li>pilote hôte et groupes PCIe</li><li>réservation du GPU et de sa fonction audio à <code>vfio-pci</code></li><li>configuration de la VM</li><li>pilote invité et CUDA</li><li>runtime conteneurisé (accès GPU jusque dans Docker)</li></ul>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0" data-i18n="gpu.diag.p2">
+      Avant toute mise à jour du firmware, les paramètres nécessaires à IOMMU et VFIO sont sauvegardés et un retour arrière
+      est préparé ; après modification, groupes IOMMU, réservation du GPU et démarrage des VM sont revalidés. Une console
+      virtuelle distincte est conservée pour la récupération.
+    </p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="gpu.diag.notes">
+      <strong>Non présenté ici :</strong> aucun dépannage ponctuel (patch OVMF, masquage de l'hyperviseur, mappage IOMMU
+      particulier…) n'est affiché tant qu'une preuve publique exacte n'est pas disponible. La validation de VFIO, du
+      pilote invité et de CUDA ne permet pas de les déduire.
+    </div>
+  </div>
 </div>
   </div>
   <div style="margin-top:1.5rem">

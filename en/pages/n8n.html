@@ -139,29 +139,8 @@ PostgreSQL ou API IA selon le workflow</pre></div>
 
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header" data-i18n="n8n.p6.h"> ⚙️ DevOps &amp; Infrastructure as Code (Proxmox)</div>
-  <div class="panel-body">
-    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:0 0 .8rem" data-i18n="n8n.iac.p">Automation is not limited to n8n: the platform relies on Proxmox <strong>templates</strong>, <strong>snapshots</strong> and <strong>cloning</strong> for reproducible deployment.</p>
-    <div class="code-label" data-i18n="n8n.iac.label">bash — reproducible Proxmox operations</div>
-<div class="code-block"><pre># Clone depuis un template
-qm clone &lt;template_id&gt; &lt;new_id&gt; --name ma-vm --full
-
-# Snapshot avant modification
-qm snapshot &lt;VMID&gt; pre-update-$(date +%Y%m%d) --description 'Avant mise à jour'
-
-# Sauvegarde (vzdump)
-vzdump &lt;VMID&gt; --storage local-zfs --mode snapshot --compress zstd
-
-# Rollback
-qm rollback &lt;VMID&gt; pre-update-AAAAMMJJ</pre></div>
-  </div>
-</div>
-  </div>
-
-  <div style="margin-top:1.5rem">
-    <div class="panel">
   <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Skills demonstrated</div>
-  <div class="panel-body"><ul class="skill-list" data-i18n="n8n.skills"><li>Reproducible Docker Compose deployment</li><li>Application / data / GPU compute separation</li><li>Encrypted PostgreSQL integration, least privilege</li><li>Controlled consumption of a remote LLM API</li><li>Design of persistent workflows</li><li>Preparing HTTPS publishing behind a reverse proxy</li><li>Secrets management and exposure surface reduction</li><li>Proxmox templates, snapshots and cloning (IaC)</li></ul></div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="n8n.skills"><li>Reproducible Docker Compose deployment</li><li>Application / data / GPU compute separation</li><li>Encrypted PostgreSQL integration, least privilege</li><li>Controlled consumption of a remote LLM API</li><li>Design of persistent workflows</li><li>Preparing HTTPS publishing behind a reverse proxy</li><li>Secrets management and exposure surface reduction</li></ul></div>
 </div>
   </div>
 
@@ -174,6 +153,7 @@ qm rollback &lt;VMID&gt; pre-update-AAAAMMJJ</pre></div>
       <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
       <a class="related-card" href="infrastructure.html"><img src="/assets/linux.svg" alt=""/>Infrastructure</a>
       <a class="related-card" href="proxmox.html"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="devops.html"><img src="/assets/git.svg" alt=""/>Outils libres &amp; DevOps</a>
       <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
     </div>
   </div>

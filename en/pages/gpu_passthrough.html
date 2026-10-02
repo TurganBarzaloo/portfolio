@@ -56,7 +56,7 @@
   </div>
 </div>
 <div class="content">
-  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes1">⚠️ <strong>Advanced skill:</strong> GPU Passthrough VFIO is one of the most complex and sought-after achievements in the portfolio. It allows the RTX 5090 to be physically assigned to a VM with native performance.</div>
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes1">⚠️ <strong>Advanced skill:</strong> GPU Passthrough VFIO is one of the most complex and sought-after achievements in the portfolio. It allows the RTX 5090 to be physically assigned to a VM, with performance close to a native installation.</div>
   <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes2"><strong>Why an RTX 5090 for local AI?</strong> With its CUDA and Tensor cores and its <a href="https://www.nvidia.com/fr-fr/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" style="color:var(--blue-500)">32 GB of GDDR7 memory</a>, it strongly accelerates the parallel computation needed for language model inference, embeddings and image generation — while keeping the models and processed data local.</div>
   <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="gpu.notes3"><strong>Why passthrough despite its constraints?</strong> PCIe passthrough with VFIO directly assigns the card to a VM: the guest system, CUDA and containers use the GPU with near-native performance and clear workload isolation. In return, the assignment is <strong>exclusive</strong> (no simultaneous use by several VMs) and requires rigorous preparation of the host, boot process and recovery procedures.</div>
   <div style="margin-bottom:1.5rem">
@@ -84,8 +84,13 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
-  <div class="panel-header" data-i18n="gpu.p4.h"> 🐛 Troubleshooting performed</div>
-  <div class="panel-body"><table class="data-table" data-i18n="gpu.t3"><thead><tr><th>Problem</th><th>Solution</th></tr></thead><tbody><tr><td>GPU in wrong IOMMU group</td><td>PCIe slot reconfiguration</td></tr><tr><td>NVIDIA refuses to start in VM</td><td>OVMF patch + hypervisor masking</td></tr><tr><td>Missing NVIDIA audio</td><td>PCIe audio device passthrough</td></tr><tr><td>Black screen post-passthrough</td><td>VNC → OVMF GOP switch</td></tr><tr><td>vfio-pci: Cannot reset</td><td>1:1 IOMMU mapping enabled</td></tr><tr><td>Direct-mapped regions</td><td>Kernel IOMMU parameter</td></tr></tbody></table></div>
+  <div class="panel-header" data-i18n="gpu.p4.h"> 🐛 Layered diagnosis</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="gpu.diag.p1">The setup required <strong>distinguishing several diagnostic levels</strong>, so that each effect could be attributed to a single parameter:</p>
+    <ul class="skill-list" data-i18n="gpu.diag.list"><li>firmware and IOMMU</li><li>host driver and PCIe groups</li><li>reservation of the GPU and its audio function to <code>vfio-pci</code></li><li>VM configuration</li><li>guest driver and CUDA</li><li>containerized runtime (GPU access all the way into Docker)</li></ul>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0" data-i18n="gpu.diag.p2">Before any firmware update, the settings required for IOMMU and VFIO are saved and a rollback is prepared; after any change, IOMMU groups, GPU reservation and VM startup are revalidated. A separate virtual console is kept for recovery.</p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="gpu.diag.notes"><strong>Not shown here:</strong> no one-off workaround (OVMF patch, hypervisor masking, particular IOMMU mapping…) is displayed until an exact public proof is available. Validating VFIO, the guest driver and CUDA does not allow them to be inferred.</div>
+  </div>
 </div>
   </div>
   <div style="margin-top:1.5rem">
