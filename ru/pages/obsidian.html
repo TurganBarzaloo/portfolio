@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="obs.title">Стефан Муро — Obsidian | Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" data-i18n="obs.desc" content="Obsidian как личная база знаний — ведение заметок и документирование инфраструктуры On-Premise ИИ — портфолио Стефана Муро"/>
+
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/obsidian.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/obsidian.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/obsidian.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/obsidian.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/obsidian.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="nav">
+    <a class="nav-brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+      </svg>
+      IA On<span class="dot">·</span>Premise
+    </a>
+      <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/obsidian.html">FR</a><a href="/en/pages/obsidian.html">EN</a><a href="/ru/pages/obsidian.html" class="active">RU</a><a href="/es/pages/obsidian.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+    <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+  </nav>
+
+  <!-- ── BREADCRUMB ── -->
+  <div class="breadcrumb">
+    <a href="../index.html" data-i18n="c.crumb.home">Главная</a>
+    <span>›</span>
+    <span>Obsidian</span>
+  </div>
+
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-top">
+        <div class="page-icon">
+          <img src="/assets/obsidian.svg" alt="Obsidian"/>
+        </div>
+        <div>
+          <h1>Obsidian</h1>
+          <p data-i18n="obs.subtitle">Личная база знаний — живая документация инфраструктуры On-Premise ИИ</p>
+        </div>
+      </div>
+      <div class="tags" style="margin-top:.8rem">
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Markdown</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)" data-i18n="obs.tag.notes">Ведение заметок</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Knowledge base</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)" data-i18n="obs.tag.graph">Граф связей</span>
+        <span class="tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)">Local-first</span>
+      </div>
+      <span class="level-pill" data-i18n="obs.pill">Документация · Средний уровень · 2024-2026</span>
+    </div>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div class="content">
+
+    <!-- Note personnelle -->
+    <div class="notes-box" style="border-left-color:#7C3AED;background:#F5F3FF;" data-i18n="obs.why"><strong>Почему Obsidian?</strong> При построении ИИ-инфраструктуры с нуля — Proxmox, GPU passthrough, локальные LLM, RAG, Python-конвейеры — памяти уже недостаточно. Мне нужен был инструмент, который хранит заметки <em>локально</em>, в чистом Markdown, без облачной подписки, и связывает понятия между собой. Obsidian стал <strong>спутником в строительстве</strong> всей этой инфраструктуры: каждая протестированная команда, каждая встреченная ошибка, каждое архитектурное решение фиксировались в отдельном vault. Этот портфолио отчасти является публичным синтезом этих записей.</div>
+
+    <!-- Présentation & choix -->
+    <div class="content-grid">
+
+      <div class="panel">
+        <div class="panel-header" data-i18n="obs.p1.h">Обзор</div>
+        <div class="panel-body">
+          <p style="margin-bottom:1rem;font-size:.875rem;color:var(--gray-700)" data-i18n="obs.p1.p">Obsidian — это <strong>локальный по умолчанию (local-first)</strong> редактор заметок в Markdown: файлы остаются на диске, в виде простого текста. Учётная запись не требуется, данные по умолчанию никуда в облако не отправляются. Его сила — в <strong>графе двунаправленных связей</strong> (<code>[[wikilink]]</code>), который превращает разрозненные заметки в навигируемую сеть знаний.</p>
+          <ul class="skill-list" data-i18n="obs.p1.list"><li>Файлы Markdown хранятся локально (C:\Notes\infra-vault)</li><li>Интерактивный граф связей между понятиями</li><li>Мгновенный полнотекстовый поиск по всему vault</li><li>Шаблоны для стандартизации ведения заметок</li><li>Плагины сообщества (Dataview, Kanban, Calendar…)</li><li>Опциональная синхронизация через OneDrive или Git</li></ul>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header" data-i18n="obs.p2.h">Почему именно этот выбор?</div>
+        <div class="panel-body">
+          <div class="panel-body" style="padding:0">
+            <table class="data-table" data-i18n="obs.t1"><thead><tr><th>Критерий</th><th>Решение</th></tr></thead><tbody><tr><td><strong>Суверенитет данных</strong></td><td>Локальные файлы, нулевая зависимость от облака</td></tr><tr><td><strong>Долговечный формат</strong></td><td>Markdown — читается без Obsidian даже через 10 лет</td></tr><tr><td><strong>Без подписки</strong></td><td>Бесплатно для личного использования (Sync и Publish опциональны)</td></tr><tr><td><strong>Скорость</strong></td><td>Запуск менее чем за 1 с, поиск в реальном времени</td></tr><tr><td><strong>Двунаправленные связи</strong></td><td>Естественно связывает Proxmox ↔ GPU ↔ LLM ↔ Docker</td></tr><tr><td><strong>Расширяемость</strong></td><td>Плагин Dataview = SQL-подобные запросы по заметкам</td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Rôle concret dans le projet -->
+    <div class="panel">
+      <div class="panel-header" data-i18n="obs.p3.h">Конкретная роль в построении инфраструктуры</div>
+      <div class="panel-body">
+        <p style="margin-bottom:1.2rem;font-size:.875rem;color:var(--gray-700)" data-i18n="obs.p3.intro">Vault <code>infra-vault</code> сопровождал каждый этап проекта — от технологического мониторинга до написания этого портфолио. Вот применения, которые реально имели значение:</p>
+        <div class="content-grid">
+          <div>
+            <h3 style="font-size:.95rem;font-weight:700;color:var(--blue-700);margin-bottom:.6rem" data-i18n="obs.p3a.h">📋 Журнал строительства</h3>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem" data-i18n="obs.p3a.p">Одна заметка на рабочую сессию: цель, протестированные команды, встреченные ошибки, найденное решение. Незаменимо для возобновления работы после нескольких дней перерыва без потери контекста.</p>
+            <div class="code-label" data-i18n="obs.p3a.label">markdown — иллюстративный пример заметки сессии (не описывает текущую платформу)</div>
+            <div class="code-block"><pre>## 2024-11-14 — GPU Passthrough VFIO
+**Objectif :** Isoler la RTX 3090 pour la VM LLM
+
+### Commandes testées
+```bash
+lspci -nn | grep NVIDIA
+# 0000:01:00.0 [10de:2204]
+```
+### Problème rencontré
+IOMMU group partagé → ajouter pcie_acs_override=downstream
+
+### Solution
+Kernel param : `intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction`
+
+→ [[gpu_passthrough]] pour la doc finale</pre></div>
+          </div>
+          <div>
+            <h3 style="font-size:.95rem;font-weight:700;color:var(--blue-700);margin-bottom:.6rem" data-i18n="obs.p3b.h">🗺️ Ментальная карта архитектуры</h3>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem" data-i18n="obs.p3b.p">У каждого компонента инфраструктуры есть своя выделенная заметка, связанная через wikilink. Граф Obsidian визуализирует зависимости в реальном времени: Proxmox → ВМ LLM → Docker → Ollama → Open WebUI.</p>
+            <h3 style="font-size:.95rem;font-weight:700;color:var(--blue-700);margin-bottom:.6rem;margin-top:1.2rem" data-i18n="obs.p3c.h">📚 База технологического мониторинга</h3>
+            <p style="font-size:.875rem;color:var(--gray-700)" data-i18n="obs.p3c.p">Статьи, бенчмарки моделей, сравнения (LLaMA vs Mistral vs Phi), заметки по чтению о RAG и Qdrant. Всё централизовано, находится за 3 секунды благодаря полнотекстовому поиску.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vue graphe du vault -->
+    <div class="panel">
+      <div class="panel-header" data-i18n="obs.p4.h">Графовое представление vault</div>
+      <div class="panel-body">
+        <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.9rem" data-i18n="obs.p4.p">Графовое представление Obsidian визуально связывает заметки: каждая точка — заметка, каждая линия — связь. Оно выявляет тематические кластеры (инфраструктура, ИИ, DevOps…) и центральные заметки vault.</p>
+        <figure style="margin:0">
+          <img src="/assets/obsidian-graph.png" alt="Vue graphe du vault Obsidian — plus de 200 notes reliées, organisées en grappes thématiques colorées par dossier"
+               style="display:block;width:100%;max-width:760px;height:auto;margin:0 auto;border-radius:var(--radius);border:1px solid var(--gray-300);background:#1e1e1e"/>
+          <figcaption style="font-size:.75rem;color:var(--gray-500);text-align:center;margin-top:.5rem" data-i18n="obs.p4.caption">Граф знаний — 200+ связанных заметок, раскрашенных по папкам.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Structure du vault -->
+    <div class="panel">
+      <div class="panel-header" data-i18n="obs.p5.h">Структура vault <code>infra-vault</code></div>
+      <div class="panel-body">
+        <div class="code-label" data-i18n="obs.p5.label">дерево — vault Obsidian, посвящённый инфраструктуре</div>
+        <div class="code-block"><pre>infra-vault/
+├── 00-inbox/               ← Notes brutes, à trier
+│   └── 2026-06-16.md
+├── 01-journal/             ← Une note par session de travail
+│   ├── 2024-11-14-gpu-passthrough.md
+│   └── 2025-03-08-rag-qdrant.md
+├── 02-infrastructure/      ← Documentation technique
+│   ├── proxmox.md
+│   ├── zfs-storage.md
+│   ├── gpu-passthrough.md
+│   └── reseau.md
+├── 03-ia/                  ← IA & modèles
+│   ├── llm-comparatifs.md
+│   ├── ollama-setup.md
+│   ├── rag-architecture.md
+│   └── comfyui.md
+├── 04-devops/              ← Outils & workflows
+│   ├── docker-compose.md
+│   ├── git-strategie.md
+│   └── python-scripts.md
+├── 05-veille/              ← Articles, benchmarks, liens
+│   └── modeles-llm-2025.md
+├── 06-portfolio/           ← Brouillons des pages web
+│   └── obsidian-page.md    ← (cette page est née ici)
+└── templates/
+    ├── session.md
+    └── tech-fiche.md</pre></div>
+        <div class="notes-box" style="margin-top:1rem" data-i18n="obs.p5.notes"><strong>Золотое правило:</strong> каждая техническая заметка в <code>02-infrastructure/</code> или <code>03-ia/</code> заканчивается разделом <code>## Références</code> со списком проверенных URL — точно так же, как страницы этого портфолио.</div>
+      </div>
+    </div>
+
+    <!-- Plugins utilisés -->
+    <div class="content-grid">
+
+      <div class="panel">
+        <div class="panel-header" data-i18n="obs.p6.h">Основные плагины</div>
+        <div class="panel-body" style="padding:0">
+          <table class="data-table" data-i18n="obs.t2"><thead><tr><th>Плагин</th><th>Практическое применение</th></tr></thead><tbody><tr><td><strong>Dataview</strong></td><td>Запросы по заметкам — список всех открытых задач</td></tr><tr><td><strong>Templater</strong></td><td>Шаблоны сессий с автодатой и контекстными ссылками</td></tr><tr><td><strong>Calendar</strong></td><td>Навигация по датам в журнале строительства</td></tr><tr><td><strong>Git</strong></td><td>Автоматический коммит vault каждые 30 минут</td></tr><tr><td><strong>Kanban</strong></td><td>Доска отслеживания задач инфраструктуры: в работе / завершено</td></tr><tr><td><strong>Excalidraw</strong></td><td>Архитектурные схемы прямо в заметках</td></tr></tbody></table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Применённые компетенции</div>
+        <div class="panel-body">
+          <ul class="skill-list" data-i18n="obs.p7.list"><li>Организация vault по доменам (адаптированный метод PARA)</li><li>Написание запросов Dataview для дашбордов</li><li>Создание шаблонов Templater с динамическими переменными</li><li>Автоматическая синхронизация vault через Git</li><li>Связь между vault Obsidian и репозиторием портфолио на GitHub</li><li>Навигируемый граф знаний (200+ связанных заметок)</li><li>Использование Obsidian Publish для выборочного обмена</li></ul>
+          <div style="margin-top:1rem">
+            <span class="badge badge-inter" data-i18n="c.pill.intermediate.short">Средний</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Exemple Dataview -->
+    <div class="panel">
+      <div class="panel-header" data-i18n="obs.p8.h">Пример — запрос Dataview</div>
+      <div class="panel-body">
+        <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem" data-i18n="obs.p8.p">Dataview позволяет запрашивать vault как базу данных. Пример: вывести все текущие задачи по инфраструктуре, отсортированные по дате последнего изменения.</p>
+        <div class="code-label" data-i18n="obs.p8.label">dataview — дашборд открытых задач</div>
+        <div class="code-block"><pre>```dataview
+TABLE
+  file.mtime AS "Dernière modif",
+  status AS "Statut",
+  tags AS "Tags"
+FROM "02-infrastructure" OR "03-ia"
+WHERE status = "en-cours"
+SORT file.mtime DESC
+```</pre></div>
+        <div class="notes-box" style="margin-top:.8rem" data-i18n="obs.p8.notes"><strong>Результат:</strong> таблица автоматически обновляется при каждом открытии vault — без ручного ввода. Тот же принцип, что и представление проекта в инструменте вроде Notion, но полностью локально и в чистом Markdown.</div>
+      </div>
+    </div>
+
+    <!-- Lien avec le portfolio -->
+    <div class="panel">
+      <div class="panel-header" data-i18n="obs.p9.h">От vault Obsidian к этому портфолио</div>
+      <div class="panel-body">
+        <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:1rem" data-i18n="obs.p9.intro">Этот портфолио не был написан с нуля. Каждая HTML-страница — это публикуемая версия существующей заметки Obsidian, доработанная и оформленная. Рабочий процесс прост:</p>
+        <div class="content-grid">
+          <div>
+            <div style="display:flex;flex-direction:column;gap:.6rem">
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:var(--gray-100);border-radius:var(--radius-sm);font-size:.82rem">
+                <span style="font-size:1.1rem">📝</span>
+                <div data-i18n="obs.step1"><strong>1. Заметка сессии</strong><br/><span style="color:var(--gray-500)">Черновые заметки во время работы</span></div>
+              </div>
+              <div style="text-align:center;color:var(--accent);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:var(--gray-100);border-radius:var(--radius-sm);font-size:.82rem">
+                <span style="font-size:1.1rem">🗂️</span>
+                <div data-i18n="obs.step2"><strong>2. Техническая карточка</strong><br/><span style="color:var(--gray-500)">Консолидация в 02-infrastructure/ или 03-ia/</span></div>
+              </div>
+              <div style="text-align:center;color:var(--accent);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:var(--gray-100);border-radius:var(--radius-sm);font-size:.82rem">
+                <span style="font-size:1.1rem">📄</span>
+                <div data-i18n="obs.step3"><strong>3. Черновик портфолио</strong><br/><span style="color:var(--gray-500)">Написание в 06-portfolio/</span></div>
+              </div>
+              <div style="text-align:center;color:var(--accent);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:#EFF6FF;border-radius:var(--radius-sm);font-size:.82rem;border:1px solid var(--blue-100)">
+                <span style="font-size:1.1rem">🌐</span>
+                <div data-i18n="obs.step4"><strong>4. Опубликованная HTML-страница</strong><br/><span style="color:var(--gray-500)">portfolio.stephanemuraro.fr</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem" data-i18n="obs.p9.adv"><strong>Ключевое преимущество:</strong> заметка Obsidian остаётся источником истины. Если конфигурация меняется (версия Proxmox, обновлённая модель LLM), сначала обновляется заметка, затем синхронизируется HTML-страница.</p>
+            <p style="font-size:.875rem;color:var(--gray-700);margin-bottom:.8rem" data-i18n="obs.p9.priv">Этот процесс также позволяет хранить в vault <strong>неопубликованную</strong> информацию (ключи API, внутренние IP-адреса, чувствительные отладочные заметки) без риска раскрыть её на GitHub.</p>
+            <p style="font-size:.875rem;color:var(--gray-700)" data-i18n="obs.p9.repo">Сам vault версионируется в <strong>приватном</strong> репозитории GitHub, отдельном от публичного репозитория портфолио.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tableau de bord de compétence -->
+    <div class="panel">
+      <div class="panel-header" data-i18n="obs.p10.h">Уровень владения</div>
+      <div class="panel-body">
+        <div class="panel-body" style="padding:0">
+          <table class="data-table" data-i18n="obs.t3"><thead><tr><th>Функция</th><th>Уровень</th><th>Примечания</th></tr></thead><tbody><tr><td>Ежедневное ведение заметок в Markdown</td><td><span class="badge badge-advanced">Продвинутый</span></td><td>Ежедневное использование с 2024 года</td></tr><tr><td>Двунаправленные связи и граф</td><td><span class="badge badge-advanced">Продвинутый</span></td><td>200+ взаимосвязанных заметок</td></tr><tr><td>Templater — динамические шаблоны</td><td><span class="badge badge-inter">Средний</span></td><td>Шаблоны сессий и технических карточек</td></tr><tr><td>Dataview — запросы</td><td><span class="badge badge-inter">Средний</span></td><td>Дашборды, отфильтрованные списки</td></tr><tr><td>Автоматическая синхронизация Git</td><td><span class="badge badge-inter">Средний</span></td><td>Плагин Obsidian Git — коммит каждые 30 мин</td></tr><tr><td>Excalidraw — встроенные схемы</td><td><span class="badge badge-beginner">Базовый+</span></td><td>Простые архитектурные схемы</td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+  <div class="content" style="padding-top:0">
+    <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+      <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+      <div class="panel">
+        <div class="panel-body" style="padding:0">
+          <table class="data-table">
+            <thead>
+              <tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="c.ref.official">Официальный сайт</td>
+                <td>Obsidian — The private and flexible writing app</td>
+                <td><a href="https://obsidian.md" target="_blank" style="color:var(--blue-500)">obsidian.md</a></td>
+              </tr>
+              <tr>
+                <td data-i18n="c.ref.officialdoc">Официальная документация</td>
+                <td>Obsidian Help — Getting started</td>
+                <td><a href="https://help.obsidian.md" target="_blank" style="color:var(--blue-500)">help.obsidian.md</a></td>
+              </tr>
+              <tr>
+                <td data-i18n="obs.ref.plugin">Плагин</td>
+                <td>Dataview — Query your vault</td>
+                <td><a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" style="color:var(--blue-500)">github.com/blacksmithgu/obsidian-dataview</a></td>
+              </tr>
+              <tr>
+                <td data-i18n="obs.ref.plugin">Плагин</td>
+                <td>Obsidian Git — Vault versioning</td>
+                <td><a href="https://github.com/denolehov/obsidian-git" target="_blank" style="color:var(--blue-500)">github.com/denolehov/obsidian-git</a></td>
+              </tr>
+              <tr>
+                <td data-i18n="obs.ref.plugin">Плагин</td>
+                <td>Templater — Dynamic templates</td>
+                <td><a href="https://github.com/SilentVoid13/Templater" target="_blank" style="color:var(--blue-500)">github.com/SilentVoid13/Templater</a></td>
+              </tr>
+              <tr>
+                <td data-i18n="obs.ref.method">Метод</td>
+                <td>PARA Method — Tiago Forte</td>
+                <td><a href="https://fortelabs.com/blog/para/" target="_blank" style="color:var(--blue-500)">fortelabs.com/blog/para</a></td>
+              </tr>
+              <tr>
+                <td data-i18n="c.ref.version">Используемая версия</td>
+                <td>Obsidian v1.7.x — usage personnel (gratuit)</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td data-i18n="c.ref.license">Лицензия</td>
+                <td>Propriétaire — gratuit pour usage personnel non commercial</td>
+                <td><a href="https://obsidian.md/license" target="_blank" style="color:var(--blue-500)">obsidian.md/license</a></td>
+              </tr>
+              <tr>
+                <td data-i18n="c.refs.content">Содержимое этой страницы</td>
+                <td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td>
+                <td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

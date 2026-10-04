@@ -56,13 +56,11 @@ PAGES = [
 ]
 
 # fr en premier (traité in place), puis les langues générées.
-# LANGS = langues construites localement (préviennent le poste de Stéphane).
+# LANGS = langues construites.
 # PUBLIC_LANGS = langues annoncées au public : sélecteur de langue + hreflang.
-# ru reste dans LANGS (généré et entretenu en local) mais hors PUBLIC_LANGS
-# (jamais de lien vers /ru/ ni de hreflang dans les pages publiées) ; le
-# dossier /ru/ et i18n/ru.json sont en outre exclus du dépôt via .gitignore.
+# Les quatre langues sont publiées (sélecteur de langue + hreflang).
 LANGS = ["fr", "en", "ru", "es"]
-PUBLIC_LANGS = ["fr", "en", "es"]
+PUBLIC_LANGS = ["fr", "en", "ru", "es"]
 LANG_LABEL = {"fr": "FR", "en": "EN", "ru": "RU", "es": "ES"}
 HTML_LANG = {"fr": "fr", "en": "en", "ru": "ru", "es": "es"}
 

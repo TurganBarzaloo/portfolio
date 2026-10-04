@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="llm.title">Локальный ИИ и LLM — Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/ia_llm.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/ia_llm.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/ia_llm.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/ia_llm.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/ia_llm.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/ia_llm.html">FR</a><a href="/en/pages/ia_llm.html">EN</a><a href="/ru/pages/ia_llm.html" class="active">RU</a><a href="/es/pages/ia_llm.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong data-i18n="llm.h1">Локальный ИИ и LLM</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/ollama.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="llm.h1">Локальный ИИ и LLM</h1>
+        <p>Ollama · Open WebUI · Llama · Mistral · Gemma · Phi · Hermes</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.intermediateplus">Уровень: средний+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div style="font-size:.88rem;color:var(--gray-600);background:var(--blue-50);border:1px solid var(--blue-100);border-radius:var(--radius-sm);padding:1rem 1.25rem;margin-bottom:1.5rem">
+    <strong>Architecture :</strong>
+    <code style="font-family:monospace;background:var(--white);padding:.15rem .4rem;border-radius:4px;font-size:.82rem">
+      [RTX 5090] → [Ollama] → [Open WebUI / API REST] → [Utilisateur / n8n / RAG pgvector]
+    </code>
+    <div style="margin-top:.75rem;font-size:.84rem" data-i18n="llm.arch.body"><strong>Ollama</strong>, <strong>Open WebUI</strong> и <strong>RAG</strong> работают на основном узле ИИ <strong>VM210</strong> (Ubuntu Server 24.04 LTS · Docker Engine + NVIDIA Container Toolkit · RTX 5090), при этом RAG опирается на PostgreSQL/pgvector, размещённый на <strong>VM215</strong>. <strong>VM260</strong> (Windows) — альтернативная машина для <strong>POC / быстрой проверки</strong>, где компоненты испытываются перед планированием на итоговой инфраструктуре. Поскольку RTX 5090 эксклюзивна, её одновременно использует только один GPU-узел.</div>
+  </div>
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p1.h"> ⚡ Ограничение мощности RTX 5090 — диагностика в прошлом</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.power.p1">В ходе <strong>более ранней диагностики</strong> (анализ <strong>резких отключений</strong> при некоторых агентных нагрузках) RTX 5090 была программно ограничена до <strong>400 Вт</strong> вместо <strong>600 Вт</strong> по умолчанию. Тесты <strong>ComfyUI и Ollama 27–28 сентября 2026</strong> затем проводились при <strong>600 Вт</strong> по явному решению. Устойчивый выигрыш в стабильности или сравнение производительности между этими ограничениями не установлены.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.power.p2">Ограничение <strong>не влияет ни на VRAM, ни на размер моделей</strong>. Приведённая ниже процедура для 400 Вт сохраняет след диагностики; она больше не описывает текущее состояние.</p>
+    <div class="code-label" data-i18n="llm.power.label">проверка активного ограничения / ограничения по умолчанию</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=power.limit,power.default_limit \
+  --format=csv,noheader
+# → 600.00 W, 600.00 W</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:.9rem 0 0" data-i18n="llm.power.p3">Диагностическое значение (историческое): <code>sudo nvidia-smi --power-limit=400</code> (не сохраняется). Возврат к заводскому ограничению: <code>sudo nvidia-smi --power-limit=600</code>.</p>
+  </div>
+</div>
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p2.h"> 🤖 Развёрнутые модели LLM</div>
+  <div class="panel-body"><table class="data-table" data-i18n="llm.t1"><thead><tr><th>Семейство</th><th>Модели</th><th>Назначение</th></tr></thead><tbody><tr><td>Meta</td><td>Llama 3.x</td><td>Качественная универсальная LLM</td></tr><tr><td>Mistral AI</td><td>Mistral 7B/22B</td><td>Эффективная LLM, хорошее соотношение производительность/размер</td></tr><tr><td>Google</td><td>Gemma 2</td><td>Компактная и быстрая LLM</td></tr><tr><td>Microsoft</td><td>Phi-3</td><td>LLM малого размера</td></tr><tr><td>NousResearch</td><td>Hermes</td><td>Продвинутый ИИ-агент — 🔵 проверено (платформа разработки)</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p3.h"> 🖥️ Интерфейсы и инструменты</div>
+  <div class="panel-body"><table class="data-table" data-i18n="llm.t2"><thead><tr><th>Инструмент</th><th>Роль</th><th>Версия</th><th>Порт</th></tr></thead><tbody><tr><td>Ollama</td><td>Локальный сервер инференса LLM</td><td>0.32.6</td><td><span class="redacted">11434</span></td></tr><tr><td>Open WebUI</td><td>Чат-интерфейс (в стиле ChatGPT) + RAG</td><td>0.11.0</td><td><span class="redacted">3000</span></td></tr><tr><td>n8n</td><td>Оркестрация ИИ-воркфлоу</td><td>—</td><td><span class="redacted">5678</span></td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p4.h"> 💻 Команды Ollama</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># Lister les modèles installés
+ollama list
+
+# Télécharger un modèle
+ollama pull mistral
+ollama pull llama3
+
+# Inférence directe
+ollama run mistral
+
+# API REST
+curl http://localhost:<span class="redacted">11434</span>/api/generate \\
+  -d '{"model": "mistral", "prompt": "Résume en 3 points :", "stream": false}'</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Применённые компетенции</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="llm.skills"><li>Локальный хостинг LLM (частная ИИ-инфраструктура, без облака)</li><li>Сравнение и выбор моделей LLM исходя из задач</li><li>Настройка Ollama (модели, API, параметры инференса)</li><li>Развёртывание Open WebUI в качестве пользовательского интерфейса</li><li>Интеграция LLM в конвейеры через REST API</li><li>Архитектура ИИ-агентов на базе Hermes + n8n</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="llm.p5.h"> 🖼️ Локальная генерация изображений — ComfyUI и совместное использование GPU</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.comfy.p1">Linux-узел ИИ (<strong>VM210</strong>) теперь запускает <strong>ComfyUI 0.36.0</strong> и <strong>Ollama</strong> на <strong>одной и той же RTX 5090 (32 ГБ)</strong>. Модель <strong>RealVisXL V5.0</strong> (фотореалистичное производное SDXL) сгенерировала портреты <strong>512×512</strong> и <strong>1024×1024</strong>. Было проверено сосуществование с <code>qwen3:8b</code>, а затем — <strong>выгрузка моделей без остановки серверов</strong>. <strong>Автоматическое распределение запросов ещё предстоит реализовать</strong> (пока переключение вручную).</p>
+    <div class="code-label" data-i18n="llm.comfy.label">наблюдения сессии — VRAM RTX 5090 (не бенчмарк)</div>
+    <table class="data-table" data-i18n="llm.t3"><thead><tr><th>Тест</th><th>Наблюдение</th><th>Область применимости</th></tr></thead><tbody><tr><td>Портрет 512×512, 8 шагов</td><td>8,03 с (включая начальную загрузку)</td><td>Функциональная проверка</td></tr><tr><td>Портрет 1024×1024, 30 шагов</td><td>Изображение получено (DPM++ SDE Karras)</td><td>Длительность указана не с полной уверенностью</td></tr><tr><td>Qwen3 8B + RealVisXL</td><td>19 001 МиБ VRAM (выборка)</td><td>Qwen 100% GPU, контекст 40 960</td></tr><tr><td>Выгрузка ComfyUI</td><td>7 376 → 742 МиБ · HTTP 200</td><td>Сервер оставался активным</td></tr><tr><td>Перезагрузка + генерация за 8 шагов</td><td>7,40 с · возврат к 7 376 МиБ</td><td>Полный цикл без перезапуска</td></tr><tr><td>Выгрузка Qwen3 8B (ComfyUI остановлен)</td><td>Возврат к 2 МиБ</td><td>Сервис Ollama по-прежнему доступен</td></tr></tbody></table>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="llm.comfy.notes">Это <strong>наблюдения сессии</strong>, без статистического протокола или гарантии задержки. Замер при сосуществовании показывает <strong>539 Вт · 53 °C · 83% GPU</strong> (настроенное ограничение 600 Вт) — не следует представлять это как постоянное потребление или измеренный пик. Более крупные LLM, более длинные контексты или другие workflow могут превысить доступную память. <strong>RealVisXL V5.0</strong> распространяется по лицензии <strong>Open RAIL++</strong>: доступность весов не означает отсутствие лицензионных ограничений.</div>
+    <div class="code-label" data-i18n="llm.comfy.check.label">Воспроизводимая проверка — контроль чекпоинта и GPU</div>
+<div class="code-block"><pre>MODEL_FILE='&lt;chemin-du-checkpoint&gt;'
+EXPECTED_SHA256='&lt;empreinte-publiee-du-checkpoint&gt;'
+printf '%s  %s\n' "$EXPECTED_SHA256" "$MODEL_FILE" | sha256sum --check
+
+nvidia-smi
+nvidia-smi --query-gpu=power.limit,power.default_limit --format=csv,noheader</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.6rem 0 0" data-i18n="llm.comfy.check.note">Ожидаемая контрольная сумма должна браться из <strong>доверенного репозитория</strong> модели, а не только из скачанного файла.</p>
+    <div class="code-label" style="margin-top:1rem" data-i18n="llm.comfy.monitor.label">Воспроизводимая проверка — телеметрия GPU во время генерации (Ctrl+C для остановки)</div>
+<div class="code-block"><pre>nvidia-smi \
+  --query-gpu=timestamp,temperature.gpu,power.draw,memory.used,utilization.gpu \
+  --format=csv,noheader --loop=1</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.65;margin:1.1rem 0 .5rem;font-weight:600" data-i18n="llm.comfy.limits.h">Выводы и ограничения</p>
+    <ul class="skill-list" data-i18n="llm.comfy.limits"><li>Граф, смешивающий RealVisXL с узлами SD3/AuraFlow, был <strong>отклонён</strong>; адаптированный граф SDXL затем сработал</li><li><strong>Заблокированная отмена</strong> потребовала целевого перезапуска без установления точной причины блокировки</li><li>Анатомический реализм, позы и качество в большом масштабе ещё предстоит оценить — один удачный портрет недостаточен для их подтверждения</li><li>Агентные интеграции/n8n, общий контроль допуска и политика перезапуска после перезагрузки остаются <strong>открытыми задачами</strong></li></ul>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="llm.comfy.linkimg">Подробные результаты, потребность в фотогенерации и полная процедура доступа на странице <a href="ia_image.html" style="color:var(--blue-500)">ИИ Изображения</a>. Проверка контейнера и исправление кэша на странице <a href="docker.html" style="color:var(--blue-500)">Docker</a>.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="rag.html"><img src="/assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
+      <a class="related-card" href="n8n.html"><img src="/assets/n8n.svg" alt=""/>Automatisation</a>
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Ollama</td><td><a href="https://github.com/ollama/ollama" target="_blank" style="color:var(--blue-500)">github.com/ollama/ollama</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Open WebUI</td><td><a href="https://docs.openwebui.com/" target="_blank" style="color:var(--blue-500)">docs.openwebui.com</a></td></tr>
+            <tr><td data-i18n="c.ref.version">Используемая версия</td><td>Ollama 0.32.6 · Open WebUI 0.11.0 · Ubuntu Server 24.04 LTS (nœud VM210)</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>Ollama — MIT · Open WebUI — BSD-3-Clause</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

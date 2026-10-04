@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="vm302.title">VM302 — Станция ИИ-разработки (Windows 11) | Портфолио локального ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" data-i18n="vm302.desc" content="VM302 — многоязычная рабочая станция разработки на Windows 11 (VSCodium, Python 3.13, Node.js 24 LTS) для оценки ассистентов программирования с DeepSeek Harness, использующая удалённый вывод на GPU, размещённый отдельно. Портфолио Stéphane Muraro."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/vm302-station-dev-ia.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/vm302-station-dev-ia.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/vm302-station-dev-ia.html">FR</a><a href="/en/pages/vm302-station-dev-ia.html">EN</a><a href="/ru/pages/vm302-station-dev-ia.html" class="active">RU</a><a href="/es/pages/vm302-station-dev-ia.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong data-i18n="vm302.crumb">Станция ИИ-разработки — VM302</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/harness.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="vm302.h1">VM302 — Станция ИИ-разработки</h1>
+        <p data-i18n="vm302.subtitle">Windows 11 · VSCodium · Python 3.13 · Node.js 24 LTS · DeepSeek Harness · удалённый вывод на GPU</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          <span data-i18n="c.pill.advanced">Уровень: продвинутый</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="vm302.intro"><strong>VM302</strong> — это <strong>рабочая станция разработки на Windows 11</strong>, предназначенная для многоязычной разработки и <strong>оценки ассистентов программирования</strong>. У машины <strong>нет локального GPU</strong>: она использует <strong>отдельно размещённые мощности вывода</strong>, что отделяет клиентскую станцию от вычислительного сервиса.</div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.p1.h"> ✅ Проверенная база и цепочки инструментов</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.p1.list"><li>Виртуализированная база <strong>Windows 11</strong>, <strong>без локального GPU-ускорителя</strong></li><li><strong>VSCodium</strong>, <strong>Git</strong> и <strong>PowerShell 7</strong> проверены функциональными тестами</li><li>Гостевая идентификация, сеть, гостевой агент и периферия повторно проверены</li><li><strong>Python 3.13</strong> — управление пакетами, виртуальное окружение, офлайн-тест стандартных библиотек</li><li><strong>Node.js 24 LTS</strong> и npm — запуск локального теста JavaScript</li><li><strong>DeepSeek Harness</strong> в зафиксированной предварительной версии: lockfile, целостность пакета, аудит зависимостей, скрипты установки и нативные модули проверены</li><li>Интерфейс Harness ограничен <strong>локальной машиной</strong>, первый профиль — <strong>только для чтения</strong></li></ul></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.p2.h"> 🔎 Удалённый вывод и сохранность</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.p2.list"><li>Первый <strong>проверенный удалённый вывод</strong> с <code>qwen3.6:35b</code>: контрольный запрос вернул точно <code>DSH_VM302_QWEN36_OK</code>, без вызова инструментов</li><li>После <strong>перезагрузки</strong> станции: версии, конфигурация и история сессии <strong>сохранены</strong></li><li>Новая сессия подтвердила ожидаемый ответ и <strong>удалённое ускорение на GPU</strong></li><li>Доступ к сервису вывода ограничен <strong>частной сетью</strong>, без прямой публикации его API в интернете</li><li>Сервисы автоматизации проверены на уровне <strong>работоспособности</strong>, без объявления потребления агентом</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.arch.h"> 🧭 Архитектура — клиентская станция, отдельные вычисления</div>
+  <div class="panel-body"><div class="code-label" data-i18n="vm302.arch.label">разделение между станцией разработки и сервисом вывода</div>
+<div class="code-block"><pre data-i18n="vm302.arch.tree">VM302 (Windows 11, без локального GPU)
+├── VSCodium · Git · PowerShell 7
+├── Python 3.13 · Node.js 24 LTS
+└── DeepSeek Harness (локальный интерфейс)
+    └── отдельный сервис вывода (частная сеть)
+        └── удалённое ускорение на GPU</pre></div>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:.9rem 0 0" data-i18n="vm302.arch.p">Станция остаётся <strong>лёгкой</strong> и без GPU: вычисления делегируются отдельно размещённому сервису вывода, доступному только в <strong>частной сети</strong>. Такое разделение изолирует инструменты разработки от сервиса модели.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm302.skills.h"> 🎯 Продемонстрированные навыки</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="vm302.skills.list"><li>Подготовка и проверка виртуализированной станции Windows</li><li>Проектирование многоязычной цепочки разработки</li><li>Контролируемая установка агентного инструмента на архитектуре плагинов Cordis</li><li>Интеграция станции без GPU с отдельным сервисом вывода</li><li>Выбор свободных компонентов и разделение проприетарных зависимостей</li><li>Воспроизводимые тесты и офлайн-проверка</li><li>Разделение клиентской станции, сервиса вывода и автоматизации</li></ul></div>
+</div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <strong data-i18n="vm302.limits.h">🚧 Ограничения и статус:</strong>
+    <ul class="skill-list" style="margin-top:.5rem" data-i18n="vm302.limits.list"><li>цепочки <strong>Rust</strong> и <strong>C/C++</strong> остаются будущей работой;</li><li><strong>сравнение ассистентов</strong> и выполнение сценария автоматизации агентом ещё предстоит сделать;</li><li><strong>DeepSeek Harness</strong> всё ещё распространяется как предварительная версия: он не представлен как стабильный компонент;</li><li>лицензия Windows и проприетарные аппаратные компоненты не позволяют представлять всё как «100 % открытый код».</li></ul>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="architecture.html"><img src="/assets/proxmox.svg" alt=""/><span data-i18n="c.nav.architecture">Архитектура</span></a>
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
+      <a class="related-card" href="devops.html"><img src="/assets/git.svg" alt=""/>Outils libres &amp; DevOps</a>
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA &amp; LLM</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="vm302.ref.oss">Свободные инструменты</td><td>VSCodium (MIT) · Git (GPLv2) · PowerShell 7 (MIT)</td><td><a href="https://vscodium.com/" target="_blank" style="color:var(--blue-500)">vscodium.com</a></td></tr>
+            <tr><td data-i18n="vm302.ref.chains">Цепочки разработки</td><td>Python 3.13 (PSF) · Node.js 24 LTS (MIT)</td><td><a href="https://www.python.org/" target="_blank" style="color:var(--blue-500)">python.org</a> · <a href="https://nodejs.org/" target="_blank" style="color:var(--blue-500)">nodejs.org</a></td></tr>
+            <tr><td data-i18n="vm302.ref.agent">Агентный ассистент</td><td data-i18n="vm302.ref.agentval">DeepSeek Harness — зафиксированная предварительная версия (не стабилизирована)</td><td>—</td></tr>
+            <tr><td data-i18n="vm302.ref.valid">Проверка</td><td data-i18n="vm302.ref.validval">База проверена 2026-08-30 · цепочки Python, Node.js и DeepSeek Harness проверены 2026-09-20 · удалённый вывод <code>qwen3.6:35b</code> и сохранность после перезагрузки подтверждены</td><td>—</td></tr>
+            <tr><td data-i18n="vm302.ref.nature">Характер станции</td><td data-i18n="vm302.ref.natureval">Проприетарные компоненты (Windows, оборудование) — всё не является «100 % открытым кодом»</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

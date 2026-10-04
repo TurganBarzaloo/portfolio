@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="infra.title">Аппаратная инфраструктура — Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/infrastructure.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/infrastructure.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/infrastructure.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/infrastructure.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/infrastructure.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/infrastructure.html">FR</a><a href="/en/pages/infrastructure.html">EN</a><a href="/ru/pages/infrastructure.html" class="active">RU</a><a href="/es/pages/infrastructure.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong data-i18n="c.nav.infrastructure">Инфраструктура</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/linux.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="infra.h1">Аппаратная инфраструктура</h1>
+        <p data-i18n="infra.subtitle">Локальный ИИ-сервер: AMD Ryzen 9 9950X3D · NVIDIA RTX 5090 · 192 ГБ DDR5</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.advanced">Уровень: продвинутый</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="infra.p1.h"> 🖥️ Аппаратные компоненты</div>
+  <div class="panel-body"><table class="data-table" data-i18n="infra.t1"><thead><tr><th>Компонент</th><th>Характеристики</th><th>Роль</th></tr></thead><tbody><tr><td><strong>CPU</strong></td><td>AMD Ryzen 9 9950X3D — 16 ядер / 32 потока</td><td>Инференс ИИ · Виртуализация KVM</td></tr><tr><td><strong>GPU</strong></td><td>NVIDIA GeForce RTX 5090</td><td>Инференс LLM · Генерация изображений</td></tr><tr><td><strong>RAM</strong></td><td>192 ГБ DDR5 (~186 ГиБ доступно)</td><td>Память для нескольких ВМ · крупные модели</td></tr><tr><td><strong>Хранилище</strong></td><td>2× SSD NVMe в зеркале ZFS (~1,75 ТиБ полезных)</td><td>Виртуальные диски · датасеты ИИ · отказоустойчивость</td></tr><tr><td><strong>Гипервизор</strong></td><td>Proxmox VE 9.2.2</td><td>Виртуализация · назначение GPU</td></tr><tr><td><strong>Сеть</strong></td><td>Ethernet</td><td>Мост Proxmox · доступ в LAN</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="infra.p2.h"> ⚙️ BIOS/UEFI — подтверждённое значение</div>
+  <div class="panel-body"><table class="data-table" data-i18n="infra.t2"><thead><tr><th>Параметр</th><th>Состояние</th><th>Назначение</th></tr></thead><tbody><tr><td>IOMMU (AMD)</td><td>✅ Включён и проверен</td><td>GPU Passthrough VFIO</td></tr></tbody></table>
+    <div class="notes-box" style="margin:1rem" data-i18n="infra.bios.note">Остальные значения BIOS (Above 4G Decoding, Re-Size BAR, Secure Boot…) <strong>не публикуются</strong>: подтверждено лишь включение IOMMU (см. <a href="gpu_passthrough.html" style="color:var(--blue-500)">GPU / VFIO</a>). Работающий passthrough не заменяет датированный отчёт.</div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Применённые компетенции</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="infra.skills"><li>Архитектура высокопроизводительного локального ИИ-сервера</li><li>Подбор аппаратного обеспечения для инференса на GPU (VRAM, пропускная способность)</li><li>Расчёт CPU/RAM для гипервизора с несколькими ВМ</li><li>Настройка BIOS/UEFI для виртуализации и PCIe passthrough</li><li>Управление высокопроизводительным хранилищем NVMe на ZFS</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="infra.p3.h"> 🧩 Распределение ролей — виртуальные машины</div>
+  <div class="panel-body"><table class="data-table" data-i18n="infra.t3"><thead><tr><th>ВМ</th><th>Роль</th><th>Основа</th><th>Ключевые компоненты</th></tr></thead><tbody><tr><td><strong>VM200</strong></td><td>Обратный прокси — точка входа Web / публикация HTTPS</td><td>Ubuntu Server 24.04 LTS · без GPU</td><td>Nginx · Certbot (Let's Encrypt) · Fail2ban · локальный файрвол</td></tr><tr><td><strong>VM205</strong></td><td>Файловый сервис — Nextcloud</td><td>Ubuntu Server 24.04 LTS · без GPU</td><td>Nextcloud + MariaDB (контейнеры Docker) · автозапуск</td></tr><tr><td><strong>VM210</strong></td><td>Узел ИИ — нагрузки GPU</td><td>Ubuntu Server 24.04 LTS · RTX 5090 (passthrough)</td><td>Docker + NVIDIA Container Toolkit · Ollama · Open WebUI</td></tr><tr><td><strong>VM215</strong></td><td>Общие сервисы — без GPU</td><td>Ubuntu Server 24.04 LTS · выделенный диск ext4</td><td>PostgreSQL 18.4 · pgvector 0.8.6 (векторный бэкенд RAG)</td></tr><tr><td><strong>VM300</strong></td><td>Потребитель ИИ — автоматизация</td><td>Ubuntu Server 24.04 LTS · без GPU</td><td>n8n (оркестрация workflow) · автозапуск</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div class="notes-box" style="margin-top:1.5rem" data-i18n="infra.notes"><strong>Принцип:</strong> GPU напрямую назначается тем ВМ, которым он нужен; нагрузки на GPU (VM210) и общие сервисы CPU (VM215) разделены, чтобы уменьшить зависимости и упростить резервное копирование.<br/><br/><strong>Индустриализация:</strong> ВМ создаются на основе типовых и CUDA-<strong>шаблонов</strong>, настраиваемых через <strong>Cloud-Init</strong>; их пересборка следует обратимой процедуре (перед любой заменой проверяется контрольный клон).<br/><br/><strong>Ограничения:</strong> ранее использовалось программное диагностическое ограничение мощности <strong>400 Вт</strong> (против 600 Вт по умолчанию); последние тесты <strong>ComfyUI/Ollama</strong> проводились при <strong>600 Вт</strong>, без гарантии долгосрочной стабильности и без установленного сравнения производительности (методика — на странице <a href="ia_llm.html" style="color:var(--blue-500)">ИИ и LLM</a>). Снимки ZFS также облегчают технические откаты, но <strong>не заменяют независимое резервное копирование</strong> — эта политика пока в стадии определения.</div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.tech">Используемые технологии</h2>
+    <div class="tags">
+      <span class="tag"><img src="/assets/amd.svg" alt=""/>AMD Ryzen 9950X3D</span>
+      <span class="tag"><img src="/assets/nvidia.svg" alt=""/>NVIDIA RTX 5090</span>
+      <span class="tag"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</span>
+      <span class="tag"><img src="/assets/linux.svg" alt=""/>Linux</span>
+      <span class="tag"><img src="/assets/zfs.svg" alt=""/>ZFS</span>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="proxmox.html"><img src="/assets/proxmox.svg" alt=""/>Proxmox VE</a>
+      <a class="related-card" href="reverse_proxy.html"><img src="/assets/nginx.svg" alt=""/>Reverse Proxy</a>
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="storage_zfs.html"><img src="/assets/zfs.svg" alt=""/>Stockage ZFS</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Proxmox VE Administration Guide</td><td><a href="https://pve.proxmox.com/pve-docs/" target="_blank" style="color:var(--blue-500)">pve.proxmox.com/pve-docs</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>OpenZFS Documentation</td><td><a href="https://openzfs.github.io/openzfs-docs/" target="_blank" style="color:var(--blue-500)">openzfs.github.io/openzfs-docs</a></td></tr>
+            <tr><td data-i18n="infra.ref.cat3">Продемонстрированная конфигурация</td><td>Ryzen 9 9950X3D (16c/32t) · 192 Go DDR5 · RTX 5090 · 2× NVMe miroir ZFS (~1,75 Tio) · Proxmox VE 9.2.2</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>OpenZFS — CDDL · Proxmox VE — AGPLv3</td><td><a href="https://openzfs.org/" target="_blank" style="color:var(--blue-500)">openzfs.org</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="speech.title">Speech AI — Whisper — Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/speech_ai.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/speech_ai.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/speech_ai.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/speech_ai.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/speech_ai.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/speech_ai.html">FR</a><a href="/en/pages/speech_ai.html">EN</a><a href="/ru/pages/speech_ai.html" class="active">RU</a><a href="/es/pages/speech_ai.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong>Speech AI</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/whisper.svg" alt=""/></div>
+      <div>
+        <h1>Speech AI — Whisper</h1>
+        <p data-i18n="speech.subtitle">Whisper (OpenAI) · Локальный Speech-to-Text · Мультимодальный ИИ · GPU</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.basic">Уровень: базовый+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="speech.p1.h"> 🎙️ Модели Whisper</div>
+  <div class="panel-body"><table class="data-table" data-i18n="speech.t1"><thead><tr><th>Модель</th><th>VRAM</th><th>Скорость</th><th>Точность</th><th>Рекомендуется</th></tr></thead><tbody><tr><td>tiny</td><td>~1 ГБ</td><td>⚡⚡⚡⚡</td><td>★★</td><td>Нет</td></tr><tr><td>base</td><td>~1 ГБ</td><td>⚡⚡⚡</td><td>★★★</td><td>Нет</td></tr><tr><td>small</td><td>~2 ГБ</td><td>⚡⚡</td><td>★★★★</td><td>Быстрая демонстрация</td></tr><tr><td>medium</td><td>~5 ГБ</td><td>⚡</td><td>★★★★</td><td>Хороший компромисс</td></tr><tr><td>large-v3</td><td>~10 ГБ</td><td></td><td>★★★★★</td><td>✅ RTX 5090</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="speech.p2.h"> 💾 Датасет ZFS</div>
+  <div class="panel-body"><table class="data-table" data-i18n="speech.t2"><thead><tr><th>Датасет</th><th>Содержимое</th></tr></thead><tbody><tr><td>whisper</td><td>Модели Whisper (чекпоинты)</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="speech.p3.h"> 🐍 Пример на Python</div>
+  <div class="panel-body"><div class="code-label">python</div>
+<div class="code-block"><pre>import whisper
+
+# Charger le modèle (téléchargé si absent)
+model = whisper.load_model('large-v3')
+
+# Transcrire un fichier audio
+result = model.transcribe(
+    'enregistrement.mp3',
+    language='fr',
+    verbose=True
+)
+
+print(result['text'])
+
+# Avec timestamps
+for segment in result['segments']:
+    print(f"[{segment['start']:.1f}s] {segment['text']}")</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="speech.p4.h"> 🎯 Компетенции в процессе освоения</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="speech.skills"><li>Установка Whisper с ускорением на GPU (CUDA)</li><li>Транскрипция аудио/видео на французском и других языках</li><li>Выбор модели с учётом ограничений VRAM/скорости</li><li>Интеграция в пайплайн n8n (триггер по аудио → STT → LLM)</li><li>Мультимодальный ИИ: аудио → текст → LLM → ответ</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="n8n.html"><img src="/assets/n8n.svg" alt=""/>Automatisation</a>
+      <a class="related-card" href="python.html"><img src="/assets/python.svg" alt=""/>Python</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>OpenAI Whisper</td><td><a href="https://github.com/openai/whisper" target="_blank" style="color:var(--blue-500)">github.com/openai/whisper</a></td></tr>
+            <tr><td data-i18n="speech.ref.cat2">Модели</td><td>Whisper — modèles multilingues (Hugging Face)</td><td><a href="https://huggingface.co/openai" target="_blank" style="color:var(--blue-500)">huggingface.co/openai</a></td></tr>
+            <tr><td data-i18n="speech.ref.cat3">Статус</td><td>Transcription audio/vidéo — validé, portage planifié sur VM210</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>Whisper — MIT</td><td><a href="https://github.com/openai/whisper/blob/main/LICENSE" target="_blank" style="color:var(--blue-500)">github.com/openai/whisper — LICENSE</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

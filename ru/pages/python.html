@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="py.title">Python — Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    /* Aperçu Wikipédia au survol (non cliquable) */
+    .wiki-ref { position: relative; border-bottom: 1px dotted var(--blue-500); color: var(--blue-700); cursor: help; }
+    .wiki-card {
+      position: absolute; left: 0; top: 1.5em; z-index: 30;
+      width: 340px; max-width: 86vw;
+      background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--radius);
+      box-shadow: var(--shadow-lg); padding: .8rem .9rem;
+      font-size: .8rem; font-style: normal; color: var(--gray-700); line-height: 1.55; text-align: left;
+      opacity: 0; visibility: hidden; transform: translateY(4px);
+      transition: opacity .15s, transform .15s; pointer-events: none;
+    }
+    .wiki-ref:hover .wiki-card, .wiki-ref:focus .wiki-card { opacity: 1; visibility: visible; transform: translateY(0); }
+    .wiki-card .src { display: block; margin-top: .5rem; font-size: .7rem; font-style: normal; color: var(--gray-500); }
+    @media (max-width: 640px) { .wiki-card { width: 260px; } }
+  </style>
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/python.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/python.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/python.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/python.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/python.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/python.html">FR</a><a href="/en/pages/python.html">EN</a><a href="/ru/pages/python.html" class="active">RU</a><a href="/es/pages/python.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong>Python</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/python.svg" alt=""/></div>
+      <div>
+        <h1>Python</h1>
+        <p data-i18n="py.subtitle">venv · pip · requirements.txt · скрипты ИИ · psycopg / pgvector</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.basic">Уровень: базовый+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="py.why"><strong>Почему Python?</strong> Это общий язык экосистемы ИИ: практически все библиотеки для моделей, эмбеддингов, RAG и оркестрации используются на Python. Владение им — даже на уровне инструментария (изолированные окружения, зависимости, скрипты) — позволяет <strong>автоматизировать эксплуатацию платформы</strong>, соединять компоненты между собой (Ollama, pgvector, API) и быстро прототипировать перед промышленным внедрением. Это «связующее звено» между инфраструктурой и сервисами ИИ.</div>
+
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="py.mldl"><strong>🧠 Python — эталонный язык для ML и глубокого обучения.</strong><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:.6rem 0 0">Крупнейшие ИИ-фреймворки — <strong>PyTorch</strong>, <strong>TensorFlow</strong>, scikit-learn, Hugging Face — управляются из Python. Это естественная точка входа в <span class="wiki-ref" tabindex="0">машинное обучение<span class="wiki-card"><em>Машинное обучение — область искусственного интеллекта, основанная на математических и статистических подходах, которые дают компьютерам способность «обучаться» на данных […]</em><span class="src">Википедия — «Машинное обучение» · CC&nbsp;BY-SA</span></span></span> и <span class="wiki-ref" tabindex="0">глубокое обучение<span class="wiki-card"><em>Глубокое обучение — раздел искусственного интеллекта, использующий искусственные нейронные сети из множества слоёв для решения сложных задач.</em><span class="src">Википедия — «Глубокое обучение» · CC&nbsp;BY-SA</span></span></span>: от подготовки данных до обучения и последующего инференса моделей.</p><div style="font-size:.72rem;color:var(--gray-500);margin-top:.6rem">💡 Наведите курсор на подчёркнутые термины, чтобы увидеть краткое описание (источник: Википедия).</div></div>
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="py.p1.h"> 🛠️ Стек Python</div>
+  <div class="panel-body"><table class="data-table" data-i18n="py.t1"><thead><tr><th>Инструмент</th><th>Назначение</th></tr></thead><tbody><tr><td>Python 3.11+</td><td>Основной язык</td></tr><tr><td>venv</td><td>Изолированные виртуальные окружения</td></tr><tr><td>pip</td><td>Менеджер пакетов</td></tr><tr><td>requirements.txt</td><td>Воспроизводимость окружений</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="py.p2.h"> 📦 Библиотеки для ИИ</div>
+  <div class="panel-body"><table class="data-table" data-i18n="py.t2"><thead><tr><th>Библиотека</th><th>Назначение</th><th>Статус</th></tr></thead><tbody><tr><td>psycopg + pgvector</td><td>Клиент PostgreSQL · векторы</td><td>🔵 Запланировано</td></tr><tr><td>langchain</td><td>Скрипты / агенты (опционально)</td><td>🔵 Запланировано</td></tr><tr><td>ollama</td><td>Клиент локального API Ollama</td><td>🔵 Запланировано</td></tr><tr><td>openai</td><td>Клиент, совместимый с Ollama</td><td>🔵 Запланировано</td></tr><tr><td>whisper</td><td>Speech-to-Text</td><td>🔵 Запланировано</td></tr><tr><td>requests</td><td>HTTP-вызовы API</td><td>✅ Используется</td></tr></tbody></table></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="py.p3.h"> 💻 Стандартный workflow</div>
+  <div class="panel-body"><div class="code-label">bash</div>
+<div class="code-block"><pre># Créer un projet IA
+mkdir projet-rag && cd projet-rag
+
+# Environnement virtuel
+python3 -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# .venv\\Scripts\\activate  # Windows
+
+# Installer les dépendances
+pip install "psycopg[binary]" pgvector ollama
+
+# Sauvegarder
+pip freeze &gt; requirements.txt
+
+# Reproduire l'environnement ailleurs
+pip install -r requirements.txt</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="py.p4.h"> 🐍 Пример: клиент Ollama</div>
+  <div class="panel-body"><div class="code-label">python</div>
+<div class="code-block"><pre>import ollama
+
+# Chat simple
+response = ollama.chat(
+    model='mistral',
+    messages=[{'role': 'user', 'content': 'Explique VFIO en 3 lignes'}]
+)
+print(response['message']['content'])
+
+# Streaming
+for chunk in ollama.chat(
+    model='mistral',
+    messages=[{'role': 'user', 'content': 'Bonjour'}],
+    stream=True
+):
+    print(chunk['message']['content'], end='', flush=True)</pre></div></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="rag.html"><img src="/assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="speech_ai.html"><img src="/assets/whisper.svg" alt=""/>Speech AI</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Python — Documentation</td><td><a href="https://docs.python.org/3/" target="_blank" style="color:var(--blue-500)">docs.python.org/3</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>pip — User Guide</td><td><a href="https://pip.pypa.io/en/stable/" target="_blank" style="color:var(--blue-500)">pip.pypa.io</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>venv — Environnements virtuels (bibliothèque standard)</td><td><a href="https://docs.python.org/3/library/venv.html" target="_blank" style="color:var(--blue-500)">docs.python.org/3/library/venv</a></td></tr>
+            <tr><td data-i18n="py.ref.cat4">Используемые инструменты</td><td>Python 3.11+ · venv · pip · requirements.txt · psycopg / pgvector (planifié)</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>Python — PSF License</td><td><a href="https://docs.python.org/3/license.html" target="_blank" style="color:var(--blue-500)">docs.python.org/3/license</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

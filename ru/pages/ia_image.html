@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="img.title">Локальная генерация фотографий (ComfyUI) — портфолио ИИ On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/ia_image.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/ia_image.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/ia_image.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/ia_image.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/ia_image.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/ia_image.html">FR</a><a href="/en/pages/ia_image.html">EN</a><a href="/ru/pages/ia_image.html" class="active">RU</a><a href="/es/pages/ia_image.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong data-i18n="img.h1">Генеративный ИИ для изображений</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/comfyui.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="img.h1">Генеративный ИИ для изображений</h1>
+        <p data-i18n="img.subtitle">ComfyUI 0.36.0 · RealVisXL · Локальная генерация фотографий · GPU совместно с Ollama</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.basic">Уровень: базовый+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="img.synth"><strong>Стратегическая сводка.</strong> Linux-узел ИИ (<strong>VM210</strong>) теперь выполняет <strong>ComfyUI 0.36.0</strong> вместе с <strong>Ollama</strong> на <strong>одной RTX 5090 (32 ГБ)</strong> для локальной генерации фотореалистичных изображений. Используемая модель — <strong>RealVisXL V5.0 FP16</strong> (производная SDXL, ориентированная на фотореализм), которая произвела портреты в <strong>512×512</strong> и <strong>1024×1024</strong>. Главный компромисс — <strong>совместное использование единственного эксклюзивного GPU</strong> между генерацией изображений и инференсом LLM: сосуществование было подтверждено, выгрузка моделей без остановки серверов проверена, но <strong>автоматическое распределение запросов ещё предстоит построить</strong> (пока ручное переключение). Зрелость: <strong>активно на целевой платформе (VM210, Linux)</strong>, отдельно от <strong>более раннего Windows-POC (VM260)</strong>, где опробовались рабочие процессы SDXL/Flux.</div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.p1.h"> 🏗️ Архитектура и решения</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.arch.p1"><strong>ComfyUI 0.36.0</strong> работает в <strong>локально собранном Docker-образе</strong> на VM210: база Python зафиксирована по <strong>digest</strong>, исходники — по <strong>коммиту</strong>, зависимости <strong>заблокированы своими хешами</strong> (wheel-пакеты скачаны и затем установлены офлайн). Проверенное окружение: Python 3.12.14, PyTorch 2.11.0, CUDA 13.0. Подробности о контейнере и исправлении кэша на странице <a href="docker.html" style="color:var(--blue-500)">Docker</a>.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.arch.p2">Реально рассмотренная альтернатива: <strong>более ранний Windows-POC (VM260)</strong> опробовал ComfyUI через Docker Desktop с рабочими процессами <strong>SDXL / Flux</strong>. Это Linux-развёртывание (VM210) отличается от него, и использование Flux здесь пока не подтверждено; измерялся только <strong>RealVisXL</strong>. Поскольку RTX 5090 <strong>эксклюзивна</strong>, VM210 и VM260 не используют её одновременно.</p>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:0" data-i18n="img.arch.p3">Принятые меры усиления: выполнение <strong>без привилегий</strong>, корневая файловая система в режиме <strong>только для чтения</strong>, модели смонтированы только для чтения, <strong>пользовательские и API-узлы отключены</strong> (без общей блокировки исходящей сети), интерфейс опубликован <strong>только на локальной петле</strong> (доступ через SSH-туннель, без публикации в интернете).</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.p2.h"> ⚙️ Команды и проверки</div>
+  <div class="panel-body">
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:0 0 .8rem" data-i18n="img.cmd.intro">Имена учётных записей, хостов и путей заменены примерами. Секреты не требуются. Проверка контейнера и API (docker inspect/logs, ollama ps, curl) подробно описана на странице <a href="docker.html" style="color:var(--blue-500)">Docker</a>; телеметрия GPU и проверка SHA-256 чекпоинта — на странице <a href="ia_llm.html" style="color:var(--blue-500)">ИИ и LLM</a>.</p>
+    <div class="code-label" data-i18n="img.cmd.ssh.label">Воспроизводимая проверка — доступ к интерфейсу через SSH-туннель (из PowerShell, клиентская машина)</div>
+<div class="code-block"><pre>$SshTarget = '&lt;compte&gt;@&lt;hote-gpu&gt;'
+ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:<span class="redacted">8188</span>:127.0.0.1:<span class="redacted">8188</span> $SshTarget</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="img.cmd.ssh.note">Затем открыть <code>http://127.0.0.1:8188/</code> на этой машине. Молчание терминала после аутентификации — это нормально: <code>-N</code> открывает туннель без удалённой сессии. Ctrl+C закрывает туннель, но не останавливает ComfyUI; поэтому недоступность интерфейса после закрытия терминала не обязательно означает сбой сервера.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.p3.h"> 🛠️ Трудности и решения</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.diff.p1"><strong>Симптом:</strong> граф, смешивающий чекпоинт <strong>RealVisXL</strong> с узлами <strong>SD3/AuraFlow</strong>, был построен, а затем <strong>отклонён</strong> (несовместимость графа). Затем <strong>отмена генерации зависла</strong>, точную причину установить не удалось; для возврата в исправное состояние потребовался <strong>целевой перезапуск</strong> контейнера. <strong>Принятое решение:</strong> возврат к <strong>адаптированному графу SDXL</strong> (согласованному с RealVisXL), который затем работал нормально.</p>
+    <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:0" data-i18n="img.diff.p2">Второй инцидент, описанный на странице <a href="docker.html" style="color:var(--blue-500)">Docker</a>, затронул запуск контейнера (<code>getpass.getuser()</code> завершался ошибкой из-за отсутствия известного UID); он был устранён переменными окружения без пересборки образа.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.p4.h"> 📊 Доказательства и результаты</div>
+  <div class="panel-body">
+    <div class="code-label" data-i18n="img.proof.label">наблюдения сессии — генерация RealVisXL (не бенчмарк)</div>
+    <table class="data-table" data-i18n="img.t1"><thead><tr><th>Опыт</th><th>Наблюдение</th><th>Область применимости</th></tr></thead><tbody><tr><td>Портрет 512×512, 8 шагов</td><td>8,03 с (включая начальную загрузку)</td><td>Функциональная проверка, не тест качества</td></tr><tr><td>Портрет 1024×1024, 30 шагов</td><td>Изображение получено (DPM++ SDE Karras)</td><td>Длительность точно не привязана в истории</td></tr></tbody></table>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="img.proof.notes">Это <strong>наблюдения сессии</strong>, без статистического протокола и без гарантии задержки или качества. <strong>Анатомический реализм, позы и качество в большом масштабе</strong> ещё предстоит оценить — один удачный портрет недостаточен для подтверждения этих критериев. Измерения сосуществования GPU (VRAM, совместно используемая с Ollama, освобождение памяти) на странице <a href="ia_llm.html" style="color:var(--blue-500)">ИИ и LLM</a>.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Применённые компетенции</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="img.skills"><li>Усиление защиты контейнера ComfyUI (без привилегий, корневая ФС только для чтения)</li><li>Проверка целостности чекпоинта по хешу SHA-256</li><li>Совместное использование эксклюзивного GPU между инференсом LLM и генерацией изображений</li><li>Диагностика несовместимости графа ComfyUI и восстановление после зависания</li><li>Безопасный удалённый доступ через SSH-туннель, без публикации в интернете</li></ul></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="img.p5.h">Ограничения и открытые задачи</h2>
+    <div class="notes-box" data-i18n="img.limits"><ul class="skill-list" style="margin:0"><li>Автоматическое распределение запросов между ComfyUI и Ollama <strong>ещё предстоит построить</strong> (пока ручное переключение)</li><li><strong>Анатомический реализм, позы и качество в большом масштабе</strong> ещё предстоит оценить</li><li>Использование <strong>Flux</strong> на этой Linux-платформе не подтверждено — здесь измерялся только RealVisXL</li><li>Агентные интеграции/n8n, общий контроль допуска запросов и политика перезапуска после перезагрузки остаются <strong>открытыми задачами</strong></li><li><strong>RealVisXL V5.0</strong> распространяется по лицензии <strong>Open RAIL++</strong>: доступность весов не означает отсутствие лицензионных ограничений</li></ul></div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
+      <a class="related-card" href="gpu_passthrough.html"><img src="/assets/vfio.svg" alt=""/>GPU Passthrough</a>
+      <a class="related-card" href="storage_zfs.html"><img src="/assets/zfs.svg" alt=""/>Stockage ZFS</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>ComfyUI — implémentation de l'API utilisée</td><td><a href="https://github.com/Comfy-Org/ComfyUI/blob/ee71d5c4993f29086b27fde1629a945ae48425bf/server.py" target="_blank" style="color:var(--blue-500)">github.com/Comfy-Org/ComfyUI — server.py</a></td></tr>
+            <tr><td data-i18n="img.ref.cat2">Диффузионная модель</td><td>RealVisXL V5.0 — dépôt de l'auteur (SG161222)</td><td><a href="https://huggingface.co/SG161222/RealVisXL_V5.0" target="_blank" style="color:var(--blue-500)">huggingface.co — RealVisXL_V5.0</a></td></tr>
+            <tr><td data-i18n="img.ref.cat2">Диффузионная модель</td><td>Stable Diffusion XL (SDXL) — Stability AI, base de RealVisXL</td><td><a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0" target="_blank" style="color:var(--blue-500)">huggingface.co — sdxl-base-1.0</a></td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>ComfyUI — GPLv3 · RealVisXL V5.0 — Open RAIL++ (poids disponibles ≠ absence de restrictions)</td><td>—</td></tr>
+            <tr><td data-i18n="img.ref.verif">Проверка фактов</td><td data-i18n="img.ref.verifval">Испытания 27–28 сентября 2026 · источник проверен 28.09.2026</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

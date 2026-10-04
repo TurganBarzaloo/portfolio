@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="dock.title">Docker и контейнеризация — Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/docker.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/docker.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/docker.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/docker.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/docker.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/docker.html">FR</a><a href="/en/pages/docker.html">EN</a><a href="/ru/pages/docker.html" class="active">RU</a><a href="/es/pages/docker.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong>Docker</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><img src="/assets/docker.svg" alt=""/></div>
+      <div>
+        <h1 data-i18n="dock.h1">Docker и контейнеризация</h1>
+        <p data-i18n="dock.subtitle">Docker Compose · Изолированные сервисы ИИ · Тома ZFS · Сети</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.intermediate">Уровень: средний</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="dock.intro"><strong>Хост:</strong> контейнеры ИИ (<strong>Ollama</strong>, <strong>Open WebUI</strong>, RAG) работают на основном узле <strong>VM210</strong> (Ubuntu Server 24.04 · Docker Engine + NVIDIA Container Toolkit — доступ CUDA к RTX 5090 проверен вплоть до контейнеров). Векторный backend <strong>PostgreSQL / pgvector размещён на VM215</strong> (без GPU); <strong>Qdrant сохранён как резервное решение</strong>. <strong>VM260</strong> (Windows) служит стендом <strong>POC / проверки</strong> (например, ComfyUI через Docker Desktop).</div>
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="dock.p1.h"> 📦 Развёрнутые сервисы</div>
+  <div class="panel-body"><table class="data-table" data-i18n="dock.t1"><thead><tr><th>Сервис</th><th>Образ</th><th>Порт</th><th>Статус</th></tr></thead><tbody><tr><td>Ollama</td><td>ollama/ollama · 0.32.6 · VM210</td><td><span class="redacted">11434</span></td><td>🟢 В работе</td></tr><tr><td>ComfyUI</td><td>0.36.0 · усиленный локальный образ · VM210 (Linux)</td><td><span class="redacted">8188</span></td><td>🔵 Проверено (локальная генерация)</td></tr><tr><td>Open WebUI</td><td>ghcr.io/open-webui/open-webui · 0.11.0 · VM210</td><td><span class="redacted">3000</span></td><td>🟢 В работе</td></tr><tr><td>PostgreSQL + pgvector</td><td>развёрнут на VM215 · 18.4 / 0.8.6</td><td><span class="redacted">5432</span></td><td>🟢 В работе</td></tr><tr><td>Qdrant</td><td>qdrant/qdrant · 1.18.3</td><td><span class="redacted">6333</span></td><td>🟡 Резерв (fallback)</td></tr><tr><td>n8n</td><td>n8nio/n8n:latest · VM300</td><td><span class="redacted">5678</span></td><td>🟢 В работе</td></tr><tr><td>NPM (Nginx Proxy Manager)</td><td>jc21/nginx-proxy-manager:latest</td><td><span class="redacted">443 · 81</span></td><td>⚪ Без источника</td></tr><tr><td>Portainer</td><td>portainer/portainer-ce:latest</td><td><span class="redacted">9443</span></td><td>⚪ Без источника</td></tr><tr><td>Whisper API</td><td>onerahmet/openai-whisper-asr-webservice · VM210</td><td><span class="redacted">9000</span></td><td>🔵 Проверено · запланировано</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Применённые компетенции</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="dock.skills"><li>Установка Docker Engine + Docker Compose</li><li>Написание файлов docker-compose.yml</li><li>Управление постоянными томами (монтирование ZFS)</li><li>Управление сетями Docker (bridge, host)</li><li>Изоляция сервисов ИИ на уровне приложений</li><li>Переменные окружения через файлы .env</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="dock.p2.h"> 📄 docker-compose.yml</div>
+  <div class="panel-body"><div class="code-label">yaml</div>
+<div class="code-block"><pre>services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main   # 0.11.0
+    container_name: open-webui
+    ports:
+      - '<span class="redacted">3000:8080</span>'
+    volumes:
+      - open-webui-data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://host-gateway:<span class="redacted">11434</span>
+      # Backend vectoriel : pgvector hébergé sur VM215 (sans GPU)
+      - VECTOR_DB=pgvector
+      - PGVECTOR_DB_URL=postgresql://&lt;role&gt;:&lt;secret&gt;@&lt;hote-vm215&gt;/rag
+      - RAG_EMBEDDING_ENGINE=ollama
+      - RAG_EMBEDDING_MODEL=bge-m3
+    extra_hosts:
+      - 'host-gateway:host-gateway'
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    ports:
+      - '<span class="redacted">5678:5678</span>'
+    volumes:
+      - n8n-data:/home/node/.n8n
+    restart: unless-stopped
+
+  # Solution de repli — conservée tant que le retrait n'est pas clôturé
+  qdrant:
+    image: qdrant/qdrant:latest                 # 1.18.3
+    container_name: qdrant
+    ports:
+      - '<span class="redacted">6333:6333</span>'
+    volumes:
+      - qdrant-data:/qdrant/storage
+    restart: unless-stopped
+
+volumes:
+  open-webui-data:
+  n8n-data:
+  qdrant-data:</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.compose.note">Сервис <strong>n8n</strong> выше — <strong>упрощённый пример</strong> (локальный том, без внешней базы данных) для иллюстрации структуры Compose. Реальное развёртывание на <strong>VM300</strong> использует <strong>выделенную внешнюю базу PostgreSQL</strong>; см. страницу <a href="n8n.html" style="color:var(--blue-500)">Автоматизация (n8n)</a> для действительной архитектуры.</p>
+  </div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="dock.p3.h"> 🖼️ Усиленный контейнер ComfyUI (VM210)</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="dock.comfy.p1"><strong>ComfyUI 0.36.0</strong> работает в <strong>локально собранном образе</strong>: базовый образ Python закреплён по <strong>digest</strong>, исходники закреплены по <strong>commit</strong>, зависимости <strong>зафиксированы с контрольными суммами</strong> (wheel-пакеты скачиваются и устанавливаются <strong>офлайн</strong>). Проверенное окружение: Python 3.12.14, PyTorch 2.11.0, CUDA 13.0.</p>
+    <ul class="skill-list" data-i18n="dock.comfy.list"><li>Запуск <strong>без привилегий</strong>, корневая файловая система <strong>только для чтения</strong></li><li>Модели монтируются <strong>только для чтения</strong>; отдельные папки для входных, выходных данных, состояния и кэшей</li><li><strong>Пользовательские узлы и API отключены</strong> (это не общая блокировка исходящего трафика)</li><li>Интерфейс публикуется <strong>только на локальном loopback</strong> ВМ; доступ через <strong>SSH-туннель</strong>, без публикации в Интернете</li><li>Чекпоинт <strong>проверяется по контрольной сумме SHA-256</strong> (из доверенного репозитория) перед использованием</li></ul>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.comfy.note">Более ранний Windows-POC (VM260) остаётся отдельным от этого Linux-развёртывания. Совместное использование GPU ComfyUI/Ollama — это <strong>ручное переключение</strong>, а не автоматический планировщик. Подробности и измерения — на странице <a href="ia_llm.html" style="color:var(--blue-500)">ИИ и LLM</a>.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="dock.p4.h"> 🔎 Проверка контейнера и исправление кэша</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="dock.inspect.p1"><strong>Использованная команда (санированная)</strong> — проверки состояния контейнера ComfyUI и контейнера Ollama: статус контейнера, последние строки журнала, резидентные модели Ollama, затем HTTP-проверки локального API ComfyUI. Имена контейнеров и хостов заменены примерами.</p>
+    <div class="code-label">bash</div>
+<div class="code-block"><pre>COMFY_CONTAINER='&lt;conteneur-comfyui&gt;'
+OLLAMA_CONTAINER='&lt;conteneur-ollama&gt;'
+COMFY_URL='http://127.0.0.1:<span class="redacted">8188</span>'
+
+docker inspect "$COMFY_CONTAINER" --format '{{.State.Status}}'
+docker logs --tail 40 "$COMFY_CONTAINER"
+docker exec "$OLLAMA_CONTAINER" ollama ps
+curl --fail --max-time 10 -sS -o /dev/null \
+  -w 'HTTP=%{http_code}\n' "$COMFY_URL/"
+curl --fail --max-time 10 -sS "$COMFY_URL/object_info/CheckpointLoaderSimple"
+curl --fail --max-time 10 -sS "$COMFY_URL/queue"</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.inspect.note">HTTP 200 подтверждает ответ сервера; наличие чекпоинта в загрузчике подтверждает его обнаружение, но ещё не успешный инференс. <code>ollama ps</code> показывает резидентные модели, не гарантируя отсутствия выполняющихся запросов. Подробности об освобождении памяти (<code>/free</code>) и телеметрии GPU на странице <a href="ia_llm.html" style="color:var(--blue-500)">ИИ и LLM</a>.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:1.2rem 0 .9rem" data-i18n="dock.uidfix.p1"><strong>Использованная команда (санированная)</strong> — один из запусков завершился ошибкой в <code>getpass.getuser()</code>: UID учётной записи хоста отсутствовал в файле passwd контейнера. Следующие переменные позволили сохранить непривилегированное выполнение без пересборки образа:</p>
+    <div class="code-label">yaml</div>
+<div class="code-block"><pre>environment:
+  USER: comfyui
+  TORCHINDUCTOR_CACHE_DIR: /state/cache/torchinductor</pre></div>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.uidfix.note"><code>/state/cache</code> здесь обозначает пример точки монтирования, доступной для записи UID контейнера. Переменная <code>USER</code> не создаёт учётную запись и не даёт никаких привилегий.</p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="rag.html"><img src="/assets/pgvector.svg" alt=""/>RAG Vectoriel</a>
+      <a class="related-card" href="n8n.html"><img src="/assets/n8n.svg" alt=""/>Automatisation</a>
+      <a class="related-card" href="network.html"><img src="/assets/linux.svg" alt=""/>Réseau</a>
+    </div>
+  </div>
+</div>
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Docker Documentation</td><td><a href="https://docs.docker.com/" target="_blank" style="color:var(--blue-500)">docs.docker.com</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>NVIDIA Container Toolkit</td><td><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/" target="_blank" style="color:var(--blue-500)">docs.nvidia.com — container-toolkit</a></td></tr>
+            <tr><td data-i18n="c.ref.version">Используемая версия</td><td>Ollama 0.32.6 · Open WebUI 0.11.0 · PostgreSQL 18.4 · pgvector 0.8.6 · Qdrant 1.18.3 (repli)</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>Docker Engine (Moby) — Apache 2.0</td><td><a href="https://github.com/moby/moby/blob/master/LICENSE" target="_blank" style="color:var(--blue-500)">github.com/moby/moby — LICENSE</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

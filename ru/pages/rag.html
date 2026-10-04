@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="rag.title">RAG и векторные базы данных — Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/rag.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/rag.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/rag.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/rag.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/rag.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+    <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/rag.html">FR</a><a href="/en/pages/rag.html">EN</a><a href="/ru/pages/rag.html" class="active">RU</a><a href="/es/pages/rag.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong data-i18n="rag.crumb">RAG и векторные базы</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+          <ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+        </svg>
+      </div>
+      <div>
+        <h1 data-i18n="rag.h1">RAG и векторные базы данных</h1>
+        <p data-i18n="rag.subtitle">PostgreSQL · pgvector · bge-m3 · Open WebUI · Семантический поиск</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="5"/>
+          </svg>
+          <span data-i18n="c.pill.basic">Уровень: базовый+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="rag.why"><strong>Зачем нужен RAG?</strong> В OpenWebUI <a href="https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ration_%C3%A0_enrichissement_contextuel" target="_blank" style="color:var(--blue-500)">RAG (генерация с расширением за счёт поиска)</a> позволяет пользователю задавать вопросы к собственным документам на естественном языке и получать контекстуализированный, обновляемый ответ, опирающийся на найденные фрагменты, без повторного обучения модели.</div>
+  <div class="panel" style="margin-bottom:1.5rem">
+  <div class="panel-header" data-i18n="rag.p1.h"> 🧭 Почему PostgreSQL / pgvector, а не Qdrant?</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0" data-i18n="rag.why.p1">PostgreSQL с pgvector выбран как <strong>основной backend</strong>: pgvector входит в число векторных backend'ов, поддерживаемых <strong>основной командой OpenWebUI</strong>, тогда как <a href="https://docs.openwebui.com/reference/env-configuration/#qdrant" target="_blank" style="color:var(--blue-500)">Qdrant является некорневой интеграцией, поддерживаемой сообществом</a> — это повышает риск поломки или задержки исправлений при обновлении версии OpenWebUI. Qdrant остаётся допустимым векторным решением, <strong>сохранённым как резервный вариант</strong>.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:.75rem 0 0" data-i18n="rag.why.p2">Ещё один фактор — <strong>хранение</strong>: активные данные Qdrant не удалось сохранить на общем разделе ZFS, предоставленном VM210 (через VirtioFS/FUSE), и им пришлось остаться на локальном ext4 внутри ВМ; <strong>у PostgreSQL/pgvector на VM215 есть собственный выделенный диск ext4</strong>, лучше изолированный для эксплуатации и будущего логического резервного копирования.</p>
+  </div>
+</div>
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="rag.arch"><strong>Распределённая архитектура:</strong> инференс и вычисление эмбеддингов выполняются на GPU-узле ИИ (<strong>VM210</strong>, RTX 5090). Векторное хранилище вынесено на сервисную ВМ без GPU (<strong>VM215</strong>), где размещены PostgreSQL и pgvector. Такое разделение снижает зависимости и упрощает резервное копирование векторного backend'а.</div>
+  <div style="font-size:.84rem;color:var(--gray-700);background:var(--gray-100);border-radius:var(--radius-sm);padding:1rem 1.25rem;font-family:monospace;margin-bottom:1.5rem;line-height:1.8" data-i18n="rag.flow">[Документы] → [Разбиение + эмбеддинги bge-m3 · GPU VM210] → [PostgreSQL / pgvector · VM215]<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br/>[Вопрос] → [Эмбеддинг запроса] → [Семантический поиск HNSW] → [Локальная LLM Ollama] → [Ответ со ссылками]</div>
+  <div class="content-grid">
+    <div class="panel">
+  <div class="panel-header" data-i18n="rag.p2.h"> 🔧 Технологический стек</div>
+  <div class="panel-body"><table class="data-table" data-i18n="rag.t1"><thead><tr><th>Компонент</th><th>Роль</th><th>Версия</th></tr></thead><tbody><tr><td>Open WebUI</td><td>Интерфейс + нативная оркестрация RAG</td><td>0.11.0</td></tr><tr><td>PostgreSQL</td><td>Векторный backend (VM215)</td><td>18.4</td></tr><tr><td>pgvector</td><td>Расширение для векторов · индекс HNSW</td><td>0.8.6</td></tr><tr><td>bge-m3</td><td>Многоязычные эмбеддинги (размерность 1024)</td><td>через Ollama</td></tr><tr><td>Ollama</td><td>Инференс LLM (VM210 · RTX 5090)</td><td>0.32.6</td></tr><tr><td>Qdrant</td><td>Резервная векторная база</td><td>1.18.3</td></tr></tbody></table></div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="rag.p3.h"> ✅ Подтверждённые результаты</div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="rag.skills"><li>Open WebUI настроен с pgvector в качестве векторного backend'а</li><li>Модель эмбеддингов bge-m3 проверена с размерностью 1024</li><li>Создан индекс HNSW для векторов</li><li>Проверены точный поиск и цитирование</li><li>Протестировано поведение вне корпуса для ограничения выдуманных ответов</li><li>Проверена устойчивость данных после пересоздания интерфейса и перезапуска обеих ВМ</li></ul></div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="rag.p4.h"> ⚙️ Настройка Open WebUI → pgvector (иллюстративно)</div>
+  <div class="panel-body"><div class="code-label" data-i18n="rag.cfg.label1">env — векторный backend pgvector</div>
+<div class="code-block"><pre># Open WebUI — RAG natif sur backend pgvector (VM215)
+VECTOR_DB=pgvector
+PGVECTOR_DB_URL=postgresql://&lt;role&gt;:&lt;secret&gt;@&lt;hote-vm215&gt;/rag
+
+# Embeddings servis par Ollama sur le nœud GPU (VM210)
+RAG_EMBEDDING_ENGINE=ollama
+RAG_EMBEDDING_MODEL=bge-m3        # dimension 1024</pre></div>
+<div class="code-label" style="margin-top:1rem" data-i18n="rag.cfg.label2">sql — индекс схожести HNSW (pgvector)</div>
+<div class="code-block"><pre>-- Index HNSW pour la recherche vectorielle rapide (distance cosinus)
+CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div></div>
+</div>
+  </div>
+  <div class="notes-box" style="margin-top:1.5rem" data-i18n="rag.limits"><strong>Охват и ограничения:</strong> проверки опираются на <strong>полностью синтетический корпус</strong> — это не бизнес-данные. Qdrant <strong>сохранён как резервное решение</strong> (не удалён), пока вывод из эксплуатации не завершён. Финальная очистка тестовых коллекций и контрольная точка восстановления при закрытии ещё предстоят.</div>
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA Locale / LLM</a>
+      <a class="related-card" href="infrastructure.html"><img src="/assets/linux.svg" alt=""/>Infrastructure</a>
+      <a class="related-card" href="docker.html"><img src="/assets/docker.svg" alt=""/>Docker</a>
+      <a class="related-card" href="python.html"><img src="/assets/python.svg" alt=""/>Python</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>pgvector — extension de recherche vectorielle pour PostgreSQL</td><td><a href="https://github.com/pgvector/pgvector" target="_blank" style="color:var(--blue-500)">github.com/pgvector/pgvector</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Open WebUI — RAG &amp; bases vectorielles</td><td><a href="https://docs.openwebui.com/" target="_blank" style="color:var(--blue-500)">docs.openwebui.com</a></td></tr>
+            <tr><td data-i18n="rag.ref.cat3">Модель эмбеддингов</td><td>BAAI/bge-m3 — multilingue, dimension 1024</td><td><a href="https://huggingface.co/BAAI/bge-m3" target="_blank" style="color:var(--blue-500)">huggingface.co/BAAI/bge-m3</a></td></tr>
+            <tr><td data-i18n="c.ref.version">Используемая версия</td><td>Open WebUI 0.11.0 · PostgreSQL 18.4 · pgvector 0.8.6 · Ollama 0.32.6 · Qdrant 1.18.3 (repli)</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>pgvector — PostgreSQL License · PostgreSQL — PostgreSQL License</td><td><a href="https://www.postgresql.org/about/licence/" target="_blank" style="color:var(--blue-500)">postgresql.org/about/licence</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

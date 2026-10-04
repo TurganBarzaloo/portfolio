@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="git.title">Git — Портфолио On-Premise ИИ</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" data-i18n="git.desc" content="Git — GitHub против GitLab, ценность самостоятельно размещённого GitLab и дисциплина работы с репозиториями — портфолио Стефана Муро."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/git.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/git.html"/>
+<link rel="alternate" hreflang="ru" href="https://portfolio.stephanemuraro.fr/ru/pages/git.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/git.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/git.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Главная</a><a href="architecture.html" data-i18n="c.nav.architecture">Архитектура</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Инфра ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Инфраструктура</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Обратный прокси</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Хранилище ZFS</a><a href="os.html" data-i18n="c.nav.os">Операционные системы</a><a href="network.html" data-i18n="c.nav.network">Сеть</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">ИИ ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">ИИ &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">ИИ-изображения</a><a href="speech_ai.html" data-i18n="c.nav.speech">Речевой ИИ</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">ИИ-агенты</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Станция ИИ-разработки</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Второй мозг</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Сервисы ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Инструменты ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">О сайте</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 RU ▾</button><div class="nav-dd-menu"><a href="/pages/git.html">FR</a><a href="/en/pages/git.html">EN</a><a href="/ru/pages/git.html" class="active">RU</a><a href="/es/pages/git.html">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Главная</a><span>›</span><strong>Git</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+          <circle cx="12" cy="12" r="3"/><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/>
+          <circle cx="6" cy="18" r="2"/><path d="M8 6h8M8.5 8l-1 1.5M15.5 8l1 1.5M7 16V8"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Git</h1>
+        <p data-i18n="git.subtitle">GitHub · GitLab · дисциплина работы с репозиториями</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          <span data-i18n="c.pill.intermediate">Уровень: средний</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="git.intro">Git — основа моей работы с кодом: версионирование, сохранение истории и, прежде всего, <strong>разделение публичного и внутреннего</strong>. На этой странице рассматривается нюанс <strong>GitHub / GitLab</strong>, ценность <strong>самостоятельно размещённого GitLab</strong> и дисциплина работы с репозиториями, которую я применяю ежедневно.</div>
+
+  <!-- GitHub vs GitLab -->
+  <h2 class="section-title" data-i18n="git.h.compare">GitHub и GitLab — в чём нюанс</h2>
+  <div class="panel">
+    <div class="panel-body" style="padding:0">
+      <table class="data-table" data-i18n="git.t1"><thead><tr><th>Критерий</th><th><img src="/assets/github.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitHub</th><th><img src="/assets/gitlab.svg" alt="" style="width:14px;height:14px;display:inline;vertical-align:middle"> GitLab</th></tr></thead><tbody><tr><td>Модель размещения</td><td>SaaS (облако)</td><td>SaaS <strong>или самостоятельный хостинг (on-premise)</strong></td></tr><tr><td>Свободное издание</td><td>Облачное предложение</td><td><strong>Community Edition — открытый исходный код, можно установить у себя</strong></td></tr><tr><td>Использование в этом проекте</td><td>Публичное · обучение · портфолио</td><td>Внутреннее · профессиональный код</td></tr><tr><td>Непрерывная интеграция</td><td>GitHub Actions</td><td>Встроенные пайплайны CI/CD</td></tr><tr><td>Отличительное преимущество</td><td>Сообщество, видимость</td><td><strong>Суверенитет, полный контроль над данными</strong></td></tr></tbody></table>
+    </div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.25rem" data-i18n="git.why"><strong>Зачем нужен собственный GitLab?</strong> Размещение собственного GitLab (Community Edition, открытый исходный код) сохраняет код и его историю <strong>вне облака</strong>: контроль доступа, сроков хранения и резервного копирования, прямая интеграция с on-premise инфраструктурой и согласованность с подходом <strong>суверенитета</strong> и соответствия (ISO 27001). GitHub остаётся идеальным для того, что предназначено быть публичным (портфолио, обучение); внутренний GitLab — для того, что должно оставаться под контролем.</div>
+
+  <!-- Deux remotes -->
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="git.h.remotes">Два remote, два назначения</h2>
+    <div class="content-grid">
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.remote1.h"><img src="/assets/github.svg" alt="" style="width:16px;height:16px;vertical-align:middle"> GitHub — публичный</div>
+        <div class="panel-body"><ul class="skill-list" data-i18n="git.remote1.list"><li>Портфолио (веб-развёртывание)</li><li>Учебные проекты</li><li>База знаний (приватный репозиторий)</li></ul></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.remote2.h"><img src="/assets/gitlab.svg" alt="" style="width:16px;height:16px;vertical-align:middle"> Внутренний GitLab — под контролем</div>
+        <div class="panel-body"><ul class="skill-list" data-i18n="git.remote2.list"><li>Профессиональный код</li><li>История хранится внутри организации</li><li>Ограниченный и отслеживаемый доступ</li></ul></div>
+      </div>
+    </div>
+    <div class="notes-box" style="margin-top:1.25rem" data-i18n="git.isolation"><strong>Изоляция на уровне архитектуры:</strong> профессиональный код <strong>никогда</strong> не проходит через публичный репозиторий. Это не просто организационное правило — это структурное разделение remote.</div>
+  </div>
+
+  <!-- Audit & hygiène -->
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="git.h.hygiene">Дисциплина и гигиена репозиториев</h2>
+    <div class="content-grid">
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.audit.h">Состояние репозиториев (аудит)</div>
+        <div class="panel-body" style="padding:0">
+          <table class="data-table" data-i18n="git.t2"><thead><tr><th>Проект</th><th>Remote</th><th>Статус</th></tr></thead><tbody><tr><td><strong>portfolio</strong></td><td style="font-size:.78rem;color:var(--gray-500)">GitHub</td><td><span class="badge badge-advanced">✓ Чисто</span></td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header" data-i18n="git.files.h">Обнаруженные лишние файлы</div>
+        <div class="panel-body" style="padding:0">
+          <table class="data-table" data-i18n="git.t3"><thead><tr><th>Файл / папка</th><th>Проблема</th><th>Исправление</th></tr></thead><tbody><tr><td><code>.idea/</code></td><td>Конфигурация PyCharm</td><td><code>git rm -r --cached .idea/</code></td></tr><tr><td><code>.venv/</code></td><td>Виртуальное окружение Python</td><td><code>git rm -r --cached .venv/</code></td></tr><tr><td><code>dist/</code></td><td>Сборка PyInstaller</td><td><code>git rm -r --cached dist/</code></td></tr><tr><td><code>*.lnk</code></td><td>Ярлыки Windows</td><td>Исключить через <code>.gitignore</code></td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lecons -->
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+      <div class="panel-header" data-i18n="git.lessons.h"> 🎯 Что важно запомнить</div>
+      <div class="panel-body">
+        <ul class="skill-list" data-i18n="git.lessons.list"><li>Всегда создавайте <code>.gitignore</code> <strong>до</strong> первого <code>git add .</code></li><li>Удалённый репозиторий хранит копию отправленной в него истории; резервное копирование и восстановление проекта нужно документировать отдельно</li><li>Храните токены (PAT) в менеджере учётных данных системы, никогда — в URL</li><li>Только один активный remote на проект; переименуйте <code>master</code> → <code>main</code></li><li><code>--allow-unrelated-histories</code> для слияния двух историй без общего предка</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commandes -->
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+      <div class="panel-header" data-i18n="git.cmd.h"> 💻 Первый чистый коммит (workflow)</div>
+      <div class="panel-body"><div class="code-label" data-i18n="git.cmd.label">bash — гигиена + первый push</div>
+<div class="code-block"><pre># 1. .gitignore avant tout
+#    .venv/  __pycache__/  .idea/  dist/  build/  *.spec  .env  *.lnk
+
+# 2. Nettoyer le staging si des parasites ont été indexés
+git rm -r --cached .idea/ .venv/ dist/
+
+# 3. Branche principale + premier commit
+git branch -m master main
+git add .
+git commit -m "feat: initial commit"
+
+# 4. Remote (token dans le gestionnaire d'identifiants)
+git config --global credential.helper manager
+git remote add origin https://&lt;gitlab-interne&gt;/&lt;utilisateur&gt;/PROJET.git
+git push -u origin main
+
+# 5. Si le remote a déjà un commit initial (README auto)
+git pull origin main --allow-unrelated-histories
+git push -u origin main</pre></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Связанные страницы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="python.html"><img src="/assets/python.svg" alt=""/>Python</a>
+      <a class="related-card" href="n8n.html"><img src="/assets/n8n.svg" alt=""/>Automatisation</a>
+      <a class="related-card" href="obsidian.html"><img src="/assets/obsidian.svg" alt=""/>Obsidian</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Ссылки и источники</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Категория</th><th data-i18n="c.refs.res">Ресурс</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Git — Documentation</td><td><a href="https://git-scm.com/doc" target="_blank" style="color:var(--blue-500)">git-scm.com/doc</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>GitLab — Documentation</td><td><a href="https://docs.gitlab.com/" target="_blank" style="color:var(--blue-500)">docs.gitlab.com</a></td></tr>
+            <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>GitHub Docs</td><td><a href="https://docs.github.com/" target="_blank" style="color:var(--blue-500)">docs.github.com</a></td></tr>
+            <tr><td data-i18n="c.ref.license">Лицензия</td><td>Git — GPLv2 · GitLab Community Edition — MIT</td><td><a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank" style="color:var(--blue-500)">gnu.org/licenses/gpl-2.0</a></td></tr>
+            <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Инженер инфраструктуры и руководитель проектов · Бордо, Франция</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 лет опыта · Системная безопасность · Локальный ИИ (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Личная инфраструктура</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Создано с Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Философия OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Атрибуции и товарные знаки</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
