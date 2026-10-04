@@ -32,6 +32,7 @@ PAGES = [
     "index.html",
     "pages/about.html",
     "pages/vm302-station-dev-ia.html",
+    "pages/second-cerveau-opencode.html",
     "pages/architecture.html",
     "pages/infrastructure.html",
     "pages/proxmox.html",

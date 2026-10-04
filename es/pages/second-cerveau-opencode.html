@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="sb.title">Second Cerveau OpenCode — kit de memoria Markdown | Portfolio de IA On-Premise</title>
+  <meta name="author" content="Stéphane Muraro"/>
+  <meta name="description" data-i18n="sb.desc" content="Second Cerveau OpenCode — kit Markdown publicado bajo licencia MIT para estructurar proyectos, fuentes y síntesis con un único agente OpenCode y validación humana antes de escribir. Prototipo, recepción funcional incompleta. Portfolio de Stéphane Muraro."/>
+  <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQX2D50P2T');
+  </script>
+  <!-- ANALYTICS:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!--HREFLANG_START-->
+<link rel="alternate" hreflang="fr" href="https://portfolio.stephanemuraro.fr/pages/second-cerveau-opencode.html"/>
+<link rel="alternate" hreflang="en" href="https://portfolio.stephanemuraro.fr/en/pages/second-cerveau-opencode.html"/>
+<link rel="alternate" hreflang="es" href="https://portfolio.stephanemuraro.fr/es/pages/second-cerveau-opencode.html"/>
+<link rel="alternate" hreflang="x-default" href="https://portfolio.stephanemuraro.fr/pages/second-cerveau-opencode.html"/>
+<!--HREFLANG_END-->
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="../index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    IA On<span class="dot">·</span>Premise
+  </a>
+  <div class="nav-links"><a href="../index.html" data-i18n="c.nav.home">Inicio</a><a href="architecture.html" data-i18n="c.nav.architecture">Arquitectura</a><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.infra">Infra ▾</button><div class="nav-dd-menu"><a href="infrastructure.html" data-i18n="c.nav.infrastructure">Infraestructura</a><a href="proxmox.html">Proxmox</a><a href="reverse_proxy.html" data-i18n="c.nav.reverse_proxy">Proxy inverso</a><a href="gpu_passthrough.html">GPU / VFIO</a><a href="storage_zfs.html" data-i18n="c.nav.zfs">Almacenamiento ZFS</a><a href="os.html" data-i18n="c.nav.os">Sistemas operativos</a><a href="network.html" data-i18n="c.nav.network">Red</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.ai">IA ▾</button><div class="nav-dd-menu"><a href="ia_llm.html" data-i18n="c.nav.ia_llm">IA &amp; LLM</a><a href="rag.html">RAG</a><a href="ia_image.html" data-i18n="c.nav.ia_image">IA Imagen</a><a href="speech_ai.html" data-i18n="c.nav.speech">IA de voz</a><a href="vm301-hermes-opencode.html" data-i18n="c.nav.agents">Agentes IA</a><a href="vm302-station-dev-ia.html" data-i18n="c.nav.stationdev">Estación de desarrollo IA</a><a href="second-cerveau-opencode.html" data-i18n="c.nav.secondbrain">Segundo cerebro</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.services">Servicios ▾</button><div class="nav-dd-menu"><a href="docker.html">Docker</a><a href="nextcloud.html">Nextcloud</a><a href="n8n.html">n8n</a></div></div><div class="nav-dd"><button class="nav-dd-toggle" type="button" data-i18n="c.nav.tools">Herramientas ▾</button><div class="nav-dd-menu"><a href="python.html">Python</a><a href="git.html">Git</a><a href="obsidian.html">Obsidian</a><a href="devops.html">DevOps</a></div></div><a href="about.html" data-i18n="c.nav.about">Acerca de</a><!--LANG_SWITCHER_START--><div class="nav-dd nav-lang"><button class="nav-dd-toggle" type="button">🌐 ES ▾</button><div class="nav-dd-menu"><a href="/pages/second-cerveau-opencode.html">FR</a><a href="/en/pages/second-cerveau-opencode.html">EN</a><a href="/es/pages/second-cerveau-opencode.html" class="active">ES</a></div></div><!--LANG_SWITCHER_END--></div>
+  <div class="nav-author" style="font-size:.8rem;font-weight:400;color:var(--blue-700);letter-spacing:.01em;white-space:nowrap;padding:.25rem .6rem">Stéphane Muraro</div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html" data-i18n="c.crumb.home">Inicio</a><span>›</span><strong data-i18n="sb.crumb">Second Cerveau OpenCode</strong></div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-top">
+      <div class="page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4z"/><path d="M8 9h8M8 13h6"/></svg></div>
+      <div>
+        <h1 data-i18n="sb.h1">Second Cerveau OpenCode</h1>
+        <p data-i18n="sb.subtitle">Kit Markdown · OpenCode · memoria duradera · validación humana · licencia MIT</p>
+        <div class="level-pill">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
+          <span data-i18n="c.pill.intermediate">Nivel: Intermedio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="notes-box" style="margin-bottom:1rem" data-i18n="sb.intro"><strong>Second Cerveau OpenCode</strong> es un <strong>kit mínimo en Markdown</strong> para estructurar el trabajo en torno a proyectos, documentos fuente y síntesis. <strong>OpenCode</strong> actúa como agente único; son los <strong>archivos Markdown los que sostienen la memoria duradera</strong>, de modo que retomar el trabajo no dependa de una conversación anterior. Estado: <strong>prototipo utilizable, publicado en GitHub desde el 4 de octubre de 2026</strong>, cuya <strong>recepción funcional completa queda por repetir</strong> con OpenCode 2.0.22.</div>
+  <p style="margin:0 0 1.5rem"><a href="https://github.com/TurganBarzaloo/Second-Cerveau-OpenCode" target="_blank" rel="noopener" data-i18n="sb.repo" style="display:inline-block;background:var(--blue-500);color:#fff;font-weight:600;font-size:.875rem;padding:.55rem 1rem;border-radius:var(--radius-sm);text-decoration:none">Ver el repositorio de GitHub →</a></p>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="sb.p1.h"> 🎯 Utilidad para el lector</div>
+  <div class="panel-body">
+    <ul class="skill-list" data-i18n="sb.use.list"><li>Una <strong>ficha de proyecto es la referencia</strong> para tareas, decisiones, diario y punto de reanudación</li><li>Las <strong>fuentes originales se mantienen separadas de las síntesis</strong> y se tratan como datos, no como instrucciones</li><li>Dos rituales de OpenCode: <code>/ouvrir</code> (apertura en <strong>solo lectura</strong>) y <code>/clore</code> (cierre que somete primero los cambios a <strong>validación humana</strong>)</li><li>Un <strong>vault de ejemplo ficticio</strong> permite recorrer el funcionamiento sin datos personales ni profesionales reales</li></ul>
+    <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="sb.use.note">El proyecto no incluye <strong>ni base de datos vectorial, ni MCP, ni plugin, ni automatización permanente</strong>: estas extensiones se difieren hasta que se observe una necesidad real.</p>
+  </div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="sb.p2.h"> 🧭 Soberanía y gobernanza</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="sb.gov.p1">El kit está diseñado para funcionar con OpenCode y un modelo accesible mediante una <strong>API compatible con OpenAI</strong> en la red local o en la propia máquina. Esta disposición <strong>puede reducir la dependencia</strong> de un proveedor de inferencia externo en los usos considerados, manteniendo el <strong>vault real separado del kit publicable</strong>.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="sb.gov.p2">El enfoque está <strong>inspirado en ISO/IEC 27001:2022</strong>: separación de fuentes y síntesis, control humano antes de escribir, exclusión de los secretos de la configuración versionada, conservación de la trazabilidad.</p>
+    <div class="notes-box" data-i18n="sb.gov.notes"><strong>No se reivindica ninguna conformidad ni certificación ISO 27001.</strong> La autenticación, el transporte y el registro del servicio de inferencia dependen de ese servicio, no del kit.</div>
+  </div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="sb.p3.h"> 🔐 Seguridad y límites</div>
+  <div class="panel-body">
+    <ul class="skill-list" data-i18n="sb.sec.list"><li>Los ejemplos versionados son <strong>ficticios</strong>; los datos reales deben permanecer en un <strong>vault privado separado</strong></li><li>La configuración local y el registro de riesgos están <strong>excluidos de Git</strong></li><li>El uso compartido de conversaciones está <strong>desactivado</strong> en la configuración prevista</li><li>Las llamadas web, shell, plugins, MCP y subagentes están <strong>excluidos del perímetro previsto</strong> del prototipo</li></ul>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="sb.sec.notes"><strong>Límites explícitos:</strong> los permisos de OpenCode <strong>no constituyen un aislamiento técnico</strong>, la sobriedad de lectura depende en parte del modelo, y pueden existir vías de ejecución fuera de los permisos documentados. Estas medidas no sustituyen los controles del equipo, de la red o del servicio de IA.</div>
+  </div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="sb.p4.h"> 📜 Licencia</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0" data-i18n="sb.lic.p">La licencia <strong>MIT</strong> (<code>LICENSE.md</code>) autoriza el uso, la copia, la modificación y la redistribución del kit, incluso en un contexto comercial, a condición de conservar el aviso de copyright y de licencia. No ofrece <strong>ninguna garantía</strong> y cubre únicamente este kit, no los sistemas, el hardware o los servicios con los que pueda utilizarse.</p>
+  </div>
+</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="sb.p5.h"> 🔎 Estado de validación y publicación</div>
+  <div class="panel-body">
+    <ul class="skill-list" data-i18n="sb.val.list"><li>Repositorio público verificado el <strong>4 de octubre de 2026</strong>: rama <code>main</code>, licencia detectada como MIT, archivos publicados correspondientes al kit, a su documentación y a su piloto ficticio</li><li><code>/ouvrir</code>: <strong>parcialmente validado</strong></li><li>Cierre, reanudación, síntesis, resistencia a instrucciones hostiles, restauración y medición de latencia: <strong>sin probar</strong></li><li>Recepción funcional completa por repetir con OpenCode <strong>2.0.22</strong>, en su interfaz interactiva</li></ul>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="sb.val.notes">No se anuncia ningún rendimiento, compatibilidad de producción ni garantía de seguridad. El kit es un <strong>prototipo de gestión de contexto y trazabilidad</strong>, no un producto de conformidad ni una solución de seguridad validada.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h2 class="section-title" data-i18n="c.sec.related">Páginas relacionadas</h2>
+    <div class="related-grid">
+      <a class="related-card" href="vm301-hermes-opencode.html"><img src="/assets/ollama.svg" alt=""/>Agents IA (VM301)</a>
+      <a class="related-card" href="ia_llm.html"><img src="/assets/ollama.svg" alt=""/>IA &amp; LLM</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RÉFÉRENCES (style Wikipédia) ── -->
+<div class="content" style="padding-top:0">
+  <div style="border-top:1px solid var(--gray-200);padding-top:1.5rem;margin-top:1rem">
+    <h2 style="font-size:.85rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem" data-i18n="c.sec.refs">Referencias y fuentes</h2>
+    <div class="panel">
+      <div class="panel-body" style="padding:0">
+        <table class="data-table">
+          <thead><tr><th data-i18n="c.refs.cat">Categoría</th><th data-i18n="c.refs.res">Recurso</th><th data-i18n="c.refs.url">URL</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="sb.ref.cat1">Repositorio público</td><td data-i18n="sb.ref.repoval">Second-Cerveau-OpenCode — GitHub (rama main, verificado el 2026-10-04)</td><td><a href="https://github.com/TurganBarzaloo/Second-Cerveau-OpenCode" target="_blank" rel="noopener" style="color:var(--blue-500)">github.com/TurganBarzaloo/Second-Cerveau-OpenCode</a></td></tr>
+            <tr><td data-i18n="sb.ref.cat2">Marco de inspiración</td><td data-i18n="sb.ref.stdval">ISO/IEC 27001:2022 — enfoque inspirado, sin conformidad ni certificación reivindicadas</td><td>—</td></tr>
+            <tr><td data-i18n="c.ref.license">Licencia</td><td data-i18n="sb.ref.licval">Second Cerveau OpenCode — MIT (solo este kit)</td><td>—</td></tr>
+            <tr><td data-i18n="img.ref.verif">Verificación de los hechos</td><td data-i18n="sb.ref.verifval">Repositorio público y documentación comprobados el 2026-10-04</td><td>—</td></tr>
+            <tr><td data-i18n="c.refs.content">Contenido de esta página</td><td data-i18n="c.refs.cc">Compartido bajo CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-author">
+      <strong>Stéphane Muraro</strong>
+      <span data-i18n="c.foot.role">Ingeniero de Infraestructura y Jefe de Proyecto · Burdeos, Francia</span>
+      <span style="margin-top:.3rem;font-size:.72rem;color:var(--gray-400)" data-i18n="c.foot.exp">26 años de experiencia · Seguridad de sistemas · IA local (On-Premise)</span>
+    </div>
+    <div class="footer-center">
+      portfolio.stephanemuraro.fr<br/>
+      <span style="font-size:.7rem;color:var(--gray-300)" data-i18n="c.foot.perso">Infraestructura personal</span>
+    </div>
+    <div class="footer-oss">
+      <div class="footer-oss-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.5" fill="#065F46"/></svg>
+        Open Source &amp; fair-code
+      </div>
+      <div data-i18n="c.foot.built">Construido con Git · Proxmox · Python · nginx</div>
+      <div style="margin-top:.25rem">
+        <a href="about.html#philosophie" data-i18n="c.foot.philo">Filosofía OSS →</a> · <a href="about.html#credits" data-i18n="c.foot.credits">Créditos y marcas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
