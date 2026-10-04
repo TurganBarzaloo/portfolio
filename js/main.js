@@ -56,3 +56,26 @@ function goBack() {
     window.location.href = '../index.html';
   }
 }
+
+// ─── Menu mobile ─────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('.nav');
+  const links = nav && nav.querySelector('.nav-links');
+  if (!nav || !links) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'nav-burger';
+  btn.setAttribute('aria-label', 'Menu');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+  nav.appendChild(btn);
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  links.querySelectorAll('.nav-dd-toggle').forEach(t => {
+    t.addEventListener('click', () => t.closest('.nav-dd').classList.toggle('open'));
+  });
+  const active = links.querySelector('.nav-dd-toggle.active');
+  if (active) active.closest('.nav-dd').classList.add('open');
+});
