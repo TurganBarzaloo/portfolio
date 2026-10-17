@@ -127,6 +127,17 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm301.ops.h"> 🛠️ Preparación asistida de automatizaciones de explotación</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="vm301.ops.p1">OpenCode se utilizó también para producir un <strong>candidato de supervisión n8n</strong> y un <strong>recolector Python de capacidad de disco con sus pruebas</strong>. Las primeras salidas <strong>no eran directamente utilizables</strong>: parámetros de nodos, planificación, continuación tras un error y cálculo del porcentaje requirieron revisión y correcciones antes de la validación.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="vm301.ops.p2">El estado canónico de estas realizaciones figura en la página <a href="n8n.html" style="color:var(--blue-500)">n8n</a>: supervisión HTTP activa con recurrencia observada, recogida de disco validada manualmente y publicada para una ejecución diaria aún por constatar.</p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.ops.notes"><strong>Alcance:</strong> este caso ilustra un desarrollo asistido y controlado — generación, revisión de los defectos, correcciones, pruebas manuales y publicación — y no una generación autónoma fiable a la primera. Los workflows publicados ejecutan controles deterministas; no se solicita ningún agente ni modelo en cada pasada. Los defectos exactos y las instrucciones no se publican.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm301.p6.h"> 🔐 Seguridad</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm301.security"><li>Ningún puerto de inferencia publicado directamente en Internet</li><li>Filtrado explícito de las máquinas cliente</li><li>Configuración cliente sin token cuando el endpoint privado no lo requiere</li><li>Secretos, direcciones y reglas internas excluidos de la fuente pública</li><li>Futuro acceso remoto previsto mediante <strong>túnel privado autenticado</strong>, y no mediante la apertura del puerto de Ollama</li></ul></div>
 </div>

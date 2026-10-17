@@ -165,6 +165,47 @@ PostgreSQL ou API IA selon le workflow</pre></div>
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="n8n.ops.h"> ⚙️ Automatisations d'exploitation (état au 18 octobre 2026)</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem;margin:0" data-i18n="n8n.ops.intro">
+      Ces deux workflows d'exploitation sont <strong>distincts des webhooks temporaires</strong> du POC OpenCode. Ils sont lancés par n8n <strong>sans appel d'un modèle à chaque exécution</strong> : l'assistance IA intervient dans leur préparation, suivie d'une revue, de corrections et d'une validation humaine avant publication. Le récit de cette préparation figure sur la page <a href="vm301-hermes-opencode.html" style="color:var(--blue-500)">VM301</a>.
+    </p>
+  </div>
+</div>
+  </div>
+
+  <div class="content-grid" style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="n8n.http.h"> 📡 Supervision HTTP toutes les cinq minutes</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="n8n.http.p1">Un workflow <strong>publié</strong> contrôle les réponses HTTP d'<strong>Ollama</strong>, d'<strong>OpenWebUI</strong> et de <strong>Nextcloud</strong>, sans inférence, redémarrage ni modification des services. Les déclencheurs manuel et planifié utilisent la même chaîne ; les URL sont centralisées dans une configuration dédiée.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="n8n.http.p2">Chaque service produit un <strong>bilan</strong> : disponibilité HTTP, code de réponse, catégorie d'erreur et horodatage. Les réponses 2xx sont considérées comme disponibles ; les redirections ne sont pas suivies. Sans réponse HTTP, le code conventionnel du bilan est 0. Une erreur sur un service n'empêche pas les autres contrôles.</p>
+    <div style="font-size:.85rem;color:var(--gray-700);margin:0 0 .4rem" data-i18n="n8n.http.vh"><strong>Validations observées :</strong></div>
+    <ul class="skill-list" data-i18n="n8n.http.list"><li><span>trois services en HTTP 200 ;</span></li><li><span>refus de connexion simulé sans arrêter le service réel : bilan d'erreur, les deux autres résultats restant en HTTP 200 ;</span></li><li><span>retour des trois contrôles en HTTP 200 après restauration de la cible ;</span></li><li><span>trois exécutions automatiques réussies, espacées de cinq minutes.</span></li></ul>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="n8n.http.notes">
+      <strong>Portée :</strong> les essais HTTP 503 et réponse retardée sont <strong>différés</strong> : la cible locale de test répondait depuis l'hôte mais n'était pas joignable depuis le conteneur ; les délais observés ne prouvent donc pas la validation de ces deux scénarios. Le statut d'exécution <code>Success</code> signifie que le workflow s'est terminé, pas que tous les services sont disponibles : les bilans doivent être consultés. Aucune notification ni remédiation automatique n'est configurée. Ce contrôle HTTP ne démontre ni une génération LLM ni la réussite d'une opération métier dans les applications.
+    </div>
+  </div>
+</div>
+    <div class="panel">
+  <div class="panel-header" data-i18n="n8n.disk.h"> 💽 Rapport de capacité disque sur VM300</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="n8n.disk.p1">Un second workflow <strong>publié</strong> est configuré chaque jour à <strong>08:00 Europe/Paris</strong>. La <strong>première exécution automatique quotidienne reste à constater</strong> ; les validations disponibles portent sur les exécutions manuelles.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="n8n.disk.p2">La collecte porte sur le <strong>système de fichiers racine</strong> de la VM applicative. Les données et fichiers locaux n8n partageant ce système de fichiers, une seule mesure évite les doublons. Le stockage PostgreSQL, hébergé sur une autre VM, <strong>n'est pas couvert</strong>.</p>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem;font-family:monospace;background:var(--gray-100);border-radius:var(--radius-sm);padding:.7rem 1rem" data-i18n="n8n.disk.chain">Déclencheur manuel ou quotidien → SSH restreint → collecteur fixe → validation JSON → bilan</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="n8n.disk.p3">Le compte dédié n'a pas de droits administrateur. Sa clé impose uniquement le collecteur, sans terminal ni transfert de ports. Le script est protégé contre les modifications par ce compte et utilise la bibliothèque standard Python, sans réseau, sous-processus ni chemin de mesure configurable. La commande forcée a été testée : une autre commande demandée a produit uniquement la mesure autorisée.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="n8n.disk.p4">Le JSON distingue capacité totale, espace utilisé, espace libre total, espace disponible pour un utilisateur non privilégié et réserve. Le pourcentage tient compte de cette réserve et utilise un arrondi supérieur cohérent avec <code>df</code> pour le système de fichiers testé ; la mesure locale correspondait exactement à <code>df</code>, avec 35 % utilisés lors du contrôle. Le bilan n8n applique des seuils configurables : <code>normal</code> sous 80 %, <code>warning</code> dès 80 % et <code>critical</code> dès 90 %. La validation vérifie les types, les champs attendus, les relations entre les tailles, le pourcentage et l'horodatage ; des données absentes ou incohérentes produisent <code>erreur</code>.</p>
+    <div style="font-size:.85rem;color:var(--gray-700);margin:0 0 .4rem" data-i18n="n8n.disk.vh"><strong>Preuves disponibles :</strong></div>
+    <ul class="skill-list" data-i18n="n8n.disk.list"><li><span>13 tests Python réussis sur Linux, dont une exécution réelle du collecteur ;</span></li><li><span>mesure manuelle puis collecte SSH par n8n réussies ;</span></li><li><span>états <code>warning</code> et <code>critical</code> simulés sans remplir le disque, puis retrait de la simulation et retour à la mesure réelle ;</span></li><li><span>refus SSH provoqué par un port de test : bilan <code>erreur</code>, puis retour à <code>normal</code> après restauration de la configuration ;</span></li><li><span>publication quotidienne confirmée, sans preuve d'un premier déclenchement automatique quotidien.</span></li></ul>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="n8n.disk.notes">
+      <strong>Portée :</strong> le rapport reste dans les résultats d'exécution n8n. Aucune notification, suppression, nettoyage ou extension automatique de disque n'est configuré. La durée de conservation de cet historique et la stabilité de l'accès après recréation du conteneur ne sont pas validées par ces essais ; un timeout SSH prolongé n'a pas été testé. Ce workflow utilise un nœud Code pour valider et normaliser la sortie du collecteur ; la revue manuelle décrite plus haut concerne le workflow initial vers Ollama, où l'absence de nœud de code a été constatée.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="n8n.p5.h"> 🔄 Exemple — workflow n8n vers l'IA</div>
   <div class="panel-body"><div class="code-label" data-i18n="n8n.example.label">schéma illustratif — ne reproduit pas le workflow exécuté</div>
 <div class="code-block"><pre>Déclencheur (non précisé)
@@ -209,6 +250,8 @@ PostgreSQL ou API IA selon le workflow</pre></div>
           <tr><td><strong>Connexion PostgreSQL</strong></td><td>Liaison chiffrée validée</td><td>Validation distincte de l'accès HTTPS public</td></tr>
           <tr><td><strong>Accès extérieur</strong></td><td>Authentification, éditeur, exécution, reconnexion et persistance validés</td><td>Parcours utilisateur testé derrière VM200</td></tr>
           <tr><td><strong>OpenCode vers n8n</strong> (17 octobre 2026)</td><td>Appels depuis Windows et Linux, réponse JSON attendue et code 0</td><td>Workflows de test temporaire ; aucune activation permanente</td></tr>
+          <tr><td><strong>Supervision HTTP planifiée</strong> (18 octobre 2026)</td><td>Trois services en HTTP 200, refus de connexion détecté puis retour normal, trois exécutions automatiques espacées de cinq minutes</td><td><code>Success</code> n'indique pas que tous les bilans sont normaux ; HTTP 503 et réponse retardée différés</td></tr>
+          <tr><td><strong>Rapport de capacité disque</strong> (18 octobre 2026)</td><td>13 tests Linux, mesure cohérente avec <code>df</code>, collecte SSH par n8n, seuils simulés, échec SSH puis retour à la normale</td><td>Système de fichiers racine seulement ; premier déclenchement quotidien non constaté</td></tr>
         </tbody>
       </table>
     </div>
@@ -234,7 +277,8 @@ PostgreSQL ou API IA selon le workflow</pre></div>
       <li>Le durcissement final de l'administration SSH reste ouvert.</li>
       <li>L'audit automatisé (anomalie de chargement, compensée par un contrôle manuel) sera rejoué après correctif de n8n.</li>
       <li>Le mode <em>queue</em> ne sera étudié qu'en présence d'un besoin mesuré.</li>
-      <li>Le passage de la preuve de concept agentique à un service permanent reste à cadrer : automatisation utile, accès, erreurs et exploitation.</li>
+      <li>Les webhooks du POC agentique restent <strong>temporaires</strong> ; les deux workflows d'exploitation publiés ne constituent pas un accès agentique permanent.</li>
+      <li>Les tests HTTP 503 / réponse retardée et le <strong>premier déclenchement quotidien</strong> du rapport disque restent à valider.</li>
     </ul>
   </div>
 

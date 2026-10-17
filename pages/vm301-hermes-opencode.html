@@ -165,6 +165,19 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm301.ops.h"> 🛠️ Préparation assistée d'automatisations d'exploitation</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="vm301.ops.p1">OpenCode a également été utilisé pour produire un <strong>candidat de supervision n8n</strong> et un <strong>collecteur Python de capacité disque avec ses tests</strong>. Les premières sorties n'étaient <strong>pas directement exploitables</strong> : paramètres de nœuds, planification, poursuite après erreur et calcul du pourcentage ont nécessité une revue et des corrections avant validation.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="vm301.ops.p2">L'état canonique de ces réalisations figure sur la page <a href="n8n.html" style="color:var(--blue-500)">n8n</a> : supervision HTTP active avec récurrence observée, collecte disque validée manuellement et publiée pour une exécution quotidienne encore à constater.</p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.ops.notes">
+      <strong>Portée :</strong> ce cas illustre un développement assisté et contrôlé — génération, revue des défauts, corrections, tests manuels puis publication — et non une génération autonome fiable du premier coup. Les workflows publiés exécutent des contrôles déterministes ; aucun agent ni modèle n'est sollicité à chaque passage. Les défauts exacts et les consignes ne sont pas publiés.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm301.p6.h"> 🔐 Sécurité</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm301.security"><li>Aucun port d'inférence directement publié sur Internet</li><li>Filtrage explicite des machines clientes</li><li>Configuration cliente sans jeton lorsque l'endpoint privé n'en requiert pas</li><li>Secrets, adresses et règles internes exclus de la source publique</li><li>Futur accès distant prévu par <strong>tunnel privé authentifié</strong>, et non par ouverture du port Ollama</li></ul></div>
 </div>

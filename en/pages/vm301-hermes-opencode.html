@@ -127,6 +127,17 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm301.ops.h"> 🛠️ Assisted preparation of operations automations</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="vm301.ops.p1">OpenCode was also used to produce an <strong>n8n monitoring candidate</strong> and a <strong>Python disk-capacity collector with its tests</strong>. The first outputs were <strong>not directly usable</strong>: node parameters, scheduling, continuing after an error and the percentage calculation needed review and corrections before validation.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="vm301.ops.p2">The canonical status of these results is on the <a href="n8n.html" style="color:var(--blue-500)">n8n</a> page: HTTP monitoring active with observed recurrence, disk collection validated manually and published for a daily run that is still to be observed.</p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.ops.notes"><strong>Scope:</strong> this case illustrates assisted, controlled development — generation, review of defects, corrections, manual tests, then publication — not a reliable autonomous generation on the first attempt. The published workflows run deterministic checks; no agent or model is called on each run. The exact defects and the instructions are not published.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm301.p6.h"> 🔐 Security</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm301.security"><li>No inference port directly published on the Internet</li><li>Explicit filtering of client machines</li><li>Client configuration without a token when the private endpoint does not require one</li><li>Secrets, addresses and internal rules excluded from the public source</li><li>Future remote access planned via an <strong>authenticated private tunnel</strong>, not by opening the Ollama port</li></ul></div>
 </div>
