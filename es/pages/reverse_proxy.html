@@ -132,6 +132,18 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
 </div>
   </div>
 
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="rp.val.h"> 🔬 Lectura técnica de las validaciones</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rp.val.t"><thead><tr><th>Validación documentada</th><th>Resultado establecido</th><th>Límite</th></tr></thead><tbody><tr><td><strong>HTTPS desde una red exterior</strong></td><td>OpenWebUI, n8n y Nextcloud publicados y accesibles en los ensayos</td><td>Un registro DNS por sí solo no prueba una publicación</td></tr><tr><td><strong>Redirección y renovación en seco</strong></td><td>Cadena HTTP a HTTPS y renovación probadas</td><td>No garantiza el éxito de todas las renovaciones futuras</td></tr><tr><td><strong>Respuestas progresivas y WebSockets</strong></td><td>Funciones interactivas validadas</td><td>No atribuir cada ensayo a cada backend sin un registro detallado</td></tr><tr><td><strong>Reinicio de VM200</strong></td><td>Configuración conservada y reanudación validada</td><td>No prueba que se haya probado la retirada global del reenvío WAN</td></tr><tr><td><strong>Fail2ban SSH</strong></td><td>Protección de la administración probada</td><td>No demuestra la protección de los formularios de las aplicaciones</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes"><strong>Alcance:</strong> estas validaciones son las documentadas el 15 de agosto de 2026, no un control en directo de los servicios. Las pruebas de sintaxis, renovación y registros se describen, pero sus comandos exactos y salidas saneadas <strong>no se publican</strong>: ningún comando genérico de Nginx o Certbot se presenta como utilizado históricamente. No se establece ningún incidente específico del proxy: las necesidades de streaming, WebSocket y origen público son restricciones atendidas, no averías supuestas. Las recepciones detalladas de las aplicaciones figuran en las páginas <a href="n8n.html" style="color:var(--blue-500)">n8n</a> y <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.</div>
+  </div>
+</div>
+  </div>
+
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rp.rollback"><strong>↩️ Reversión — tres niveles:</strong><ul class="skill-list" style="margin-top:.5rem"><li>desactivar únicamente el virtual host de un servicio;</li><li>retirar temporalmente el reenvío Web hacia VM200;</li><li>detener VM200 para neutralizar todas las publicaciones sin modificar las aplicaciones internas.</li></ul><p style="font-size:.82rem;color:var(--gray-600);margin:.6rem 0 0">La prueba formal de la reversión global mediante la retirada del reenvío WAN sigue siendo el último control abierto de la primera fase.</p></div>
 
   <div style="margin-top:1.5rem">

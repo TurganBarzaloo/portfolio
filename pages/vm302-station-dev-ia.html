@@ -98,6 +98,30 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm302.recipe.h"> 🔬 Lecture technique de la recette</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="vm302.recipe.t">
+        <thead><tr><th>Étape validée</th><th>Résultat documenté</th><th>Limite de la preuve</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Socle Windows et outillage</strong></td><td>Identité, réseau, agent invité, périphériques, VSCodium, Git et PowerShell contrôlés</td><td>Ne démontre pas toutes les chaînes de compilation possibles</td></tr>
+          <tr><td><strong>Python et Node.js</strong></td><td>Environnement virtuel et essai Python hors ligne ; test JavaScript local</td><td>Validation des chaînes testées, pas d'une application complète</td></tr>
+          <tr><td><strong>Installation du Harness</strong></td><td>Version préliminaire épinglée, lockfile, intégrité, dépendances et installation contrôlés</td><td>Un audit de dépendances n'établit pas l'absence de tout risque logiciel</td></tr>
+          <tr><td><strong>Première inférence distante</strong></td><td>Réponse exacte <code>DSH_VM302_QWEN36_OK</code>, sans appel d'outil</td><td>Valide l'échange avec le modèle, pas l'exécution agentique d'actions</td></tr>
+          <tr><td><strong>Reprise après redémarrage</strong></td><td>Versions, configuration et historique persistants ; nouvelle réponse et GPU distant confirmés</td><td>Preuve propre à VM302, non transférable à VM301</td></tr>
+          <tr><td><strong>Services d'automatisation</strong></td><td>Santé contrôlée</td><td>Aucun workflow consommé par un agent démontré</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm302.recipe.notes">
+      <strong>Portée :</strong> le profil initial en lecture seule et l'interface limitée au poste bornent le périmètre de la validation ; ils ne valident pas des modes d'exécution plus permissifs. Aucun incident spécifique n'est décrit dans la source. Les commandes exactes des tests Python/JavaScript, de l'installation et de la télémétrie GPU <strong>ne sont pas publiées</strong> ; le marqueur de réponse est un résultat observé, pas le transcript intégral du test.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm302.skills.h"> 🎯 Compétences illustrées</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm302.skills.list"><li>Préparation et validation d'un poste Windows virtualisé</li><li>Conception d'une chaîne de développement polyglotte</li><li>Installation maîtrisée d'un outil agentique fondé sur une architecture de plugins Cordis</li><li>Intégration d'un poste sans GPU à un service d'inférence séparé</li><li>Sélection de composants libres et séparation des dépendances propriétaires</li><li>Tests reproductibles et validation hors ligne</li><li>Séparation entre poste client, service d'inférence et automatisation</li></ul></div>
 </div>

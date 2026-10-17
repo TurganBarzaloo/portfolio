@@ -132,6 +132,18 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
 </div>
   </div>
 
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="rp.val.h"> 🔬 Технический разбор валидаций</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rp.val.t"><thead><tr><th>Задокументированная валидация</th><th>Установленный результат</th><th>Ограничение</th></tr></thead><tbody><tr><td><strong>HTTPS из внешней сети</strong></td><td>OpenWebUI, n8n и Nextcloud опубликованы и доступны в испытаниях</td><td>Одной DNS-записи недостаточно, чтобы доказать публикацию</td></tr><tr><td><strong>Перенаправление и пробное продление</strong></td><td>Цепочка HTTP→HTTPS и продление проверены</td><td>Не гарантирует успех всех будущих продлений</td></tr><tr><td><strong>Потоковые ответы и WebSocket</strong></td><td>Интерактивные функции подтверждены</td><td>Не приписывать каждое испытание каждому бэкенду без подробного протокола</td></tr><tr><td><strong>Перезагрузка VM200</strong></td><td>Конфигурация сохранена, возобновление подтверждено</td><td>Не доказывает, что проверялось полное снятие проброса WAN</td></tr><tr><td><strong>Fail2ban для SSH</strong></td><td>Защита администрирования проверена</td><td>Не доказывает защиту форм входа приложений</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes"><strong>Охват:</strong> эти валидации задокументированы на 15 августа 2026 года и не являются проверкой сервисов в реальном времени. Тесты синтаксиса, продления и журналов описаны, но их точные команды и обезличенные выводы <strong>не публикуются</strong>: никакая типовая команда Nginx или Certbot не выдаётся за реально использованную. Специфических инцидентов прокси не зафиксировано: потребности в потоковой передаче, WebSocket и публичном источнике — это учтённые ограничения, а не предполагаемые сбои. Подробная приёмка приложений — на страницах <a href="n8n.html" style="color:var(--blue-500)">n8n</a> и <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.</div>
+  </div>
+</div>
+  </div>
+
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rp.rollback"><strong>↩️ Откат — три уровня:</strong><ul class="skill-list" style="margin-top:.5rem"><li>отключить только virtual host одного сервиса;</li><li>временно убрать перенаправление Web-трафика на VM200;</li><li>остановить VM200, чтобы нейтрализовать все публикации, не изменяя внутренние приложения.</li></ul><p style="font-size:.82rem;color:var(--gray-600);margin:.6rem 0 0">Формальный тест полного отката путём снятия перенаправления WAN остаётся последней открытой проверкой первого этапа.</p></div>
 
   <div style="margin-top:1.5rem">

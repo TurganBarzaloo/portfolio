@@ -129,12 +129,36 @@ PostgreSQL ou API IA selon le workflow</pre></div>
   <div style="margin-top:1.5rem">
     <div class="panel">
   <div class="panel-header" data-i18n="n8n.p5.h"> 🔄 Пример — workflow n8n к ИИ</div>
-  <div class="panel-body"><div class="code-label" data-i18n="n8n.example.label">workflow (иллюстративный)</div>
-<div class="code-block"><pre>Trigger : Webhook
-   → Nœud HTTP  : préparation de la requête
-   → Nœud HTTP  : appel API Ollama (LLM local sur la VM GPU)
-   → Nœud Function : normalisation de la réponse pour les étapes suivantes
+  <div class="panel-body"><div class="code-label" data-i18n="n8n.example.label">иллюстративная схема — не воспроизводит выполненный workflow</div>
+<div class="code-block"><pre>Déclencheur (non précisé)
+   → Préparation de la requête
+   → Appel HTTP : API Ollama (LLM local sur la VM GPU)
+   → Normalisation de la réponse pour les étapes suivantes
    → Réponse : JSON structuré</pre></div></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="n8n.diff.h"> 🛠️ Специфическая сложность — автоматизированный аудит недоступен</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="n8n.diff.t"><thead><tr><th>Этап</th><th>Подтверждённый факт</th><th>Следствие</th></tr></thead><tbody><tr><td><strong>Выявление</strong></td><td>Внутренняя ошибка загрузки автоматизированного аудита</td><td>Аудит нельзя представлять как успешный</td></tr><tr><td><strong>Временное решение</strong></td><td>Ручная проверка единственного workflow</td><td>В этом контуре нет узла кода, доступа к файлам, прямого SQL и стороннего пакета</td></tr><tr><td><strong>Ограничение</strong></td><td>Автоматизированный аудит нужно повторить после исправления</td><td>Проверка одного workflow — не исчерпывающий аудит экземпляра</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="n8n.diff.notes">Точное сообщение, команда аудита и будущее исправление <strong>не публикуются</strong>. Подтверждённое решение — это <strong>компенсирующий контроль</strong>, а не починка инструмента.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="n8n.proof.h"> 🧪 Функциональные доказательства</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="n8n.proof.t"><thead><tr><th>Испытание</th><th>Задокументированный результат</th><th>Охват</th></tr></thead><tbody><tr><td><strong>Workflow → Ollama</strong></td><td>Запрос подготовлен, HTTP-вызов, ответ получен и нормализован</td><td>ИИ-цепочка выполнена; не доказывает ни триггер Webhook, ни конкретный узел кода</td></tr><tr><td><strong>Пересоздание и перезагрузка</strong></td><td>Учётная запись и workflow сохранились</td><td>Сохранность приложения, а не восстановление из резервной копии</td></tr><tr><td><strong>Подключение к PostgreSQL</strong></td><td>Шифрованное соединение подтверждено</td><td>Проверка, отдельная от публичного доступа по HTTPS</td></tr><tr><td><strong>Внешний доступ</strong></td><td>Аутентификация, редактор, выполнение, повторный вход и сохранность подтверждены</td><td>Пользовательский сценарий проверен за VM200</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="n8n.proof.notes">Команды Compose, обезличенные параметры подключения и точный экспорт workflow <strong>не публикуются</strong>. Схема выше остаётся иллюстративной и отличается от реально выполненного workflow. Общие проверки публикации описаны на странице <a href="reverse_proxy.html" style="color:var(--blue-500)">Reverse proxy</a>.</div>
+  </div>
 </div>
   </div>
 

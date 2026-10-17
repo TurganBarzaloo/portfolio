@@ -105,6 +105,18 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm301.cases.h"> 🧪 Validated technical cases and corrections</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="vm301.cases.t"><thead><tr><th>Client / trial</th><th>Model</th><th>Attested result</th><th>Limit</th></tr></thead><tbody><tr><td><strong>Direct generation then OpenCode</strong></td><td>qwen3.6:35b</td><td>Real generation succeeded</td><td>Integration trial, distinct from the specialized tasks below</td></tr><tr><td><strong>Hermes Agent</strong></td><td>qwen3.6:35b</td><td>Generation with a served context of 65,536 tokens and restricted tools</td><td>Does not demonstrate use of all available tools</td></tr><tr><td><strong>OpenCode — Python</strong></td><td>qwen3-coder:30b</td><td>Direct success</td><td>Result of the tested case, not a general quality measure</td></tr><tr><td><strong>OpenCode — HTML</strong></td><td>qwen3-coder:30b</td><td>Validated after a targeted correction</td><td>Exact defect and correction not published</td></tr><tr><td><strong>OpenCode — n8n JSON</strong></td><td>qwen3-coder:30b</td><td>Validated after a targeted correction</td><td>JSON production, not proof that a workflow was activated</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.cases.notes"><strong>Scope:</strong> the term “benchmark” here means the documented tasks; no statistical score, assistant ranking or latency comparison is provided. The installation commands, the Hermes diagnostic, the exact client configuration, and the instructions and before/after artifacts of the HTML and JSON corrections <strong>are not published</strong>: the defect is not inferred from the mere fact that a correction was needed.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm301.p6.h"> 🔐 Security</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm301.security"><li>No inference port directly published on the Internet</li><li>Explicit filtering of client machines</li><li>Client configuration without a token when the private endpoint does not require one</li><li>Secrets, addresses and internal rules excluded from the public source</li><li>Future remote access planned via an <strong>authenticated private tunnel</strong>, not by opening the Ollama port</li></ul></div>
 </div>

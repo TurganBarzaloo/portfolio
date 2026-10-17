@@ -127,6 +127,29 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm301.cases.h"> 🧪 Cas techniques validés et corrections</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="vm301.cases.t">
+        <thead><tr><th>Client / essai</th><th>Modèle</th><th>Résultat attesté</th><th>Limite</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Génération directe puis OpenCode</strong></td><td>qwen3.6:35b</td><td>Génération réelle réussie</td><td>Essai d'intégration distinct des tâches spécialisées ci-dessous</td></tr>
+          <tr><td><strong>Hermes Agent</strong></td><td>qwen3.6:35b</td><td>Génération avec contexte servi de 65 536 tokens et outils restreints</td><td>Ne démontre pas l'usage de tous les outils disponibles</td></tr>
+          <tr><td><strong>OpenCode — Python</strong></td><td>qwen3-coder:30b</td><td>Réussite directe</td><td>Résultat du cas testé, pas mesure générale de qualité</td></tr>
+          <tr><td><strong>OpenCode — HTML</strong></td><td>qwen3-coder:30b</td><td>Validation après correction ciblée</td><td>Défaut et correction exacts non publiés</td></tr>
+          <tr><td><strong>OpenCode — JSON n8n</strong></td><td>qwen3-coder:30b</td><td>Validation après correction ciblée</td><td>Production de JSON, pas preuve d'activation d'un workflow</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.cases.notes">
+      <strong>Portée :</strong> le terme « benchmark » désigne ici les tâches documentées ; aucun score statistique, classement d'assistants ni comparaison de latence n'est fourni. Les commandes d'installation, le diagnostic Hermes, la configuration cliente exacte, ainsi que les consignes et artefacts avant/après des corrections HTML et JSON <strong>ne sont pas publiés</strong> : le défaut n'est pas déduit du seul constat qu'une correction a été nécessaire.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm301.p6.h"> 🔐 Sécurité</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm301.security"><li>Aucun port d'inférence directement publié sur Internet</li><li>Filtrage explicite des machines clientes</li><li>Configuration cliente sans jeton lorsque l'endpoint privé n'en requiert pas</li><li>Secrets, adresses et règles internes exclus de la source publique</li><li>Futur accès distant prévu par <strong>tunnel privé authentifié</strong>, et non par ouverture du port Ollama</li></ul></div>
 </div>

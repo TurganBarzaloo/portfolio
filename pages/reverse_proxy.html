@@ -155,6 +155,29 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
 </div>
   </div>
 
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="rp.val.h"> 🔬 Lecture technique des validations</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rp.val.t">
+        <thead><tr><th>Validation documentée</th><th>Résultat établi</th><th>Limite</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HTTPS depuis un réseau extérieur</strong></td><td>OpenWebUI, n8n et Nextcloud publiés et accessibles dans les essais</td><td>Un enregistrement DNS seul ne prouve pas une publication</td></tr>
+          <tr><td><strong>Redirection et renouvellement à blanc</strong></td><td>Chaîne HTTP vers HTTPS et renouvellement testés</td><td>Pas une garantie de réussite de tous les renouvellements futurs</td></tr>
+          <tr><td><strong>Réponses progressives et WebSockets</strong></td><td>Fonctions interactives validées</td><td>Ne pas attribuer chaque essai à chaque backend sans relevé détaillé</td></tr>
+          <tr><td><strong>Redémarrage de VM200</strong></td><td>Configuration conservée et reprise validée</td><td>Ne prouve pas le test du retrait global du transfert WAN</td></tr>
+          <tr><td><strong>Fail2ban SSH</strong></td><td>Protection de l'administration testée</td><td>Ne démontre pas une protection des formulaires applicatifs</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes">
+      <strong>Portée :</strong> ces validations sont celles documentées au 15 août 2026, pas un contrôle en direct des services. Les tests de syntaxe, de renouvellement et de journaux sont décrits, mais leurs commandes exactes et sorties assainies <strong>ne sont pas publiées</strong> : aucune commande Nginx ou Certbot générique n'est présentée comme historiquement utilisée. Aucun incident spécifique de proxy n'est établi : les besoins de streaming, de WebSocket et d'origine publique sont des contraintes prises en charge, non des pannes supposées. Les recettes applicatives détaillées figurent dans les pages <a href="n8n.html" style="color:var(--blue-500)">n8n</a> et <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.
+    </div>
+  </div>
+</div>
+  </div>
+
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rp.rollback">
     <strong>↩️ Retour arrière — trois niveaux :</strong>
     <ul class="skill-list" style="margin-top:.5rem">

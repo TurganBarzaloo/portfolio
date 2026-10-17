@@ -105,6 +105,18 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm301.cases.h"> 🧪 Подтверждённые технические случаи и исправления</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="vm301.cases.t"><thead><tr><th>Клиент / испытание</th><th>Модель</th><th>Подтверждённый результат</th><th>Ограничение</th></tr></thead><tbody><tr><td><strong>Прямая генерация, затем OpenCode</strong></td><td>qwen3.6:35b</td><td>Реальная генерация выполнена</td><td>Интеграционное испытание, отдельное от специализированных задач ниже</td></tr><tr><td><strong>Hermes Agent</strong></td><td>qwen3.6:35b</td><td>Генерация с обслуживаемым контекстом 65 536 токенов и ограниченным набором инструментов</td><td>Не доказывает использование всех доступных инструментов</td></tr><tr><td><strong>OpenCode — Python</strong></td><td>qwen3-coder:30b</td><td>Успех с первой попытки</td><td>Результат проверенного случая, а не общая оценка качества</td></tr><tr><td><strong>OpenCode — HTML</strong></td><td>qwen3-coder:30b</td><td>Подтверждено после точечного исправления</td><td>Точный дефект и исправление не опубликованы</td></tr><tr><td><strong>OpenCode — JSON n8n</strong></td><td>qwen3-coder:30b</td><td>Подтверждено после точечного исправления</td><td>Создание JSON, а не доказательство активации workflow</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.cases.notes"><strong>Охват:</strong> термин «бенчмарк» здесь означает документированные задачи; статистических оценок, рейтингов ассистентов и сравнения задержек не приводится. Команды установки, диагностика Hermes, точная конфигурация клиента, а также инструкции и артефакты «до/после» исправлений HTML и JSON <strong>не публикуются</strong>: дефект не выводится из одного лишь факта, что исправление понадобилось.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm301.p6.h"> 🔐 Безопасность</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm301.security"><li>Ни один порт инференса не опубликован напрямую в Интернете</li><li>Явная фильтрация клиентских машин</li><li>Клиентская настройка без токена, если приватный endpoint его не требует</li><li>Секреты, адреса и внутренние правила исключены из публичного источника</li><li>Будущий удалённый доступ планируется через <strong>аутентифицированный приватный туннель</strong>, а не через открытие порта Ollama</li></ul></div>
 </div>

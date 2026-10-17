@@ -129,12 +129,36 @@ PostgreSQL ou API IA selon le workflow</pre></div>
   <div style="margin-top:1.5rem">
     <div class="panel">
   <div class="panel-header" data-i18n="n8n.p5.h"> 🔄 Ejemplo — workflow de n8n hacia la IA</div>
-  <div class="panel-body"><div class="code-label" data-i18n="n8n.example.label">workflow (ilustrativo)</div>
-<div class="code-block"><pre>Trigger : Webhook
-   → Nœud HTTP  : préparation de la requête
-   → Nœud HTTP  : appel API Ollama (LLM local sur la VM GPU)
-   → Nœud Function : normalisation de la réponse pour les étapes suivantes
+  <div class="panel-body"><div class="code-label" data-i18n="n8n.example.label">esquema ilustrativo — no reproduce el workflow ejecutado</div>
+<div class="code-block"><pre>Déclencheur (non précisé)
+   → Préparation de la requête
+   → Appel HTTP : API Ollama (LLM local sur la VM GPU)
+   → Normalisation de la réponse pour les étapes suivantes
    → Réponse : JSON structuré</pre></div></div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="n8n.diff.h"> 🛠️ Dificultad específica — auditoría automatizada no disponible</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="n8n.diff.t"><thead><tr><th>Etapa</th><th>Hecho atestiguado</th><th>Consecuencia</th></tr></thead><tbody><tr><td><strong>Constatación</strong></td><td>Anomalía interna de carga de la auditoría automatizada</td><td>La auditoría no puede presentarse como superada</td></tr><tr><td><strong>Solución temporal</strong></td><td>Inspección manual del único workflow</td><td>Ausencia de nodo de código, acceso a ficheros, SQL directo y paquete comunitario en este perímetro</td></tr><tr><td><strong>Límite</strong></td><td>Auditoría automatizada por repetir tras una corrección</td><td>La revisión de un workflow no es una auditoría exhaustiva de la instancia</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="n8n.diff.notes">El mensaje exacto, el comando de auditoría y la corrección futura <strong>no se publican</strong>. La solución atestiguada es el <strong>control compensatorio</strong>, no la reparación de la herramienta.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="n8n.proof.h"> 🧪 Pruebas funcionales</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="n8n.proof.t"><thead><tr><th>Ensayo</th><th>Resultado documentado</th><th>Alcance</th></tr></thead><tbody><tr><td><strong>Workflow hacia Ollama</strong></td><td>Solicitud preparada, llamada HTTP, respuesta recibida y normalizada</td><td>Cadena de IA ejecutada; no prueba ni un disparador Webhook ni un nodo de código concreto</td></tr><tr><td><strong>Recreación y reinicio</strong></td><td>Cuenta y workflow persistentes</td><td>Persistencia de la aplicación, no restauración de copia de seguridad</td></tr><tr><td><strong>Conexión PostgreSQL</strong></td><td>Enlace cifrado validado</td><td>Validación distinta del acceso HTTPS público</td></tr><tr><td><strong>Acceso exterior</strong></td><td>Autenticación, editor, ejecución, reconexión y persistencia validados</td><td>Recorrido de usuario probado detrás de VM200</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="n8n.proof.notes">Los comandos Compose, los parámetros de conexión saneados y la exportación exacta del workflow <strong>no se publican</strong>. El esquema anterior sigue siendo ilustrativo, distinto del workflow realmente ejecutado. Los controles de publicación comunes se describen en la página <a href="reverse_proxy.html" style="color:var(--blue-500)">Reverse proxy</a>.</div>
+  </div>
 </div>
   </div>
 

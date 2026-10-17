@@ -89,6 +89,18 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm302.recipe.h"> 🔬 Lectura técnica de la recepción</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="vm302.recipe.t"><thead><tr><th>Etapa validada</th><th>Resultado documentado</th><th>Límite de la prueba</th></tr></thead><tbody><tr><td><strong>Base Windows y herramientas</strong></td><td>Identidad, red, agente invitado, dispositivos, VSCodium, Git y PowerShell comprobados</td><td>No demuestra todas las cadenas de compilación posibles</td></tr><tr><td><strong>Python y Node.js</strong></td><td>Entorno virtual y ensayo de Python sin conexión; prueba JavaScript local</td><td>Validación de las cadenas probadas, no de una aplicación completa</td></tr><tr><td><strong>Instalación del Harness</strong></td><td>Versión preliminar fijada, lockfile, integridad, dependencias e instalación comprobados</td><td>Una auditoría de dependencias no establece la ausencia de todo riesgo de software</td></tr><tr><td><strong>Primera inferencia remota</strong></td><td>Respuesta exacta <code>DSH_VM302_QWEN36_OK</code>, sin llamada a herramientas</td><td>Valida el intercambio con el modelo, no la ejecución agéntica de acciones</td></tr><tr><td><strong>Reanudación tras reinicio</strong></td><td>Versiones, configuración e historial persistentes; nueva respuesta y GPU remota confirmadas</td><td>Prueba propia de VM302, no transferible a VM301</td></tr><tr><td><strong>Servicios de automatización</strong></td><td>Estado de salud comprobado</td><td>Ningún workflow consumido por un agente demostrado</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm302.recipe.notes"><strong>Alcance:</strong> el perfil inicial de solo lectura y la interfaz limitada al puesto acotan el perímetro de la validación; no validan modos de ejecución más permisivos. La fuente no describe ningún incidente específico. Los comandos exactos de las pruebas Python/JavaScript, de la instalación y de la telemetría GPU <strong>no se publican</strong>; el marcador de respuesta es un resultado observado, no la transcripción íntegra de la prueba.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm302.skills.h"> 🎯 Competencias demostradas</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm302.skills.list"><li>Preparación y validación de una estación Windows virtualizada</li><li>Diseño de una cadena de desarrollo políglota</li><li>Instalación controlada de una herramienta agéntica basada en una arquitectura de plugins Cordis</li><li>Integración de una estación sin GPU con un servicio de inferencia separado</li><li>Selección de componentes libres y separación de dependencias propietarias</li><li>Pruebas reproducibles y validación sin conexión</li><li>Separación entre estación cliente, servicio de inferencia y automatización</li></ul></div>
 </div>

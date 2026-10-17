@@ -132,6 +132,18 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
 </div>
   </div>
 
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="rp.val.h"> 🔬 Technical reading of the validations</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rp.val.t"><thead><tr><th>Documented validation</th><th>Result established</th><th>Limit</th></tr></thead><tbody><tr><td><strong>HTTPS from an external network</strong></td><td>OpenWebUI, n8n and Nextcloud published and reachable in the trials</td><td>A DNS record alone does not prove a publication</td></tr><tr><td><strong>Redirect and dry-run renewal</strong></td><td>HTTP-to-HTTPS chain and renewal tested</td><td>No guarantee that every future renewal succeeds</td></tr><tr><td><strong>Streamed responses and WebSockets</strong></td><td>Interactive features validated</td><td>Do not attribute each trial to each backend without a detailed record</td></tr><tr><td><strong>VM200 reboot</strong></td><td>Configuration kept and resume validated</td><td>Does not prove the global WAN forwarding removal was tested</td></tr><tr><td><strong>Fail2ban SSH</strong></td><td>Administration protection tested</td><td>Does not demonstrate protection of application login forms</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes"><strong>Scope:</strong> these validations are the ones documented on 15 August 2026, not a live check of the services. The syntax, renewal and log tests are described, but their exact commands and sanitized outputs <strong>are not published</strong>: no generic Nginx or Certbot command is presented as historically used. No specific proxy incident is established: streaming, WebSocket and public-origin needs are constraints that are handled, not assumed failures. Detailed application acceptance appears on the <a href="n8n.html" style="color:var(--blue-500)">n8n</a> and <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a> pages.</div>
+  </div>
+</div>
+  </div>
+
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rp.rollback"><strong>↩️ Rollback — three levels:</strong><ul class="skill-list" style="margin-top:.5rem"><li>disable only the virtual host of one service;</li><li>temporarily remove the Web forwarding to VM200;</li><li>stop VM200 to neutralize all publications without changing the internal applications.</li></ul><p style="font-size:.82rem;color:var(--gray-600);margin:.6rem 0 0">The formal test of the global rollback by removing the WAN forwarding remains the last open check of the first phase.</p></div>
 
   <div style="margin-top:1.5rem">

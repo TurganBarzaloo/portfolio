@@ -89,6 +89,18 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="vm302.recipe.h"> 🔬 Technical reading of the acceptance</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="vm302.recipe.t"><thead><tr><th>Validated step</th><th>Documented result</th><th>Limit of the evidence</th></tr></thead><tbody><tr><td><strong>Windows base and tooling</strong></td><td>Identity, network, guest agent, devices, VSCodium, Git and PowerShell checked</td><td>Does not demonstrate every possible build chain</td></tr><tr><td><strong>Python and Node.js</strong></td><td>Virtual environment and offline Python trial; local JavaScript test</td><td>Validation of the tested chains, not of a full application</td></tr><tr><td><strong>Harness installation</strong></td><td>Pinned preview version, lockfile, integrity, dependencies and installation checked</td><td>A dependency audit does not establish the absence of all software risk</td></tr><tr><td><strong>First remote inference</strong></td><td>Exact reply <code>DSH_VM302_QWEN36_OK</code>, no tool call</td><td>Validates the exchange with the model, not agentic execution of actions</td></tr><tr><td><strong>Resume after reboot</strong></td><td>Versions, configuration and history persistent; new reply and remote GPU confirmed</td><td>Evidence specific to VM302, not transferable to VM301</td></tr><tr><td><strong>Automation services</strong></td><td>Health checked</td><td>No workflow consumed by an agent demonstrated</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm302.recipe.notes"><strong>Scope:</strong> the initial read-only profile and the interface limited to the workstation bound the validation perimeter; they do not validate more permissive execution modes. No specific incident is described in the source. The exact commands for the Python/JavaScript tests, the installation and the GPU telemetry <strong>are not published</strong>; the reply marker is an observed result, not the full transcript of the test.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="vm302.skills.h"> 🎯 Demonstrated skills</div>
   <div class="panel-body"><ul class="skill-list" data-i18n="vm302.skills.list"><li>Preparation and validation of a virtualized Windows workstation</li><li>Design of a polyglot development toolchain</li><li>Controlled installation of an agentic tool based on a Cordis plugin architecture</li><li>Integration of a GPU-less workstation with a separate inference service</li><li>Selection of free components and separation of proprietary dependencies</li><li>Reproducible tests and offline validation</li><li>Separation between client workstation, inference service and automation</li></ul></div>
 </div>
