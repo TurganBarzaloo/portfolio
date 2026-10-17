@@ -138,11 +138,26 @@
           <tr><td><strong>OpenCode — Python</strong></td><td>qwen3-coder:30b</td><td>Réussite directe</td><td>Résultat du cas testé, pas mesure générale de qualité</td></tr>
           <tr><td><strong>OpenCode — HTML</strong></td><td>qwen3-coder:30b</td><td>Validation après correction ciblée</td><td>Défaut et correction exacts non publiés</td></tr>
           <tr><td><strong>OpenCode — JSON n8n</strong></td><td>qwen3-coder:30b</td><td>Validation après correction ciblée</td><td>Production de JSON, pas preuve d'activation d'un workflow</td></tr>
+          <tr><td><strong>OpenCode — appel n8n</strong></td><td>Qwen3 Coder 30B affiché par le client</td><td>Outil terminal, client Python, appel HTTPS authentifié, réponse attendue et code 0</td><td>Workflow de test temporaire ; pas d'activation permanente</td></tr>
         </tbody>
       </table>
     </div>
     <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.cases.notes">
       <strong>Portée :</strong> le terme « benchmark » désigne ici les tâches documentées ; aucun score statistique, classement d'assistants ni comparaison de latence n'est fourni. Les commandes d'installation, le diagnostic Hermes, la configuration cliente exacte, ainsi que les consignes et artefacts avant/après des corrections HTML et JSON <strong>ne sont pas publiés</strong> : le défaut n'est pas déduit du seul constat qu'une correction a été nécessaire.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="vm301.oc.h"> 🔗 Déclenchement d'un workflow n8n depuis OpenCode</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0" data-i18n="vm301.oc.p1">
+      La CLI OpenCode de cette station a utilisé son <strong>outil terminal</strong> pour exécuter un client Python de validation (17 octobre 2026). L'interface affichait le modèle <strong>Qwen3 Coder 30B</strong> servi par le nœud GPU ; ce relevé client n'est pas une mesure distincte du placement GPU pendant l'appel. Le client a envoyé une requête HTTPS authentifiée à un webhook n8n de test, puis vérifié la réponse structurée : <code>OPENCODE_N8N_OK</code>, code de retour 0. L'appel manuel avait d'abord été validé pour distinguer les erreurs d'authentification des difficultés d'utilisation des outils par le modèle ; les refus initiaux ont cessé après configuration d'un nouvel identifiant Header Auth cohérent avec le client.
+    </p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="vm301.oc.notes">
+      <strong>Portée :</strong> ce résultat démontre le déclenchement d'une automatisation restreinte par OpenCode, au-delà de la seule génération d'un fichier JSON de workflow. Le workflow complet a été lancé manuellement en mode test : ce n'est ni un service permanent, ni une preuve de fonctionnement de Hermes ou de MCP. Le secret est conservé localement hors Git et n'est pas transmis dans le prompt ; un processus exécuté sous le même compte reste capable d'y accéder. Les nœuds, le résultat et les limites communs aux essais Windows et Linux sont décrits sur la page <a href="n8n.html" style="color:var(--blue-500)">n8n</a>.
     </div>
   </div>
 </div>
@@ -168,6 +183,7 @@
       <li>la <strong>persistance applicative</strong> de VM301 doit encore être contrôlée après redémarrage ;</li>
       <li>la station de développement Windows est documentée séparément sur la page <a href="vm302-station-dev-ia.html" style="color:var(--blue-500)">VM302</a>, avec ses propres validations du <strong>20 septembre 2026</strong> — celles-ci ne valident pas la reprise de VM301 ;</li>
       <li>l'accès distant des postes clients devra passer par une architecture <strong>VPN dédiée</strong> et validée.</li>
+      <li><span>la transformation du test n8n en <strong>automatisation permanente</strong> reste à cadrer ; aucune validation équivalente d'appel n8n par Hermes n'est déclarée.</span></li>
     </ul>
   </div>
 

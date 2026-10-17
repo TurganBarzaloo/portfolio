@@ -147,6 +147,24 @@ PostgreSQL ou API IA selon le workflow</pre></div>
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="n8n.oc.h"> 🤖 Déclenchement par OpenCode — preuve de concept (17 octobre 2026)</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="n8n.oc.intro">
+      OpenCode a déclenché un workflow n8n <strong>existant et authentifié</strong> depuis deux environnements : un <strong>poste Windows</strong> et la <strong>CLI d'une station Linux dédiée</strong> (<a href="vm301-hermes-opencode.html" style="color:var(--blue-500)">VM301</a>). L'agent utilise son <strong>outil terminal</strong> pour exécuter un client déterministe ; ce client réalise l'appel HTTPS et vérifie la réponse attendue (17 octobre 2026).
+    </p>
+    <p style="font-size:.84rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem;font-family:monospace;background:var(--gray-100);border-radius:var(--radius-sm);padding:.7rem 1rem" data-i18n="n8n.oc.chain">OpenCode → outil terminal → client de validation → webhook HTTPS authentifié → réponse JSON contrôlée</p>
+    <ul class="skill-list" data-i18n="n8n.oc.list"><li><span>Workflow à <strong>deux nœuds reliés</strong> : <strong>Webhook</strong> (POST, Header Auth) puis <strong>Respond to Webhook</strong>, qui renvoie <code style="word-break:break-all">{"status":"ok","result":"OPENCODE_N8N_OK"}</code></span></li><li><span>Sur Windows, un appel sans authentification a été <strong>refusé (HTTP 403)</strong>, puis l'appel authentifié a réussi ; ce refus n'a pas été testé séparément sur le workflow Linux</span></li><li><span>Sur les deux postes, l'appel réel par l'outil terminal d'OpenCode a retourné <code>OPENCODE_N8N_OK</code> avec le <strong>code de sortie 0</strong></span></li><li><span>Identifiants distincts pour les deux clients, conservés hors Git</span></li></ul>
+    <div style="font-size:.85rem;color:var(--gray-700);margin:1rem 0 .4rem" data-i18n="n8n.oc.diffh"><strong>Difficultés rencontrées et résolution :</strong></div>
+    <ul class="skill-list" data-i18n="n8n.oc.diff"><li><span>Le workflow complet doit être exécuté pour tester la chaîne jusqu'au nœud de réponse ; la seule réception d'un événement ne prouve pas cette chaîne.</span></li><li><span>Côté Linux, des essais utilisaient un mode ou un identifiant d'authentification incohérent ; la création et la sélection d'un nouvel identifiant Header Auth ont permis un appel réussi.</span></li><li><span>Le client Windows masque le secret et distingue les erreurs HTTP des erreurs de format de réponse : un statut HTTP favorable ne suffit pas, les champs JSON attendus et le code de sortie sont aussi contrôlés.</span></li></ul>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="n8n.oc.notes">
+      <strong>Portée exacte :</strong> ce sont des workflows <strong>de test temporaire</strong>, exécutés manuellement dans n8n pour recevoir l'appel de l'agent. Ces essais ne valident ni endpoint permanent, ni automatisation à effet externe, ni création automatique de workflows, ni intégration de Hermes, ni connexion MCP, ni appel d'une API d'administration n8n. Ils sont distincts du workflow n8n vers Ollama et de la génération de JSON par OpenCode. Le secret local n'est pas placé dans le prompt, ce qui ne constitue pas une isolation contre un programme exécuté sous le même compte ; le code 0 n'est pas un audit de sécurité. L'export des workflows, les scripts d'exploitation et l'URL d'appel ne sont pas publiés.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="n8n.p5.h"> 🔄 Exemple — workflow n8n vers l'IA</div>
   <div class="panel-body"><div class="code-label" data-i18n="n8n.example.label">schéma illustratif — ne reproduit pas le workflow exécuté</div>
 <div class="code-block"><pre>Déclencheur (non précisé)
@@ -190,6 +208,7 @@ PostgreSQL ou API IA selon le workflow</pre></div>
           <tr><td><strong>Recréation et redémarrage</strong></td><td>Compte et workflow persistants</td><td>Persistance applicative, pas restauration de sauvegarde</td></tr>
           <tr><td><strong>Connexion PostgreSQL</strong></td><td>Liaison chiffrée validée</td><td>Validation distincte de l'accès HTTPS public</td></tr>
           <tr><td><strong>Accès extérieur</strong></td><td>Authentification, éditeur, exécution, reconnexion et persistance validés</td><td>Parcours utilisateur testé derrière VM200</td></tr>
+          <tr><td><strong>OpenCode vers n8n</strong> (17 octobre 2026)</td><td>Appels depuis Windows et Linux, réponse JSON attendue et code 0</td><td>Workflows de test temporaire ; aucune activation permanente</td></tr>
         </tbody>
       </table>
     </div>
@@ -215,6 +234,7 @@ PostgreSQL ou API IA selon le workflow</pre></div>
       <li>Le durcissement final de l'administration SSH reste ouvert.</li>
       <li>L'audit automatisé (anomalie de chargement, compensée par un contrôle manuel) sera rejoué après correctif de n8n.</li>
       <li>Le mode <em>queue</em> ne sera étudié qu'en présence d'un besoin mesuré.</li>
+      <li>Le passage de la preuve de concept agentique à un service permanent reste à cadrer : automatisation utile, accès, erreurs et exploitation.</li>
     </ul>
   </div>
 
