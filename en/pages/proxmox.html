@@ -73,6 +73,7 @@
   <div class="panel-header" data-i18n="prox.p3.h"> 🔄 VM status & startup order</div>
   <div class="panel-body">
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.intro">This command produces directly from Proxmox the list of VMs with their <strong>current state</strong>, their <strong>auto-start policy</strong> (<code>onboot</code>) and their <strong>resume order</strong> (<code>startup</code>) — without confusing the instantaneous state (<code>running</code> / <code>stopped</code>) with the persistent configuration.</p>
+    <p style="font-size:.85rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.qual"><strong>Qualification: reproducible check</strong>, to be run in Bash on the Proxmox host with the read rights needed by the <code>qm</code> commands. It reads the inventory and configuration; it does not start, stop or modify any VM, so <strong>no rollback is required</strong>. The full output may contain internal names: it is selected and sanitized before publication.</p>
     <div class="code-label" data-i18n="prox.startup.label1">bash — status + startup order</div>
 <div class="code-block"><pre>for vmid in $(qm list | awk 'NR &gt; 1 {print $1}'); do
     config=$(qm config "$vmid")
@@ -96,6 +97,7 @@ done</pre></div>
 300    300-n8n                        onboot=1  startup=order=30,up=30,down=60
 …      environnements à la demande    onboot=0  startup=-</pre></div>
     <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.notes"><strong>Reading:</strong> VMs with <code>onboot=1</code> resume in increasing <code>startup</code> order — <strong>VM215 (services · PostgreSQL/pgvector) → VM210 (AI node) → VM300 (n8n) → VM205 (Nextcloud)</strong> — so that dependencies are ready before their consumers. Alternative GPU environments stay out of auto-start. The exhaustive inventory remains in the internal operations documentation.</div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.scope"><strong>Scope:</strong> the excerpt comes from the configuration snapshot taken after a reboot; that snapshot did not yet include the <code>status</code> column added to the command above. It demonstrates the <strong>persistence of the configured resume chain</strong>, not the runtime state of the VMs.</div>
   </div>
 </div>
   </div>
@@ -109,6 +111,15 @@ done</pre></div>
     <div class="panel">
   <div class="panel-header" data-i18n="prox.p5.h"> 🧪 Lessons learned — template rebuild (VM130)</div>
   <div class="panel-body" data-i18n="prox.p5.body"><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .75rem">Cloning an old template revealed a <strong>residual hostname</strong>. The clone was fixed and checked, then the <strong>generic template was rebuilt from an official ISO</strong> to explicitly control its content. The build VM was <strong>sanitized before conversion</strong>: machine identity, hostname, SSH keys, network, Cloud-Init state and logs were cleaned.</p><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">A <strong>full validation clone</strong> confirmed Cloud-Init initialization, generation of a clean identity, networking, DNS, SSH, the guest agent, and persistence after reboot. <strong>The old template was only replaced after this check</strong>; the ZFS origins were verified before deleting the candidate that had become redundant, to preserve VM independence.</p></div>
+</div>
+    <div class="panel" style="margin-top:1.5rem">
+  <div class="panel-header" data-i18n="prox.case.h"> 🔍 Technical reading of the VM130 case</div>
+  <div class="panel-body">
+    <div style="margin-top:1rem;overflow-x:auto">
+      <table class="data-table" data-i18n="prox.case.t"><thead><tr><th>Step</th><th>Documented observation or decision</th><th>Result and scope</th></tr></thead><tbody><tr><td><strong>Detection</strong></td><td>Inherited hostname, unsuitable IP and missing SSH in the clone</td><td>The clone was not a ready base for its new role</td></tr><tr><td><strong>Qualification</strong></td><td>No residual Nextcloud component detected</td><td>Do not confuse an inherited identity with an application still installed</td></tr><tr><td><strong>Rebuild</strong></td><td>Installation from the official ISO in a temporary VM</td><td>Controlled content, without immediately replacing the old template</td></tr><tr><td><strong>Neutralization and cloning</strong></td><td>Candidate prepared, then full clone</td><td>Identity, SSH keys, user and network specific to the first boot</td></tr><tr><td><strong>Acceptance</strong></td><td>Cloud-Init, ext4, DHCP, DNS, SSH, guest agent and reboot checked</td><td>Validation of the Ubuntu Server case, without generalizing to Windows or GPU variants</td></tr><tr><td><strong>Replacement</strong></td><td>ZFS relations and volume independence checked</td><td>Replaced items removed only after validation</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.case.notes"><strong>Available evidence:</strong> these steps are attested, but their exact commands and sanitized outputs are not published; no generic procedure is therefore presented as the actual history. The resume check above documents the VM startup policy — it proves neither the template neutralization nor the clone identity. Specialized, Windows or GPU variants each require their own procedure and their own evidence.</div>
+  </div>
 </div>
     <div class="panel" style="margin-top:1.5rem">
   <div class="panel-header" data-i18n="prox.p6.h"> ♻️ Template lifecycle & types</div>

@@ -92,8 +92,21 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="nc.diff.h"> 🛠️ Dificultad encontrada — interfaz y luego escrituras</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="nc.diff.t"><thead><tr><th>Fase</th><th>Hechos documentados</th><th>Alcance</th></tr></thead><tbody><tr><td><strong>Diagnóstico</strong></td><td>Dos extensiones de aplicación defectuosas aisladas</td><td>La disponibilidad del contenedor no bastaba para demostrar el funcionamiento para el usuario</td></tr><tr><td><strong>Solución adoptada</strong></td><td>Neutralización reversible de las extensiones, sin borrar datos</td><td>Se restauraron la interfaz y luego las escrituras</td></tr><tr><td><strong>Validación</strong></td><td>Autenticación, consulta, subida y sincronización desde el exterior</td><td>Recepción de los usos probados, distinta del simple control HTTP local</td></tr><tr><td><strong>Trabajos pendientes</strong></td><td>Cadena antivirus persistente por restablecer; conector externo por sustituir o retirar</td><td>El rodeo no es la resolución duradera de todas las dependencias</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="nc.diff.notes">Los mensajes de error, la correspondencia detallada entre cada extensión y cada síntoma y los comandos de neutralización <strong>no se publican</strong>: ningún diagnóstico genérico se presenta como realizado. La reactivación del antivirus sigue supeditada a los trabajos indicados en los límites.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="nc.p3.h"> 🔄 Prueba reproducible — estado tras el reinicio</div>
   <div class="panel-body">
+    <p style="font-size:.85rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="nc.proof.qual"><strong>Calificación: control reproducible con resultado histórico saneado.</strong> Cruza el estado del sistema, de los contenedores y de la aplicación, en Bash dentro de la VM Nextcloud (systemd, Docker, curl, derechos <code>sudo</code>). Las operaciones leen el estado sin modificar la configuración. El filtro de Docker debe identificar el contenedor correcto y su puerto HTTP estar publicado localmente: si no hay resultado o si coinciden varios contenedores, compruebe primero la selección.</p>
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="nc.proof.p1">Ejecutados dentro de la VM, estos comandos determinan automáticamente el nombre del contenedor y el puerto local publicado, por lo que la prueba no depende de las etiquetas propias de la instalación.</p>
     <div class="code-label" data-i18n="nc.proof.label1">bash — verificación de estado</div>
 <div class="code-block"><pre>date --iso-8601=seconds
@@ -125,6 +138,7 @@ maintenance: false
 needsDbUpgrade: false
 productname: Nextcloud</pre></div>
     <div class="notes-box" style="margin-top:1rem" data-i18n="nc.proof.notes"><strong>Lectura:</strong> <code>occ status</code> y el endpoint de estado HTTP confirman que <strong>Nextcloud 33.0.0 está instalado, fuera de mantenimiento y sin migraciones de base de datos pendientes</strong>. La presencia simultánea de los contenedores Nextcloud y MariaDB tras el reinicio demuestra su <strong>recuperación automática</strong>.</div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="nc.proof.scope"><strong>Alcance:</strong> este registro del 15 de agosto de 2026 no es un control en directo de la versión actual. No demuestra ni una restauración de copia de seguridad ni el restablecimiento de la cadena antivirus; la recepción HTTPS exterior sigue siendo una prueba aparte.</div>
   </div>
 </div>
   </div>

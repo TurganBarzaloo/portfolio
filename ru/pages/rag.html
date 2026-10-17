@@ -83,6 +83,18 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="rag.val.h"> 🔬 Технический разбор валидаций</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rag.val.t"><thead><tr><th>Подтверждённая проверка</th><th>Что она устанавливает</th><th>Что она не доказывает</th></tr></thead><tbody><tr><td>Эмбеддинги bge-m3 размерности 1024</td><td>Размерность подтверждена для проверенной цепочки</td><td>Сравнительное качество на всех корпусах</td></tr><tr><td>Создан индекс HNSW</td><td>В проверенном контуре существует векторный индекс</td><td>Количественный выигрыш в задержке или нагрузочный тест</td></tr><tr><td>Точный поиск и цитаты</td><td>Проверены поиск и выдача ссылок в испытаниях</td><td>Гарантированная точность любого будущего ответа</td></tr><tr><td>Испытание вне корпуса</td><td>Изучено поведение при отсутствии информации</td><td>Полное отсутствие галлюцинаций</td></tr><tr><td>Пересоздание интерфейса и перезагрузка обеих ВМ</td><td>Сохранность подтверждена в этих сценариях</td><td>Восстановление из независимой резервной копии</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rag.val.notes"><strong>Ограничение и решение:</strong> вычисления на GPU остаются на VM210, а хранилище PostgreSQL/pgvector — на выделенном диске ext4 в VM215. Этот выбор не означает, что Qdrant непригоден или удалён. <strong>Протокол не опубликован:</strong> команды загрузки, проверки эмбеддингов и индекса, а также точный текст корпуса, вопросов и ответов отсутствуют в утверждённом источнике; приведённые валидации — это обобщённые результаты, а не воспроизводимый сценарий.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="rag.p4.h"> ⚙️ Настройка Open WebUI → pgvector (иллюстративно)</div>
   <div class="panel-body"><div class="code-label" data-i18n="rag.cfg.label1">env — векторный backend pgvector</div>
 <div class="code-block"><pre># Open WebUI — RAG natif sur backend pgvector (VM215)
@@ -94,7 +106,8 @@ RAG_EMBEDDING_ENGINE=ollama
 RAG_EMBEDDING_MODEL=bge-m3        # dimension 1024</pre></div>
 <div class="code-label" style="margin-top:1rem" data-i18n="rag.cfg.label2">sql — индекс схожести HNSW (pgvector)</div>
 <div class="code-block"><pre>-- Index HNSW pour la recherche vectorielle rapide (distance cosinus)
-CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div></div>
+CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div>
+<div class="notes-box" style="margin-top:1rem" data-i18n="rag.cfg.note"><strong>Квалификация: иллюстративный пример.</strong> Эти блоки поясняют принцип; они <strong>не</strong> являются использованной командой. Имя таблицы и базы — примеры, реальный результат запроса из них не выводится.</div></div>
 </div>
   </div>
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rag.limits"><strong>Охват и ограничения:</strong> проверки опираются на <strong>полностью синтетический корпус</strong> — это не бизнес-данные. Qdrant <strong>сохранён как резервное решение</strong> (не удалён), пока вывод из эксплуатации не завершён. Финальная очистка тестовых коллекций и контрольная точка восстановления при закрытии ещё предстоят.</div>

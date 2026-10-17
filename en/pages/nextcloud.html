@@ -92,8 +92,21 @@
 
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="nc.diff.h"> 🛠️ Difficulty encountered — interface, then writes</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="nc.diff.t"><thead><tr><th>Phase</th><th>Documented facts</th><th>Scope</th></tr></thead><tbody><tr><td><strong>Diagnosis</strong></td><td>Two faulty application extensions isolated</td><td>Container availability was not enough to show user-side operation</td></tr><tr><td><strong>Solution adopted</strong></td><td>Reversible neutralization of the extensions, without deleting data</td><td>The interface, then writes, were restored</td></tr><tr><td><strong>Validation</strong></td><td>Authentication, browsing, upload and sync from outside</td><td>Acceptance of the tested uses, distinct from the local HTTP check alone</td></tr><tr><td><strong>Remaining work</strong></td><td>Persistent antivirus chain to restore; external connector to replace or remove</td><td>The workaround is not the lasting resolution of every dependency</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="nc.diff.notes">Error messages, the detailed mapping between each extension and each symptom, and the neutralization commands <strong>are not published</strong>: no generic troubleshooting is presented as performed. Re-enabling the antivirus remains conditional on the work listed in the limits.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="nc.p3.h"> 🔄 Reproducible proof — state after reboot</div>
   <div class="panel-body">
+    <p style="font-size:.85rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="nc.proof.qual"><strong>Qualification: reproducible check with a sanitized historical result.</strong> It cross-checks system state, containers and application state, in Bash inside the Nextcloud VM (systemd, Docker, curl, <code>sudo</code> rights). The operations read state without changing the configuration. The Docker filter must identify the right container and its HTTP port must be published locally: with no result, or if several containers match, check the selection first.</p>
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="nc.proof.p1">Run inside the VM, these commands automatically determine the container name and the published local port — so the proof does not depend on labels specific to the installation.</p>
     <div class="code-label" data-i18n="nc.proof.label1">bash — status check</div>
 <div class="code-block"><pre>date --iso-8601=seconds
@@ -125,6 +138,7 @@ maintenance: false
 needsDbUpgrade: false
 productname: Nextcloud</pre></div>
     <div class="notes-box" style="margin-top:1rem" data-i18n="nc.proof.notes"><strong>Reading:</strong> <code>occ status</code> and the HTTP status endpoint confirm <strong>Nextcloud 33.0.0 installed, out of maintenance and with no pending database migration</strong>. The simultaneous presence of the Nextcloud and MariaDB containers after reboot demonstrates their <strong>automatic recovery</strong>.</div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="nc.proof.scope"><strong>Scope:</strong> this 15 August 2026 snapshot is not a live check of the current version. It demonstrates neither a backup restore nor the restoration of the antivirus chain; the external HTTPS acceptance remains a separate piece of evidence.</div>
   </div>
 </div>
   </div>

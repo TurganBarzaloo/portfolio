@@ -73,6 +73,7 @@
   <div class="panel-header" data-i18n="prox.p3.h"> 🔄 Estado y orden de arranque de las VM</div>
   <div class="panel-body">
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.intro">Este comando produce directamente desde Proxmox la lista de VM con su <strong>estado actual</strong>, su <strong>política de autoarranque</strong> (<code>onboot</code>) y su <strong>orden de reanudación</strong> (<code>startup</code>) — sin confundir el estado instantáneo (<code>running</code> / <code>stopped</code>) con la configuración persistente.</p>
+    <p style="font-size:.85rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.qual"><strong>Calificación: control reproducible</strong>, que se ejecuta en Bash en el host Proxmox con los derechos de lectura necesarios para los comandos <code>qm</code>. Lee el inventario y la configuración; no inicia, detiene ni modifica ninguna VM, por lo que <strong>no se requiere marcha atrás</strong>. La salida completa puede contener nombres internos: se selecciona y se sanea antes de publicarla.</p>
     <div class="code-label" data-i18n="prox.startup.label1">bash — estado + orden de arranque</div>
 <div class="code-block"><pre>for vmid in $(qm list | awk 'NR &gt; 1 {print $1}'); do
     config=$(qm config "$vmid")
@@ -96,6 +97,7 @@ done</pre></div>
 300    300-n8n                        onboot=1  startup=order=30,up=30,down=60
 …      environnements à la demande    onboot=0  startup=-</pre></div>
     <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.notes"><strong>Lectura:</strong> las VM con <code>onboot=1</code> se reanudan en orden creciente de <code>startup</code> — <strong>VM215 (servicios · PostgreSQL/pgvector) → VM210 (nodo IA) → VM300 (n8n) → VM205 (Nextcloud)</strong> — para que las dependencias estén listas antes que sus consumidores. Los entornos GPU alternativos quedan fuera del autoarranque. El inventario exhaustivo permanece en la documentación de operación interna.</div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.scope"><strong>Alcance:</strong> el extracto procede del registro de configuración realizado tras un reinicio; ese registro todavía no incluía la columna <code>status</code> añadida al comando anterior. Demuestra la <strong>persistencia de la cadena de reanudación configurada</strong>, no el estado de ejecución de las VM.</div>
   </div>
 </div>
   </div>
@@ -109,6 +111,15 @@ done</pre></div>
     <div class="panel">
   <div class="panel-header" data-i18n="prox.p5.h"> 🧪 Lecciones aprendidas — reconstrucción de la plantilla (VM130)</div>
   <div class="panel-body" data-i18n="prox.p5.body"><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .75rem">La clonación de una plantilla antigua reveló un <strong>hostname residual</strong>. El clon se corrigió y verificó, y luego la <strong>plantilla genérica se reconstruyó desde una ISO oficial</strong> para controlar explícitamente su contenido. La VM de construcción fue <strong>neutralizada antes de la conversión</strong>: identidad de la máquina, hostname, claves SSH, red, estado de Cloud-Init y registros fueron depurados.</p><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">Un <strong>clon completo de validación</strong> confirmó la inicialización de Cloud-Init, la generación de una identidad propia, la red, el DNS, SSH, el agente invitado y la persistencia tras el reinicio. <strong>La plantilla antigua solo se reemplazó tras esta verificación</strong>; se comprobaron los orígenes ZFS antes de eliminar el candidato que había quedado redundante, para preservar la independencia de las VM.</p></div>
+</div>
+    <div class="panel" style="margin-top:1.5rem">
+  <div class="panel-header" data-i18n="prox.case.h"> 🔍 Lectura técnica del caso VM130</div>
+  <div class="panel-body">
+    <div style="margin-top:1rem;overflow-x:auto">
+      <table class="data-table" data-i18n="prox.case.t"><thead><tr><th>Etapa</th><th>Observación o decisión documentada</th><th>Resultado y alcance</th></tr></thead><tbody><tr><td><strong>Detección</strong></td><td>Hostname heredado, IP inadecuada y SSH ausente en el clon</td><td>El clon no era una base lista para su nuevo rol</td></tr><tr><td><strong>Calificación</strong></td><td>Ningún componente Nextcloud residual detectado</td><td>No confundir una identidad heredada con una aplicación aún instalada</td></tr><tr><td><strong>Reconstrucción</strong></td><td>Instalación desde la ISO oficial en una VM temporal</td><td>Contenido controlado, sin sustituir de inmediato la plantilla anterior</td></tr><tr><td><strong>Neutralización y clonado</strong></td><td>Candidato preparado y luego clon completo</td><td>Identidad, claves SSH, usuario y red propios del primer arranque</td></tr><tr><td><strong>Recepción</strong></td><td>Cloud-Init, ext4, DHCP, DNS, SSH, agente invitado y reinicio comprobados</td><td>Validación del caso Ubuntu Server, sin generalizar a variantes Windows o GPU</td></tr><tr><td><strong>Sustitución</strong></td><td>Control de las relaciones ZFS y de la independencia de los volúmenes</td><td>Elementos sustituidos eliminados solo tras la validación</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.case.notes"><strong>Pruebas disponibles:</strong> estas etapas están atestiguadas, pero sus comandos exactos y sus salidas saneadas no se publican; por tanto, ningún procedimiento genérico se presenta como el historial real. El control de reanudación anterior documenta la política de arranque de las VM: no prueba ni la neutralización de la plantilla ni la identidad del clon. Las variantes especializadas, Windows o GPU, requieren cada una su propio procedimiento y sus propias pruebas.</div>
+  </div>
 </div>
     <div class="panel" style="margin-top:1.5rem">
   <div class="panel-header" data-i18n="prox.p6.h"> ♻️ Ciclo de vida y tipos de plantillas</div>

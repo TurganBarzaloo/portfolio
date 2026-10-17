@@ -85,6 +85,12 @@
       (<code>startup</code>) — sans confondre l'état instantané (<code>running</code> / <code>stopped</code>) avec la
       configuration persistante.
     </p>
+    <p style="font-size:.85rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.qual">
+      <strong>Qualification : contrôle reproductible</strong>, à exécuter en Bash sur l'hôte Proxmox avec les droits de
+      lecture nécessaires aux commandes <code>qm</code>. Il lit l'inventaire et la configuration ; il ne démarre, n'arrête
+      ni ne modifie aucune VM, <strong>aucun retour arrière n'est donc requis</strong>. La sortie complète peut contenir
+      des noms internes : elle est sélectionnée et assainie avant publication.
+    </p>
     <div class="code-label" data-i18n="prox.startup.label1">bash — état + ordre de démarrage</div>
 <div class="code-block"><pre>for vmid in $(qm list | awk 'NR &gt; 1 {print $1}'); do
     config=$(qm config "$vmid")
@@ -113,6 +119,11 @@ done</pre></div>
       — pour que les dépendances soient prêtes avant leurs consommateurs. Les environnements GPU alternatifs restent hors
       autodémarrage. L'inventaire exhaustif reste dans la documentation d'exploitation interne.
     </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.scope">
+      <strong>Portée :</strong> l'extrait provient du relevé de configuration effectué après redémarrage ; ce relevé ne
+      comportait pas encore la colonne <code>status</code> ajoutée à la commande ci-dessus. Il démontre la
+      <strong>persistance de la chaîne de reprise configurée</strong>, pas l'état d'exécution des VM.
+    </div>
   </div>
 </div>
   </div>
@@ -138,6 +149,31 @@ done</pre></div>
       remplacé qu'après ce contrôle</strong> ; les origines ZFS ont été vérifiées avant de supprimer le candidat devenu
       redondant, afin de préserver l'indépendance des VM.
     </p>
+  </div>
+</div>
+    <div class="panel" style="margin-top:1.5rem">
+  <div class="panel-header" data-i18n="prox.case.h"> 🔍 Lecture technique du cas VM130</div>
+  <div class="panel-body">
+    <div style="margin-top:1rem;overflow-x:auto">
+      <table class="data-table" data-i18n="prox.case.t">
+        <thead><tr><th>Étape</th><th>Observation ou décision attestée</th><th>Résultat et portée</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Détection</strong></td><td>Hostname hérité, IP inadaptée et SSH absent dans le clone</td><td>Le clone n'était pas un socle prêt pour son nouveau rôle</td></tr>
+          <tr><td><strong>Qualification</strong></td><td>Aucun composant Nextcloud résiduel détecté</td><td>Ne pas confondre une identité héritée avec une application encore installée</td></tr>
+          <tr><td><strong>Reconstruction</strong></td><td>Installation depuis l'ISO officielle dans une VM temporaire</td><td>Contenu maîtrisé, sans remplacer immédiatement l'ancien template</td></tr>
+          <tr><td><strong>Neutralisation et clonage</strong></td><td>Préparation du candidat puis clone complet</td><td>Identité, clés SSH, utilisateur et réseau propres au premier démarrage</td></tr>
+          <tr><td><strong>Recette</strong></td><td>Cloud-Init, ext4, DHCP, DNS, SSH, agent invité et redémarrage contrôlés</td><td>Validation du cas Ubuntu Server, sans généralisation aux variantes Windows ou GPU</td></tr>
+          <tr><td><strong>Remplacement</strong></td><td>Contrôle des relations ZFS et de l'indépendance des volumes</td><td>Suppression des éléments remplacés seulement après validation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.case.notes">
+      <strong>Preuves disponibles :</strong> ces étapes sont attestées, mais leurs commandes exactes et leurs sorties
+      assainies ne sont pas publiées ; aucune procédure générique n'est donc présentée comme l'historique réel. Le
+      contrôle de reprise ci-dessus documente la politique de démarrage des VM — il ne prouve ni la neutralisation du
+      template ni l'identité du clone. Les variantes spécialisées, Windows ou GPU, nécessitent chacune leur propre
+      procédure et leurs propres preuves.
+    </div>
   </div>
 </div>
     <div class="panel" style="margin-top:1.5rem">

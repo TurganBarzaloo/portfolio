@@ -105,6 +105,33 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="rag.val.h"> 🔬 Lecture technique des validations</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rag.val.t">
+        <thead><tr><th>Contrôle attesté</th><th>Ce qu'il établit</th><th>Ce qu'il ne démontre pas</th></tr></thead>
+        <tbody>
+          <tr><td>Embeddings bge-m3 en dimension 1024</td><td>Dimension validée pour la chaîne testée</td><td>Qualité comparative sur tous les corpus</td></tr>
+          <tr><td>Index HNSW créé</td><td>Présence d'une indexation vectorielle dans le périmètre validé</td><td>Gain de latence chiffré ou benchmark de charge</td></tr>
+          <tr><td>Recherche exacte et citations</td><td>Recherche et restitution des références vérifiées sur les essais</td><td>Exactitude garantie de toute réponse future</td></tr>
+          <tr><td>Essai hors corpus</td><td>Comportement étudié lorsque l'information manque</td><td>Absence universelle d'hallucinations</td></tr>
+          <tr><td>Recréation de l'interface et redémarrage des deux VM</td><td>Persistance vérifiée dans ces scénarios</td><td>Restauration depuis une sauvegarde indépendante</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rag.val.notes">
+      <strong>Contrainte et décision :</strong> le calcul GPU reste sur VM210 et le stockage PostgreSQL/pgvector sur le
+      disque ext4 dédié de VM215. Ce choix ne signifie ni que Qdrant est inutilisable, ni qu'il a été supprimé.
+      <strong>Transcript non publié :</strong> les commandes d'ingestion, de contrôle des embeddings et de l'index, ainsi
+      que le texte exact du corpus, des questions et des réponses, ne figurent pas dans la source approuvée ; les
+      validations ci-dessus sont donc des résultats synthétisés, non un scénario reproductible.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="rag.p4.h"> ⚙️ Configuration Open WebUI → pgvector (illustrative)</div>
   <div class="panel-body"><div class="code-label" data-i18n="rag.cfg.label1">env — backend vectoriel pgvector</div>
 <div class="code-block"><pre># Open WebUI — RAG natif sur backend pgvector (VM215)
@@ -116,7 +143,11 @@ RAG_EMBEDDING_ENGINE=ollama
 RAG_EMBEDDING_MODEL=bge-m3        # dimension 1024</pre></div>
 <div class="code-label" style="margin-top:1rem" data-i18n="rag.cfg.label2">sql — index de similarité HNSW (pgvector)</div>
 <div class="code-block"><pre>-- Index HNSW pour la recherche vectorielle rapide (distance cosinus)
-CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div></div>
+CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div>
+<div class="notes-box" style="margin-top:1rem" data-i18n="rag.cfg.note">
+      <strong>Qualification : exemple illustratif.</strong> Ces blocs expliquent le principe ; ils ne sont <strong>pas</strong>
+      la commande utilisée. Le nom de table et la base sont des exemples, et aucun résultat de requête réel n'en est déduit.
+    </div></div>
 </div>
   </div>
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rag.limits">

@@ -73,6 +73,7 @@
   <div class="panel-header" data-i18n="prox.p3.h"> 🔄 Статус и порядок запуска ВМ</div>
   <div class="panel-body">
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.intro">Эта команда выводит напрямую из Proxmox список ВМ с их <strong>текущим состоянием</strong>, <strong>политикой автозапуска</strong> (<code>onboot</code>) и <strong>порядком восстановления</strong> (<code>startup</code>) — не путая мгновенное состояние (<code>running</code> / <code>stopped</code>) с постоянной конфигурацией.</p>
+    <p style="font-size:.85rem;color:var(--gray-700);line-height:1.6;margin:0 0 .9rem" data-i18n="prox.startup.qual"><strong>Квалификация: воспроизводимая проверка</strong>, выполняется в Bash на хосте Proxmox с правами чтения, необходимыми командам <code>qm</code>. Она читает инвентарь и конфигурацию; она не запускает, не останавливает и не изменяет ни одну ВМ, поэтому <strong>откат не требуется</strong>. Полный вывод может содержать внутренние имена: перед публикацией он отбирается и обезличивается.</p>
     <div class="code-label" data-i18n="prox.startup.label1">bash — статус + порядок запуска</div>
 <div class="code-block"><pre>for vmid in $(qm list | awk 'NR &gt; 1 {print $1}'); do
     config=$(qm config "$vmid")
@@ -96,6 +97,7 @@ done</pre></div>
 300    300-n8n                        onboot=1  startup=order=30,up=30,down=60
 …      environnements à la demande    onboot=0  startup=-</pre></div>
     <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.notes"><strong>Как читать:</strong> ВМ с <code>onboot=1</code> восстанавливаются в порядке возрастания <code>startup</code> — <strong>VM215 (сервисы · PostgreSQL/pgvector) → VM210 (узел ИИ) → VM300 (n8n) → VM205 (Nextcloud)</strong> — чтобы зависимости были готовы раньше своих потребителей. Альтернативные GPU-окружения остаются вне автозапуска. Полная инвентаризация хранится во внутренней эксплуатационной документации.</div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.startup.scope"><strong>Охват:</strong> фрагмент взят из снимка конфигурации, сделанного после перезагрузки; в этом снимке ещё не было столбца <code>status</code>, добавленного в приведённую выше команду. Он подтверждает <strong>сохранность настроенной цепочки возобновления</strong>, а не текущее состояние ВМ.</div>
   </div>
 </div>
   </div>
@@ -109,6 +111,15 @@ done</pre></div>
     <div class="panel">
   <div class="panel-header" data-i18n="prox.p5.h"> 🧪 Опыт — пересборка шаблона (VM130)</div>
   <div class="panel-body" data-i18n="prox.p5.body"><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .75rem">Клонирование старого шаблона выявило <strong>остаточное имя хоста</strong>. Клон был исправлен и проверен, после чего <strong>универсальный шаблон был пересобран из официального ISO</strong>, чтобы явно контролировать его содержимое. ВМ сборки была <strong>очищена перед конвертацией</strong>: идентичность машины, имя хоста, SSH-ключи, сеть, состояние Cloud-Init и журналы были очищены.</p><p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0">Полный <strong>проверочный клон</strong> подтвердил инициализацию Cloud-Init, генерацию собственной идентичности, сеть, DNS, SSH, гостевой агент и сохранность после перезагрузки. <strong>Старый шаблон был заменён только после этой проверки</strong>; происхождение ZFS было проверено перед удалением ставшего избыточным кандидата — чтобы сохранить независимость ВМ.</p></div>
+</div>
+    <div class="panel" style="margin-top:1.5rem">
+  <div class="panel-header" data-i18n="prox.case.h"> 🔍 Технический разбор случая VM130</div>
+  <div class="panel-body">
+    <div style="margin-top:1rem;overflow-x:auto">
+      <table class="data-table" data-i18n="prox.case.t"><thead><tr><th>Этап</th><th>Задокументированное наблюдение или решение</th><th>Результат и охват</th></tr></thead><tbody><tr><td><strong>Обнаружение</strong></td><td>Унаследованное имя хоста, неподходящий IP и отсутствие SSH в клоне</td><td>Клон не был готовой основой для новой роли</td></tr><tr><td><strong>Квалификация</strong></td><td>Остаточных компонентов Nextcloud не обнаружено</td><td>Не путать унаследованную идентичность с всё ещё установленным приложением</td></tr><tr><td><strong>Пересборка</strong></td><td>Установка с официального ISO во временной ВМ</td><td>Содержимое под контролем, старый шаблон не заменяется сразу</td></tr><tr><td><strong>Нейтрализация и клонирование</strong></td><td>Подготовка кандидата, затем полный клон</td><td>Собственные идентичность, ключи SSH, пользователь и сеть при первом запуске</td></tr><tr><td><strong>Приёмка</strong></td><td>Проверены Cloud-Init, ext4, DHCP, DNS, SSH, гостевой агент и перезагрузка</td><td>Валидация случая Ubuntu Server без обобщения на варианты Windows и GPU</td></tr><tr><td><strong>Замена</strong></td><td>Проверка связей ZFS и независимости томов</td><td>Заменённые элементы удалены только после валидации</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="prox.case.notes"><strong>Имеющиеся доказательства:</strong> эти этапы подтверждены, но их точные команды и обезличенные выводы не опубликованы; поэтому никакая типовая процедура не выдаётся за реальную историю. Приведённая выше проверка возобновления описывает политику запуска ВМ — она не доказывает ни нейтрализацию шаблона, ни идентичность клона. Специализированные варианты, Windows или GPU, требуют каждый своей процедуры и своих доказательств.</div>
+  </div>
 </div>
     <div class="panel" style="margin-top:1.5rem">
   <div class="panel-header" data-i18n="prox.p6.h"> ♻️ Жизненный цикл и типы шаблонов</div>

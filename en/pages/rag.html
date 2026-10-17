@@ -83,6 +83,18 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="rag.val.h"> 🔬 Technical reading of the validations</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rag.val.t"><thead><tr><th>Attested check</th><th>What it establishes</th><th>What it does not demonstrate</th></tr></thead><tbody><tr><td>bge-m3 embeddings in dimension 1024</td><td>Dimension validated for the tested chain</td><td>Comparative quality across all corpora</td></tr><tr><td>HNSW index created</td><td>A vector index exists within the validated scope</td><td>Quantified latency gain or load benchmark</td></tr><tr><td>Exact search and citations</td><td>Search and reference output verified on the trials</td><td>Guaranteed accuracy of every future answer</td></tr><tr><td>Out-of-corpus trial</td><td>Behaviour studied when the information is missing</td><td>Universal absence of hallucinations</td></tr><tr><td>Interface re-creation and reboot of both VMs</td><td>Persistence verified in these scenarios</td><td>Restore from an independent backup</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rag.val.notes"><strong>Constraint and decision:</strong> GPU compute stays on VM210 and PostgreSQL/pgvector storage on the dedicated ext4 disk of VM215. This choice does not mean Qdrant is unusable, nor that it was removed. <strong>Transcript not published:</strong> the ingestion commands, the embedding and index checks, and the exact text of the corpus, questions and answers are not in the approved source; the validations above are therefore summarized results, not a reproducible scenario.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="rag.p4.h"> ⚙️ Open WebUI → pgvector configuration (illustrative)</div>
   <div class="panel-body"><div class="code-label" data-i18n="rag.cfg.label1">env — pgvector vector backend</div>
 <div class="code-block"><pre># Open WebUI — RAG natif sur backend pgvector (VM215)
@@ -94,7 +106,8 @@ RAG_EMBEDDING_ENGINE=ollama
 RAG_EMBEDDING_MODEL=bge-m3        # dimension 1024</pre></div>
 <div class="code-label" style="margin-top:1rem" data-i18n="rag.cfg.label2">sql — HNSW similarity index (pgvector)</div>
 <div class="code-block"><pre>-- Index HNSW pour la recherche vectorielle rapide (distance cosinus)
-CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div></div>
+CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div>
+<div class="notes-box" style="margin-top:1rem" data-i18n="rag.cfg.note"><strong>Qualification: illustrative example.</strong> These blocks explain the principle; they are <strong>not</strong> the command that was used. The table name and the database are examples, and no real query result is inferred from them.</div></div>
 </div>
   </div>
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rag.limits"><strong>Scope &amp; limits:</strong> the validations rely on an <strong>entirely synthetic corpus</strong> — this is not a business dataset. Qdrant is <strong>kept as a fallback solution</strong> (not removed) until the phase-out is closed. Final cleanup of the test collections and the closing restore point are still to be done.</div>

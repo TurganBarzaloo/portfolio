@@ -83,6 +83,18 @@
   </div>
   <div style="margin-top:1.5rem">
     <div class="panel">
+  <div class="panel-header" data-i18n="rag.val.h"> 🔬 Lectura técnica de las validaciones</div>
+  <div class="panel-body">
+    <div style="overflow-x:auto">
+      <table class="data-table" data-i18n="rag.val.t"><thead><tr><th>Control atestiguado</th><th>Lo que establece</th><th>Lo que no demuestra</th></tr></thead><tbody><tr><td>Embeddings bge-m3 en dimensión 1024</td><td>Dimensión validada para la cadena probada</td><td>Calidad comparativa en todos los corpus</td></tr><tr><td>Índice HNSW creado</td><td>Existe un índice vectorial en el perímetro validado</td><td>Mejora de latencia cuantificada o prueba de carga</td></tr><tr><td>Búsqueda exacta y citas</td><td>Búsqueda y restitución de referencias verificadas en los ensayos</td><td>Exactitud garantizada de cualquier respuesta futura</td></tr><tr><td>Ensayo fuera de corpus</td><td>Comportamiento estudiado cuando falta la información</td><td>Ausencia universal de alucinaciones</td></tr><tr><td>Recreación de la interfaz y reinicio de las dos VM</td><td>Persistencia verificada en estos escenarios</td><td>Restauración desde una copia de seguridad independiente</td></tr></tbody></table>
+    </div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rag.val.notes"><strong>Restricción y decisión:</strong> el cálculo GPU permanece en VM210 y el almacenamiento PostgreSQL/pgvector en el disco ext4 dedicado de VM215. Esta elección no significa que Qdrant sea inutilizable ni que se haya eliminado. <strong>Transcripción no publicada:</strong> los comandos de ingestión, de control de embeddings e índice y el texto exacto del corpus, las preguntas y las respuestas no figuran en la fuente aprobada; las validaciones anteriores son, por tanto, resultados resumidos y no un escenario reproducible.</div>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="panel">
   <div class="panel-header" data-i18n="rag.p4.h"> ⚙️ Configuración Open WebUI → pgvector (ilustrativa)</div>
   <div class="panel-body"><div class="code-label" data-i18n="rag.cfg.label1">env — backend vectorial pgvector</div>
 <div class="code-block"><pre># Open WebUI — RAG natif sur backend pgvector (VM215)
@@ -94,7 +106,8 @@ RAG_EMBEDDING_ENGINE=ollama
 RAG_EMBEDDING_MODEL=bge-m3        # dimension 1024</pre></div>
 <div class="code-label" style="margin-top:1rem" data-i18n="rag.cfg.label2">sql — índice de similitud HNSW (pgvector)</div>
 <div class="code-block"><pre>-- Index HNSW pour la recherche vectorielle rapide (distance cosinus)
-CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div></div>
+CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);</pre></div>
+<div class="notes-box" style="margin-top:1rem" data-i18n="rag.cfg.note"><strong>Calificación: ejemplo ilustrativo.</strong> Estos bloques explican el principio; <strong>no</strong> son el comando utilizado. El nombre de la tabla y de la base son ejemplos, y de ellos no se deduce ningún resultado de consulta real.</div></div>
 </div>
   </div>
   <div class="notes-box" style="margin-top:1.5rem" data-i18n="rag.limits"><strong>Alcance y límites:</strong> las validaciones se basan en un <strong>corpus totalmente sintético</strong> — no se trata de un conjunto de datos de negocio. Qdrant se <strong>conserva como solución de respaldo</strong> (no eliminada) mientras no se cierre su retirada. Aún quedan por hacer la limpieza final de las colecciones de prueba y el punto de restauración de cierre.</div>
