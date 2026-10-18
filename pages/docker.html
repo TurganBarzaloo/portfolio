@@ -143,13 +143,13 @@ volumes:
       <li>Exécution <strong>sans privilèges</strong>, système de fichiers racine en <strong>lecture seule</strong></li>
       <li>Modèles montés en <strong>lecture seule</strong> ; dossiers dédiés pour entrées, sorties, état et caches</li>
       <li>Nœuds <strong>personnalisés et API désactivés</strong> (ce n'est pas un blocage général du réseau sortant)</li>
-      <li>Interface publiée <strong>uniquement sur la boucle locale</strong> de la VM ; accès par <strong>tunnel SSH</strong>, sans publication Internet</li>
+      <li>Backend privé <strong>limité au reverse proxy</strong> ; interface en <strong>HTTPS authentifié</strong> (HTTP Basic), tunnel SSH conservé comme <strong>repli</strong></li>
       <li>Checkpoint <strong>vérifié par empreinte SHA-256</strong> (issue du dépôt de confiance) avant utilisation</li>
     </ul>
     <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="dock.comfy.note">
       Le POC Windows antérieur (VM260) reste distinct de ce déploiement Linux. Le partage GPU ComfyUI/Ollama est une
       <strong>bascule manuelle</strong>, pas encore un ordonnanceur automatique. Détails et mesures sur la page
-      <a href="ia_llm.html" style="color:var(--blue-500)">IA &amp; LLM</a>.
+      <a href="ia_llm.html" style="color:var(--blue-500)">IA &amp; LLM</a>. Accès Web et reprise après redémarrage : page <a href="ia_image.html" style="color:var(--blue-500)">IA Image</a>.
     </p>
   </div>
 </div>

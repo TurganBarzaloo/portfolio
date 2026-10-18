@@ -66,7 +66,7 @@
     entre génération d'image et inférence LLM : la coexistence a été observée et le déchargement de modèles sans
     arrêt des serveurs a été vérifié, mais le <strong>partage automatique des requêtes reste à construire</strong>
     (bascule manuelle pour l'instant). Maturité : <strong>actif sur la cible (VM210, Linux)</strong>, distinct du
-    <strong>POC Windows antérieur (VM260)</strong> qui avait éprouvé des workflows SDXL/Flux.
+    <strong>POC Windows antérieur (VM260)</strong> qui avait éprouvé des workflows SDXL/Flux. L'interface est également accessible en <strong>HTTPS authentifié</strong> (réseau local et Internet) via le reverse proxy, le tunnel SSH étant conservé comme repli (depuis le 18 octobre 2026).
   </div>
 
   <div style="margin-bottom:1.5rem">
@@ -89,9 +89,23 @@
     <p style="font-size:.84rem;color:var(--gray-600);line-height:1.6;margin:0" data-i18n="img.arch.p3">
       Choix de durcissement retenus : exécution <strong>sans privilèges</strong>, système de fichiers racine en
       <strong>lecture seule</strong>, modèles montés en lecture seule, <strong>nœuds personnalisés et API
-      désactivés</strong> (sans bloquer le réseau sortant en général), interface publiée <strong>uniquement en
-      boucle locale</strong> (accès par tunnel SSH, sans publication Internet).
+      désactivés</strong> (sans bloquer le réseau sortant en général), backend privé <strong>limité au reverse proxy</strong> (aucun port applicatif redirigé depuis Internet), interface accessible en <strong>HTTPS authentifié</strong> (HTTP Basic appliqué par le proxy) et tunnel SSH conservé comme <strong>accès de repli</strong>.
     </p>
+  </div>
+</div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <div class="panel">
+  <div class="panel-header" data-i18n="img.web.h"> 🌐 Accès Web et reprise après redémarrage (validation du 18 octobre 2026)</div>
+  <div class="panel-body">
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.web.p1">La publication utilise une <strong>authentification HTTP Basic transportée en HTTPS</strong>, appliquée par le reverse proxy (<a href="reverse_proxy.html" style="color:var(--blue-500)">VM200</a>). Aucun port applicatif n'est directement redirigé depuis Internet. Le backend privé est limité au proxy : une connexion directe depuis le poste utilisateur a été refusée, alors que le proxy obtenait une réponse HTTP 200.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.web.p2">Le certificat a été obtenu ; les contrôles ont confirmé <strong>HTTP 401 sans identifiant</strong>, puis <strong>HTTP 200 avec authentification</strong>. Le navigateur du poste local et un téléphone sur réseau mobile ont accédé à l'interface, et une génération depuis cet accès HTTPS a produit une image.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.web.p3">Un service systemd pilote le démarrage du conteneur après contrôle du montage des modèles, des répertoires d'état et de l'adresse réseau ; le filtrage est appliqué avant publication du backend et une tentative peut être rejouée si les prérequis manquent. L'image et les volumes ont été conservés, sans reconstruction ni téléchargement, et le démarrage du serveur ne déclenche aucune génération.</p>
+    <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="img.web.p4">Après un redémarrage complet de la plateforme, les accès HTTPS à <strong>ComfyUI</strong> et à <strong>OpenWebUI</strong> ont été confirmés, puis un essai séquentiel <strong>LLM → image → LLM</strong> a réussi, avec des performances jugées normales.</p>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="img.web.notes">
+      <strong>Portée :</strong> validation fonctionnelle déclarée, sans relevé chiffré de latence ni garantie de charges simultanées ou de reprise après toute future panne réseau ; ce n'est pas un audit général de l'application. La sortie de la génération est confirmée, mais aucun relevé du handshake ni de la progression WebSocket en direct n'est joint (les WebSockets sont pris en charge dans la configuration du proxy). Le renouvellement du certificat a été simulé avec succès et le hook de rechargement Nginx, précédé d'un test de syntaxe, testé manuellement : la simulation n'exécutait pas les deploy-hooks, ces deux validations restent donc distinctes, et le certificat de production n'a pas été renouvelé pour cet essai. L'intégration n8n/ComfyUI/GLM et l'admission automatique du GPU restent à réaliser.
+    </div>
   </div>
 </div>
   </div>
@@ -106,7 +120,7 @@
       <a href="docker.html" style="color:var(--blue-500)">Docker</a> ; télémétrie GPU et vérification SHA-256 du
       checkpoint sur la page <a href="ia_llm.html" style="color:var(--blue-500)">IA &amp; LLM</a>.
     </p>
-    <div class="code-label" data-i18n="img.cmd.ssh.label">Contrôle reproductible — accès à l'interface par tunnel SSH (depuis PowerShell, poste client)</div>
+    <div class="code-label" data-i18n="img.cmd.ssh.label">Contrôle reproductible — accès de repli à l'interface par tunnel SSH (depuis PowerShell, poste client)</div>
 <div class="code-block"><pre>$SshTarget = '&lt;compte&gt;@&lt;hote-gpu&gt;'
 ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:<span class="redacted">8188</span>:127.0.0.1:<span class="redacted">8188</span> $SshTarget</pre></div>
     <p style="font-size:.8rem;color:var(--gray-500);line-height:1.55;margin:.8rem 0 0" data-i18n="img.cmd.ssh.note">
@@ -162,14 +176,14 @@ ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:<span class="redacted">8188</spa
   <div style="margin-bottom:1.5rem">
     <div class="panel">
   <div class="panel-header" data-i18n="c.sec.skills"> 🎯 Compétences mises en œuvre</div>
-  <div class="panel-body"><ul class="skill-list" data-i18n="img.skills"><li>Durcissement d'un conteneur ComfyUI (sans privilèges, FS racine en lecture seule)</li><li>Vérification d'intégrité de checkpoint par empreinte SHA-256</li><li>Partage d'un GPU exclusif entre inférence LLM et génération d'image</li><li>Diagnostic d'incompatibilité de graphe ComfyUI et récupération après blocage</li><li>Accès distant sécurisé par tunnel SSH, sans publication Internet</li></ul></div>
+  <div class="panel-body"><ul class="skill-list" data-i18n="img.skills"><li>Durcissement d'un conteneur ComfyUI (sans privilèges, FS racine en lecture seule)</li><li>Vérification d'intégrité de checkpoint par empreinte SHA-256</li><li>Partage d'un GPU exclusif entre inférence LLM et génération d'image</li><li>Diagnostic d'incompatibilité de graphe ComfyUI et récupération après blocage</li><li>Accès distant par HTTPS authentifié derrière le reverse proxy, avec tunnel SSH en repli</li></ul></div>
 </div>
   </div>
 
   <div style="margin-top:1.5rem">
     <h2 class="section-title" data-i18n="img.p5.h">Limites et travaux ouverts</h2>
     <div class="notes-box" data-i18n="img.limits">
-      <ul class="skill-list" style="margin:0"><li>Le partage automatique des requêtes entre ComfyUI et Ollama <strong>reste à construire</strong> (bascule manuelle pour l'instant)</li><li>Le <strong>réalisme anatomique, les poses et la qualité à grande échelle</strong> restent à évaluer</li><li>L'usage de <strong>Flux</strong> sur cette cible Linux n'est pas confirmé — seul RealVisXL a été mesuré ici</li><li>Intégrations agentiques/n8n, admission commune des requêtes et politique de redémarrage après reboot restent des <strong>travaux ouverts</strong></li><li><strong>RealVisXL V5.0</strong> est diffusé sous licence <strong>Open RAIL++</strong> : des poids disponibles ne signifient pas l'absence de restrictions de licence</li></ul>
+      <ul class="skill-list" style="margin:0"><li>Le partage automatique des requêtes entre ComfyUI et Ollama <strong>reste à construire</strong> (bascule manuelle pour l'instant)</li><li>Le <strong>réalisme anatomique, les poses et la qualité à grande échelle</strong> restent à évaluer</li><li>L'usage de <strong>Flux</strong> sur cette cible Linux n'est pas confirmé — seul RealVisXL a été mesuré ici</li><li>Intégrations agentiques/n8n/GLM et admission automatique des requêtes restent des <strong>travaux ouverts</strong> ; le démarrage automatique est configuré et la reprise après reboot confirmée</li><li><strong>RealVisXL V5.0</strong> est diffusé sous licence <strong>Open RAIL++</strong> : des poids disponibles ne signifient pas l'absence de restrictions de licence</li></ul>
     </div>
   </div>
 

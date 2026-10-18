@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title data-i18n="rp.title">Proxy inverso VM200 — Publicación HTTPS | Portfolio IA On-Premise</title>
   <meta name="author" content="Stéphane Muraro"/>
-  <meta name="description" data-i18n="rp.desc" content="VM200 — proxy inverso Nginx compartido: publicación HTTPS de OpenWebUI, n8n y Nextcloud, terminación TLS, virtual hosts, Certbot y Fail2ban. Portfolio de Stéphane Muraro."/>
+  <meta name="description" data-i18n="rp.desc" content="VM200 — proxy inverso Nginx compartido: publicación HTTPS de OpenWebUI, n8n, Nextcloud y ComfyUI, terminación TLS, virtual hosts, Certbot y Fail2ban. Portfolio de Stéphane Muraro."/>
   <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
   <script>
@@ -68,9 +68,11 @@
 </div>
     <div class="panel">
   <div class="panel-header" data-i18n="rp.p2.h"> 🌐 Estado de las publicaciones</div>
-  <div class="panel-body"><table class="data-table" data-i18n="rp.t1"><thead><tr><th>Servicio</th><th>Estado público</th></tr></thead><tbody><tr><td>OpenWebUI · VM210</td><td>🟢 publicado y validado por HTTPS</td></tr><tr><td>n8n · VM300</td><td>🟢 publicado y validado por HTTPS</td></tr><tr><td>Nextcloud · VM205</td><td>🟢 publicado y validado por HTTPS</td></tr><tr><td>otros servicios internos</td><td>⚪ no publicados / diferidos</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table" data-i18n="rp.t1"><thead><tr><th>Servicio</th><th>Estado público</th></tr></thead><tbody><tr><td>OpenWebUI · VM210</td><td>🟢 publicado y validado por HTTPS</td></tr><tr><td>n8n · VM300</td><td>🟢 publicado y validado por HTTPS</td></tr><tr><td>Nextcloud · VM205</td><td>🟢 publicado y validado por HTTPS</td></tr><tr><td>ComfyUI · VM210</td><td>🟢 HTTPS autenticado; acceso LAN/Internet, imagen y reanudación tras reinicio confirmados</td></tr><tr><td>otros servicios internos</td><td>⚪ no publicados / diferidos</td></tr></tbody></table></div>
 </div>
   </div>
+
+  <div class="notes-box" style="margin-top:1.5rem" data-i18n="rp.comfy.notes"><strong>ComfyUI (actualización):</strong> autenticación HTTP Basic sobre HTTPS, backend filtrado únicamente hacia el proxy, acceso inicial por túnel conservado como respaldo. Pruebas: rechazo HTTP 401 sin credenciales, HTTP 200 autenticado, navegador en LAN y teléfono en red móvil, y después imagen producida; los accesos HTTPS volvieron tras un reinicio completo, incluidos OpenWebUI y ComfyUI. Certificado obtenido y renovación en seco correcta; el hook de recarga de Nginx, precedido de una prueba de sintaxis, se probó por separado, sin que la prueba en seco demostrara su activación automática por Certbot. Detalles: página <a href="ia_image.html" style="color:var(--blue-500)">IA Imagen</a>.</div>
 
   <div style="margin-top:1.5rem">
     <div class="panel">
@@ -139,7 +141,7 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
     <div style="overflow-x:auto">
       <table class="data-table" data-i18n="rp.val.t"><thead><tr><th>Validación documentada</th><th>Resultado establecido</th><th>Límite</th></tr></thead><tbody><tr><td><strong>HTTPS desde una red exterior</strong></td><td>OpenWebUI, n8n y Nextcloud publicados y accesibles en los ensayos</td><td>Un registro DNS por sí solo no prueba una publicación</td></tr><tr><td><strong>Redirección y renovación en seco</strong></td><td>Cadena HTTP a HTTPS y renovación probadas</td><td>No garantiza el éxito de todas las renovaciones futuras</td></tr><tr><td><strong>Respuestas progresivas y WebSockets</strong></td><td>Funciones interactivas validadas</td><td>No atribuir cada ensayo a cada backend sin un registro detallado</td></tr><tr><td><strong>Reinicio de VM200</strong></td><td>Configuración conservada y reanudación validada</td><td>No prueba que se haya probado la retirada global del reenvío WAN</td></tr><tr><td><strong>Fail2ban SSH</strong></td><td>Protección de la administración probada</td><td>No demuestra la protección de los formularios de las aplicaciones</td></tr></tbody></table>
     </div>
-    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes"><strong>Alcance:</strong> estas validaciones son las documentadas el 15 de agosto de 2026, no un control en directo de los servicios. Las pruebas de sintaxis, renovación y registros se describen, pero sus comandos exactos y salidas saneadas <strong>no se publican</strong>: ningún comando genérico de Nginx o Certbot se presenta como utilizado históricamente. No se establece ningún incidente específico del proxy: las necesidades de streaming, WebSocket y origen público son restricciones atendidas, no averías supuestas. Las recepciones detalladas de las aplicaciones figuran en las páginas <a href="n8n.html" style="color:var(--blue-500)">n8n</a> y <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.</div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes"><strong>Alcance:</strong> estas validaciones son las de la fase inicial del 15 de agosto de 2026, completadas por la actualización ComfyUI/OpenWebUI del 18 de octubre; no son un control en directo de los servicios. Las pruebas de sintaxis, renovación y registros se describen, pero sus comandos exactos y salidas saneadas <strong>no se publican</strong>: ningún comando genérico de Nginx o Certbot se presenta como utilizado históricamente. No se establece ningún incidente específico del proxy: las necesidades de streaming, WebSocket y origen público son restricciones atendidas, no averías supuestas. Las recepciones detalladas de las aplicaciones figuran en las páginas <a href="n8n.html" style="color:var(--blue-500)">n8n</a> y <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.</div>
   </div>
 </div>
   </div>
@@ -177,7 +179,7 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
             <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>Nginx — Documentation</td><td><a href="https://nginx.org/en/docs/" target="_blank" style="color:var(--blue-500)">nginx.org/en/docs</a></td></tr>
             <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>Certbot / Let's Encrypt</td><td><a href="https://eff-certbot.readthedocs.io/" target="_blank" style="color:var(--blue-500)">eff-certbot.readthedocs.io</a></td></tr>
             <tr><td data-i18n="c.ref.officialdoc">Documentación oficial</td><td>Fail2ban</td><td><a href="https://github.com/fail2ban/fail2ban" target="_blank" style="color:var(--blue-500)">github.com/fail2ban/fail2ban</a></td></tr>
-            <tr><td data-i18n="rp.ref.cat4">Publicaciones validadas</td><td>OpenWebUI (VM210) · n8n (VM300) · Nextcloud (VM205) — HTTPS testé depuis un réseau extérieur, 2026-08-15</td><td>—</td></tr>
+            <tr><td data-i18n="rp.ref.cat4">Publicaciones validadas</td><td>OpenWebUI (VM210) · n8n (VM300) · Nextcloud (VM205) — HTTPS testé depuis un réseau extérieur, 2026-08-15 · ComfyUI (VM210) — HTTPS authentifié, 2026-10-18</td><td>—</td></tr>
             <tr><td data-i18n="c.ref.license">Licencia</td><td>Nginx — BSD-2-Clause · Certbot — Apache-2.0 · Fail2ban — GPLv2</td><td><a href="https://nginx.org/LICENSE" target="_blank" style="color:var(--blue-500)">nginx.org/LICENSE</a></td></tr>
             <tr><td data-i18n="c.refs.content">Contenido de esta página</td><td data-i18n="c.refs.cc">Compartido bajo CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>

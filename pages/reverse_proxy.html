@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title data-i18n="rp.title">Reverse Proxy VM200 — Publication HTTPS | Portfolio IA On-Premise</title>
   <meta name="author" content="Stéphane Muraro"/>
-  <meta name="description" data-i18n="rp.desc" content="VM200 — reverse proxy Nginx mutualisé : publication HTTPS d'OpenWebUI, n8n et Nextcloud, terminaison TLS, virtual hosts, Certbot et Fail2ban. Portfolio de Stéphane Muraro."/>
+  <meta name="description" data-i18n="rp.desc" content="VM200 — reverse proxy Nginx mutualisé : publication HTTPS d'OpenWebUI, n8n, Nextcloud et ComfyUI, terminaison TLS, virtual hosts, Certbot et Fail2ban. Portfolio de Stéphane Muraro."/>
   <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
   <script>
@@ -73,8 +73,12 @@
 </div>
     <div class="panel">
   <div class="panel-header" data-i18n="rp.p2.h"> 🌐 État des publications</div>
-  <div class="panel-body"><table class="data-table" data-i18n="rp.t1"><thead><tr><th>Service</th><th>État public</th></tr></thead><tbody><tr><td>OpenWebUI · VM210</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>n8n · VM300</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>Nextcloud · VM205</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>autres services internes</td><td>⚪ non publiés / différés</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table" data-i18n="rp.t1"><thead><tr><th>Service</th><th>État public</th></tr></thead><tbody><tr><td>OpenWebUI · VM210</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>n8n · VM300</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>Nextcloud · VM205</td><td>🟢 publié &amp; validé HTTPS</td></tr><tr><td>ComfyUI · VM210</td><td>🟢 HTTPS authentifié ; accès LAN/Internet, image et reprise après redémarrage confirmés</td></tr><tr><td>autres services internes</td><td>⚪ non publiés / différés</td></tr></tbody></table></div>
 </div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem" data-i18n="rp.comfy.notes">
+    <strong>ComfyUI (actualisation) :</strong> authentification HTTP Basic sur HTTPS, filtrage du backend vers le seul proxy, accès initial par tunnel conservé comme repli. Tests : refus HTTP 401 sans identifiant, HTTP 200 authentifié, navigateur LAN et téléphone sur réseau mobile, puis image produite ; les accès HTTPS sont revenus après redémarrage complet, OpenWebUI et ComfyUI compris. Certificat obtenu et renouvellement à blanc réussi ; le hook de rechargement Nginx, précédé d'un test de syntaxe, a été testé séparément, le dry-run n'ayant pas démontré son déclenchement automatique par Certbot. Détails : page <a href="ia_image.html" style="color:var(--blue-500)">IA Image</a>.
   </div>
 
   <div style="margin-top:1.5rem">
@@ -172,7 +176,7 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
       </table>
     </div>
     <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes">
-      <strong>Portée :</strong> ces validations sont celles documentées au 15 août 2026, pas un contrôle en direct des services. Les tests de syntaxe, de renouvellement et de journaux sont décrits, mais leurs commandes exactes et sorties assainies <strong>ne sont pas publiées</strong> : aucune commande Nginx ou Certbot générique n'est présentée comme historiquement utilisée. Aucun incident spécifique de proxy n'est établi : les besoins de streaming, de WebSocket et d'origine publique sont des contraintes prises en charge, non des pannes supposées. Les recettes applicatives détaillées figurent dans les pages <a href="n8n.html" style="color:var(--blue-500)">n8n</a> et <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.
+      <strong>Portée :</strong> ces validations sont celles de la tranche initiale du 15 août 2026, complétées par l'actualisation ComfyUI/OpenWebUI du 18 octobre ; elles ne constituent pas un contrôle en direct des services. Les tests de syntaxe, de renouvellement et de journaux sont décrits, mais leurs commandes exactes et sorties assainies <strong>ne sont pas publiées</strong> : aucune commande Nginx ou Certbot générique n'est présentée comme historiquement utilisée. Aucun incident spécifique de proxy n'est établi : les besoins de streaming, de WebSocket et d'origine publique sont des contraintes prises en charge, non des pannes supposées. Les recettes applicatives détaillées figurent dans les pages <a href="n8n.html" style="color:var(--blue-500)">n8n</a> et <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.
     </div>
   </div>
 </div>
@@ -222,7 +226,7 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
             <tr><td data-i18n="c.ref.officialdoc">Documentation officielle</td><td>Nginx — Documentation</td><td><a href="https://nginx.org/en/docs/" target="_blank" style="color:var(--blue-500)">nginx.org/en/docs</a></td></tr>
             <tr><td data-i18n="c.ref.officialdoc">Documentation officielle</td><td>Certbot / Let's Encrypt</td><td><a href="https://eff-certbot.readthedocs.io/" target="_blank" style="color:var(--blue-500)">eff-certbot.readthedocs.io</a></td></tr>
             <tr><td data-i18n="c.ref.officialdoc">Documentation officielle</td><td>Fail2ban</td><td><a href="https://github.com/fail2ban/fail2ban" target="_blank" style="color:var(--blue-500)">github.com/fail2ban/fail2ban</a></td></tr>
-            <tr><td data-i18n="rp.ref.cat4">Publications validées</td><td>OpenWebUI (VM210) · n8n (VM300) · Nextcloud (VM205) — HTTPS testé depuis un réseau extérieur, 2026-08-15</td><td>—</td></tr>
+            <tr><td data-i18n="rp.ref.cat4">Publications validées</td><td>OpenWebUI (VM210) · n8n (VM300) · Nextcloud (VM205) — HTTPS testé depuis un réseau extérieur, 2026-08-15 · ComfyUI (VM210) — HTTPS authentifié, 2026-10-18</td><td>—</td></tr>
             <tr><td data-i18n="c.ref.license">Licence</td><td>Nginx — BSD-2-Clause · Certbot — Apache-2.0 · Fail2ban — GPLv2</td><td><a href="https://nginx.org/LICENSE" target="_blank" style="color:var(--blue-500)">nginx.org/LICENSE</a></td></tr>
             <tr><td data-i18n="c.refs.content">Contenu de cette page</td><td data-i18n="c.refs.cc">Partagé sous CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>

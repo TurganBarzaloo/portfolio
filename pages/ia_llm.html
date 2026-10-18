@@ -70,6 +70,9 @@
       d'être planifiés sur l'infra définitive. La RTX 5090 étant exclusive, un seul nœud GPU l'utilise à la fois.
     </div>
   </div>
+  <div class="notes-box" style="margin-bottom:1.5rem" data-i18n="llm.resume">
+    <strong>OpenWebUI et reprise de la plateforme :</strong> OpenWebUI est accessible en HTTPS derrière le reverse proxy mutualisé. Après un redémarrage complet de la plateforme, son fonctionnement a été confirmé, ainsi que celui de ComfyUI et de n8n ; un essai séquentiel LLM → image → LLM a réussi avec des performances jugées normales, sans mesure comparative chiffrée. La reprise automatique d'Ollama avait aussi été validée après redémarrage de sa VM. Ce n'est pas un audit de tous les usages : le RAG, les sauvegardes, la concurrence entre gros modèles et la tenue sous charge prolongée ne sont pas revalidés, et aucune correction propre à OpenWebUI n'est revendiquée. Accès Web de ComfyUI : page <a href="ia_image.html" style="color:var(--blue-500)">IA Image</a>.
+  </div>
   <div style="margin-bottom:1.5rem">
     <div class="panel">
   <div class="panel-header" data-i18n="llm.p1.h"> ⚡ Plafond électrique de la RTX 5090 — diagnostic passé</div>
@@ -79,7 +82,7 @@
       charges agentiques), la RTX 5090 a été plafonnée par logiciel à <strong>400 W</strong>, au lieu de
       <strong>600 W</strong> par défaut. Les <strong>essais ComfyUI et Ollama des 27–28 septembre 2026</strong> ont
       ensuite été réalisés à <strong>600 W</strong>, sur décision explicite. Aucun gain de stabilité durable ni
-      comparaison de performance entre ces plafonds n'est établi.
+      comparaison de performance entre ces plafonds n'est établi. Le dernier plafond relevé avant le redémarrage de validation (18 octobre 2026) était de <strong>450 W</strong> ; sa valeur après reboot n'a pas été relevée, et aucune consommation constante, persistance ni stabilité n'en est déduite.
     </p>
     <p style="font-size:.875rem;color:var(--gray-700);line-height:1.65;margin:0 0 .9rem" data-i18n="llm.power.p2">
       Le plafond n'affecte <strong>ni la VRAM ni la taille des modèles</strong>. La procédure 400 W ci-dessous conserve la

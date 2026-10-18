@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title data-i18n="rp.title">Обратный прокси VM200 — публикация HTTPS | Портфолио On-Premise ИИ</title>
   <meta name="author" content="Stéphane Muraro"/>
-  <meta name="description" data-i18n="rp.desc" content="VM200 — общий обратный прокси на Nginx: публикация по HTTPS OpenWebUI, n8n и Nextcloud, терминация TLS, virtual hosts, Certbot и Fail2ban. Портфолио Стефана Муро."/>
+  <meta name="description" data-i18n="rp.desc" content="VM200 — общий обратный прокси на Nginx: публикация по HTTPS OpenWebUI, n8n, Nextcloud и ComfyUI, терминация TLS, virtual hosts, Certbot и Fail2ban. Портфолио Стефана Муро."/>
   <!-- ANALYTICS:BEGIN GA4 G-XQX2D50P2T -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQX2D50P2T"></script>
   <script>
@@ -68,9 +68,11 @@
 </div>
     <div class="panel">
   <div class="panel-header" data-i18n="rp.p2.h"> 🌐 Статус публикаций</div>
-  <div class="panel-body"><table class="data-table" data-i18n="rp.t1"><thead><tr><th>Сервис</th><th>Публичный статус</th></tr></thead><tbody><tr><td>OpenWebUI · VM210</td><td>🟢 опубликовано и проверено по HTTPS</td></tr><tr><td>n8n · VM300</td><td>🟢 опубликовано и проверено по HTTPS</td></tr><tr><td>Nextcloud · VM205</td><td>🟢 опубликовано и проверено по HTTPS</td></tr><tr><td>прочие внутренние сервисы</td><td>⚪ не опубликованы / отложены</td></tr></tbody></table></div>
+  <div class="panel-body"><table class="data-table" data-i18n="rp.t1"><thead><tr><th>Сервис</th><th>Публичный статус</th></tr></thead><tbody><tr><td>OpenWebUI · VM210</td><td>🟢 опубликовано и проверено по HTTPS</td></tr><tr><td>n8n · VM300</td><td>🟢 опубликовано и проверено по HTTPS</td></tr><tr><td>Nextcloud · VM205</td><td>🟢 опубликовано и проверено по HTTPS</td></tr><tr><td>ComfyUI · VM210</td><td>🟢 аутентифицированный HTTPS; доступ из LAN/Интернета, изображение и возобновление после перезагрузки подтверждены</td></tr><tr><td>прочие внутренние сервисы</td><td>⚪ не опубликованы / отложены</td></tr></tbody></table></div>
 </div>
   </div>
+
+  <div class="notes-box" style="margin-top:1.5rem" data-i18n="rp.comfy.notes"><strong>ComfyUI (обновление):</strong> аутентификация HTTP Basic поверх HTTPS, бэкенд отфильтрован только для прокси, первоначальный доступ через туннель сохранён как резервный. Проверки: отказ HTTP 401 без учётных данных, аутентифицированный HTTP 200, браузер в LAN и телефон в мобильной сети, затем полученное изображение; HTTPS-доступ вернулся после полной перезагрузки, включая OpenWebUI и ComfyUI. Сертификат получен, пробное продление успешно; хук перезагрузки Nginx с предварительной проверкой синтаксиса проверен отдельно, при этом пробный прогон не показал его автоматического запуска Certbot. Подробности: страница <a href="ia_image.html" style="color:var(--blue-500)">ИИ-изображения</a>.</div>
 
   <div style="margin-top:1.5rem">
     <div class="panel">
@@ -139,7 +141,7 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
     <div style="overflow-x:auto">
       <table class="data-table" data-i18n="rp.val.t"><thead><tr><th>Задокументированная валидация</th><th>Установленный результат</th><th>Ограничение</th></tr></thead><tbody><tr><td><strong>HTTPS из внешней сети</strong></td><td>OpenWebUI, n8n и Nextcloud опубликованы и доступны в испытаниях</td><td>Одной DNS-записи недостаточно, чтобы доказать публикацию</td></tr><tr><td><strong>Перенаправление и пробное продление</strong></td><td>Цепочка HTTP→HTTPS и продление проверены</td><td>Не гарантирует успех всех будущих продлений</td></tr><tr><td><strong>Потоковые ответы и WebSocket</strong></td><td>Интерактивные функции подтверждены</td><td>Не приписывать каждое испытание каждому бэкенду без подробного протокола</td></tr><tr><td><strong>Перезагрузка VM200</strong></td><td>Конфигурация сохранена, возобновление подтверждено</td><td>Не доказывает, что проверялось полное снятие проброса WAN</td></tr><tr><td><strong>Fail2ban для SSH</strong></td><td>Защита администрирования проверена</td><td>Не доказывает защиту форм входа приложений</td></tr></tbody></table>
     </div>
-    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes"><strong>Охват:</strong> эти валидации задокументированы на 15 августа 2026 года и не являются проверкой сервисов в реальном времени. Тесты синтаксиса, продления и журналов описаны, но их точные команды и обезличенные выводы <strong>не публикуются</strong>: никакая типовая команда Nginx или Certbot не выдаётся за реально использованную. Специфических инцидентов прокси не зафиксировано: потребности в потоковой передаче, WebSocket и публичном источнике — это учтённые ограничения, а не предполагаемые сбои. Подробная приёмка приложений — на страницах <a href="n8n.html" style="color:var(--blue-500)">n8n</a> и <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.</div>
+    <div class="notes-box" style="margin-top:1rem" data-i18n="rp.val.notes"><strong>Охват:</strong> эти валидации относятся к первоначальному этапу 15 августа 2026 года и дополнены обновлением ComfyUI/OpenWebUI от 18 октября; они не являются проверкой сервисов в реальном времени. Тесты синтаксиса, продления и журналов описаны, но их точные команды и обезличенные выводы <strong>не публикуются</strong>: никакая типовая команда Nginx или Certbot не выдаётся за реально использованную. Специфических инцидентов прокси не зафиксировано: потребности в потоковой передаче, WebSocket и публичном источнике — это учтённые ограничения, а не предполагаемые сбои. Подробная приёмка приложений — на страницах <a href="n8n.html" style="color:var(--blue-500)">n8n</a> и <a href="nextcloud.html" style="color:var(--blue-500)">Nextcloud</a>.</div>
   </div>
 </div>
   </div>
@@ -177,7 +179,7 @@ VM200            ───── flux LAN contrôlé ──>  backend</pre></div
             <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Nginx — Documentation</td><td><a href="https://nginx.org/en/docs/" target="_blank" style="color:var(--blue-500)">nginx.org/en/docs</a></td></tr>
             <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Certbot / Let's Encrypt</td><td><a href="https://eff-certbot.readthedocs.io/" target="_blank" style="color:var(--blue-500)">eff-certbot.readthedocs.io</a></td></tr>
             <tr><td data-i18n="c.ref.officialdoc">Официальная документация</td><td>Fail2ban</td><td><a href="https://github.com/fail2ban/fail2ban" target="_blank" style="color:var(--blue-500)">github.com/fail2ban/fail2ban</a></td></tr>
-            <tr><td data-i18n="rp.ref.cat4">Проверенные публикации</td><td>OpenWebUI (VM210) · n8n (VM300) · Nextcloud (VM205) — HTTPS testé depuis un réseau extérieur, 2026-08-15</td><td>—</td></tr>
+            <tr><td data-i18n="rp.ref.cat4">Проверенные публикации</td><td>OpenWebUI (VM210) · n8n (VM300) · Nextcloud (VM205) — HTTPS testé depuis un réseau extérieur, 2026-08-15 · ComfyUI (VM210) — HTTPS authentifié, 2026-10-18</td><td>—</td></tr>
             <tr><td data-i18n="c.ref.license">Лицензия</td><td>Nginx — BSD-2-Clause · Certbot — Apache-2.0 · Fail2ban — GPLv2</td><td><a href="https://nginx.org/LICENSE" target="_blank" style="color:var(--blue-500)">nginx.org/LICENSE</a></td></tr>
             <tr><td data-i18n="c.refs.content">Содержимое этой страницы</td><td data-i18n="c.refs.cc">Публикуется под CC BY-SA 4.0</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--blue-500)">creativecommons.org/licenses/by-sa/4.0</a></td></tr>
           </tbody>
